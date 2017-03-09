@@ -430,6 +430,10 @@ public function passengersFlight(Request $request){
 
     // return $request->all();
 
+    if( (!empty($request->username)) && (!empty($request->password)) ){
+        
+    }
+
 if ($request->tripType == 'R') {
      $this->validate($request, [
         'flightDetail' => 'required',

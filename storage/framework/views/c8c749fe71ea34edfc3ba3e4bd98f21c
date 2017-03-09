@@ -1,0 +1,257 @@
+          <!-- Left side column. contains the logo and sidebar -->
+          <aside class="main-sidebar">
+
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+              <!-- Sidebar user panel (optional) -->
+              <div class="user-panel">
+                <div class="pull-left image">
+                
+                <img src="<?php echo url().'/images/3hammers_footer.png'; ?>" class="img-circle" alt="User Image" />
+                </div>
+                <div class="pull-left info">
+                  <p><?php echo e(access()->user()->name); ?></p>
+                  <!-- Status -->
+                  <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+              </div>
+
+              
+
+              <!-- Sidebar Menu -->
+              <ul class="sidebar-menu">
+                <li class="header"><?php echo e(trans('menus.main_navigation')); ?></li>
+                <?php if (access()->can('view-page-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/pages*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-files-o"></i><span><?php echo e(trans('menus.pages.pages')); ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/pages*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/pages*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/pages/create')); ?>">
+                      <a href="<?php echo url('admin/pages/create'); ?>"><i class="fa fa-plus"></i> <?php echo e(trans('menus.pages.new')); ?></a>
+                    </li>
+                    <li class="<?php echo e(Active::pattern('admin/pages ')); ?>">
+                      <a href="<?php echo url('admin/pages'); ?>"><i class="fa fa-file-text-o"></i> <?php echo e(trans('menus.pages.all')); ?></a>
+                    </li>
+                  </ul>
+                </li>
+                <?php endif; ?>
+
+                <?php if (access()->can('view-page-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/innerpages*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-files-o"></i><span><?php echo e(trans('Inner Pages')); ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/innerpages*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/innerpages*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/innerpages/create')); ?>">
+                      <a href="<?php echo url('admin/innerpages/create'); ?>"><i class="fa fa-plus"></i> <?php echo e(trans('Add New')); ?></a>
+                    </li>
+                    <li class="<?php echo e(Active::pattern('admin/innerpages ')); ?>">
+                      <a href="<?php echo url('admin/innerpages'); ?>"><i class="fa fa-file-text-o"></i> <?php echo e(trans('All Inner Pages')); ?></a>
+                    </li>
+                  </ul>
+                </li>
+                <?php endif; ?>
+
+              
+              <?php if (access()->can('view-packages-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/package*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-minus-circle"></i><span><?php echo e(trans('Package')); ?></span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/package*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/package*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/packages ')); ?>">
+                      <a href="<?php echo url('admin/packages'); ?>"><i class="fa fa-file-text-o"></i> <?php echo e(trans('All Packages')); ?></a>
+                    </li>
+                    <li class="<?php echo e(Active::pattern('admin/packages/create ')); ?>">
+                      <a href="<?php echo url('admin/packages/create'); ?>"><i class="fa fa-plus"></i> <?php echo e(trans('Add New Package')); ?></a>
+                    </li>
+                    <li class="<?php echo e(Active::pattern('admin/packages/datesprices ')); ?>">
+                      <a href="<?php echo url('admin/packages/datesprices'); ?>"><i class="glyphicon glyphicon-th-list"></i> <?php echo e(trans('Package Date & Price')); ?></a>
+                    </li>
+                    <li class="<?php echo e(Active::pattern('admin/packages/itinerary')); ?>">
+                      <a href="<?php echo url('admin/packages/itinerary'); ?>"><i class="glyphicon glyphicon-th-list"></i> <?php echo e(trans('Package Itinerary')); ?></a>
+                    </li>
+                    <li class="<?php echo e(Active::pattern('admin/packages/category ')); ?>">
+                      <a href="<?php echo url('admin/packages/category'); ?>"><i class="glyphicon glyphicon-th-list"></i> <?php echo e(trans('Package Category')); ?></a>
+                    </li>
+                    <li class="<?php echo e(Active::pattern('admin/packages/options ')); ?>">
+                      <a href="<?php echo url('admin/packages/options'); ?>"><i class="glyphicon glyphicon-th-list"></i> <?php echo e(trans('Package Options')); ?></a>
+                    </li>
+                    <li class="<?php echo e(Active::pattern('admin/packages/gallery ')); ?>">
+                      <a href="<?php echo url('admin/packages/gallery'); ?>"><i class="glyphicon glyphicon-th-list"></i> <?php echo e(trans('Gallery')); ?></a>
+                    </li>
+                  </ul>
+                  </li>
+                <?php endif; ?>
+
+<!-- previous code -->
+               <!--  <?php if (access()->can('view-package-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/package*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-minus-circle"></i><span><?php echo e(trans('Package')); ?></span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/package*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/package*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/packages/create ')); ?>">
+                      <a href="<?php echo url('admin/packages/create'); ?>"><i class="fa fa-plus"></i> <?php echo e(trans('Add New')); ?></a>
+                    </li>
+                    <li class="<?php echo e(Active::pattern('admin/packages ')); ?>">
+                      <a href="<?php echo url('admin/packages'); ?>"><i class="fa fa-file-text-o"></i> <?php echo e(trans('All Packages')); ?></a>
+                    </li>
+                  </ul>
+                  </li>
+                <?php endif; ?> -->
+<!-- end previous code -->
+
+                <?php if (access()->can('view-menu-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/menus*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-minus-circle"></i><span><?php echo e(trans('Menu')); ?></span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/menus*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/menus*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/menus ')); ?>">
+                      <a href="<?php echo url('admin/menus'); ?>"><i class="fa fa-file-text-o"></i> <?php echo e(trans('All Menu')); ?></a>
+                    </li>
+                  </ul>
+                  </li>
+                <?php endif; ?>
+            
+              <!-- Sidebar Menu -->
+                <?php if (access()->can('view-slider-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/slides*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-file-image-o"></i><span><?php echo e(trans('menus.slides.slide')); ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/slides*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/slides*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/slides ')); ?>">
+                      <a href="<?php echo url('admin/slides/management'); ?>"><i class="fa fa-file-text-o"></i> <?php echo e(trans('menus.slides.Manages')); ?></a>
+                    </li>
+                  </ul>
+                </li>
+                <?php endif; ?>
+
+                <!-- setting Menu -->
+                <?php if (access()->can('settings-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/settings*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-cogs"></i><span><?php echo e(trans('menus.settings')); ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/settings*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/settings*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/settings')); ?>">
+                      <a href="<?php echo url('admin/settings'); ?>"><i class="fa fa-cog"></i><?php echo e(trans('menus.general_settings')); ?></a>
+                    </li>
+                  </ul>
+                </li>
+                <?php endif; ?>
+
+                <?php if (access()->can('emails-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/email*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-cogs"></i><span><?php echo e(trans('Email Template')); ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/email*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/email*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/email/travellerregister')); ?>">
+                      <a href="<?php echo url('admin/email/travellerregister'); ?>"><i class="fa fa-cog"></i><?php echo e(trans('Traveller Register')); ?></a>
+                    </li>
+                  </ul>
+                </li>
+                <?php endif; ?>
+
+                <?php if (access()->can('view-Permission-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/permission*')); ?> treeview">
+                  <a href="#">
+                    <i class="glyphicon glyphicon-ok-sign"></i><span><?php echo e(trans('menus.permission.permission')); ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/permission*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/permission*', 'display: block;')); ?>">
+                  <li class="<?php echo e(Active::pattern('admin/permission/user ')); ?>"><?php echo link_to_route('admin.access.users.index', trans('menus.permission.user')); ?></li>
+
+                  <li class="<?php echo e(Active::pattern('admin/permission/roles ')); ?>"><?php echo link_to_route('admin.access.roles.index', trans('menus.permission.role')); ?></li>
+                   
+                  </ul>
+                </li>
+                
+                <?php endif; ?>
+
+               
+                <?php if (access()->can('view-summitteers-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/Summitteers*')); ?> treeview">
+                  <a href="#">
+                    <i class="glyphicon glyphicon-ok-sign"></i><span><?php echo e(trans('Summitteers')); ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/Summitteers*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/permission*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/summitteers/create')); ?>">
+                      <a href="<?php echo url('admin/summitteers/create'); ?>"><i class="fa fa-plus"></i><?php echo e(trans('Add New')); ?></a>
+                    </li> 
+                    <li class="<?php echo e(Active::pattern('admin/summitteers')); ?>">
+                      <a href="<?php echo url('admin/summitteers'); ?>"><i class="fa fa-file-text-o"></i><?php echo e(trans('All Summitteers')); ?></a>
+                    </li>                  
+                  </ul>
+                </li>                
+                <?php endif; ?>
+
+                <?php if (access()->can('view-video-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/videos*')); ?> treeview">
+                  <a href="#">
+                    <i class="glyphicon glyphicon-facetime-video"></i><span><?php echo e(trans('Videos')); ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/videos*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/videos*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/videos ')); ?>">
+                      <a href="<?php echo url('admin/videos/management'); ?>"><?php echo e(trans('All Videos')); ?></a>
+                    </li>
+                    <!-- <li class="<?php echo e(Active::pattern('admin/videos ')); ?>">
+                      <a href="<?php echo url('admin/videos/create'); ?>"><?php echo e(trans('Add Videos')); ?></a>
+                    </li> -->
+                  </ul>
+                </li>
+                <?php endif; ?>
+                
+                <?php if (access()->can('view-ad-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/ads*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-file-image-o"></i><span><?php echo e(trans('ads')); ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/ads*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/ads*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/ads ')); ?>">
+                      <a href="<?php echo url('admin/ads/management'); ?>"><?php echo e(trans('All Ads')); ?></a>
+                    </li>
+                    <!-- <li class="<?php echo e(Active::pattern('admin/videos ')); ?>">
+                      <a href="<?php echo url('admin/videos/create'); ?>"><?php echo e(trans('Add Videos')); ?></a>
+                    </li> -->
+                  </ul>
+                </li>
+                <?php endif; ?>
+                
+                <?php if (access()->can('view-linksearch-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/linksearch*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-file-image-o"></i><span><?php echo e(trans('linksearch')); ?></span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/linksearch*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/linksearch*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/linksearch ')); ?>">
+                      <a href="<?php echo url('admin/linksearch/management'); ?>"><?php echo e(trans('All Search Link')); ?></a>
+                    </li>
+                    <!-- <li class="<?php echo e(Active::pattern('admin/videos ')); ?>">
+                      <a href="<?php echo url('admin/videos/create'); ?>"><?php echo e(trans('Add Videos')); ?></a>
+                    </li> -->
+                  </ul>
+                </li>
+                <?php endif; ?>
+                
+
+              </ul><!-- /.sidebar-menu -->
+            </section>
+            <!-- /.sidebar -->
+          </aside>

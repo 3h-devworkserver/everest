@@ -1112,6 +1112,10 @@ form.steps({
   
 });
 
+$(document).on('click', '.btnTravellerLogin', function(){
+  alert('lgin');
+});
+
 
 
 

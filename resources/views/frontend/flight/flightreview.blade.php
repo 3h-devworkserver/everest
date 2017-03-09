@@ -534,11 +534,11 @@
 															{!! Form::open(['url' =>'/flight/passengers']) !!}
 																<div class="form-group">
 																	<label for="exampleInputEmail1">Email address</label>
-																	<input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+																	<input type="email" name="email" class="form-control email" id="exampleInputEmail1" placeholder="Email">
 																</div>
 																<div class="form-group">
 																	<label for="exampleInputPassword1">Password</label>
-																	<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+																	<input type="password" name="password" class="form-control password" id="exampleInputPassword1" placeholder="Password">
 																</div>
 																<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
 																@if($trip_type == 'R')
@@ -554,7 +554,7 @@
 																		<input type="checkbox"> Remember me
 																	</label>
 																</div> -->
-																<button type="submit" class="btn btn-continue">Login</button>
+																<button type="button" class="btn btn-continue btnTravellerLogin">Login</button>
 															{!! Form::close() !!}
 														</div>
 													</div>
