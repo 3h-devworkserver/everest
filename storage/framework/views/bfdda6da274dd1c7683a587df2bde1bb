@@ -1,0 +1,101 @@
+<style>
+    body {
+      -webkit-font-smoothing: antialiased;
+      font: normal 15px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #232525;
+    }
+
+    #slides {
+      display: none
+    }
+
+    #slides .slidesjs-navigation {
+      margin-top:5px;
+    }
+
+   
+  </style>
+  <!-- End SlidesJS Optional-->
+
+  <!-- SlidesJS Required: These styles are required if you'd like a responsive slideshow -->
+  <style>
+    #slides {
+      display: none
+    }
+
+    .container {
+      margin: 0 auto
+    }
+
+    /* For tablets & smart phones */
+    @media (max-width: 767px) {
+      body {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .container {
+        width: auto
+      }
+    }
+
+    /* For smartphones */
+    @media (max-width: 480px) {
+      .container {
+        width: auto
+      }
+    }
+
+    /* For smaller displays like laptops */
+    @media (min-width: 768px) and (max-width: 979px) {
+      .container {
+        width: 724px
+      }
+    }
+
+    /* For larger displays */
+    @media (min-width: 1200px) {
+      .container {
+        width: 1170px
+      }
+    }
+  </style>
+  <section class="banner">
+	
+  	
+    <div id="slides">
+    <?php foreach($sliders as $slider): ?>
+      <img src="<?php echo e(asset($slider->path)); ?>" alt="background Image slider">
+      
+      <?php endforeach; ?>
+    </div>
+
+   
+
+   <!--  <div class="container">
+			<div class="row">
+				<div class="col-md-12"> -->
+					<div class="search-wrap">
+						<h2 class="text-center">Looking for a Guide? <small>Lorem ipsum dolor sit amet.</small></h2>
+						<?php echo $__env->make('frontend.includes.searchbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+					</div><!--end search wrap-->
+				
+		
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	</section>
+<script>
+    $(function() {
+      $('#slides').slidesjs({
+        width: 940,
+        height: 528,
+        navigation : {active: false,},
+        pagination: {
+      active: false,},
+        play: {
+          active: false,
+          auto: true,
+          interval: 4000,
+          swap: true
+        }
+      });
+    });
+  </script>

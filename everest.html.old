@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Everest</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:800italic,800,700italic,700,600italic,600,400italic,400,300italic,300' rel='stylesheet' type='text/css'>
+	
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/sumoselect.css">
+	<link rel="stylesheet" href="css/jquery-ui-1.10.4.custom.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+</head>
+<body class="everest">
+	<header>
+		<div class="container">
+			<div class="logo">
+				<h1>
+					<a href="index.html">
+						<img src="images/upeverest logo.png" alt="">
+					</a>
+				</h1>
+			</div>
+			<div class="header-right">
+				<button class="menu-icon">
+					<span class="bars"></span>
+					<span class="bars"></span>
+					<span class="bars"></span>
+				</button>
+				<div class="search">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search for...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+						</span>
+					</div><!-- /input-group -->
+				</div>
+				<button class="booked">
+					<img src="images/icon~plane.png" alt="">
+					<span class="hidden-xs">BOOK A FLIGHT</span>
+				</button>
+			</div>
+		</div>
+		<div class="mega-menu">
+			<div class="divider"></div>
+			<div class="container">
+				<div class="column">
+					<a class="title" href="#">EVEREST <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					<ul class="sub-menu">
+						<li><a href="trekking.html">Trekking</a></li>
+						<li><a href="everest.html">Everest</a></li>
+						<li><a href="summitteers.html">Summitteers</a></li>
+						<li><a href="#">Expeditions</a></li>
+						<li><a href="#">Peaks</a></li>
+						<li><a href="#">Records</a></li>
+						<li><a href="#">History</a></li>
+						<li><a href="#">Map</a></li>
+					</ul>
+				</div>
+
+				<div class="column">
+					<a class="title"  href="#">ESSENTIALS <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					<div class="divider"></div>
+					<ul class="sub-menu">
+						<li><a href="#">VISA Information</a></li>
+						<li><a href="#">Permits</a></li>
+						<li><a href="#">Fees</a></li>
+						<li><a href="#">Fitness</a></li>
+						<li><a href="#">Trekking Partners</a></li>
+						<li><a href="#">Insurance</a></li>
+					</ul>
+				</div>
+				<div class="column">
+					<a class="title"  href="#">REGION <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					<div class="divider"></div>
+					<ul class="sub-menu">
+						<li><a href="#">Annapurna</a></li>
+						<li><a href="#">Langtang</a></li>
+						<li><a href="#">Mustang</a></li>
+						<li><a href="#">Manaslu</a></li>
+						<li><a href="#">Makalu</a></li>
+						<li><a href="#">Maps</a></li>
+					</ul>
+				</div>
+
+				<div class="column">
+					<a class="title"  href="#">ADVENTURE SPORT <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					<div class="divider"></div>
+					<ul class="sub-menu">
+						<li><a href="#">Jungle Safari</a></li>
+						<li><a href="#">Bungy Jumping</a></li>
+						<li><a href="#">Paragliding</a></li>
+						<li><a href="#">Zip Flying</a></li>
+						<li><a href="#">Rafting</a></li>
+						<li><a href="#">Mountain Biking</a></li>
+						<li><a href="#">Enfield Tours</a></li>
+						<li><a href="#">Ultra Flight</a></li>
+						<li><a href="#">Everest Flight</a></li>
+					</ul>
+				</div>
+
+				<div class="column">
+					<a class="title"  href="#">ABOUT <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					<div class="divider"></div>
+					<ul class="sub-menu">
+						<li><a href="#">About Nepal</a></li>
+						<li><a href="#">Who We Are</a></li>
+						<li><a href="#">Team</a></li>
+						<li><a href="#">Advertising Policy</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="mega-footer">
+				<div class="container">
+					<a href="#" class="btn btn-default">BLOG</a>
+					<a href="#" class="btn btn-default">TALK TO EVEREST SUBMITER</a>
+				</div>
+			</div>
+		</div>
+		<div class="booking-form">
+			<div class="container">
+				<div class="info row">
+					<div class="col-md-12">
+						<p>Flight Tickets available for domestic destinations within Nepal only.</p>
+						<span class="close"><!-- <i class="fa fa-times" aria-hidden="true"></i> -->
+							<img src="images/close.png" alt="">
+						</span>
+					</div>
+				</div>
+				<div class="form-wrap row">
+					<form action="">
+						<div class="col-md-12">
+							<div class="radio">
+								<div class="form-group">
+									<input type="radio" id="radio01" name="radio" />
+									<label for="radio01">
+										<span>
+											<span class="inner"></span>
+										</span>
+										Round Trip
+									</label>
+								</div>
+
+								<div class="form-group">
+									<input type="radio" id="radio02" name="radio" />
+									<label for="radio02">
+										<span>
+											<span class="inner"></span>
+										</span>
+										One Way
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<div class="form-group">
+								<select class="SlectBox form-control">
+									<option selected="selected">From</option>
+									<option>Lorem ipsum</option>
+								</select>
+						    </div>
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<div class="form-group">
+						     	 <select class="SlectBox form-control">
+									<option selected="selected">To</option>
+									<option>Consectetur </option>
+								</select>
+						    </div>
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group date-picker">
+										<label for="from">Departure</label>
+										<input type="text" id="from" name="from">
+										<span class="calender-icon">
+												<img src="images/icon~calendar.png">
+										</span>
+								    </div>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group date-picker">
+										<label for="to">Return</label>
+										<input type="text" id="to" name="to">
+										<span class="calender-icon">
+												<img src="images/icon~calendar.png">
+										</span>	
+								    </div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6">
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<div class="row">
+										<div class="col-md-6 col-sm-6">
+											<div class="form-group">
+												<label for="">Adult</label>
+										     	<select class="SlectBox form-control">
+													<option selected="selected">1</option>
+													<option>2 </option>
+													<option>3 </option>
+												</select>
+										    </div>
+										</div>
+										<div class="col-md-6 col-sm-6">
+											<div class="form-group">
+											<label for="">Children</label>
+										      <select class="SlectBox form-control">
+													<option selected="selected">1</option>
+													<option>2 </option>
+													<option>3 </option>
+												</select>
+										    </div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group">
+										<label for="">Nationality</label>
+								      	<select class="SlectBox form-control">
+											<option selected="selected">Nepali</option>
+										</select>
+								    </div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-offset-9 col-md-3  col-sm-offset-9 col-sm-3">
+							<div class="form-group">
+								<input class="btn btn-default" type="submit" value="FIND FLIGHT">
+							</div>
+						</div>
+					</form>
+				</div><!--form-wrap-->
+			</div>
+		</div>
+	</header>
+	<section class="banner bg-wrap">
+		<div class="container">
+			<!-- <div class="lg-caption">
+				<h1>10 REASONS, WHY NEPAL IS THE BEST<br>TREKKING DESTINATION IN THE WORLD.</h1>
+				<a class="btn btn-default" href="#">READ MORE</a>
+			</div> -->
+		</div>
+	</section>
+	<section class="full-width-search">
+		<div class="container">
+			<div class="row">
+				<form class="form-inline">
+					<div class="form-group col-md-5 col-xs-5 col-sm-5">
+						<select class="SlectBox form-control">
+							<option selected="selected">Select Region</option>
+							<option>Annapurna</option>
+							<option>Mustang</option>
+							<option value="Makalu">Makalu</option>
+						</select>
+					</div>
+					<div class="form-group col-md-5 col-xs-5 col-sm-5">
+						<select class="SlectBox form-control" placeholder="this is placeholder">
+							<option selected="selected">Select Adventure</option>
+							<option>Bungyjumping</option>
+							<option>Paragliding</option>
+							<option value="Makalu">Rafting</option>
+						</select>
+					</div>
+					<div class="form-group  col-md-2 col-xs-2 col-sm-2">
+						<button type="submit" class="btn btn-default">Select</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<div class="main-content">
+		<div class="container">
+			<ol class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Everest</li>
+			</ol>
+			<div class="row">
+				<div class="col-md-8 col-sm-8">
+					<div class="feature-content">
+						<div class="page-header bold_page-header">
+							<h2>everest</h2>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="share_and_adds text-right">
+						<ul class="social-icon">
+							<li>
+								<p>SHARE</p>
+							</li>
+							<li>
+								<a class="fb" href="#">
+									<i class="fa fa-facebook" aria-hidden="true"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="twitter" href="#">
+									<i class="fa fa-twitter" aria-hidden="true"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="instagram" href="#">
+									<i class="fa fa-instagram" aria-hidden="true"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="pinterest" href="#">
+									<i class="fa fa-pinterest-p" aria-hidden="true"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="envelope" href="#">
+									<i class="fa fa-envelope-o" aria-hidden="true"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="feature-wrap">
+				<div class="row">
+					<div class="col-md-4 col-sm-4">
+						<a class="feature-box bg-wrap" style="background-image: url('images/home_body_big_1.jpg');" href="#">
+							<div class="description">
+								<div>
+									<h4>Awesome Everest</h4>
+									<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+								</div>
+							</div>
+							<div class="mask"></div>
+						</a>
+					</div><!--col-->
+
+					<div class="col-md-4 col-sm-4">
+						<a href="#" class="feature-box bg-wrap" style="background-image: url('images/home_body_big_1.jpg');">
+							<div class="description">
+								<div>
+									<h4>Awesome Everest</h4>
+									<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+								</div>
+							</div>
+							<div class="mask"></div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-4">
+						<a href="#" class="feature-box bg-wrap" style="background-image: url('images/home_body_big_1.jpg');">
+							<div class="description">
+								<div>
+									<h4>Awesome Everest</h4>
+									<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+								</div>
+							</div>
+							<div class="mask"></div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-4">
+						<a href="#" class="feature-box bg-wrap" style="background-image: url('images/home_body_big_1.jpg');">
+							<div class="description">
+								<div>
+									<h4>Awesome Everest</h4>
+									<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+								</div>
+							</div>
+							<div class="mask"></div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-4">
+						<a href="#" class="feature-box bg-wrap" style="background-image: url('images/home_body_big_1.jpg');">
+							<div class="description">
+								<div>
+									<h4>Awesome Everest</h4>
+									<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+								</div>
+							</div>
+							<div class="mask"></div>
+						</a>
+					</div>
+				</div><!--row-->
+			</div><!--feature-wrap-->
+		</div>
+		<div class="divider"></div>
+		<div class="essential">
+			<div class="container">
+				<div class="page-header">
+				<h2>Essentials for Adventure in Nepal</h2>
+				</div>
+					<div class="row">
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap visa"></div>
+							<p class="text-center">Visa</p>
+						</div>
+
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap permit"></div>
+							<p class="text-center">Permits</p>
+						</div>
+
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap fees"></div>
+							<p class="text-center">Fees</p>
+						</div>
+
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap fitness"></div>
+							<p class="text-center">Fitness</p>
+						</div>
+
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap trekking-partner"></div>
+							<p class="text-center">Trekking Partner</p>
+						</div>
+
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap insurance"></div>
+							<p class="text-center">Insurance</p>
+						</div>
+
+					</div>
+			</div>
+		</div>
+		<div class="video bg-wrap" style="background-image: url(images/home_body_video.jpg);">
+			<div class="container">
+				<div class="lg-caption">
+					<h1>EXPLORE THE UNEXPLORED REGION <span>WATCH THE VIDEO</span></h1>
+					<a class="btn btn-default" href="#"><i class="fa fa-play-circle" aria-hidden="true"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="member">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-sm-3">
+						<p>Associate Member :</p>
+					</div>
+					<div class="col-md-9 col-sm-9">
+						<!-- <img src="images/logo_partners.png" alt=""> -->
+						<div class="column">
+							<a href="#">
+								<img src="images/adv-T.png" alt="">
+							</a>
+						</div>
+						<div class="column">
+							<a href="#">
+								<img src="images/bmc.png" alt="">
+							</a>
+						</div>
+						<div class="column">
+							<a href="#">
+								<img src="images/pata.png" alt="">
+							</a>
+						</div>
+						<div class="column">
+							<a href="#">
+								<img src="images/ntb.png" alt="">
+							</a>
+						</div>
+						<div class="column">
+							<a href="#">
+								<img src="images/taan.png" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2 col-sm-2">
+					<div class="footer-menu">
+						<ul>
+							<li><a href="#">about nepal</a></li>
+							<li><a href="#">who we are</a></li>
+							<li><a href="#">team</a></li>
+							<li><a href="#">advertising policy</a></li>
+							<li><a href="#">contact</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="blog">
+					<p>Latest Blog</p>
+						<ul>
+							<li><a href="#">Ten Camping Tips</a></li>
+							<li><a href="#">10 Reasons why Nepal is the Best Trekking Destination</a></li>
+							<li><a href="#">Summer 2015 Gear Guide</a></li>
+							<li><a href="#">Ten Camping Tips</a></li>
+							<li><a href="#">10 Reasons why Nepal is the Best Trekking Destination</a></li>
+							<li><a href="#">Summer 2015 Gear Guide</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6">
+					<div class="social-media">
+						<ul>
+							<li>
+								<a class="fb" href="#">
+									<i class="fa fa-facebook"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="twitter" href="#">
+									<i class="fa fa-twitter"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="youtube" href="#">
+									<i class="fa fa-youtube"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="google-p" href="#">
+									<i class="fa fa-google-plus"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="instagram" href="#">
+									<i class="fa fa-instagram"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="flickr" href="#">
+									<i class="fa fa-flickr"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="tumblr" href="#">
+									<i class="fa fa-tumblr"></i>
+								</a>
+							</li>
+							<li>
+								<a class="pinterest" href="#">
+									<i class="fa fa-pinterest-p"></i>
+								</a>
+							</li>
+							<li>
+								<a class="vine" href="#">
+									<i class="fa fa-vine"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="js/jquery.sumoselect.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/function.js"></script>
+</body>
+</html>

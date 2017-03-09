@@ -1,0 +1,2 @@
+Hello Admin,
+ <?php echo e($msg); ?>

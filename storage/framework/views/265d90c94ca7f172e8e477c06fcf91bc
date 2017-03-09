@@ -1,0 +1,64 @@
+<footer>
+   <!-- <div class="member">
+        <?php /* ?><div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <p>Associate Member :</p>
+                </div>
+                <div class="col-md-9 col-sm-9">
+                    <!-- <img src="images/logo_partners.png" alt=""> -->
+                    <div class="column">
+                        <a href="#">
+                            <img src="images/adv-T.png" alt="">
+                        </a>
+                    </div>
+                    <div class="column">
+                        <a href="#">
+                            <img src="images/bmc.png" alt="">
+                        </a>
+                    </div>
+                    <div class="column">
+                        <a href="#">
+                            <img src="images/pata.png" alt="">
+                        </a>
+                    </div>
+                    <div class="column">
+                        <a href="#">
+                            <img src="images/ntb.png" alt="">
+                        </a>
+                    </div>
+                    <div class="column">
+                        <a href="#">
+                            <img src="images/taan.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div><?php */ ?>
+    </div> -->
+   
+
+    <div class="footer-bottom">
+            <div class="container">
+                <div class="bottom-menu">
+                    <ul class="list-inline">
+                        <li class="footer-logo">
+                            <a href="#">
+                                <img src="<?php echo e(asset('images/upeverest-logo-white.png')); ?>">
+                            </a>
+                        </li>
+                        <li><a href="/about-upeverest">About Us</a></li>
+                        <li><a href="/work-for-upeverest">Work for us</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                
+        
+                        <li><a href="/privacy-policy">Privacy policy</a></li>
+                    </ul>
+                </div>
+                <div class="copyright">
+                    <p>&copy; <?php echo date('Y'); ?> Upeverest. All rights reserved. No part of this site may be reproduced without our written permission.</p>
+                </div>
+            </div>
+        </div>
+  
+</footer>

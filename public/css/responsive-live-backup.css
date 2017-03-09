@@ -1,0 +1,473 @@
+/* #Media Queries
+================================================== */
+
+
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width:1060px) {
+
+}
+
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width:768px) and (max-width:960px){
+	.header-right button.booked{
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+	.header-right .menu-icon{
+		margin-left: 20px;
+	}
+	.booking-form .info{
+		padding-left: 30px;
+	}
+	.booking-form .form-wrap{
+		padding-left:30px;
+		padding-right: 30px;
+	}
+	
+	.mega-menu .divider{
+		top: 67px;
+	}
+
+	.package .col-md-7 > .btn-default:last-child{
+		margin: 5px 0 0 0;
+	}
+
+	.package-detail p span{
+		font-size: 20px;
+	}
+	.left{
+		word-break: break-all;
+	}
+	.left::after{
+		right: 0;
+	}
+	.sidebar-inner {
+		padding-left: 0;
+	}
+	.footer-bottom .footer-logo{
+		float: left;
+	}
+}
+@media only screen and (min-width:768px) and (max-width:1024px) {
+
+
+
+	.full-width-search .form-inline{
+		padding:0;
+	}
+	.about .about-text{
+		padding:15px;
+	}
+		.about .about-text h1{
+			font-size: 30px;
+			margin-bottom: 15px;
+		}
+
+	.feature-box{
+		height: 250px;
+	}
+		.feature-box .description{
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+			.feature-box .description div{
+				width: 100%;
+			}
+
+	.post .thumbnail {
+		padding: 5px;
+	}	
+		.post .bg-wrap {
+			height: 200px;
+		}
+		.post .thumbnail h3{
+			font-size: 20px;
+		}
+
+
+	.essential .item{
+		-webkit-background-size: 100% auto;
+		background-size: 100% auto;
+	}
+
+	footer .social-media li{
+		margin-bottom: 10px;
+	}
+
+	/*Inner page
+	---------------------*/
+	.social-icon li{
+		margin-left: 0;
+	}
+
+	.left{
+		word-break: break-all;
+	}
+	.video{
+		height: 400px;
+	}
+}
+
+@media only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape) {
+	.booking-form .info{
+		padding-left: 80px;
+	}
+	.booking-form .form-wrap{
+		padding-left:80px;
+		padding-right: 80px;
+	}
+
+	.full-width-search .form-inline{
+		padding:0 60px;
+	}
+
+	.package .btn.btn-default{
+		width: 145px;
+	}
+}
+
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width:767px) {
+
+	/*header
+	----------------------*/
+	header{
+		padding:20px 0;
+	}
+		.logo{
+			padding-top: 0;
+			width: 80px;
+		}
+		.header-right{
+			width: auto;
+		}
+			header .header-right .menu-icon{
+				margin:13px 0 0 0;
+			}
+	.lg-caption{
+		width: 100%;
+		padding: 0 10px;
+	}
+	.lg-caption h1{
+		font-size: 22px;
+	}
+	.mega-menu{
+		/* top: 140px; */
+		top:87px;
+	}
+		.mega-menu .divider{
+			display: none;
+		}
+		.mega-menu .column {
+			float: none;
+			width: 100%;
+			position: relative;
+		}
+			.mega-menu .column .divider{
+				left: -15px;
+				right: -15px;
+				top: 40px;
+			}
+			.mega-menu .column a.title i{
+				float: right;
+				font-size: 25px;
+				display: block;
+			}
+			.mega-menu .sub-menu{
+				display: none;
+			}
+		.mega-menu .mega-footer{
+			text-align: center;
+		}
+			.mega-menu .mega-footer a{
+				margin: 0 0 10px 0;
+			}
+			.mega-menu .mega-footer a.last-child{
+				margin-bottom: 0;
+			}
+
+	.booking-form{
+		/* margin-top: 148px; */
+	}
+		.booking-form .container{
+			top:148px;
+		}
+		.booking-form .info{
+			padding-left:0;
+			padding-right: 0;
+		}
+			.booking-form .info p{
+				width: 89%;
+			}
+		.booking-form .form-wrap {
+			padding-left:0;
+			padding-right: 0;
+		}
+
+
+
+	.page-header h2{
+		font-size: 24px;
+	}
+	
+	.full-width-search{
+		margin-top: 0;
+	}
+		.full-width-search .form-inline{
+			padding: 0;
+		}
+		.full-width-search .form-inline .form-group{
+			padding: 0 15px;
+			width: 100%;
+		}
+		.full-width-search .form-inline .form-group:last-child{
+			margin-bottom: 0;
+		}
+
+	.about{
+		height: auto;
+	}
+		.about .about-text{
+			padding:10px;
+		}
+			.about h1{
+				font-size: 26px;
+			}
+		.about .row .col-md-6:last-child{
+			height: 180px;
+		}
+
+	.feature-box .description{
+		padding: 10px;
+	}
+		.feature-box .description div{
+			width: 100%;
+		}
+
+	.post .thumbnail{
+		margin-bottom: 20px;
+	}
+	.post .col-md-4:last-child .thumbnail{
+		margin-bottom: 0;
+	}
+		.post .thumbnail h3{
+			font-size: 22px;
+		}
+
+	.essential .col-md-2{
+		margin-bottom: 15px;
+	}
+		.essential .item{
+			width: 165px;
+			margin: 0 auto;
+		}
+
+	.member p{
+		text-align: left;
+	}
+	footer{
+		text-align: center;
+	}
+		footer .footer-menu{
+			margin-bottom: 20px;
+		}
+		footer .social-media{
+			text-align: center;
+			margin-top: 40px;
+		}
+		.footer-bottom li{
+			display: block;
+			margin: 0 0 7px 0;
+			text-align: center;
+		}
+
+
+	/*Inner Page
+	---------------------------*/
+
+
+	.share_and_adds{
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	.list-search .form-group{
+		margin-bottom: 15px;
+	}
+
+	.member p{
+		text-align: center;
+	}
+		.member .column{
+			width: 50%;
+			float: none;
+			margin: 0 auto;
+			text-align: center;
+			margin-bottom: 10px;
+		}
+
+
+
+/*table*/
+
+/* Force table to not be like tables anymore */
+	.summitteers-list table,
+	.summitteers-list thead, 
+	.summitteers-list tbody, 
+	.summitteers-list th, 
+	.summitteers-list td, 
+	.summitteers-list tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.summitteers-list thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	.summitteers-list td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 45% !important; 
+		min-height: 40px;
+	}
+	
+	.summitteers-list td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/
+	.summitteers-list td:nth-of-type(1):before { content: "Name :"; }
+	.summitteers-list td:nth-of-type(2):before { content: "Country :"; }
+	.summitteers-list td:nth-of-type(3):before { content: "Year :"; }
+	.summitteers-list td:nth-of-type(4):before { content: "Route :"; }
+	.summitteers-list td:nth-of-type(5):before { content: "Team Name :"; }
+
+
+	.video{
+		height: 300px;
+	}
+	/*-Classic Everest*/
+	.package{
+		text-align: center;
+	}
+		.package .col-md-7{
+			text-align: center;
+		}
+			.package .col-md-7 > .btn-default{
+				margin: 10px auto;
+				display: block;
+			}
+			.package .col-md-7 > .btn-default:last-child{
+				margin-left:auto;
+			}
+
+	.package-detail{
+		text-align: center;
+	}
+		.package-detail .box .trek-type{
+			display: inline-block;
+		}
+
+	.gallery{
+		text-align: center;
+	}
+
+	.sidebar-inner{
+		padding-left: 0;
+	}
+	/* -- Contact Form -- */
+	.contact-form .col-md-6 .form-group:last-child{
+	margin-bottom: 15px;
+	}
+	.contact-form .btn-default {
+	    float: left;
+	}
+	#back-to-top{
+		right: 10px;
+	}
+
+}
+
+/*-----------*/
+
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) {
+	/* .mega-menu,.booking-form{
+		top:inherit;
+	}
+	.booking-form .container{
+		top:inherit;
+	} */
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width:480px) {
+	.full-width-search .form-inline .form-group{
+		width: 100%;
+	}
+	.header-right button.booked {
+		background: #ccc none repeat scroll 0 0;
+		font-size: 14px;
+		padding: 6px;
+		margin-bottom: 20px;
+		float: left;
+	}
+	.header-right button.booked img{
+		margin-right: 0;
+		width: 22px;
+	}
+	
+	/*
+	.logo {
+	    float: none;
+	    padding-top: 18px;
+	    text-align: center;
+	    width: 100%;
+	}
+
+	.header-right {
+	    float: none;
+	    clear: both;
+	    margin-top: 20px;
+	    width: 100%;
+	}
+
+	.header-right .search {
+	    left: 0;
+	    margin: 0 auto;
+	    padding: 0;
+	    position: absolute;
+	    right: 0;
+	    width: 65%;
+	}
+	*/
+	.header-right .search{
+		width: 65%;
+		margin: 0 0 10px 0;
+		float: left;
+		border:none;
+		padding: 0;
+	}
+
+	.header-right .menu-icon {
+		float: right;
+		margin: 7px 0 0 0;
+		padding: 0;
+	}
+	.header-right .menu-icon .bars{
+		height: 3px !important;
+	}
+}

@@ -1,0 +1,11 @@
+<div class="flight-wrapper flight-form">
+  <div class="flight-search-form">
+    <div class="container">
+      <div class="well">
+
+        <?php echo $__env->make('frontend.includes.new.searchformpart', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,141 @@
+    
+    <?php $__env->startSection('title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>
+    <!--<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>-->
+    <?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+    <?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+
+    <?php $__env->startSection('loader'); ?>
+    <?php echo $__env->make('frontend.includes.new.loader', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php $__env->stopSection(); ?>
+
+    <?php $__env->startSection('banner'); ?>
+    <?php echo $__env->make('frontend.includes.banner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('frontend.includes.new.region', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <section class="main-content">
+
+    <?php echo $__env->make('frontend.includes.new.searchform', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+                <?php foreach($page as $p): ?>
+                <div class="container">
+
+
+                    <div class="about">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="about-text">
+                                    <h1><?php echo e($p->title); ?></h1>
+                                    <p><?php echo $p->content; ?></p>
+                                    <a class="btn btn-primary" href="<?php echo e(url().'/'.$p->slug); ?>">
+                                        <span class="dots"></span>
+                                        <span class="dots"></span>
+                                        <span class="dots"></span>
+                                        more
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="feature-img bg-wrap" style="background-image: url('<?php echo e(url()); ?>/images/<?php echo e($p->image); ?>');"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exploure">
+                        <div class="page-header">
+                            <h2>Explore the Adventure</h2>
+                        </div>
+                        <div class="exploure-content">
+                            <div class="row">
+                                <?php
+                                $statBlock = \DB::table('static_blocks')->where('pid', $p->id)->where('position', 'top')->get();
+                                $counter = 1;
+                                foreach ($statBlock as $data) {
+                                    $col_num = ($counter == 1 || $counter == 10) ? '8' : '4';
+                                    ?>
+                                    <a href="<?php echo e($data->url); ?>">
+                                        <!--<?php echo $data->content; ?>-->
+                                        <div class="col-md-<?php echo e($col_num); ?> col-sm-<?php echo e($col_num); ?>">
+                                            <div class="feature-box bg-wrap" style="background-image: url('<?php echo e(url()); ?>/images/staticimages/<?php echo e($data->image); ?>');">
+                                                <div class="description">
+                                                    <div>
+                                                        <h4><?php echo e($data->title); ?></h4>
+                                                        <p><?php echo $data->content; ?></p>
+                                                    </div>
+                                                </div>
+                                                <div class="mask"> </div>
+                                            </div>
+                                        </div>
+
+                                    </a>
+                                    <?php
+                                    $counter++;
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php $video = \DB::table('p_videos')->where('pages_id', 'LIKE', '%' . $p->id . '%')->get();
+                ?>
+
+                <?php
+                foreach ($video as $v) {
+                    $link = parse_vimeo($v->video);
+                    $video_link = "http://player.vimeo.com/video/" . $link;
+                    ?>
+
+                    <div class="video">
+
+                        <iframe src=" <?php echo e($video_link); ?>" height="100%" width="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+                    </div>
+                    <?php } ?>
+                    <div class="container">
+                        <div class="post">
+                            <div class="row">
+                                <?php
+                                $statBlockBottom = \DB::table('static_blocks')->where('pid', $p->id)->where('position', 'bottom')->get();
+
+                                foreach ($statBlockBottom as $data) {
+                                    ?>
+
+                                    <div class="col-sm-4 col-md-4">
+                                        <div class="thumbnail">
+                                            <a  href="<?php echo e(url()); ?>/<?php echo e($data->url); ?>"><div class="bg-wrap" style="background-image: url(<?php echo e(url()); ?>/images/staticimages/<?php echo e($data->image); ?>);"></div></a>
+                                            <!-- <img src="images/home_body_small_6.jpg" alt="..."> -->
+                                            <div class="caption">
+                                                <h3><a  href="<?php echo e(url()); ?>/<?php echo e($data->url); ?>"><?php echo e($data->title); ?></a></h3>
+                                <?php 
+                                        $content_length = strlen($data->content);
+                                        if ($content_length <= 370) {
+                                ?> 
+                                                <p><?php echo $data->content; ?></p>
+                                <?php }else{
+                                    ?>
+                                                <p> <?php echo substr($data->content, 0, 370); ?>.. </p>
+                                                <p></p>
+                                <?php } ?> 
+                                                <a class="btn btn-primary" href="<?php echo e(url()); ?>/<?php echo e($data->url); ?>">
+                                                    <span class="dots"></span>
+                                                    <span class="dots"></span>
+                                                    <span class="dots"></span>
+                                                    more
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <?php echo $__env->make('frontend.includes.new.essential', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    <?php endforeach; ?>
+                    <?php echo $__env->make('frontend.includes.new.members', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                </section>
+                <?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

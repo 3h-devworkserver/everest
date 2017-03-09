@@ -1,0 +1,189 @@
+<?php $__env->startSection('title', trans('Create Package Gallery')); ?>
+
+<?php $__env->startSection('page-header'); ?>
+<h1>
+	<?php echo e(trans('Package Gallery Management')); ?>
+
+	<small><?php echo e(trans('menus.packages.gallery.create')); ?></small>
+</h1>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumbs'); ?>
+<li><a href="<?php echo route('backend.dashboard'); ?>"><i class="fa fa-dashboard"></i> <?php echo e(trans('menus.dashboard')); ?></a></li>
+<li class="active"><?php echo link_to_route('admin.packages.index', trans('Package Management')); ?></li>
+<li class="active"><?php echo trans('Packages Gallery Create'); ?></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<style>
+	
+</style>
+
+<?php echo Form::open(['url'=>'admin/packages/gallery', 'id'=>'myForm', 'files'=>'true']); ?>
+
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="box">
+			<div class="box-body">
+
+			<div class="form-group">
+					<label class="control-label">Package</label>
+
+					<?php echo Form::select('package_id',$packages,null,['class'=>'form-control']); ?>
+
+					
+				</div>
+				</div>
+
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">Rotator</h3>
+				<div class="box-tools pull-right">
+					<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				</div><!-- /.box-tools -->
+			</div><!-- /.box-header -->
+			<div class="box-body">
+
+				<div class="form-group">
+					<span class="btn btn-primary btn-file btn-sm">
+						<i class="fa fa-folder-open"></i>Upload Images
+						<input type="file" id="files" name="files[]" multiple required>
+					</span>
+					<div id="selectedFiles"></div>
+				</div>
+
+<!-- <div class="form-group">
+					<span class="btn btn-primary btn-file btn-sm">
+						<i class="fa fa-folder-open"></i>Upload Map Image
+						<input type="file" name="upload-map" class="form-control" onchange="readURLmap(this);" >
+					</span>
+					<div id="map-preview" class="show-img-bg display-none  width-50" alt="Image Preview"></div>
+				</div>
+
+<div class="form-group">
+	<label class="control-label">Name</label>
+	<input type="file" id="files" name="files" multiple>
+	<div id="selectedFiles"></div>
+</div> -->
+
+
+
+
+</div>
+</div>
+</div>
+
+<div class="col-md-6">
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">List</h3>
+			<div class="box-tools pull-right">
+				<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+			</div><!-- /.box-tools -->
+		</div><!-- /.box-header -->
+		<div class="box-body">
+
+			
+
+		</div>
+	</div>
+</div>
+
+
+</div>
+		<?php echo Form::submit('Save',['class'=>'test btn btn-orange']); ?>
+
+
+
+<?php echo Form::close(); ?>
+
+<div class="clearfix"></div>
+
+
+
+<script>
+	var selDiv = "";
+	var storedFiles = [];
+
+	$(document).ready(function() {
+		$("#files").on("change", handleFileSelect);
+
+		selDiv = $("#selectedFiles"); 
+		// $("#myForm").on("submit", handleForm);
+		// $(".test").on("click", handleForm);
+
+		// $("body").on("click", ".selFile", removeFile);
+	});
+
+	function handleFileSelect(e) {
+		$('#selectedFiles').html('');
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		filesArr.forEach(function(f) {          
+			if(!f.type.match("image.*")) {
+				return;
+			}
+			// storedFiles.push(f);
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				var html = "<div><input type=\"radio\" name=\"default\" value='"+f.name+"'>"+f.name+"<div class=\"show-img-bg2\" style= \"background-image: url('"+e.target.result+"')\"></div>"  + "</div><br>";
+				// var html = "<div><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selFile' title='Click to remove'>" + f.name + "<br clear=\"left\"/></div>";
+				selDiv.append(html);
+			}
+			reader.readAsDataURL(f); 
+		});
+	}
+
+	function handleForm(e) {
+		// e.preventDefault();
+		var data = new FormData();
+
+		for(var i=0, len=storedFiles.length; i<len; i++) {
+			data.append('files', storedFiles[i]); 
+		}
+		// alert(files);
+		// $("#myForm").append('files',data);
+
+		$("#myForm").submit();
+
+		// var xhr = new XMLHttpRequest();
+		// xhr.open('POST', 'handler.cfm', true);
+
+		// xhr.onload = function(e) {
+		// 	if(this.status == 200) {
+		// 		console.log(e.currentTarget.responseText);  
+		// 		alert(e.currentTarget.responseText + ' items uploaded.');
+		// 	}
+		// }
+
+		// xhr.send(data);
+	}
+
+	function removeFile(e) {
+		var file = $(this).data("file");
+		alert(file);
+		for(var i=0;i<storedFiles.length;i++) {
+
+			if(storedFiles[i].name === file) {
+		alert('here');
+
+				storedFiles.splice(i,1);
+				break;
+			}
+		}
+
+		$(this).parent().remove();
+	}
+</script>
+
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

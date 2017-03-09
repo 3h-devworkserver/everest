@@ -1,0 +1,365 @@
+
+<?php $__env->startSection('title'); ?><?php echo e($title); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>
+<!--<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>-->
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<section class="banner bg-wrap <?php echo $page->image; ?>" style="background-image: url(<?php echo url().'/images/'.$page->image; ?>);">
+    <div class="container"></div>
+</section>
+<?php /* <?php echo $__env->make('frontend.includes.region', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
+<?php echo $__env->make('frontend.includes.new.search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="main-content">
+    <div class="container">
+        <?php
+        echo list_breadcrumbs($page->slug, $page->title);
+        ?>
+
+
+<div class="row">
+                <div class="col-md-8 col-sm-8">
+                    <div class="feature-content">
+                        <div class="page-header bold_page-header">
+                            <h2><?php echo e($page->title); ?></h2>
+                        </div>
+
+                        <?php
+                        $content_length = strlen($page->content);
+                        if ($content_length > 500) {
+                            //echo '<div class="short_content" style="height:200px;overflow:hidden">';
+                            echo '<div  id="complete" style="height:200px;overflow:hidden">';
+                            echo $page->content;
+                            echo '</div>';
+
+                            ?> 
+                             <a href="#" class="btn btn-default" id="more">read more <i class="fa fa-angle-down" aria-hidden="true"></i></a>                       
+                            <?php
+                        } else {
+                            ?>
+                            <div class="full_content">
+                                <?php 
+                                echo '<p style="text-align: justify;">';
+                            echo $page->content;
+                            echo '</p>';
+
+                                ?>
+                            </div>
+                            <?php
+                        }
+                        ?>    
+
+                        
+                        <!-- <p>The Himalayas are a complex skein of ranges and probably the mightiest geographical feature on the surface of the earth. With more than a hundred peaks 7000m above sea level and about twenty peaks reaching almost 8000m are higher than the highest mountains in the rest of the world. The Himalayan mass which is about 3200 km long and 480m wide has successive ranges are steeped up and the highest peaks tend to be the furthest and appear to be dwarfed by smaller peaks. In the midst of all these mountains lies the mighty Everest.</p>
+                        <a href="#" class="btn btn-default">read more <i class="fa fa-angle-down" aria-hidden="true"></i></a> -->
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="share_and_adds text-right">
+                <?php echo $__env->make('frontend.includes.sharethis', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    
+                        <!-- <ul class="social-icon">
+                            <li>
+                                <p>SHARE</p>
+                            </li>
+                            <li>
+                                <a class="fb" href="#">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="twitter" href="#">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="instagram" href="#">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="pinterest" href="#">
+                                    <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="envelope" href="#">
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul> -->
+
+                        <!-- <div class="adds">
+                            <img src="images/inside_ad_yeti.jpg" alt="">
+                            <p>Advertisement</p>
+                        </div>-->
+
+                        <!-- <div class="anchor text-left">
+                            <ul>
+                                <li><a href="#nuptse">Nuptse</a></li>
+                                <li><a href="#makalu"> Makalu</a></li>
+                                <li><a href="#chooyu">Cho Oyu</a></li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+        
+        <div class="feature-wrap trekking-pricing">
+                <div class="row">
+                <?php if(!empty($packages)): ?>
+                <?php foreach($packages as $package): ?>
+                    <div class="col-md-4 col-sm-4">
+                        <a href="<?php echo e(url('/package/'.$package->slug)); ?>" class="feature-box bg-wrap" style="background-image: url(<?php echo e(asset('images/packages-new/'.$package->feat_img)); ?>);">
+                            <div class="description">
+                                <div>
+                                    <h4><?php echo e($package->title); ?></h4>
+                                    <p class="days"> <span>10 Nights</span><span>11 Days</span></p>
+                                    <p class="price">$<?php echo e($package->price); ?></p>
+                                </div>
+                            </div>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
+
+                   <!--  <div class="col-md-4 col-sm-4">
+                        <a href="#" class="feature-box bg-wrap" style="background-image: url('images/inside_everest_trekking_small_1.jpg');">
+                            <div class="description">
+                                <div>
+                                    <h4>clasic everest</h4>
+                                    <p class="days"> <span>10 Nights</span><span>11 Days</span></p>
+                                    <p class="price">$1210</p>
+                                </div>
+                            </div>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <a href="#" class="feature-box bg-wrap" style="background-image: url('images/inside_everest_trekking_small_1.jpg');">
+                            <div class="description">
+                                <div>
+                                    <h4>clasic everest</h4>
+                                    <p class="days"> <span>10 Nights</span><span>11 Days</span></p>
+                                    <p class="price">$1210</p>
+                                </div>
+                            </div>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <a href="#" class="feature-box bg-wrap" style="background-image: url('images/inside_everest_trekking_small_1.jpg');">
+                            <div class="description">
+                                <div>
+                                    <h4>clasic everest</h4>
+                                    <p class="days"> <span>10 Nights</span><span>11 Days</span></p>
+                                    <p class="price">$1210</p>
+                                </div>
+                            </div>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <a href="#" class="feature-box bg-wrap" style="background-image: url('images/inside_everest_trekking_small_1.jpg');">
+                            <div class="description">
+                                <div>
+                                    <h4>clasic everest</h4>
+                                    <p class="days"> <span>10 Nights</span><span>11 Days</span></p>
+                                    <p class="price">$1210</p>
+                                </div>
+                            </div>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <a href="#" class="feature-box bg-wrap" style="background-image: url('images/inside_everest_trekking_small_1.jpg');">
+                            <div class="description">
+                                <div>
+                                    <h4>clasic everest</h4>
+                                    <p class="days"> <span>10 Nights</span><span>11 Days</span></p>
+                                    <p class="price">$1210</p>
+                                </div>
+                            </div>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <a href="#" class="feature-box bg-wrap" style="background-image: url('images/inside_everest_trekking_small_1.jpg');">
+                            <div class="description">
+                                <div>
+                                    <h4>clasic everest</h4>
+                                    <p class="days"> <span>10 Nights</span><span>11 Days</span></p>
+                                    <p class="price">$1210</p>
+                                </div>
+                            </div>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <a href="#" class="feature-box bg-wrap" style="background-image: url('images/inside_everest_trekking_small_1.jpg');">
+                            <div class="description">
+                                <div>
+                                    <h4>clasic everest</h4>
+                                    <p class="days"> <span>10 Nights</span><span>11 Days</span></p>
+                                    <p class="price">$1210</p>
+                                </div>
+                            </div>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                        <a href="#" class="feature-box bg-wrap" style="background-image: url('images/inside_everest_trekking_small_1.jpg');">
+                            <div class="description">
+                                <div>
+                                    <h4>clasic everest</h4>
+                                    <p class="days"> <span>10 Nights</span><span>11 Days</span></p>
+                                    <p class="price">$1210</p>
+                                </div>
+                            </div>
+                            <div class="mask"></div>
+                        </a>
+                    </div> -->
+
+                </div>
+            </div>  
+
+
+        <?php if(!empty($static)): ?>
+        <div class="feature-wrap">
+            <div class="row">
+                <?php foreach($static as $data): ?>
+                <?php if($data->title !== 'essential' && $data->title !== 'video'): ?>
+                <div class="col-md-4 col-sm-4">
+                    <a class="feature-box bg-wrap" style="background-image: url(<?php echo url().'/images/staticimages/'.$data->image; ?>);" href="<?php echo e(URL::to('/'.$data->url)); ?>">
+                        <div class="description">
+                            <div>
+                                <h4><?php echo $data->title; ?></h4>
+                                <?php echo $data->content; ?>
+
+                            </div>
+                        </div>
+                        <div class="mask"></div>
+                    </a>
+                </div>
+                <?php else: ?>
+                <div class="col-md-12 col-sm-12">
+                    <?php echo $data->content; ?>
+
+                </div>
+                <?php endif; ?>
+
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+
+    <div class="divider"></div>
+   <?php echo $__env->make('frontend.includes.new.essential', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+    <?php $video = \DB::table('p_videos')->where('pages_id', 'LIKE', '%' . $page->id . '%')->get(); ?>
+
+    <?php
+    foreach ($video as $v) {
+        $link = parse_vimeo($v->video);
+        $video_link = "http://player.vimeo.com/video/" . $link;
+        ?>
+
+        <div class="video">
+
+            <iframe src=" <?php echo e($video_link); ?>" height="100%" width="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+        </div>
+      <div class="divider"></div>
+    <?php } ?>
+   
+   
+<?php echo $__env->make('frontend.includes.new.members', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+   
+</div>
+<script>
+    
+    
+    $(document).ready(function () {
+        $('.readmore').click(function () {
+            $('.short_content').css('height','auto');
+            $(this).hide();
+        });
+    });
+
+
+
+    $(document).ready(function(){
+
+
+    $('html, body').animate({
+       //scrollTop: $('.alert').offset().top
+    }, 200);
+
+    });
+
+</script>
+
+<script>
+                                                      
+    $(document).ready(function(){
+        var success_id = $('#successMessage');
+        if(!success_id.length){
+            return;
+        }
+        $('html, body').animate({
+           scrollTop: success_id.offset().top
+        }, 2000);
+
+    });
+
+    
+
+
+    var text = $('#complete'),
+     btn = $('#more'),
+       h = text[0].scrollHeight; 
+
+if(h > 120) {
+    btn.addClass('less');
+    
+}
+
+btn.click(function(e) 
+{
+  e.stopPropagation();
+
+  if (btn.hasClass('less')) {
+      btn.removeClass('less');
+      btn.addClass('more');
+      btn.text('Show less');
+
+      text.animate({'height': h});
+  } else {
+      btn.addClass('less');
+      btn.removeClass('more');
+      btn.text('Show more');
+      text.animate({'height': '200px'});
+  }  
+});
+
+</script>
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

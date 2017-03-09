@@ -1,0 +1,26 @@
+<?php $__env->startSection('title'); ?> Search Flight | <?php echo e(isset($siteTitle) ? $siteTitle : ''); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('loader'); ?>
+<?php echo $__env->make('frontend.includes.new.loader', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<section class="main-content">
+    	<div class="flight-booking-progress-step">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3>Book Flight Tickets</h3>
+							
+					</div>
+				</div>
+			</div>
+		</div>
+         <?php echo $__env->make('frontend.includes.new.searchform', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	</section>
+	
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

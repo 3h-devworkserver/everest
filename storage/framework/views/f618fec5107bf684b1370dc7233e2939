@@ -1,0 +1,671 @@
+
+
+<?php $__env->startSection('title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>
+<!--<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>-->
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('content'); ?>
+
+<div class="extra-traveller display-none">
+	<div class="form-group">
+		<span class="form-title">Contact:</span>
+		<div class="row">
+			<div class="col-md-3 col-sm-4">
+				<label>Title <em>*</em></label>
+				<?php echo Form::select('title[]', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms'], null, ['class'=>'box form-control' ]); ?>
+
+				<?php /* <?php echo Form::select('title[]', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms', 'DR'=>'Dr', 'PROF'=>'Prof', 'CAPT'=>'Captain', 'SHK'=>'Sheikh', 'SHKA'=>'Shaikha', 'GENE'=>'General', 'BRIG'=>'Brigadier', 'COLO'=>'Colonel'], null, ['class'=>'box form-control','required' ]); ?> */ ?>
+					<!-- <select name="title" class="SlectBox form-control">
+                        <option value="" selected="selected">Title</option>
+                        <option value="MR">Mr</option>
+                        <option value="MRS">Mrs</option>
+                        <option value="MS">Ms</option>
+                        <option value="DR">Dr</option>
+                        <option value="PROF">Prof</option>
+                        <option value="CAPT">Captain</option>
+                        <option value="SHK">Sheikh</option>
+                        <option value="SHKA">Shaikha</option>
+                        <option value="GENE">General</option>
+                        <option value="BRIG">Brigadier</option>
+                        <option value="COLO">Colonel</option>
+                    </select> -->
+
+			</div>
+			<div class="col-md-3 col-sm-4">
+				<label>First Name <em>*</em></label>
+				<?php echo Form::text('fname[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="text" name="fname" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-3 col-sm-4">
+				<label>Middle Name</label>
+				<?php echo Form::text('mname[]',null, ['class'=>'form-control']); ?>
+
+				<?php /* <input type="text" name="mname" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-3 col-sm-4">
+				<label>Last Name <em>*</em></label>
+				<?php echo Form::text('lname[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="text" name="lname" class="form-control"> */ ?>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<label>Email <em>*</em></label>
+				<?php echo Form::email('email[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="email" name="email" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-3 col-sm-6">
+				<label>Phone Number</label>
+				<?php echo Form::text('phone[]',null, ['class'=>'form-control']); ?>
+
+				<?php /* <input type="text" name="phone" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-5 col-sm-12 date-birth">
+				<label>Date Of Birth <em>*</em></label>
+				<div class="row">
+					<div class="col-md-5 col-sm-6 col-xs-6 pad-adj">
+						<select name="dob_year[]" class="yearpicker form-control box" >
+							<option value="">YEAR</option>
+						</select>
+
+						<?php /* <input type="text" name="dob_year" class="form-control" placeholder="YEAR"> */ ?>
+					</div>
+					<div class="col-md-7 col-sm-6 col-xs-6 pad-adj">
+						<div class="row-fluid">
+							<div class="col-md-6 col-sm-6 col-xs-6">
+								<?php echo Form::select('dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
+								<?php /* <?php echo Form::select('dob_month', [''=>'MM', '1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11'=>'11', '12'=>'12'], null, ['class'=>'SlectBox form-control', ]); ?> */ ?>
+								<?php /* <?php echo Form::input('number', 'dob_month', null, ['placeholder'=>'MM', 'class' => 'form-control', 'min'=>'01', 'max'=>'12', ]); ?> */ ?>
+								<?php /* <input type="text" name="dob_month"  class="form-control" placeholder="MM"> */ ?>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-6">
+								<select name="dob_day[]" class="daypicker form-control box" >
+									<option value="">DD</option>
+								</select>
+								<?php /* <input type="text" name="dob_day" class="form-control" placeholder="DD"> */ ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="form-group">
+		<span class="form-title">PASSPORT:</span>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<label>Passport Number <em>*</em></label>
+				<?php echo Form::text('passport[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="text" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-3 col-sm-6">
+				<label>Nationality</label>
+				<?php echo Form::text('nationality[]',null, ['class'=>'form-control']); ?>
+
+				<?php /* <input type="text" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-5 col-sm-12 issue-date">
+				<label>Issue Date <em>*</em></label>
+				<div class="row">
+					<div class="col-md-5 col-sm-6  col-xs-6 pad-adj">
+						<select name="issue_year[]" class="yearpicker form-control box" >
+							<option value="">YEAR</option>
+						</select>
+						<?php /* <input type="text" class="form-control" placeholder="YEAR"> */ ?>
+					</div>
+					<div class="col-md-7 col-sm-6  col-xs-6 pad-adj">
+						<div class="row-fluid">
+							<div class="col-md-6 col-sm-6 col-xs-6 ">
+								<?php echo Form::select('issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
+								<?php /* <input type="text" class="form-control" placeholder="MM"> */ ?>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-6 ">
+								<select name="issue_day[]" class="daypicker form-control box" >
+									<option value="">DD</option>
+								</select>
+								<?php /* <input type="text" class="form-control" placeholder="DD"> */ ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<label>Passport Issue Place</label>
+				<?php echo Form::text('issue_place[]',null, ['class'=>'form-control']); ?>
+
+				<?php /* <input type="email" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-3 col-sm-6">
+			<label>Upload Passport Image<em>*</em></label>
+				<span class="btn btn-primary btn-file btn-sm">
+					<i class="fa fa-folder-open"></i>Upload
+					<input type="file" id="image" class="image" name="image[]" >
+				</span>
+				<span class="image-name"></span>
+			</div>
+			
+			<div class="col-md-5 col-sm-12 issue-date">
+				<label>Expiration Date <em>*</em></label>
+				<div class="row">
+					<div class="col-md-5 col-sm-6  col-xs-6 pad-adj">
+						<select name="exp_year[]" class="yearpicker form-control box" >
+							<option value="">YEAR</option>
+						</select>
+						<?php /* <input type="text" class="form-control" placeholder="YEAR"> */ ?>
+					</div>
+					<div class="col-md-7 col-sm-6  col-xs-6 pad-adj">
+						<div class="row-fluid">
+							<div class="col-md-6 col-sm-6 col-xs-6 ">
+								<?php echo Form::select('exp_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
+								<?php /* <input type="text" class="form-control" placeholder="MM"> */ ?>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-6 ">
+								<select name="exp_day[]" class="daypicker form-control box" >
+									<option value="">DD</option>
+								</select>
+								<?php /* <input type="text" class="form-control" placeholder="DD"> */ ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="form-group">
+		<span class="form-title">address:</span>
+		<div class="row">
+			<div class="col-md-6 col-sm-5">
+				<label>Mailing Address <em>*</em></label>
+				<?php echo Form::text('address[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="email" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-3 col-sm-3">
+				<label>City<em>*</em></label>
+				<?php echo Form::text('city[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="text" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-3 col-sm-4 issue-date">
+				<label>Postal/Zip Code <em>*</em></label>
+				<?php echo Form::text('postal_zip[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="text" class="form-control"> */ ?>
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<label>Province of State</label>
+				<?php echo Form::text('state[]',null, ['class'=>'form-control']); ?>
+
+				<?php /* <input type="email" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<label>Country<em>*</em></label>
+				<?php echo Form::text('country[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="text" class="form-control"> */ ?>
+			</div>
+			
+		</div>
+	
+		
+
+	</div>
+
+	<div class="form-group">
+		<span class="form-title">Medical:</span>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<label>Emergency First Name <em>*</em></label>
+				<?php echo Form::text('em_fname[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="email" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<label>Emergency Last Name <em>*</em></label>
+				<?php echo Form::text('em_lname[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="text" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-4 col-sm-6 issue-date">
+				<label>Emergency Phone Number<em>*</em></label>
+				<?php echo Form::text('em_phone[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="text" class="form-control"> */ ?>
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-sm-6">
+				<label>Province of State</label>
+				<?php echo Form::text('em_state[]',null, ['class'=>'form-control']); ?>
+
+				<?php /* <input type="email" class="form-control"> */ ?>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<label>Country<em>*</em></label>
+				<?php echo Form::text('em_country[]',null, ['class'=>'form-control', ]); ?>
+
+				<?php /* <input type="text" class="form-control"> */ ?>
+			</div>
+			
+		</div>
+	
+		
+
+	</div>
+</div>
+
+<?php /* <section class="banner bg-wrap <?php echo $page->image; ?>" style="background-image: url(<?php echo url().'/images/'.$page->image; ?>);">
+    <div class="container"></div>
+</section> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.region', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.new.search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
+
+
+<div class="main-content">
+		<div class="container">
+		<?php echo Form:: open(['url'=>'package/'.$slug.'/'.$datePrice.'/booking-step2', 'id'=>'traveller-info', 'files'=>'true']); ?>
+
+			<div class="travel-booking">
+				<div class="travel-booking-step">
+					<div class="row">
+						<div class="col-md-12">
+							<a href="#" class="active">Step 1 - Travellers </a>
+							<a href="#" >Step 2 - Summary  </a>
+							<a href="#">Step 3 - Confirm </a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 col-sm-8">
+						<div class="page-header bold_page-header">
+								<h2><?php echo e($package->title); ?> BOOKING</h2>
+						</div>
+						<?php if(session()->has('invalid')): ?>
+						    <div class="alert alert-danger">
+						        <?php echo e(session('invalid')); ?>
+
+						    </div>
+						<?php endif; ?>
+					
+						<div class="travel-form">
+							<?php /* <form action="#"> */ ?>
+
+							<div class="form-group">
+									<span class="form-title">Travellers: 
+									</span>
+
+									<div class="traveller-select">
+										<h4>How may people are you travelling with?</h4>
+										<div class="select-menu">
+											<label>Adult(18+)</label>
+											<select name="adult" id="adult" class="SlectBox form-control" data-rate="<?php echo e($dPrice->price); ?>">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+											</select>
+										</div>
+									</div>
+
+								</div>
+
+								<?php /* asdfsdf */ ?>
+								<p class="form-title">Lead Traveller:</p>
+								<div class="form-info">
+
+									<div class="form-group">
+										<span class="form-title">Contact:</span>
+
+										<div class="row">
+											<div class="col-md-3 col-sm-4">
+												<label>Title <em>*</em></label>
+												<?php echo Form::select('title[]', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms'], null, ['class'=>'box form-control' ]); ?>
+
+											<?php /*	<?php echo Form::select('title[]', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms', 'DR'=>'Dr', 'PROF'=>'Prof', 'CAPT'=>'Captain', 'SHK'=>'Sheikh', 'SHKA'=>'Shaikha', 'GENE'=>'General', 'BRIG'=>'Brigadier', 'COLO'=>'Colonel'], null, ['class'=>'SlectBox form-control' ]); ?> */ ?>
+													<!-- <select name="title" class="SlectBox form-control">
+					                                    <option value="" selected="selected">Title</option>
+					                                    <option value="MR">Mr</option>
+					                                    <option value="MRS">Mrs</option>
+					                                    <option value="MS">Ms</option>
+					                                    <option value="DR">Dr</option>
+					                                    <option value="PROF">Prof</option>
+					                                    <option value="CAPT">Captain</option>
+					                                    <option value="SHK">Sheikh</option>
+					                                    <option value="SHKA">Shaikha</option>
+					                                    <option value="GENE">General</option>
+					                                    <option value="BRIG">Brigadier</option>
+					                                    <option value="COLO">Colonel</option>
+					                                </select> -->
+
+											</div>
+											<div class="col-md-3 col-sm-4">
+												<label>First Name <em>*</em></label>
+												<?php echo Form::text('fname[]',null, ['class'=>'form-control', ]); ?>
+
+												<?php /* <input type="text" name="fname" class="form-control"> */ ?>
+											</div>
+											<div class="col-md-3 col-sm-4">
+												<label>Middle Name</label>
+												<?php echo Form::text('mname[]',null, ['class'=>'form-control']); ?>
+
+												<?php /* <input type="text" name="mname" class="form-control"> */ ?>
+											</div>
+											<div class="col-md-3 col-sm-4">
+												<label>Last Name <em>*</em></label>
+												<?php echo Form::text('lname[]',null, ['class'=>'form-control', ]); ?>
+
+												<?php /* <input type="text" name="lname" class="form-control"> */ ?>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-sm-6">
+												<label>Email <em>*</em></label>
+												<?php echo Form::email('email[]',null, ['class'=>'form-control', ]); ?>
+
+												<?php /* <input type="email" name="email" class="form-control"> */ ?>
+											</div>
+											<div class="col-md-3 col-sm-6">
+												<label>Phone Number</label>
+												<?php echo Form::text('phone[]',null, ['class'=>'form-control']); ?>
+
+												<?php /* <input type="text" name="phone" class="form-control"> */ ?>
+											</div>
+											<div class="col-md-5 col-sm-12 date-birth">
+												<label>Date Of Birth <em>*</em></label>
+												<div class="row">
+													<div class="col-md-5 col-sm-6 col-xs-6 pad-adj">
+														<select name="dob_year[]" class="yearpicker form-control box" >
+															<option value="">YEAR</option>
+														</select>
+						
+														<?php /* <input type="text" name="dob_year" class="form-control" placeholder="YEAR"> */ ?>
+													</div>
+													<div class="col-md-7 col-sm-6 col-xs-6 pad-adj">
+														<div class="row-fluid">
+															<div class="col-md-6 col-sm-6 col-xs-6">
+															<?php echo Form::select('dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
+															<?php /* <?php echo Form::select('dob_month', [''=>'MM', '1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5', '6'=>'6', '7'=>'7', '8'=>'8', '9'=>'9', '10'=>'10', '11'=>'11', '12'=>'12'], null, ['class'=>'SlectBox form-control', ]); ?> */ ?>
+															<?php /* <?php echo Form::input('number', 'dob_month', null, ['placeholder'=>'MM', 'class' => 'form-control', 'min'=>'01', 'max'=>'12', ]); ?> */ ?>
+																<?php /* <input type="text" name="dob_month"  class="form-control" placeholder="MM"> */ ?>
+															</div>
+															<div class="col-md-6 col-sm-6 col-xs-6">
+																<select name="dob_day[]" class="daypicker form-control box" >
+																<option value="">DD</option>
+																</select>
+																<?php /* <input type="text" name="dob_day" class="form-control" placeholder="DD"> */ ?>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="form-group">
+										<span class="form-title">PASSPORT:</span>
+										<div class="row">
+											<div class="col-md-4 col-sm-6">
+												<label>Passport Number <em>*</em></label>
+												<?php echo Form::text('passport[]',null, ['class'=>'form-control', ]); ?>
+
+												<?php /* <input type="text" class="form-control"> */ ?>
+											</div>
+											<div class="col-md-3 col-sm-6">
+												<label>Nationality</label>
+												<?php echo Form::text('nationality[]',null, ['class'=>'form-control']); ?>
+
+												<?php /* <input type="text" class="form-control"> */ ?>
+											</div>
+											<div class="col-md-5 col-sm-12 issue-date">
+												<label>Issue Date <em>*</em></label>
+												<div class="row">
+													<div class="col-md-5 col-sm-6  col-xs-6 pad-adj">
+						<select name="issue_year[]" class="yearpicker form-control box" >
+										<option value="">YEAR</option>
+									</select>
+														<?php /* <input type="text" class="form-control" placeholder="YEAR"> */ ?>
+													</div>
+													<div class="col-md-7 col-sm-6  col-xs-6 pad-adj">
+														<div class="row-fluid">
+															<div class="col-md-6 col-sm-6 col-xs-6 ">
+						<?php echo Form::select('issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
+																<?php /* <input type="text" class="form-control" placeholder="MM"> */ ?>
+															</div>
+															<div class="col-md-6 col-sm-6 col-xs-6 ">
+						<select name="issue_day[]" class="daypicker form-control box" >
+										<option value="">DD</option>
+									</select>
+																<?php /* <input type="text" class="form-control" placeholder="DD"> */ ?>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-sm-6">
+												<label>Passport Issue Place</label>
+												<?php echo Form::text('issue_place[]',null, ['class'=>'form-control']); ?>
+
+												<?php /* <input type="email" class="form-control"> */ ?>
+											</div>
+											<div class="col-md-3 col-sm-6">
+											<label>Passport Image<em>*</em></label>
+												<span class="btn btn-primary btn-file btn-sm">
+													<i class="fa fa-folder-open"></i>Upload
+													<input type="file" id="image" class="image" name="image[]" >
+												</span>
+												<span class="image-name"></span>
+											</div>
+											
+											<div class="col-md-5 col-sm-12 issue-date">
+												<label>Expiration Date <em>*</em></label>
+												<div class="row">
+													<div class="col-md-5 col-sm-6  col-xs-6 pad-adj">
+						<select name="exp_year[]" class="yearpicker form-control box" >
+										<option value="">YEAR</option>
+									</select>
+														<?php /* <input type="text" class="form-control" placeholder="YEAR"> */ ?>
+													</div>
+													<div class="col-md-7 col-sm-6  col-xs-6 pad-adj">
+														<div class="row-fluid">
+															<div class="col-md-6 col-sm-6 col-xs-6 ">
+						<?php echo Form::select('exp_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
+																<?php /* <input type="text" class="form-control" placeholder="MM"> */ ?>
+															</div>
+															<div class="col-md-6 col-sm-6 col-xs-6 ">
+						<select name="exp_day[]" class="daypicker form-control box" >
+										<option value="">DD</option>
+									</select>
+																<?php /* <input type="text" class="form-control" placeholder="DD"> */ ?>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								<div class="form-group">
+									<span class="form-title">address:</span>
+									<div class="row">
+										<div class="col-md-6 col-sm-5">
+											<label>Mailing Address <em>*</em></label>
+											<?php echo Form::text('address[]',null, ['class'=>'form-control', ]); ?>
+
+											<?php /* <input type="email" class="form-control"> */ ?>
+										</div>
+										<div class="col-md-3 col-sm-3">
+											<label>City<em>*</em></label>
+											<?php echo Form::text('city[]',null, ['class'=>'form-control', ]); ?>
+
+											<?php /* <input type="text" class="form-control"> */ ?>
+										</div>
+										<div class="col-md-3 col-sm-4 issue-date">
+											<label>Postal/Zip Code <em>*</em></label>
+											<?php echo Form::text('postal_zip[]',null, ['class'=>'form-control', ]); ?>
+
+											<?php /* <input type="text" class="form-control"> */ ?>
+											
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4 col-sm-6">
+											<label>Province of State</label>
+											<?php echo Form::text('state[]',null, ['class'=>'form-control']); ?>
+
+											<?php /* <input type="email" class="form-control"> */ ?>
+										</div>
+										<div class="col-md-4 col-sm-6">
+											<label>Country<em>*</em></label>
+											<?php echo Form::text('country[]',null, ['class'=>'form-control', ]); ?>
+
+											<?php /* <input type="text" class="form-control"> */ ?>
+										</div>
+										
+									</div>
+								
+									
+
+								</div>
+
+								<div class="form-group">
+									<span class="form-title">Medical:</span>
+									<div class="row">
+										<div class="col-md-4 col-sm-6">
+											<label>Emergency First Name <em>*</em></label>
+											<?php echo Form::text('em_fname[]',null, ['class'=>'form-control', ]); ?>
+
+											<?php /* <input type="email" class="form-control"> */ ?>
+										</div>
+										<div class="col-md-4 col-sm-6">
+											<label>Emergency Last Name <em>*</em></label>
+											<?php echo Form::text('em_lname[]',null, ['class'=>'form-control', ]); ?>
+
+											<?php /* <input type="text" class="form-control"> */ ?>
+										</div>
+										<div class="col-md-4 col-sm-6 issue-date">
+											<label>Emergency Phone Number<em>*</em></label>
+											<?php echo Form::text('em_phone[]',null, ['class'=>'form-control', ]); ?>
+
+											<?php /* <input type="text" class="form-control"> */ ?>
+											
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-4 col-sm-6">
+											<label>Province of State</label>
+											<?php echo Form::text('em_state[]',null, ['class'=>'form-control']); ?>
+
+											<?php /* <input type="email" class="form-control"> */ ?>
+										</div>
+										<div class="col-md-4 col-sm-6">
+											<label>Country<em>*</em></label>
+											<?php echo Form::text('em_country[]',null, ['class'=>'form-control', ]); ?>
+
+											<?php /* <input type="text" class="form-control"> */ ?>
+										</div>
+										
+									</div>
+								
+									
+
+								</div>
+								
+		</div>
+<?php /* asdfdsf */ ?>
+								<div class="row">
+								<div class="col-md-12">
+									<?php echo Form::submit('Continue',['id'=>'submit', 'class'=>'btn btn-danger btn-step']); ?>
+
+									<?php /* <a href="<?php echo e(url('package/'.$slug.'/booking-step3')); ?>" class="btn btn-danger btn-step">Continue</a> */ ?>
+									
+								</div>
+							</div>
+							<?php /* </form> */ ?>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-sm-4">
+					<div class="sidebar-travel">
+						<div class="total-block">
+							<h2 class="block-title">Booking Summary</h2>
+
+							<div class="trip-more-info-block summary">
+							
+									<div class="trip-more-info-list">
+										<div class="info-title sub-heading-title when">When: </div>
+										<div class="info-description"><?php echo e($dPrice->daterange); ?></div>
+									</div>
+									<div class="trip-more-info-list">
+										<div class="info-title sub-heading-title when">Traveller: </div>
+										<div class="info-description" id="traveller">1</div>
+									</div>
+						
+								<div class="total-price-details-box">
+									
+									<div class="clearfix sub-heading-title">
+										<div class="label-text total-passenger-price pull-left">Tour Cost</div>
+										<div class="content-text total-passenger-price pull-right">USD <?php echo e($dPrice->price); ?></div>
+									</div>
+
+								</div>
+								<div class="total-footer">
+									<div class="clearfix sub-heading-title">
+										<div class="label-text total-passenger-price pull-left">
+										<h3>Total 
+								  		<small>Tax Included</small></h3>
+								  	</div>
+										<div class="content-text total-passenger-price pull-right"><span id = "total">USD <?php echo e($dPrice->price); ?></span></div>
+									</div>
+
+								
+								  </div>
+							</div>
+							
+						</div>
+						</div>
+					</div>
+					
+				</div>
+		
+				
+				
+			</div>
+			<?php echo Form::close(); ?>
+
+		</div><!--Container -->
+
+		<div class="divider"></div>
+
+
+<?php echo $__env->make('frontend.includes.new.members', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		
+
+		
+	</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

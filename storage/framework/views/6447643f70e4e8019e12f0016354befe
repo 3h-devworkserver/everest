@@ -1,0 +1,15 @@
+
+
+<?php if(!empty($summitteers)): ?>
+                    <?php foreach($summitteers as $sum): ?>
+                    <tr>
+                        <td class="name"><?php echo e($sum->name); ?></td>
+                        <td class="country"><?php echo e($sum->country); ?></td>
+                        <td class="date"><?php echo e($sum->date); ?></td>
+                        <td class="route"><?php echo e($sum->route); ?></td>
+                        <td class="team"><?php echo e($sum->team_name); ?></td>
+                        <td class="leader"><?php echo e($sum->leader); ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+

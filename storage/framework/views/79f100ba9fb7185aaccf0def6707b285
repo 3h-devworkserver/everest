@@ -1,0 +1,1505 @@
+<?php $__env->startSection('title'); ?> Flight Passengers Detail | <?php echo e(isset($siteTitle) ? $siteTitle : ''); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('loader'); ?>
+<?php echo $__env->make('frontend.includes.new.loader', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('frontend.includes.new.functions', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+ <section class="main-content">
+        <div class="flight-booking-progress-step">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="progress-step progress-step--medium list-unstyled">
+                            <!-- <li class="is-complete"> -->
+                            <li class="is-complete">
+                                <span class="circle">
+									<i class="fa fa-check"></i>
+								</span>
+                                <span class="progress-text">Selection</span>
+                            </li>
+                            <!-- <li class="is-active"> -->
+                            <li class="is-complete">
+                                <span class="circle">
+									<i class="fa fa-file-text"></i>
+								</span>
+                                <span class="progress-text">Review</span>
+                            </li>
+                            <li class="is-active">
+                                <span class="circle">
+									<i class="fa fa-user"></i>
+								</span>
+                                <span class="progress-text">Passanger Details</span>
+                            </li>
+                            <li>
+                                <span class="circle">
+									<i class="fa fa-credit-card"></i>
+								</span>
+                                <span class="progress-text">Payment</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flight-wrapper flight-payment">
+            <div class="container">
+                <div class="flight-list-block">
+                    <div class="flight-review-header">
+                        <div class="row">
+                            <div class="first-row">
+                            
+                                <div class="col-md-3 col-sm-3 text-right pull-right">
+                                    <a href="flight.html" class="btn btn-back"><i class="fa fa-angle-left"></i>Back To Flight List</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <article class="box-flight">
+                        <div class="row-fluid">
+                            
+                            <div class="details">
+                                <div class="details-wrapper">
+                                    <div class="second-row">
+                                        <div class="col-md-10 col-sm-10">
+                                            <div class="row-fluid time">
+                                                <?php if(empty($returnFlightDetail)): ?>
+                                                <div class="col-md-12">
+                                                <?php else: ?>
+                                                <div class="col-md-6">
+                                                <?php endif; ?>
+                                                <?php if(!empty($flightDetail)): ?>
+                                                <div class="ailrline-wrap clearfix">
+                                                    <div class="airlines-info">
+                                                        <img src="<?php echo e($flightDetail->AirlineLogo); ?>" alt="">
+                                                        <h4 class="box-title"><?php echo airlinesName($flightDetail->Airline); ?> <span class="badge">Class <?php echo e($flightDetail->FlightClassCode); ?></span></h4>
+
+                                                    </div>
+                                                    <div class="baggage-info">
+                                                    <span class="fare-type">
+                                                            Fare Type : <?php if($flightDetail->Refundable == 'T'): ?> Refundable <?php else: ?> Non-Refundable <?php endif; ?>
+                                                        </span>
+                                                        <span class="baggage">
+                                                            Baggage : <?php if(!empty($flightDetail->FreeBaggage)): ?> <?php echo e($flightDetail->FreeBaggage); ?> <?php endif; ?>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                
+
+                                                    <h5><i class="fa fa-plane"></i><?php echo e(ucfirst(strtolower($flightDetail->Departure))); ?> <i class="fa fa-long-arrow-right"></i><?php echo e(ucfirst(strtolower($flightDetail->Arrival))); ?></h5>
+                                                    <div class="short-desc">
+                                                        <span class="depart-date">
+                                                            <?php echo e($flightDetail->DepartureTime); ?>
+
+                                                             <small><?php echo (new DateTime($flightDetail->FlightDate))->format('j M Y') ?></small>
+                                                        </span>
+                                                        <span class="distance-line">
+                                                            <span class="distance-time"><i class="fa fa-clock-o"></i><?php 
+					                            								$d1 = $flightDetail->FlightDate.' '.$flightDetail->DepartureTime;
+					                            								$d2 = $flightDetail->FlightDate.' '.$flightDetail->ArrivalTime;
+					                            								$datetime1 = new DateTime($d1);
+					                            								$datetime2 = new DateTime($d2);
+					                            								$interval = $datetime2->diff($datetime1);
+					                            								$elapsed = $interval->format('%h hr %i min');
+					                            								echo $elapsed;
+					                            								?></span>
+                                                            <span class="flight-name"><?php echo e($flightDetail->FlightNo); ?></span>
+                                                        </span>
+                                                        <span class="arv-date">
+                                                            <?php echo e($flightDetail->ArrivalTime); ?>
+
+                                                            <small><?php echo (new DateTime($flightDetail->FlightDate))->format('j M Y') ?></small>
+                                                        </span>
+                                                    </div>
+                                                <?php endif; ?>
+                                                </div>
+                                                <?php if(!empty($returnFlightDetail)): ?>
+                                                <div class="col-md-6">
+                                                <div class="ailrline-wrap clearfix">
+                                                    <div class="airlines-info">
+                                                        <img src="<?php echo e($returnFlightDetail->AirlineLogo); ?>" alt="">
+                                                        <h4 class="box-title"><?php echo airlinesName($returnFlightDetail->Airline); ?> <span class="badge">Class <?php echo e($returnFlightDetail->FlightClassCode); ?></span></h4>
+
+                                                    </div>
+                                                    <div class="baggage-info">
+                                                    <span class="fare-type">
+                                                            Fare Type : <?php if($returnFlightDetail->Refundable == 'T'): ?> Refundable <?php else: ?> Non-Refundable <?php endif; ?>
+                                                        </span>
+                                                        <span class="baggage">
+                                                            Baggage : <?php if(!empty($returnFlightDetail->FreeBaggage)): ?> <?php echo e($returnFlightDetail->FreeBaggage); ?> <?php endif; ?>
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+                                                    <h5 class="return-flight"><i class="fa fa-plane"></i><?php echo e(ucfirst(strtolower($returnFlightDetail->Arrival))); ?> <i class="fa fa-long-arrow-left"></i><?php echo e(ucfirst(strtolower($returnFlightDetail->Departure))); ?></h5>
+                                                    <div class="short-desc">
+                                                        <span class="depart-date">
+                                                            <?php echo e($returnFlightDetail->ArrivalTime); ?>
+
+                                                             <small><?php echo (new DateTime($returnFlightDetail->FlightDate))->format('j M Y') ?></small>
+                                                        </span>
+                                                        <span class="distance-line">
+                                                            <span class="distance-time"><i class="fa fa-clock-o"></i><?php 
+					                            								$d1 = $returnFlightDetail->FlightDate.' '.$returnFlightDetail->DepartureTime;
+					                            								$d2 = $returnFlightDetail->FlightDate.' '.$returnFlightDetail->ArrivalTime;
+					                            								$datetime1 = new DateTime($d1);
+					                            								$datetime2 = new DateTime($d2);
+					                            								$interval = $datetime2->diff($datetime1);
+					                            								$elapsed = $interval->format('%h hr %i min');
+					                            								echo $elapsed;
+					                            								?></span>
+                                                            <span class="flight-name"><?php echo e($returnFlightDetail->FlightNo); ?></span>
+                                                        </span>
+                                                        <span class="arv-date">
+                                                            <?php echo e($returnFlightDetail->DepartureTime); ?>
+
+                                                             <small><?php echo (new DateTime($returnFlightDetail->FlightDate))->format('j M Y') ?></small>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <?php endif; ?>
+                                            </div>
+                                       
+
+                                            
+                                        </div>
+                                        <div class="col-md-2 col-sm-2">
+                                            <div class="action">
+                                                <div class="passanger-wrap">
+                                                    <div>
+                                                        <p>Adult</p>
+                                                        <div class="passenger-count">
+                                                            <?php if(!empty($flightDetail)): ?>
+                                                            	<?php echo e($flightDetail->Adult); ?>
+
+                                                            <?php endif; ?>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p>Child</p>
+                                                        <div class="passenger-count">
+                                                            <?php if(!empty($flightDetail)): ?>
+                                                            	<?php echo e($flightDetail->Child); ?>
+
+                                                            <?php endif; ?>
+                                                        </div>
+
+                                                    </div>
+                                                    <!--
+                                                    <div>
+                                                        <p>Infant</p>
+                                                        <div class="passenger-count">
+                                                            02
+                                                        </div>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="grand-total">
+                    	<div class="row">
+                            <div class="col-md-9 col-sm-8">
+
+
+        <?php /* <form id="vertical" action="#" style="display: none;"> */ ?>
+        <section id="vertical">
+            <h2 class="page-header">Vertical Steps Example</h2>
+            <p><button id="init-vertical" type="button" class="btn btn-large btn-primary">Start Example</button></p>
+            <form id="paxDetailForm" action="<?php echo e(url('/flight/passengerdetail')); ?>" style="display: none;" method="post" enctype="multipart/form-data">
+                <?php echo e(csrf_field()); ?>
+
+                <?php echo Form::hidden('adultno', $flightDetail->Adult, ['class'=>'adultno']); ?>
+
+                <?php echo Form::hidden('childno', $flightDetail->Child, ['class'=>'childno']); ?>
+
+                <?php echo Form::hidden('trip_type', $trip_type ); ?>
+
+                <?php echo Form::hidden('flight_id', $flightDetail->FlightId ); ?>
+
+                <?php echo Form::hidden('returnflight_id', $returnFlightDetail->FlightId ); ?>
+
+                <?php echo Form::hidden('flightDetail', json_encode($flightDetail) ); ?>
+
+                <?php if($trip_type == 'R'): ?>
+                <?php echo Form::hidden('returnFlightDetail', json_encode($returnFlightDetail) ); ?>
+
+                <?php else: ?>
+                <?php echo Form::hidden('returnFlightDetail', null ); ?>
+
+                <?php endif; ?>
+                <?php echo Form::hidden('totalAmount', custom_number_format( totalPrice($returnFlightDetail->Adult, $returnFlightDetail->Child, $returnFlightDetail->AdultFare, $returnFlightDetail->ChildFare, $returnFlightDetail->ResFare, $returnFlightDetail->FuelSurcharge, $returnFlightDetail->Tax ) + totalPrice($flightDetail->Adult, $flightDetail->Child, $flightDetail->AdultFare, $flightDetail->ChildFare, $flightDetail->ResFare, $flightDetail->FuelSurcharge, $flightDetail->Tax ) ) ); ?>
+
+
+                
+                <?php /* <div id="example-vertical" style="display: none;"> */ ?>
+                <?php $i =1; ?>
+                <?php while($i <= $flightDetail->Adult): ?>
+                <li>Adult <?php echo e($i); ?></li>
+                <?php $i++; ?>
+                <?php endwhile; ?>
+
+                <?php $i =1; ?>
+                <?php while($i <= $flightDetail->Child): ?>
+                <li>Child <?php echo e($i); ?></li>
+                <?php $i++; ?>
+                <?php endwhile; ?>
+
+                <li>Contact Details</li> 
+
+
+                    <?php $i = 1; ?>
+                    <?php while($i <= $flightDetail->Adult): ?>
+                     <fieldset>
+                        <div class="tab-pane <?php if($i == 1): ?>active <?php endif; ?>" id="adult<?php echo e($i); ?>">
+                           
+                            <?php /* <form action="#"> */ ?>
+                            <article class="personal-info">
+                                <div class="row-fluid">
+                                    <div class="col-md-12">
+                                        
+                                    <h5 class="passanger-title">Adult <?php echo e($i); ?>:</h5>
+                                    <p>
+                                        Please make sure that you enter the names of all passengers as shown on passports. This will avoid problems at the airport. Name changes are not permitted once the booking has been finalised.
+                                    </p>
+                                    <hr>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row-fluid">
+                                        <div class="col-md-12">
+                                            <label for="">Full name <small>(as per passport)</small></label>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid row-margin-adj">
+                                        <div class="col-md-2">
+                                            <select name="adult_title[]" id="" class="SlectBox form-control" required>
+                                                <option selected="selected" value="">Title</option>
+                                                <option value="MR">Mr</option>
+                                                <option value="MRS">Mrs</option>
+                                                <option value="MS">Ms</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="row-fluid">
+                                                <div class="col-md-4">
+                                                    <input type="text" name="adult_fname[]" class="form-control" placeholder="First Name" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" name="adult_mname[]" class="form-control" placeholder="Middle Name" >
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" name="adult_lname[]" class="form-control" placeholder="Last Name" required>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row-fluid">
+                                        <div class="col-md-4">
+                                        <label for="">Passport Number</label>
+                                           <input type="text" name="adult_passport[]" class="form-control" placeholder="Passport Number" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <label for="">Issuing Country</label>
+                                            <?php echo Form::select('adult_issue_country[]',$countries, 'NP', ['class'=>'SlectBox country form-control', 'required']); ?>
+
+                                            <!--
+                                            <select name="" id="" class="SlectBox form-control">
+                                                <option>Issuing Country</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select> -->
+                                           
+                                        </div>
+                                        <div class="col-md-4 doe">
+                                        <label for="">Date of Issue</label>
+                                        <select name="adult_issue_day[]" class="SlectBox daypicker form-control" required >
+                                            <option value="">DD</option>
+                                        </select>
+                                        <!--
+                                            <select name="" id="" class="SlectBox form-control">
+                                                <option>DD</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select> -->
+                                            <?php echo Form::select('adult_issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'SlectBox form-control', 'required']); ?>
+
+                                            <!--
+                                            <select name="" id="" class="SlectBox form-control">
+                                                <option>MM</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select> -->
+                                            <select name="adult_issue_year[]" class="yearpicker SlectBox form-control" required>
+                                                <option value="">YEAR</option>
+                                            </select>
+                                            <!--
+                                            <select name="" id="" class="SlectBox form-control">
+                                                <option>YY</option>
+                                                <option>2000</option>
+                                                <option>2001</option>
+                                                <option>2002</option>
+                                            </select>
+                                            -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row-fluid">
+                                        <div class="col-md-12">
+                                        <label for="">Date of Birth</label>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="col-md-4">
+                                            <select name="adult_dob_day[]" class="SlectBox daypicker form-control" required>
+                                            <option value="">DD</option>
+                                            </select>
+                                            
+                                        </div>
+                                        <div class="col-md-4">
+                                           
+                                           <?php echo Form::select('adult_dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'SlectBox form-control', 'required']); ?>
+
+                                           
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select name="adult_dob_year[]" class="yearpicker SlectBox form-control" required>
+                                                <option value="">YEAR</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label>Upload Passport Image</label>
+                                    <span class="btn btn-primary btn-file btn-sm">
+                                        <i class="fa fa-folder-open"></i>Upload
+                                        <input type="file" id="image" class="image" name="adult_passport_image[]" >
+                                    </span>
+                                    <span class="image-name"></span>
+                                </div>
+
+                                <!--
+                                <div class="form-group">
+                                    <div class="row-fluid">
+                                        <div class="col-md-6">
+                                            <label>Frequent flyer programme(optional)</label>
+                                            <select class="SlectBox form-control">   
+                                                <option selected="selected" value="">Select frequent flyer programme</option>   
+                                                <option value="QR">Qatar Airways</option>   
+                                                <option value="ab">Airberlin</option>  
+                                                <option value="AA">American Airlines</option>   
+                                                <option value="OZ">Asiana Airlines</option> 
+                                                <option value="BA">British Airways</option> <option value="CX">Cathay Pacific</option>  
+                                                <option value="AY">Finnair</option> <option value="G3">Gol Airlines
+                                                </option>    
+                                                <option value="IB">Iberia</option> <option value="JL">Japan Airlines</option>  
+                                                <option value="LA">Lan</option> <option value="MH">Malaysia Airlines</option>   
+                                                <option value="ME">Middle East Airlines</option>    
+                                                <option value="QF">Qantas</option> <option value="AT">Royal Air Maroc
+                                                </option> 
+                                                <option value="RJ">Royal Jordanian
+                                                </option> 
+                                                <option value="S7">S7 Airlines
+                                                </option> 
+                                                <option value="JJ">Tam</option> 
+                                                <option value="UL">Srilankan Airlines</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Frequent flyer number</label>
+                                            <input type="text" class="form-control" placeholder="Flyer number">
+                                        </div>
+                                    </div>
+                                </div> 
+                                -->
+                            </article>
+                                
+                            <?php /* </form> */ ?>
+                            <!--
+                            <div class="button-groups text-right">
+                                <a href="#" class="btn btn-next">
+                                    Next Passanger <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div> -->
+                            
+                        </div>
+                    <?php $i++; ?>
+                    </fieldset>
+                    <?php endwhile; ?>
+
+                    <?php $i =1; ?>
+                    <?php while($i <= $flightDetail->Child): ?>
+                    <fieldset>
+                        <div class="tab-pane" id="child<?php echo e($i); ?>">
+                           
+                            <?php /* <form action="#"> */ ?>
+                            <article class="personal-info">
+                                <div class="row-fluid">
+                                    <div class="col-md-12">
+                                        
+                                    <h5 class="passanger-title">Child <?php echo e($i); ?>:</h5>
+                                    <p>
+                                        Please make sure that you enter the names of all passengers as shown on passports. This will avoid problems at the airport. Name changes are not permitted once the booking has been finalised.
+                                    </p>
+                                    <hr>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row-fluid">
+                                        <div class="col-md-12">
+                                            <label for="">Full name <small>(as per passport)</small></label>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid row-margin-adj">
+                                        <div class="col-md-2">
+                                            <select name="child_title[]" id="" class="SlectBox form-control" required>
+                                                <option selected="selected" value="">Title</option>
+                                                <option value="MR">Mr</option>
+                                                <option value="MRS">Mrs</option>
+                                                <option value="MS">Ms</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="row-fluid">
+                                                <div class="col-md-4">
+                                                    <input type="text" name="child_fname[]" class="form-control" placeholder="First Name" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" name="child_mname[]" class="form-control" placeholder="Middle Name" >
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" name="child_lname[]" class="form-control" placeholder="Last Name" required>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row-fluid">
+                                        <div class="col-md-4">
+                                        <label for="">Passport Number</label>
+                                           <input type="text" name="child_passport[]"class="form-control" placeholder="Passport Number" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <label for="">Issuing Country</label>
+                                            <?php echo Form::select('child_issue_country[]',$countries, 'NP', ['class'=>'SlectBox country form-control', 'required']); ?>
+
+                                        </div>
+                                        <div class="col-md-4 doe">
+                                        <label for="">Date of Issue</label>
+                                            <select name="child_issue_day[]" class="SlectBox daypicker form-control" required>
+                                            <option value="">DD</option>
+                                            </select>
+
+                                            <?php echo Form::select('child_issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'SlectBox form-control', 'required' ]); ?>
+
+
+                                                <select name="child_issue_year[]" class="childyearpicker SlectBox form-control" required>
+                                                    <option value="">YEAR</option>
+                                                </select>
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row-fluid">
+                                        <div class="col-md-12">
+                                        <label for="">Date of Birth</label>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="col-md-4">
+                                            <select name="child_dob_day[]" class="SlectBox daypicker form-control" required>
+                                            <option value="">DD</option>
+                                            </select>
+                                            
+                                        </div>
+                                        <div class="col-md-4">
+                                           
+                                           <?php echo Form::select('child_dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'SlectBox form-control', 'required']); ?>
+
+                                           
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select name="child_dob_year[]" class="childyearpicker SlectBox form-control" required>
+                                                <option value="">YEAR</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-6">
+                                    <label>Upload Passport Image</label>
+                                    <span class="btn btn-primary btn-file btn-sm">
+                                        <i class="fa fa-folder-open"></i>Upload
+                                        <input type="file" id="image" class="image" name="child_passport_image[]" >
+                                    </span>
+                                    <span class="image-name"></span>
+                                </div>
+
+                                <!--
+                                <div class="form-group">
+                                    <div class="row-fluid">
+                                        <div class="col-md-6">
+                                            <label>Frequent flyer programme(optional)</label>
+                                            <select class="SlectBox form-control">   
+                                                <option selected="selected" value="">Select frequent flyer programme</option>   
+                                                <option value="QR">Qatar Airways</option>   
+                                                <option value="ab">Airberlin</option>  
+                                                <option value="AA">American Airlines</option>   
+                                                <option value="OZ">Asiana Airlines</option> 
+                                                <option value="BA">British Airways</option> <option value="CX">Cathay Pacific</option>  
+                                                <option value="AY">Finnair</option> <option value="G3">Gol Airlines
+                                                </option>    
+                                                <option value="IB">Iberia</option> <option value="JL">Japan Airlines</option>  
+                                                <option value="LA">Lan</option> <option value="MH">Malaysia Airlines</option>   
+                                                <option value="ME">Middle East Airlines</option>    
+                                                <option value="QF">Qantas</option> <option value="AT">Royal Air Maroc
+                                                </option> 
+                                                <option value="RJ">Royal Jordanian
+                                                </option> 
+                                                <option value="S7">S7 Airlines
+                                                </option> 
+                                                <option value="JJ">Tam</option> 
+                                                <option value="UL">Srilankan Airlines</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Frequent flyer number</label>
+                                            <input type="text" class="form-control" placeholder="Flyer number">
+                                        </div>
+                                    </div>
+                                </div>
+                                -->
+                            </article>
+                            <?php /* </form> */ ?>
+                            <!--
+                            <div class="button-groups text-right">
+                                <a href="#" class="btn btn-next">
+                                    Next Passanger <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                            -->
+                        </div>
+                    </fieldset>
+                    <?php $i++; ?>
+                    <?php endwhile; ?>
+                <?php /* </div> */ ?>
+
+                    <fieldset>
+                        <div class="tab-pane" id="contact">
+                            <?php /* <form action="#"> */ ?>
+                                <article class="personal-info">
+                                    <div class="row-fluid">
+                                        <div class="col-md-12">
+                                            
+                                        <h5 class="passanger-title">Contact Details</h5>
+                                        
+                                        <hr>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        <div class="row-fluid">
+                                            
+                                            <div class="col-md-6">
+                                                <label>Primary contact <small>(for this booking)</small></label>
+                                                <select name="main_traveller" class="SlectBox form-control" required>
+                                                <?php $i =1; ?>
+                                                <?php while($i <= $flightDetail->Adult): ?>
+                                                    <option value="<?php echo e($i); ?>">Adult <?php echo e($i); ?></option>
+                                                    <?php $i++; ?>
+                                                <?php endwhile; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row-fluid">
+                                            <div class="col-md-5">
+                                                <label for="">Country</label>
+                                               <?php echo Form::select('main_traveller_country',$countries, 'NP', ['class'=>'SlectBox country form-control', 'required']); ?>
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="">Phone</label>
+                                                <select name="main_traveller_phonetype" id="" class="SlectBox form-control">
+                                                    <option>Mobile</option>
+                                                    <option>Home</option>
+                                                    <option>Office</option>
+                                                </select>
+                                               
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="">Number</label>
+                                                <input type="text" name="main_traveller_phone" class="form-control" placeholder="Enter Number">
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        <div class="row-fluid">
+                                            <div class="col-md-6">
+                                                <label for="">Email Address</label>
+                                                <input type="email" id="email" name="main_traveller_email" class="form-control" placeholder="Email Address" required>
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                               <label for="">Repeat Email Address</label>
+                                                <input type="email" name ="main_traveller_email_confirm" class="form-control" placeholder="Email Address" required>
+                                               
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </article>
+                                <article class="personal-info">
+                                    <div class="row-fluid">
+                                        <div class="col-md-12">
+                                            
+                                        <h5 class="passanger-title">Emergency Contact Details <small>(optional)</small></h5>
+                                        
+                                        <hr>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        <div class="row-fluid">
+                                            
+                                            <div class="col-md-6">
+                                                <label>Name</label>
+                                                <input type="text" name="em_fullname" class="form-control" placeholder="Enter Full Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row-fluid">
+                                            <div class="col-md-5">
+                                                <label for="">Country</label>
+                                               <?php echo Form::select('em_country',$countries, 'NP', ['class'=>'SlectBox country form-control' ]); ?>
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="">Phone</label>
+                                                <select name="em_phonetype" id="" class="SlectBox form-control">
+                                                    <option>Mobile</option>
+                                                    <option>Home</option>
+                                                    <option>Office</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="">Number</label>
+                                                <input type="text" name="em_phone" class="form-control" placeholder="Enter Number">
+                                                
+                                            </div>
+
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        <div class="row-fluid">
+                                            <div class="col-md-6">
+                                                <label for="">Email Address</label>
+                                                <input type="email" name="em_email" class="form-control" placeholder="Email Address">
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                               <label for="">Repeat Email Address</label>
+                                                <input type="email" name="em_email_confirm" class="form-control" placeholder="Email Address" >
+                                               
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </article>
+                                
+                            <?php /* </form> */ ?>
+
+                            <div class="button-groups text-right">
+
+                                <a href="#" class="btn btn-next">
+                                    Continue <i class="fa fa-angle-right"></i>
+                                    
+                                </a>
+                            </div>
+                            
+                        </div>
+                    </fieldset>
+            </form>
+        </section>
+    <?php /* </form> */ ?>
+          
+                      
+
+
+
+
+
+               
+    
+        <?php echo Form::open(['class'=>'testForm']); ?>
+
+            
+
+        <?php echo Form::close(); ?>
+
+        
+
+
+
+
+
+
+                            <?php echo Form::open(['class'=>'']); ?>
+
+                                <h4>Passanger Details</h4>
+                                <div class="passanger-detail-from">
+                                    <!-- <div class="row-fluid payment-tab"> -->
+                                    <div class="payment-tab">
+                                           <!--  <div class="col-xs-2">  -->
+
+                                            <!-- required for floating -->
+                                              <!-- Nav tabs -->
+                                              <ul class="nav nav-tabs tabs-left sideways" id="myTab">
+                                                <?php $i =1; ?>
+                                                <?php while($i <= $flightDetail->Adult): ?>
+                                                <li <?php if($i == 1): ?> class="active" <?php endif; ?>><a href="#adult<?php echo e($i); ?>" data-toggle="tab">Adult <?php echo e($i); ?></a></li>
+                                                <?php $i++; ?>
+                                                <?php endwhile; ?>
+
+                                                <?php $i =1; ?>
+                                                <?php while($i <= $flightDetail->Child): ?>
+                                                <li><a href="#child<?php echo e($i); ?>" data-toggle="tab">Child <?php echo e($i); ?></a></li>
+                                                <?php $i++; ?>
+                                                <?php endwhile; ?>
+
+                                                <!--
+                                                <li><a href="#infant1" data-toggle="tab">Infant 1</a></li>
+                                                <li><a href="#infant2" data-toggle="tab">Infant 2</a></li> -->
+                                                <li><a href="#contact" data-toggle="tab">Contact Details</a></li>
+                                              </ul>
+                                            <!-- </div> -->
+
+                                            <!-- <div class="col-xs-10"> -->
+                                              <!-- Tab panes -->
+                                                <div class="tab-content">
+                                                    <?php $i = 1; ?>
+                                                    <?php while($i <= $flightDetail->Adult): ?>
+                                                    <div class="tab-pane <?php if($i == 1): ?>active <?php endif; ?>" id="adult<?php echo e($i); ?>">
+                                                       
+                                                        <?php /* <form action="#"> */ ?>
+                                                            <article class="personal-info">
+                                                                <div class="row-fluid">
+                                                                    <div class="col-md-12">
+                                                                        
+                                                                    <h5 class="passanger-title">Adult <?php echo e($i); ?>:</h5>
+                                                                    <p>
+                                                                        Please make sure that you enter the names of all passengers as shown on passports. This will avoid problems at the airport. Name changes are not permitted once the booking has been finalised.
+                                                                    </p>
+                                                                    <hr>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-12">
+                                                                            <label for="">Full name <small>(as per passport)</small></label>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row-fluid row-margin-adj">
+                                                                        <div class="col-md-2">
+                                                                            <select name="adult_title[]" id="" class="SlectBox form-control">
+                                                                                <option selected="selected" value="">Title</option>
+                                                                                <option value="MR">Mr</option>
+                                                                                <option value="MRS">Mrs</option>
+                                                                                <option value="MS">Ms</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-10">
+                                                                            <div class="row-fluid">
+                                                                                <div class="col-md-4">
+                                                                                    <input type="text" name="adult_fname[]" class="form-control" placeholder="First Name">
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <input type="text" name="adult_mname[]" class="form-control" placeholder="Middle Name">
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <input type="text" name="adult_lname[]" class="form-control" placeholder="Last Name">
+                                                                                </div>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-4">
+                                                                        <label for="">Passport Number</label>
+                                                                           <input type="text" name="adult_passport[]" class="form-control" placeholder="Passport Number">
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                        <label for="">Issuing Country</label>
+                                                                            <?php echo Form::select('adult_issue_country[]',$countries, 'NP', ['class'=>'SlectBox country form-control']); ?>
+
+                                                                            <!--
+                                                                            <select name="" id="" class="SlectBox form-control">
+                                                                                <option>Issuing Country</option>
+                                                                                <option>1</option>
+                                                                                <option>2</option>
+                                                                                <option>3</option>
+                                                                            </select> -->
+                                                                           
+                                                                        </div>
+                                                                        <div class="col-md-4 doe">
+                                                                        <label for="">Date of Issue</label>
+                                                                        <select name="adult_issue_day[]" class="SlectBox daypicker form-control" >
+                                                                            <option value="">DD</option>
+                                                                        </select>
+                                                                        <!--
+                                                                            <select name="" id="" class="SlectBox form-control">
+                                                                                <option>DD</option>
+                                                                                <option>1</option>
+                                                                                <option>2</option>
+                                                                                <option>3</option>
+                                                                            </select> -->
+                                                                            <select name="" id="" class="SlectBox form-control">
+                                                                                <option>MM</option>
+                                                                                <option>1</option>
+                                                                                <option>2</option>
+                                                                                <option>3</option>
+                                                                            </select> -->
+                                                                            <select name="adult_issue_year[]" class="yearpicker SlectBox form-control" >
+                                                                                <option value="">YEAR</option>
+                                                                            </select>
+                                                                            <!--
+                                                                            <select name="" id="" class="SlectBox form-control">
+                                                                                <option>YY</option>
+                                                                                <option>2000</option>
+                                                                                <option>2001</option>
+                                                                                <option>2002</option>
+                                                                            </select>
+                                                                            -->
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-12">
+                                                                        <label for="">Date of Birth</label>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-4">
+                                                                            <select name="adult_dob_day[]" class="SlectBox daypicker form-control" >
+                                                                            <option value="">DD</option>
+                                                                            </select>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                           
+                                                                           <?php echo Form::select('adult_dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'SlectBox form-control', ]); ?>
+
+                                                                           
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <select name="adult_dob_year[]" class="yearpicker SlectBox form-control" >
+                                                                                <option value="">YEAR</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-sm-6">
+                                                                    <label>Passport Image<em>*</em></label>
+                                                                    <span class="btn btn-primary btn-file btn-sm">
+                                                                        <i class="fa fa-folder-open"></i>Upload
+                                                                        <input type="file" id="image" class="image" name="adult_passport_image[]" >
+                                                                    </span>
+                                                                    <span class="image-name"></span>
+                                                                </div>
+
+                                                                <!--
+                                                                <div class="form-group">
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-6">
+                                                                            <label>Frequent flyer programme(optional)</label>
+                                                                            <select class="SlectBox form-control">   
+                                                                                <option selected="selected" value="">Select frequent flyer programme</option>   
+                                                                                <option value="QR">Qatar Airways</option>   
+                                                                                <option value="ab">Airberlin</option>  
+                                                                                <option value="AA">American Airlines</option>   
+                                                                                <option value="OZ">Asiana Airlines</option> 
+                                                                                <option value="BA">British Airways</option> <option value="CX">Cathay Pacific</option>  
+                                                                                <option value="AY">Finnair</option> <option value="G3">Gol Airlines
+                                                                                </option>    
+                                                                                <option value="IB">Iberia</option> <option value="JL">Japan Airlines</option>  
+                                                                                <option value="LA">Lan</option> <option value="MH">Malaysia Airlines</option>   
+                                                                                <option value="ME">Middle East Airlines</option>    
+                                                                                <option value="QF">Qantas</option> <option value="AT">Royal Air Maroc
+                                                                                </option> 
+                                                                                <option value="RJ">Royal Jordanian
+                                                                                </option> 
+                                                                                <option value="S7">S7 Airlines
+                                                                                </option> 
+                                                                                <option value="JJ">Tam</option> 
+                                                                                <option value="UL">Srilankan Airlines</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <label>Frequent flyer number</label>
+                                                                            <input type="text" class="form-control" placeholder="Flyer number">
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
+                                                                -->
+                                                            </article>
+                                                            
+                                                        <?php /* </form> */ ?>
+
+                                                        <div class="button-groups text-right">
+
+                                                            <a href="#" class="btn btn-next">
+                                                                Next Passanger <i class="fa fa-angle-right"></i>
+                                                                
+                                                            </a>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <?php $i++; ?>
+                                                    <?php endwhile; ?>
+
+                                                    <?php $i =1; ?>
+                                                    <?php while($i <= $flightDetail->Child): ?>
+                                                    <div class="tab-pane" id="child<?php echo e($i); ?>">
+                                                       
+                                                        <?php /* <form action="#"> */ ?>
+                                                            <article class="personal-info">
+                                                                <div class="row-fluid">
+                                                                    <div class="col-md-12">
+                                                                        
+                                                                    <h5 class="passanger-title">Child <?php echo e($i); ?>:</h5>
+                                                                    <p>
+                                                                        Please make sure that you enter the names of all passengers as shown on passports. This will avoid problems at the airport. Name changes are not permitted once the booking has been finalised.
+                                                                    </p>
+                                                                    <hr>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-12">
+                                                                            <label for="">Full name <small>(as per passport)</small></label>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row-fluid row-margin-adj">
+                                                                        <div class="col-md-2">
+                                                                            <select name="child_title[]" id="" class="SlectBox form-control">
+                                                                                <option selected="selected" value="">Title</option>
+                                                                                <option value="MR">Mr</option>
+                                                                                <option value="MRS">Mrs</option>
+                                                                                <option value="MS">Ms</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-10">
+                                                                            <div class="row-fluid">
+                                                                                <div class="col-md-4">
+                                                                                    <input type="text" name="child_fname[]" class="form-control" placeholder="First Name">
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <input type="text" name="child_mname[]" class="form-control" placeholder="Middle Name">
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <input type="text" name="child_lname[]" class="form-control" placeholder="Last Name">
+                                                                                </div>
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-4">
+                                                                        <label for="">Passport Number</label>
+                                                                           <input type="text" name="child_passport[]"class="form-control" placeholder="Passport Number">
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                        <label for="">Issuing Country</label>
+                                                                            <?php echo Form::select('child_issue_country[]',$countries, 'NP', ['class'=>'SlectBox country form-control']); ?>
+
+                                                                        </div>
+                                                                        <div class="col-md-4 doe">
+                                                                        <label for="">Date of Issue</label>
+                                                                            <select name="child_issue_day[]" class="SlectBox daypicker form-control" >
+                                                                            <option value="">DD</option>
+                                                                            </select>
+
+                                                                            <?php echo Form::select('child_issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'SlectBox form-control', 'required']); ?>
+
+
+                                                                                <select name="child_issue_year[]" class="childyearpicker SlectBox form-control" required>
+                                                                                    <option value="">YEAR</option>
+                                                                                </select>
+                                                                        </div>
+
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-12">
+                                                                        <label for="">Date of Birth</label>
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-4">
+                                                                            <select name="child_dob_day[]" class="SlectBox daypicker form-control" required>
+                                                                            <option value="">DD</option>
+                                                                            </select>
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                           
+                                                                           <?php echo Form::select('child_dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'SlectBox form-control', 'required']); ?>
+
+                                                                           
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <select name="child_dob_year[]" class="childyearpicker SlectBox form-control" required>
+                                                                                <option value="">YEAR</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-3 col-sm-6">
+                                                                    <label>Passport Image<em>*</em></label>
+                                                                    <span class="btn btn-primary btn-file btn-sm">
+                                                                        <i class="fa fa-folder-open"></i>Upload
+                                                                        <input type="file" id="image" class="image" name="child_passport_image[]" >
+                                                                    </span>
+                                                                    <span class="image-name"></span>
+                                                                </div>
+                                                                <!--
+                                                                <div class="form-group">
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-6">
+                                                                            <label>Frequent flyer programme(optional)</label>
+                                                                            <select class="SlectBox form-control">   
+                                                                                <option selected="selected" value="">Select frequent flyer programme</option>   
+                                                                                <option value="QR">Qatar Airways</option>   
+                                                                                <option value="ab">Airberlin</option>  
+                                                                                <option value="AA">American Airlines</option>   
+                                                                                <option value="OZ">Asiana Airlines</option> 
+                                                                                <option value="BA">British Airways</option> <option value="CX">Cathay Pacific</option>  
+                                                                                <option value="AY">Finnair</option> <option value="G3">Gol Airlines
+                                                                                </option>    
+                                                                                <option value="IB">Iberia</option> <option value="JL">Japan Airlines</option>  
+                                                                                <option value="LA">Lan</option> <option value="MH">Malaysia Airlines</option>   
+                                                                                <option value="ME">Middle East Airlines</option>    
+                                                                                <option value="QF">Qantas</option> <option value="AT">Royal Air Maroc
+                                                                                </option> 
+                                                                                <option value="RJ">Royal Jordanian
+                                                                                </option> 
+                                                                                <option value="S7">S7 Airlines
+                                                                                </option> 
+                                                                                <option value="JJ">Tam</option> 
+                                                                                <option value="UL">Srilankan Airlines</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <label>Frequent flyer number</label>
+                                                                            <input type="text" class="form-control" placeholder="Flyer number">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                -->
+                                                            </article>
+                                                        <?php /* </form> */ ?>
+
+                                                        <div class="button-groups text-right">
+
+                                                            <a href="#" class="btn btn-next">
+                                                                Next Passanger <i class="fa fa-angle-right"></i>
+                                                                
+                                                            </a>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <?php $i++; ?>
+                                                    <?php endwhile; ?>
+                                                    
+                                                    <div class="tab-pane" id="contact">
+                                                       
+                                                        <?php /* <form action="#"> */ ?>
+                                                            <article class="personal-info">
+                                                                <div class="row-fluid">
+                                                                    <div class="col-md-12">
+                                                                        
+                                                                    <h5 class="passanger-title">Contact Details</h5>
+                                                                    
+                                                                    <hr>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    
+                                                                    <div class="row-fluid">
+                                                                        
+                                                                        <div class="col-md-6">
+                                                                            <label>Primary contact <small>(for this booking)</small></label>
+                                                                            <select name="main_traveller" class="SlectBox form-control">
+                                                                            <?php $i =1; ?>
+                                                                            <?php while($i <= $flightDetail->Adult): ?>
+                                                                                <option value="<?php echo e($i); ?>">Adult <?php echo e($i); ?></option>
+                                                                                <?php $i++; ?>
+                                                                            <?php endwhile; ?>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-5">
+                                                                            <label for="">Country</label>
+                                                                           <?php echo Form::select('main_traveller_country[]',$countries, 'NP', ['class'=>'SlectBox country form-control']); ?>
+
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <label for="">Phone</label>
+                                                                            <select name="main_traveller_phonetype" id="" class="SlectBox form-control">
+                                                                                <option>Mobile</option>
+                                                                                <option>Home</option>
+                                                                                <option>Office</option>
+                                                                            </select>
+                                                                           
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label for="">Number</label>
+                                                                            <input type="text" name="main_traveller_phone" class="form-control" placeholder="Enter Number">
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-6">
+                                                                            <label for="">Email Address</label>
+                                                                            <input type="email" name="main_traveller_email" class="form-control" placeholder="Email Address">
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                           <label for="">Repeat Email Address</label>
+                                                                            <input type="email" name ="confirm_main_email" class="form-control" placeholder="Email Address">
+                                                                           
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </article>
+                                                            <article class="personal-info">
+                                                                <div class="row-fluid">
+                                                                    <div class="col-md-12">
+                                                                        
+                                                                    <h5 class="passanger-title">Emergency Contact Details <small>(optional)</small></h5>
+                                                                    
+                                                                    <hr>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    
+                                                                    <div class="row-fluid">
+                                                                        
+                                                                        <div class="col-md-6">
+                                                                            <label>Name</label>
+                                                                            <input type="text" name="em_fullname" class="form-control" placeholder="Enter Full Name">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-5">
+                                                                            <label for="">Country</label>
+                                                                           <?php echo Form::select('em_country',$countries, 'NP', ['class'=>'SlectBox country form-control']); ?>
+
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <label for="">Phone</label>
+                                                                            <select name="em_phonetype" id="" class="SlectBox form-control">
+                                                                                <option>Mobile</option>
+                                                                                <option>Home</option>
+                                                                                <option>Office</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label for="">Number</label>
+                                                                            <input type="text" name="em_phone" class="form-control" placeholder="Enter Number">
+                                                                            
+                                                                        </div>
+
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    
+                                                                    <div class="row-fluid">
+                                                                        <div class="col-md-6">
+                                                                            <label for="">Email Address</label>
+                                                                            <input type="email" name="em_email" class="form-control" placeholder="Email Address">
+                                                                            
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                           <label for="">Repeat Email Address</label>
+                                                                            <input type="email" name="confirm_em_email" class="form-control" placeholder="Email Address">
+                                                                           
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </article>
+                                                            
+                                                        <?php /* </form> */ ?>
+
+                                                        <div class="button-groups text-right">
+
+                                                            <a href="#" class="btn btn-next">
+                                                                Continue <i class="fa fa-angle-right"></i>
+                                                                
+                                                            </a>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            <!-- </div> -->
+                                    </div>
+                          
+                                </div>
+                            <?php echo Form::close(); ?>
+
+                            </div>
+                    		<div class="col-md-3 col-sm-4 sidebar-total">
+                                
+                            <div class="flight-more-info">
+                                <ul id="myTab" class="nav nav-tabs hidden-xs" role="tablist">
+                                    <li class="active" role="presentation">
+                                        <a href="#a" aria-controls="home" role="tab" data-toggle="tab">Departure</a>
+                                    </li>
+                                    <?php if(!empty($returnFlightDetail)): ?>
+                                    <li class="" role="presentation">
+                                        <a href="#b" aria-controls="home1" role="tab" data-toggle="tab">Return</a>
+                                    </li>
+                                    <?php endif; ?>
+                                </ul>
+                                <div class="tab-content">
+                                    <?php if(!empty($flightDetail)): ?>
+                                    <div id="a" class="tab-pane active" role="tabpanel">
+                                        <h4>Departure Fare Details</h4>
+                                        <div class="btm-block">
+                                            <div class="grand-total-block">
+                                                <h5>Base Fare</h5>
+                                                <table class="table">
+                                                    <?php if($flightDetail->Adult != 0): ?>
+                                                    <tr>
+                                                        <td>Adult(s) ‎(<?php echo e($flightDetail->Adult); ?> X <?php echo e(custom_number_format($flightDetail->AdultFare)); ?>)‎</td>
+                                                        <td><?php echo e(custom_number_format($flightDetail->Adult * $flightDetail->AdultFare)); ?></td>
+                                                    </tr>
+                                                    <?php endif; ?>
+                                                    <?php if($flightDetail->Child != 0): ?>
+                                                    <tr>
+                                                        <td>Child(s) ‎(<?php echo e($flightDetail->Child); ?> X <?php echo e(custom_number_format($flightDetail->ChildFare)); ?>)‎</td>
+                                                        <td><?php echo e(custom_number_format($flightDetail->Child * $flightDetail->ChildFare)); ?></td>
+                                                    </tr>
+                                                    <?php endif; ?>
+                                                </table>
+                                                <h5>Surcharges :</h5>
+                                                <table class="table">
+                                                    <?php if($flightDetail->Adult != 0): ?>
+                                                    <tr>
+                                                        <td>Adult(s) ‎(<?php echo e($flightDetail->Adult); ?> X <?php echo e(custom_number_format($flightDetail->FuelSurcharge)); ?>)‎</td>
+                                                        <td><?php echo e(custom_number_format($flightDetail->Adult * $flightDetail->FuelSurcharge)); ?></td>
+                                                    </tr>
+                                                    <?php endif; ?>
+                                                    <?php if($flightDetail->Child != 0): ?>
+                                                    <tr>
+                                                        <td>Child(s) ‎(<?php echo e($flightDetail->Child); ?> X <?php echo e(custom_number_format($flightDetail->FuelSurcharge)); ?>)‎</td>
+                                                        <td><?php echo e(custom_number_format($flightDetail->Child * $flightDetail->FuelSurcharge)); ?></td>
+                                                    </tr>
+                                                    <?php endif; ?>
+                                                </table>
+                                                <h5>Taxes and Fees :</h5>
+                                                <table class="table">
+                                                    <?php if($flightDetail->Adult != 0): ?>
+                                                    <tr>
+                                                        <td>Adult(s) ‎(<?php echo e($flightDetail->Adult); ?> X <?php echo e(custom_number_format($flightDetail->Tax + $flightDetail->ResFare)); ?>)‎</td>
+                                                        <td><?php echo e(custom_number_format($flightDetail->Adult * ($flightDetail->Tax + $flightDetail->ResFare))); ?></td>
+                                                    </tr>
+                                                    <?php endif; ?>
+                                                    <?php if($flightDetail->Child != 0): ?>
+                                                    <tr>
+                                                        <td>Child(s) ‎(<?php echo e($flightDetail->Child); ?> X <?php echo e(custom_number_format($flightDetail->Tax + $flightDetail->ResFare)); ?>)‎</td>
+                                                        <td><?php echo e(custom_number_format($flightDetail->Child * ($flightDetail->Tax + $flightDetail->ResFare))); ?></td>
+                                                    </tr>
+                                                    <?php endif; ?>
+                                                </table>
+
+                                                <div class="total-block">
+                                                    <h3>Total Amount
+                                                    </h3>
+                                                </div>
+                                                <div class="total-block price">
+                                                    <h3><?php echo e($flightDetail->Currency); ?> <?php echo custom_number_format(totalPrice($flightDetail->Adult, $flightDetail->Child, $flightDetail->AdultFare, $flightDetail->ChildFare, $flightDetail->ResFare, $flightDetail->FuelSurcharge, $flightDetail->Tax )) ?></h3>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
+                                    <?php if(!empty($returnFlightDetail)): ?>
+                                    <div id="b" class="tab-pane" role="tabpanel">
+                                        <h4>Return Fare Details</h4>
+                                        <div class="btm-block">
+                                            <div class="grand-total-block">
+                                                <h5>Base Fare</h5>
+                                                <table class="table">
+                                                    <?php if($returnFlightDetail->Adult != 0): ?>
+                                                    <tr>
+                                                        <td>Adult(s) ‎(<?php echo e($returnFlightDetail->Adult); ?> X <?php echo e(custom_number_format($returnFlightDetail->AdultFare)); ?>)‎</td>
+                                                        </td>
+                                                        <td><?php echo e(custom_number_format($returnFlightDetail->Adult * $returnFlightDetail->AdultFare)); ?></td>
+                                                    </tr>
+                                                    <?php endif; ?>
+                                                    <?php if($returnFlightDetail->Child != 0): ?>
+                                                    <tr>
+                                                        <td>Child(s) ‎(<?php echo e($returnFlightDetail->Child); ?> X <?php echo e(custom_number_format($returnFlightDetail->ChildFare)); ?>)‎</td>
+                                                        <td><?php echo e(custom_number_format($returnFlightDetail->Child * $returnFlightDetail->ChildFare)); ?></td>
+                                                    </tr>
+                                                    <?php endif; ?>
+                                                </table>
+                                                <h5>Surcharges :</h5>
+                                                <table class="table">
+                                                    <?php if($returnFlightDetail->Adult != 0): ?>
+                                                    <tr>
+                                                        <td>Adult(s) ‎(<?php echo e($returnFlightDetail->Adult); ?> X <?php echo e(custom_number_format($returnFlightDetail->FuelSurcharge)); ?>)‎</td>
+                                                        <td><?php echo e(custom_number_format($returnFlightDetail->Adult * $returnFlightDetail->FuelSurcharge)); ?></td>
+                                                    </tr>
+                                                    <?php endif; ?>
+                                                    <?php if($returnFlightDetail->Child != 0): ?>
+                                                    <tr>
+                                                        <td>Child(s) ‎(<?php echo e($returnFlightDetail->Child); ?> X <?php echo e(custom_number_format($returnFlightDetail->FuelSurcharge)); ?>)‎</td>
+                                                        <td><?php echo e(custom_number_format($returnFlightDetail->Child * $returnFlightDetail->FuelSurcharge)); ?></td>
+                                                    </tr>
+                                                    <?php endif; ?>
+                                                </table>
+                                                <h5>Taxes and Fees :</h5>
+                                                <table class="table">
+                                                    <?php if($returnFlightDetail->Adult != 0): ?>
+                                                        <tr>
+                                                            <td>Adult(s) ‎(<?php echo e($returnFlightDetail->Adult); ?> X <?php echo e(custom_number_format($returnFlightDetail->Tax + $returnFlightDetail->ResFare)); ?>)‎</td>
+                                                            <td><?php echo e(custom_number_format($returnFlightDetail->Adult * ($returnFlightDetail->Tax + $returnFlightDetail->ResFare))); ?></td>
+                                                        </tr>
+                                                    <?php endif; ?>
+                                                    <?php if($returnFlightDetail->Child != 0): ?>
+                                                        <tr>
+                                                            <td>Child(s) ‎(<?php echo e($returnFlightDetail->Child); ?> X <?php echo e(custom_number_format($returnFlightDetail->Tax + $returnFlightDetail->ResFare)); ?>)‎</td>
+                                                            <td><?php echo e(custom_number_format($returnFlightDetail->Child * ($returnFlightDetail->Tax + $returnFlightDetail->ResFare))); ?></td>
+                                                        </tr>
+                                                    <?php endif; ?>
+                                                </table>
+
+                                                <div class="total-block">
+                                                    <h3>Total Amount
+                                                    </h3>
+                                                </div>
+                                                <div class="total-block price">
+                                                    <h3><?php echo e($returnFlightDetail->Currency); ?> <?php echo custom_number_format(totalPrice($returnFlightDetail->Adult, $returnFlightDetail->Child, $returnFlightDetail->AdultFare, $returnFlightDetail->ChildFare, $returnFlightDetail->ResFare, $returnFlightDetail->FuelSurcharge, $returnFlightDetail->Tax )) ?></h3>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+
+                
+
+                                    
+                                </div>
+								<!--
+                                <div class="btm-block">
+                                    <div class="discount-wrap">
+                                        <h3>Apply Discount</h3>
+                                        <form action="#">
+                                            <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="Search for...">
+                                              <span class="input-group-btn">
+                                                <button class="btn btn-back" type="button">
+                                                    Apply</button>
+                                              </span>
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                    				
+                    			</div> -->
+                            
+                                <div class="button-groups text-right btm-block">
+
+                                    <a class="btn btn-danger payment-btn btn-block" href="payment.html">
+                                       <i class="fa fa-money"></i> Make Payment
+                                        
+                                    </a>
+                                </div>
+
+                                
+                    		</div>
+                    	</div>
+
+
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

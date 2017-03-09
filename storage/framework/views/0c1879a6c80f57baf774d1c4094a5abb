@@ -1,0 +1,625 @@
+<?php $__env->startSection('title'); ?> Flight Review | <?php echo e(isset($siteTitle) ? $siteTitle : ''); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('loader'); ?>
+<?php echo $__env->make('frontend.includes.new.loader', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<?php echo $__env->make('frontend.includes.new.functions', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<section class="main-content">
+	<div class="flight-booking-progress-step">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="progress-step progress-step--medium list-unstyled">
+						<!-- <li class="is-complete"> -->
+						<li class="is-complete">
+							<span class="circle">
+								<i class="fa fa-check"></i>
+							</span>
+							<span class="progress-text">Selection</span>
+						</li>
+						<!-- <li class="is-active"> -->
+						<li class="is-active">
+							<span class="circle">
+								<i class="fa fa-file-text"></i>
+							</span>
+							<span class="progress-text">Review</span>
+						</li>
+						<li>
+							<span class="circle">
+								<i class="fa fa-user"></i>
+							</span>
+							<span class="progress-text">Passanger Details</span>
+						</li>
+						<li>
+							<span class="circle">
+								<i class="fa fa-credit-card"></i>
+							</span>
+							<span class="progress-text">Payment</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flight-wrapper flight-review">
+		<div class="container">
+			<div class="flight-list-block">
+			
+				<div class="row">
+					<div class="col-md-9">
+						<?php if(!empty($flightDetail)): ?>
+						<div class="flight-review-header">
+							<div class="row">
+								<div class="first-row">
+									<div class="col-md-1 col-sm-2">
+										<figure>
+										<img src="<?php echo e($flightDetail->AirlineLogo); ?>" alt="">
+										</figure>
+									</div>
+									<div class="col-md-8 col-sm-7 mobile-mode">
+										<h4 class="box-title"><?php echo airlinesName($flightDetail->Airline); ?> (<?php echo e($flightDetail->FlightNo); ?>)<small>Departure flight</small></h4>
+										<a class="badge">Class <?php echo e($flightDetail->FlightClassCode); ?></a>
+									</div>
+									<!-- <div class="col-md-3 col-sm-3 text-right">
+										<a href="flight.html" class="btn btn-back"><i class="fa fa-angle-left"></i>Back To Flight List</a>
+									</div> -->
+								</div>
+							</div>
+						</div>
+						<article class="box-flight">
+							<div class="time row-fluid">
+								<div class="col-md-3 col-sm-3">
+									<div class="take-off review-tbl-title">
+										<div class="icon">
+											<i aria-hidden="true" class="fa fa-plane"></i>
+										</div>
+										<div class="desc">
+											<span class="skin-color">Departure</span>
+										</div>
+
+									</div>
+
+									<span class="dep-details">
+										<span class="city"><?php echo e(ucfirst(strtolower($flightDetail->Departure))); ?></span>
+										<span class="dep-date">
+											<?php if(!empty($flightDetail->FlightDate)){
+												echo (new DateTime($flightDetail->FlightDate))->format('D , j M Y ') ;
+											}?>
+										</span>
+										<span class="time-head">
+											<span class="time"><?php echo e($flightDetail->DepartureTime); ?></span></span>
+											
+											<span class="terminal"></span>
+										</span>
+
+									</div>
+									<div class="col-md-3 col-sm-3">
+										<div class="landing review-tbl-title">
+											<div class="icon">
+												<i aria-hidden="true" class="fa fa-plane"></i>
+											</div>
+											<div class="desc">
+												<span class="skin-color">Arrival</span>
+											</div>
+
+										</div>
+										<span class="arr-details">
+											<span class="city"><?php echo e(ucfirst(strtolower($flightDetail->Arrival))); ?></span>
+											<span class="dep-date arr-date">
+												<?php if(!empty($flightDetail->FlightDate)){
+													echo (new DateTime($flightDetail->FlightDate))->format('D , j M Y ') ;
+												}?>
+											</span>
+											<span class="time-head">
+												<span class="time"><?php echo e($flightDetail->ArrivalTime); ?></span>
+											</span>
+											<span class="terminal"></span>
+										</span>
+									</div>
+									<div class="col-md-2 col-sm-2">
+										<div class="total-time review-tbl-title">
+											<div class="icon">
+												<i class="fa fa-clock-o"></i></div>
+												<div class="desc">
+													<span class="skin-color">total time</span>
+
+												</div>
+											</div>
+											<span class="text-center"><?php 
+												$d1 = $flightDetail->FlightDate.' '.$flightDetail->DepartureTime;
+												$d2 = $flightDetail->FlightDate.' '.$flightDetail->ArrivalTime;
+												$datetime1 = new DateTime($d1);
+												$datetime2 = new DateTime($d2);
+												$interval = $datetime2->diff($datetime1);
+												$elapsed = $interval->format('%h Hour, %i minutes');
+												echo $elapsed;
+												?></span>
+
+											</div>
+											<div class="col-md-2 col-sm-2">
+												<div class="travel-class">
+													<div class="review-tbl-title">
+														<div class="icon">
+															<i aria-hidden="true" class="fa fa-wheelchair"></i>
+														</div>
+														<div class="desc">
+															<span class="skin-color">Type</span>
+														</div>
+													</div>
+
+													<span><?php if($flightDetail->Refundable == 'T'): ?> Refundable <?php else: ?> Non-Refundable <?php endif; ?></span>
+												</div>
+
+											</div>
+											<div class="col-md-2 col-sm-2">
+												<div class="package-price">
+													<div class="review-tbl-title">
+														<div class="icon">
+															<i aria-hidden="true" class="fa fa-calculator"></i>
+														</div>
+														<div class="desc">
+															<span class="skin-color">Total Price
+															</span>
+														</div>
+													</div>
+
+
+													<span class="">
+														<strong>
+														 <?php echo e($flightDetail->Currency); ?> <?php echo custom_number_format(totalPrice($flightDetail->Adult, $flightDetail->Child, $flightDetail->AdultFare, $flightDetail->ChildFare, $flightDetail->ResFare, $flightDetail->FuelSurcharge, $flightDetail->Tax )) ?> 
+														</strong>
+														<small>Baggage Allowance - <?php echo e($flightDetail->FreeBaggage); ?> Included</small>
+													</span>
+												</div>
+											</div>
+										</div>
+						</article>
+						
+							<?php endif; ?>
+
+
+					<?php if(!empty($returnFlightDetail)): ?>
+						<div class="flight-review-header">
+							<div class="row">
+								<div class="first-row">
+									<div class="col-md-1 col-sm-2">
+										<figure>
+										<img src="<?php echo e($returnFlightDetail->AirlineLogo); ?>" alt="">
+										</figure>
+									</div>
+									<div class="col-md-8 col-sm-7 mobile-mode">
+										<h4 class="box-title"><?php echo airlinesName($returnFlightDetail->Airline); ?> (<?php echo e($returnFlightDetail->FlightNo); ?>)<small>Return flight</small></h4>
+										<a class="badge">Class <?php echo e($returnFlightDetail->FlightClassCode); ?></a>
+									</div>
+									<!-- <div class="col-md-3 col-sm-3 text-right">
+										<a href="flight.html" class="btn btn-back"><i class="fa fa-angle-left"></i>Back To Flight List</a>
+									</div> -->
+								</div>
+							</div>
+						</div>
+						<article class="box-flight">
+							<div class="time row-fluid">
+								<div class="col-md-3 col-sm-3">
+									<div class="take-off review-tbl-title">
+										<div class="icon">
+											<i aria-hidden="true" class="fa fa-plane"></i>
+										</div>
+										<div class="desc">
+											<span class="skin-color">Departure</span>
+										</div>
+
+									</div>
+
+									<span class="dep-details">
+										<span class="city"><?php echo e(ucfirst(strtolower($returnFlightDetail->Departure))); ?></span>
+										<span class="dep-date">
+											<?php if(!empty($returnFlightDetail->FlightDate)){
+												echo (new DateTime($returnFlightDetail->FlightDate))->format('D , j M Y ') ;
+											}?>
+										</span>
+										<span class="time-head">
+											<span class="time"><?php echo e($returnFlightDetail->DepartureTime); ?></span></span>
+											
+											<span class="terminal"></span>
+										</span>
+									</div>
+									<div class="col-md-3 col-sm-3">
+										<div class="landing review-tbl-title">
+											<div class="icon">
+												<i aria-hidden="true" class="fa fa-plane"></i>
+											</div>
+											<div class="desc">
+												<span class="skin-color">Arrival</span>
+											</div>
+
+										</div>
+										<span class="arr-details">
+											<span class="city"><?php echo e(ucfirst(strtolower($returnFlightDetail->Arrival))); ?></span>
+											<span class="dep-date arr-date">
+												<?php if(!empty($returnFlightDetail->FlightDate)){
+													echo (new DateTime($returnFlightDetail->FlightDate))->format('D , j M Y ') ;
+												}?>
+											</span>
+											<span class="time-head">
+												<span class="time"><?php echo e($returnFlightDetail->ArrivalTime); ?></span>
+											</span>
+											
+											<span class="terminal"></span>
+										</span>
+									</div>
+									<div class="col-md-2 col-sm-2">
+										<div class="total-time review-tbl-title">
+											<div class="icon">
+												<i class="fa fa-clock-o"></i></div>
+												<div class="desc">
+													<span class="skin-color">total time</span>
+
+												</div>
+											</div>
+											<span class="text-center"><?php 
+												$d1 = $returnFlightDetail->FlightDate.' '.$returnFlightDetail->DepartureTime;
+												$d2 = $returnFlightDetail->FlightDate.' '.$returnFlightDetail->ArrivalTime;
+												$datetime1 = new DateTime($d1);
+												$datetime2 = new DateTime($d2);
+												$interval = $datetime2->diff($datetime1);
+												$elapsed = $interval->format('%h Hour, %i minutes');
+												echo $elapsed;
+												?></span>
+
+											</div>
+											<div class="col-md-2 col-sm-2">
+												<div class="travel-class">
+													<div class="review-tbl-title">
+														<div class="icon">
+															<i aria-hidden="true" class="fa fa-wheelchair"></i>
+														</div>
+														<div class="desc">
+															<span class="skin-color">Type</span>
+														</div>
+													</div>
+
+													<span><?php if($returnFlightDetail->Refundable == 'T'): ?> Refundable <?php else: ?> Non-Refundable <?php endif; ?></span>
+												</div>
+
+											</div>
+											<div class="col-md-2 col-sm-2">
+												<div class="package-price">
+													<div class="review-tbl-title">
+														<div class="icon">
+															<i aria-hidden="true" class="fa fa-calculator"></i>
+														</div>
+														<div class="desc">
+															<span class="skin-color">Total Price
+															</span>
+														</div>
+													</div>
+
+
+													<span class="">
+														<strong>
+														 <?php echo e($returnFlightDetail->Currency); ?> <?php echo custom_number_format(totalPrice($returnFlightDetail->Adult, $returnFlightDetail->Child, $returnFlightDetail->AdultFare, $returnFlightDetail->ChildFare, $returnFlightDetail->ResFare, $returnFlightDetail->FuelSurcharge, $returnFlightDetail->Tax )) ?>
+														</strong>
+														<small>Baggage Allowance - <?php echo e($returnFlightDetail->FreeBaggage); ?> Included</small>
+													</span>
+												</div>
+											</div>
+										</div>
+						</article>
+						
+							<?php endif; ?>
+
+					</div>
+					<div class="col-md-3 sidebar-total">
+						<div class="grand-total">
+							<div class="flight-more-info">
+								<ul id="myTab" class="nav nav-tabs hidden-xs" role="tablist">
+									<li class="active" role="presentation">
+										<a href="#a" aria-controls="home" role="tab" data-toggle="tab">Departure</a>
+									</li>
+									<?php if(!empty($returnFlightDetail)): ?>
+									<li class="" role="presentation">
+										<a href="#b" aria-controls="home1" role="tab" data-toggle="tab">Return</a>
+									</li>
+									<?php endif; ?>
+								</ul>
+								<div class="tab-content">
+									<?php if(!empty($flightDetail)): ?>
+									<div id="a" class="tab-pane active" role="tabpanel">
+										<h4>Departure Fare Details</h4>
+										<div class="btm-block">
+											<div class="grand-total-block">
+												<h5>Base Fare</h5>
+												<table class="table">
+													<?php if($flightDetail->Adult != 0): ?>
+													<tr>
+														<td>Adult(s) ‎(<?php echo e($flightDetail->Adult); ?> X <?php echo e(custom_number_format($flightDetail->AdultFare)); ?>)‎</td>
+														<td><?php echo e(custom_number_format($flightDetail->Adult * $flightDetail->AdultFare)); ?></td>
+													</tr>
+													<?php endif; ?>
+													<?php if($flightDetail->Child != 0): ?>
+													<tr>
+														<td>Child(s) ‎(<?php echo e($flightDetail->Child); ?> X <?php echo e(custom_number_format($flightDetail->ChildFare)); ?>)‎</td>
+														<td><?php echo e(custom_number_format($flightDetail->Child * $flightDetail->ChildFare)); ?></td>
+													</tr>
+													<?php endif; ?>
+												</table>
+												<h5>Surcharges :</h5>
+												<table class="table">
+													<?php if($flightDetail->Adult != 0): ?>
+													<tr>
+														<td>Adult(s) ‎(<?php echo e($flightDetail->Adult); ?> X <?php echo e(custom_number_format($flightDetail->FuelSurcharge)); ?>)‎</td>
+														<td><?php echo e(custom_number_format($flightDetail->Adult * $flightDetail->FuelSurcharge)); ?></td>
+													</tr>
+													<?php endif; ?>
+													<?php if($flightDetail->Child != 0): ?>
+													<tr>
+														<td>Child(s) ‎(<?php echo e($flightDetail->Child); ?> X <?php echo e(custom_number_format($flightDetail->FuelSurcharge)); ?>)‎</td>
+														<td><?php echo e(custom_number_format($flightDetail->Child * $flightDetail->FuelSurcharge)); ?></td>
+													</tr>
+													<?php endif; ?>
+												</table>
+												<h5>Taxes and Fees :</h5>
+												<table class="table">
+													<?php if($flightDetail->Adult != 0): ?>
+													<tr>
+														<td>Adult(s) ‎(<?php echo e($flightDetail->Adult); ?> X <?php echo e(custom_number_format($flightDetail->Tax + $flightDetail->ResFare)); ?>)‎</td>
+														<td><?php echo e(custom_number_format($flightDetail->Adult * ($flightDetail->Tax + $flightDetail->ResFare))); ?></td>
+													</tr>
+													<?php endif; ?>
+													<?php if($flightDetail->Child != 0): ?>
+													<tr>
+														<td>Child(s) ‎(<?php echo e($flightDetail->Child); ?> X <?php echo e(custom_number_format($flightDetail->Tax + $flightDetail->ResFare)); ?>)‎</td>
+														<td><?php echo e(custom_number_format($flightDetail->Child * ($flightDetail->Tax + $flightDetail->ResFare))); ?></td>
+													</tr>
+													<?php endif; ?>
+												</table>
+
+												<div class="total-block">
+													<h3>Total Amount
+													</h3>
+												</div>
+												<div class="total-block price">
+													<h3><?php echo e($flightDetail->Currency); ?> <?php echo custom_number_format(totalPrice($flightDetail->Adult, $flightDetail->Child, $flightDetail->AdultFare, $flightDetail->ChildFare, $flightDetail->ResFare, $flightDetail->FuelSurcharge, $flightDetail->Tax )) ?></h3>
+												</div>
+
+											</div>
+
+
+										</div>
+									</div>
+									<?php endif; ?>
+									<?php if(!empty($returnFlightDetail)): ?>
+									<div id="b" class="tab-pane" role="tabpanel">
+										<h4>Return Fare Details</h4>
+										<div class="btm-block">
+											<div class="grand-total-block">
+												<h5>Base Fare</h5>
+												<table class="table">
+													<?php if($returnFlightDetail->Adult != 0): ?>
+													<tr>
+														<td>Adult(s) ‎(<?php echo e($returnFlightDetail->Adult); ?> X <?php echo e(custom_number_format($returnFlightDetail->AdultFare)); ?>)‎</td>
+														</td>
+														<td><?php echo e(custom_number_format($returnFlightDetail->Adult * $returnFlightDetail->AdultFare)); ?></td>
+													</tr>
+													<?php endif; ?>
+													<?php if($returnFlightDetail->Child != 0): ?>
+													<tr>
+														<td>Child(s) ‎(<?php echo e($returnFlightDetail->Child); ?> X <?php echo e(custom_number_format($returnFlightDetail->ChildFare)); ?>)‎</td>
+														<td><?php echo e(custom_number_format($returnFlightDetail->Child * $returnFlightDetail->ChildFare)); ?></td>
+													</tr>
+													<?php endif; ?>
+												</table>
+												<h5>Surcharges :</h5>
+												<table class="table">
+													<?php if($returnFlightDetail->Adult != 0): ?>
+													<tr>
+														<td>Adult(s) ‎(<?php echo e($returnFlightDetail->Adult); ?> X <?php echo e(custom_number_format($returnFlightDetail->FuelSurcharge)); ?>)‎</td>
+														<td><?php echo e(custom_number_format($returnFlightDetail->Adult * $returnFlightDetail->FuelSurcharge)); ?></td>
+													</tr>
+													<?php endif; ?>
+													<?php if($returnFlightDetail->Child != 0): ?>
+													<tr>
+														<td>Child(s) ‎(<?php echo e($returnFlightDetail->Child); ?> X <?php echo e(custom_number_format($returnFlightDetail->FuelSurcharge)); ?>)‎</td>
+														<td><?php echo e(custom_number_format($returnFlightDetail->Child * $returnFlightDetail->FuelSurcharge)); ?></td>
+													</tr>
+													<?php endif; ?>
+												</table>
+												<h5>Taxes and Fees :</h5>
+												<table class="table">
+													<?php if($returnFlightDetail->Adult != 0): ?>
+														<tr>
+															<td>Adult(s) ‎(<?php echo e($returnFlightDetail->Adult); ?> X <?php echo e(custom_number_format($returnFlightDetail->Tax + $returnFlightDetail->ResFare)); ?>)‎</td>
+															<td><?php echo e(custom_number_format($returnFlightDetail->Adult * ($returnFlightDetail->Tax + $returnFlightDetail->ResFare))); ?></td>
+														</tr>
+													<?php endif; ?>
+													<?php if($returnFlightDetail->Child != 0): ?>
+														<tr>
+															<td>Child(s) ‎(<?php echo e($returnFlightDetail->Child); ?> X <?php echo e(custom_number_format($returnFlightDetail->Tax + $returnFlightDetail->ResFare)); ?>)‎</td>
+															<td><?php echo e(custom_number_format($returnFlightDetail->Child * ($returnFlightDetail->Tax + $returnFlightDetail->ResFare))); ?></td>
+														</tr>
+													<?php endif; ?>
+												</table>
+
+												<div class="total-block">
+													<h3>Total Amount
+													</h3>
+												</div>
+												<div class="total-block price">
+													<h3><?php echo e($returnFlightDetail->Currency); ?> <?php echo custom_number_format(totalPrice($returnFlightDetail->Adult, $returnFlightDetail->Child, $returnFlightDetail->AdultFare, $returnFlightDetail->ChildFare, $returnFlightDetail->ResFare, $returnFlightDetail->FuelSurcharge, $returnFlightDetail->Tax )) ?></h3>
+												</div>
+
+											</div>
+
+
+										</div>
+									</div>
+									<?php endif; ?>
+								</div>
+							</div>
+							<!--
+							<div class="btm-block">
+                                <div class="discount-wrap">
+                                    <h3>Apply Discount</h3>
+                                    <form action="#">
+                                        <div class="input-group">
+                                          <input type="text" class="form-control" placeholder="Search for...">
+                                          <span class="input-group-btn">
+                                            <button class="btn btn-back" type="button">
+                                                Apply</button>
+                                          </span>
+                                        </div>
+                                    </form>
+                                </div>
+                			</div> -->
+						</div>
+
+						
+					</div>
+
+							
+				
+
+				</div>
+
+				<div class="button-groups">
+							<div class="row">
+								<div class="col-md-12">
+								<?php echo Form::open(['url'=>'/flight/search', 'class' => 'modifyFlightSearchForm']); ?>
+
+													<?php echo Form::hidden('departure', $departure); ?>
+
+													<?php echo Form::hidden('arrival', $arrival); ?>
+
+													<?php echo Form::hidden('adult', $flightDetail->Adult); ?>
+
+													<?php echo Form::hidden('child', $flightDetail->Child); ?>
+
+													<?php echo Form::hidden('country', $country); ?>
+
+													<?php echo Form::hidden('date_depart', $flightDetail->FlightDate); ?>
+
+													<?php if($trip_type == 'R'): ?>
+													<?php echo Form::hidden('date_return', $returnFlightDetail->FlightDate); ?>
+
+													<?php else: ?>
+													<?php echo Form::hidden('date_return', ''); ?>
+
+													<?php endif; ?>
+													<?php echo Form::hidden('trip_type', $trip_type); ?>
+
+
+									<button class="btn btn-back pull-left"><i class="fa fa-angle-left"></i>Back</button>
+
+									<?php echo Form::close(); ?>
+
+
+									<button class="btn btn-continue pull-right" data-toggle="modal" data-target="#login">
+										continue <i class="fa fa-angle-right"></i>
+
+									</button>
+								</div>
+
+								<!-- Modal -->
+								<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+
+											<div class="modal-body">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="login-wrap">
+
+
+															<h3>Login to upeverst</h3>
+															<p>
+																Already a member? Log-in to speed up the booking process We will fill in most of the details for you. 
+															</p>
+															<?php echo Form::open(['url' =>'/flight/passengers']); ?>
+
+																<div class="form-group">
+																	<label for="exampleInputEmail1">Email address</label>
+																	<input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+																</div>
+																<div class="form-group">
+																	<label for="exampleInputPassword1">Password</label>
+																	<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+																</div>
+																<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
+																<?php if($trip_type == 'R'): ?>
+																<input type="hidden" name="returnFlightDetail" value='<?php echo json_encode($returnFlightDetail); ?>'>
+																<?php endif; ?>
+																<input type="hidden" name="tripType" class="trip-type" value="<?php echo e($trip_type); ?>">
+															 	<input type="hidden" name="country" value="<?php echo e($country); ?>">
+															 	<input type="hidden" name="departure" value="<?php echo e($departure); ?>">
+															 	<input type="hidden" name="arrival" value="<?php echo e($arrival); ?>">
+																<!--
+																<div class="checkbox">
+																	<label>
+																		<input type="checkbox"> Remember me
+																	</label>
+																</div> -->
+																<button type="submit" class="btn btn-continue">Login</button>
+															<?php echo Form::close(); ?>
+
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="guest-wrap">
+															<h3>Continue as a guest</h3>
+															<p>
+																If you do not have a Privilege Club account you can complete the booking as a guest. 
+															</p>
+															<?php if($trip_type == 'R'): ?>
+																<?php echo Form::open(['url' =>'/flight/passengers']); ?>
+
+																<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
+																<input type="hidden" name="returnFlightDetail" value='<?php echo json_encode($returnFlightDetail); ?>'>
+																<input type="hidden" name="tripType" class="trip-type" value="<?php echo e($trip_type); ?>">
+															 	<input type="hidden" name="country" value="<?php echo e($country); ?>">
+															 	<input type="hidden" name="departure" value="<?php echo e($departure); ?>">
+															 	<input type="hidden" name="arrival" value="<?php echo e($arrival); ?>">
+																<button class="btn btn-continue">
+																	Continue <i class="fa fa-angle-right"></i>
+																</button>
+																<?php echo Form::close(); ?>
+
+															<?php else: ?>
+																<?php echo Form::open(['url' =>'/flight/passengers']); ?>
+
+																<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
+																<input type="hidden" name="tripType" class="trip-type" value="<?php echo e($trip_type); ?>">
+															 	<input type="hidden" name="country" value="<?php echo e($country); ?>">
+															 	<input type="hidden" name="departure" value="<?php echo e($departure); ?>">
+															 	<input type="hidden" name="arrival" value="<?php echo e($arrival); ?>">
+																<button class="btn btn-continue">
+																	Continue <i class="fa fa-angle-right"></i>
+																</button>
+																<?php echo Form::close(); ?>
+
+															<?php endif; ?>
+														</div>
+													</div>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				
+			</div>
+		</div>
+	</div>
+</section>
+
+
+				<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

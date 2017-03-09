@@ -1,0 +1,99 @@
+
+
+<?php $__env->startSection('title', trans('Edit Package Option')); ?>
+
+<?php $__env->startSection('page-header'); ?>
+<h1>
+	<?php echo e(trans('Package Option Management')); ?>
+
+	<small><?php echo e(trans('menus.packages.options.edit')); ?></small>
+</h1>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumbs'); ?>
+<li><a href="<?php echo route('backend.dashboard'); ?>"><i class="fa fa-dashboard"></i> <?php echo e(trans('menus.dashboard')); ?></a></li>
+<li class="active"><?php echo link_to_route('admin.packages.index', trans('Package Management')); ?></li>
+<li class="active"><?php echo trans('Packages Option Edit'); ?></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo Form::model($option, ['url'=>'admin/packages/options/'.$option->id, 'id'=>'package-form', 'method'=>'patch']); ?>
+
+
+<div class="row">
+<div class="col-md-9">
+<div class="box">
+	<div class="box-body">
+
+<div class="form-group">
+	<label class="control-label">Name</label>
+	<?php echo Form::text('name',null,['class'=>'form-control', 'placeholder'=>'Enter Name']); ?>
+
+</div>
+
+<?php if($option->type == 'expert'): ?>
+<div class="form-group designation">
+	<label class="control-label">Designation</label>
+	<?php echo Form::text('designation',null,['class'=>'form-control', 'placeholder'=>'Enter Designation']); ?>
+
+</div>
+<?php else: ?>
+<div class="form-group designation display-none">
+	<label class="control-label">Designation</label>
+	<?php echo Form::text('designation',null,['class'=>'form-control', 'placeholder'=>'Enter Designation']); ?>
+
+</div>
+<?php endif; ?>
+
+<div class="form-group">
+	<label class="control-label">Content</label>
+	<?php echo Form::textarea('content',null,['class'=>'form-control', 'placeholder'=>'Enter Content']); ?>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="col-md-3">
+
+<div class="box box-default">
+			<div class="box-header with-border">
+				<h3 class="box-title">Package</h3>
+				<div class="box-tools pull-right">
+					<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				</div><!-- /.box-tools -->
+			</div><!-- /.box-header -->
+			<div class="box-body">
+				<?php echo Form::select('package_id',$packages ,null,['class'=>'form-control']); ?>
+
+			</div><!-- /.box-body -->
+		</div><!-- /.box -->
+
+	<div class="box box-default">
+			<div class="box-header with-border">
+				<h3 class="box-title">Type</h3>
+				<div class="box-tools pull-right">
+					<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				</div><!-- /.box-tools -->
+			</div><!-- /.box-header -->
+			<div class="box-body">
+				<?php echo Form::select('type',['accomodation'=>'Accomodation Detail', 'expert'=> 'Expert Advice'],null,['class'=>'form-control option-type']); ?>
+
+			</div><!-- /.box-body -->
+		</div><!-- /.box -->
+</div>
+</div>
+<div class="row">
+	<div class="col-md-offset-9 col-md-3">
+		<?php echo Form::submit('Save',['class'=>'btn btn-orange']); ?>
+
+	</div>
+	
+</div>
+<?php echo Form::close(); ?>
+
+<?php echo $__env->make('backend.includes.tinymce', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="clearfix"></div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

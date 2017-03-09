@@ -1,0 +1,291 @@
+<?php $__env->startSection('title'); ?><?php echo e($siteTitle); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('banner'); ?>
+	<?php echo $__env->make('frontend.includes.banner', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>	
+	<!-- <section class="full-width-search">
+		<div class="container">
+			<div class="row">
+				<form class="form-inline">
+					<div class="form-group col-md-5 col-xs-5 col-sm-5">
+						<select class="SlectBox form-control">
+							<option selected="selected">Select Region</option>
+							<option>Annapurna</option>
+							<option>Mustang</option>
+							<option value="Makalu">Makalu</option>
+						</select>
+					</div>
+					<div class="form-group col-md-5 col-xs-5 col-sm-5">
+						<select class="SlectBox form-control" placeholder="this is placeholder">
+							<option selected="selected">Select Adventure</option>
+							<option>Bungyjumping</option>
+							<option>Paragliding</option>
+							<option value="Makalu">Rafting</option>
+						</select>
+					</div>
+					<div class="form-group  col-md-2 col-xs-2 col-sm-2">
+						<button type="submit" class="btn btn-default">Select</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section> -->
+
+	<section class="main-content">
+		<div class="container">
+			<div class="about">
+				<div class="row">
+					<div class="col-md-6 col-sm-6">
+						<div class="about-text">
+							<h1>EVEREST - One of the world's classic treks</h1>
+							<p>Welcome to one of the world's classic treks, where you enjoy the most iconic base camp of all, at the foot of the highest mountain on Earth, Mount Everest (8848m) Welcome to one of the world's classic treks,</p>
+							<a class="btn btn-primary" href="#">
+								<span class="dots"></span>
+								<span class="dots"></span>
+								<span class="dots"></span>
+								more
+							</a>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<div class="feature-img bg-wrap" style="background-image: url(images/home_main_story_2.jpg);">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="exploure">
+				<div class="page-header">
+				<h2>Explore the Adventure</h2>
+				</div>
+				<div class="exploure-content">
+					<div class="row">
+						<div class="col-md-8 col-sm-8">
+							<div class="feature-box bg-wrap" style="background-image: url('images/home_body_big_1.jpg');">
+								<div class="description">
+									<div>
+										<h4>Awesome Everest</h4>
+										<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+									</div>
+								</div>
+								<div class="mask"></div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="feature-box bg-wrap" style="background-image: url('images/home_body_small_1.jpg');">
+								<div class="description">
+									<div>
+										<h4>Mountain Biking</h4>
+										<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+									</div>
+								</div>
+								<div class="mask"></div>
+							</div>
+						</div>
+					<!-- </div> -->
+
+					<!-- <div class="row"> -->
+						<div class="col-md-4 col-sm-4">
+							<div class="feature-box bg-wrap" style="background-image: url('images/home_body_small_2.jpg');">
+								<div class="description">
+									<div>
+										<h4>Rafting</h4>
+										<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+									</div>
+								</div>
+								<div class="mask"></div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="feature-box bg-wrap" style="background-image: url('images/home_body_small_3.jpg');">
+								<div class="description">
+									<div>
+										<h4>Treking</h4>
+										<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+									</div>
+								</div>
+								<div class="mask"></div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="feature-box bg-wrap" style="background-image: url('images/home_body_small_7.jpg');">
+								<div class="description">
+									<div>
+										<h4>Talk to Everest Summitter</h4>
+										<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+									</div>
+								</div>
+								<div class="mask"></div>
+							</div>
+						</div>
+					<!-- </div> -->
+
+					<!-- <div class="row"> -->
+						<div class="col-md-8 col-sm-8 pull-right">
+							<div class="feature-box bg-wrap" style="background-image: url('images/home_body_big_2.jpg');">
+								<div class="description">
+									<div>
+										<h4>Bungy Jumping</h4>
+										<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+									</div>
+								</div>
+								<div class="mask"></div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="feature-box bg-wrap" style="background-image: url('images/home_body_small_5.jpg');">
+								<div class="description">
+									<div>
+										<h4>Expedition</h4>
+										<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+									</div>
+								</div>
+								<div class="mask"></div>
+							</div>
+						</div>
+					<!-- </div> -->
+
+					<!-- <div class="row"> -->
+						<div class="col-md-4 col-sm-4">
+							<div class="feature-box bg-wrap" style="background-image: url('images/home_body_small_6.jpg');">
+								<div class="description">
+									<div>
+										<h4>Rafting</h4>
+										<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+									</div>
+								</div>
+								<div class="mask"></div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="feature-box bg-wrap" style="background-image: url('images/home_body_small_8.jpg');">
+								<div class="description">
+									<div>
+										<h4>Treking</h4>
+										<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+									</div>
+								</div>
+								<div class="mask"></div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<div class="feature-box bg-wrap" style="background-image: url('images/home_body_small_4.jpg');">
+								<div class="description">
+									<div>
+										<h4>Talk to Everest Summitter</h4>
+										<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+									</div>
+								</div>
+								<div class="mask"></div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="video bg-wrap" style="background-image: url(images/home_body_video.jpg);">
+			<div class="container">
+				<div class="lg-caption">
+					<h1>EXPLORE THE UNEXPLORED REGION <span>WATCH THE VIDEO</span></h1>
+					<a class="btn btn-default" href="#"><i class="fa fa-play-circle" aria-hidden="true"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="post">
+				<div class="row">
+					<div class="col-sm-4 col-md-4">
+						<div class="thumbnail">
+							<div class="bg-wrap" style="background-image: url(images/home_body_small_6.jpg);"></div>
+							<!-- <img src="images/home_body_small_6.jpg" alt="..."> -->
+							<div class="caption">
+								<h3>Mountain Flight this is not an actual Body Copy</h3>
+								<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of HimalayanMiss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+								<a class="btn btn-primary" href="#">
+									<span class="dots"></span>
+									<span class="dots"></span>
+									<span class="dots"></span>
+									more
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-4 col-md-4">
+						<div class="thumbnail">
+							<div class="bg-wrap" style="background-image: url(images/skiing.jpg);"></div>
+							<div class="caption">
+								<h3>Mountain Flight this is not an actual Body Copy</h3>
+								<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of HimalayanMiss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+								<a class="btn btn-primary" href="#">
+									<span class="dots"></span>
+									<span class="dots"></span>
+									<span class="dots"></span>
+									more
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-4 col-md-4">
+						<div class="thumbnail">
+							<div class="bg-wrap" style="background-image: url(images/mountain-biking.jpg);"></div>
+							<div class="caption">
+								<h3>Mountain Flight this is not an actual Body Copy</h3>
+								<p>Miss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of HimalayanMiss Hawley (born November 9, 1923) is widely recognized as the world’s foremost chronicler of Himalayan</p>
+								<a class="btn btn-primary" href="#">
+									<span class="dots"></span>
+									<span class="dots"></span>
+									<span class="dots"></span>
+									more
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="essential">
+				<div class="page-header">
+					<h2>Essentials for Adventure in Nepal</h2>
+				</div>
+				<div class="row">
+					<div class="col-md-2 col-sm-2">
+						<div class="item bg-wrap visa"></div>
+						<p class="text-center">Visa</p>
+					</div>
+
+					<div class="col-md-2 col-sm-2">
+						<div class="item bg-wrap permit"></div>
+						<p class="text-center">Permits</p>
+					</div>
+
+					<div class="col-md-2 col-sm-2">
+						<div class="item bg-wrap fees"></div>
+						<p class="text-center">Fees</p>
+					</div>
+
+					<div class="col-md-2 col-sm-2">
+						<div class="item bg-wrap fitness"></div>
+						<p class="text-center">Fitness</p>
+					</div>
+
+					<div class="col-md-2 col-sm-2">
+					<div class="item bg-wrap trekking-partner"></div>
+					<p class="text-center">Trekking Partner</p>
+					</div>
+
+					<div class="col-md-2 col-sm-2">
+						<div class="item bg-wrap insurance"></div>
+						<p class="text-center">Insurance</p>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>		
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

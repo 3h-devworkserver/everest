@@ -1,0 +1,2 @@
+<div><a><img title="Up Everest" src="/images/upeverest logo.png" alt="Up Everest Logo" /><br /><br /><br /></a></div>
+Hello <strong>{{ $traveller['name'] }}</strong>,<br /><br />Thank you for registering with us..<br /><br />Your Credentials are:<br />Email: {{ $traveller['email'] }}<br />Password: {{ $traveller['password'] }}<br /><br />Please remember us for best package deals !!<br /><br />Upeverest Team

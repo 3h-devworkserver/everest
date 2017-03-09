@@ -1,0 +1,454 @@
+<?php $__env->startSection('title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>
+<!--<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>-->
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<section class="banner bg-wrap <?php echo $page->image; ?>" style="background-image: url(<?php echo url().'/images/'.$page->image; ?>);">
+    <div class="container"></div>
+</section>
+<?php echo $__env->make('frontend.includes.region', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="main-content">
+    <div class="container">
+
+        <?php
+        echo list_breadcrumbs($page->slug, $page->title);
+        ?>
+
+        <div class="row">
+
+            <div class="col-md-8 col-sm-8">
+
+                <div class="page-header bold_page-header">
+                    <h2><?php echo e($page->title); ?></h2>
+                </div>
+
+            </div>
+
+            <div class="col-md-4 col-sm-8">
+
+                <!--socila icons-->
+
+                <?php echo $__env->make('frontend.includes.sharethis', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+            </div>
+
+        </div>
+        <?php
+        $advs = \DB::table('page_ads')->where('pages_id', 'like', '%' . $page->id . '%')->get();
+
+        $contentClass = 'col-md-12 col-sm-12';
+
+        if ($advs)
+            $contentClass = 'col-md-8 col-sm-8';
+
+        // die('am here');
+        ?>
+        <div class="feature-content">
+
+            <div class="row">
+
+                <div class="<?= $contentClass ?>">
+
+                    <div class="full_content">
+
+                        <?php
+                        $content_length = strlen($page->content);
+                        if ($content_length > 1000) {
+                            //echo '<div class="short_content" style="height:200px;overflow:hidden">';
+                            echo '<div class="">';
+                            echo $page->content;
+                            echo '</div>';
+                            ?>                        
+                            <?php
+                        } else {
+                            ?>
+                            <div class="full_content">
+                                <?php echo $page->content; ?>
+                            </div>
+                            <?php
+                        }
+                        ?>    
+
+
+                    </div>                         
+
+                </div>
+                
+                
+                
+                <?php
+                if ($advs) {
+                    ?>
+                    <div class="col-md-4 col-sm-4">
+
+                        <!--ads-->
+
+
+                        <p>Advertisement</p>
+
+                        <?php
+                        foreach ($advs as $row) {
+                            ?>
+                            <div class="adds">
+                                <a href="<?= $row->link ?>" target="_blank">
+                                    <img src="<?= url() . '/images/' . $row->ads ?>" alt="">
+                                </a>
+
+                            </div>
+
+                            <?php
+                        }
+                        ?>
+
+
+                    </div>
+                <?php } ?>
+
+            </div>
+         
+         <?php if ($page->slug == 'talk-to-everest-summitters') { ?>
+                
+            
+                
+                    <?php if(count($errors) > 0): ?>
+                    <div class="alert messages alert-danger">
+                        <ul>
+                            <?php foreach($errors->all() as $error): ?>
+                            <li><?php echo e($error); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <?php endif; ?>
+
+                    
+                    <?php if(Session::has('message')): ?>
+                    
+                        
+                    <p id="successMessage" class="alert messages <?php echo e(Session::get('alert-class', 'alert-info')); ?>"><?php echo e(Session::get('message')); ?></p>
+                    <?php endif; ?>
+
+
+                    <div class="contact-form inner">
+
+                        <form action="<?php echo e(url()); ?>/submitContact" method="post">
+
+                            <div class="row">
+
+                                <div class="col-md-6 col-sm-6">
+
+                                    <div class="form-group">
+
+                                        <input type="text" class="form-control" placeholder="Name" name="name" />
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <input type="Email" class="form-control" placeholder="Email" name="email" />
+
+                                    </div>
+                                    
+                                    <div class="form-group">
+
+                                        <input type="text" class="form-control" placeholder="Nationality" name="nationality" />
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <input type="text" class="form-control" placeholder="Contact No." name="contactno" />
+
+                                    </div>
+                        </div>
+                                <input type="hidden" name="pageheading" value="<?php echo e($page->title); ?>">
+                        <div class="col-md-6 col-sm-6">
+                           <div class="form-group text-area">
+                              <textarea class="form-control" placeholder="Message" name="message"></textarea>
+                           </div>
+                           <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 captcha">
+                              <?php echo app('captcha')->display();; ?>
+
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                           <button type="submit" class="btn btn-default">Send</button>
+                        </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                <?php } ?>
+            
+                    <?php if ($page->slug == 'talk-to-himalayan-rider') { ?>
+                
+                
+                    <?php if(count($errors) > 0): ?>
+                    <div class="alert alert-danger">
+                        <ul>
+                            <?php foreach($errors->all() as $error): ?>
+                            <li><?php echo e($error); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <?php endif; ?>
+
+                    
+                    <?php if(Session::has('message')): ?>
+                    <p id="successMessage" class="alert messages <?php echo e(Session::get('alert-class', 'alert-info')); ?>"><?php echo e(Session::get('message')); ?></p>
+                    <?php endif; ?>
+
+
+                    <div class="contact-form inner">
+
+                        <form action="<?php echo e(url()); ?>/submitContact" method="post">
+
+                            <div class="row">
+
+                                <div class="col-md-6 col-sm-6">
+
+                                    <div class="form-group">
+
+                                        <input type="text" class="form-control" placeholder="Name" name="name" />
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <input type="Email" class="form-control" placeholder="Email" name="email" />
+
+                                    </div>
+                                    
+                                    <div class="form-group">
+
+                                        <input type="text" class="form-control" placeholder="Nationality" name="nationality" />
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <input type="text" class="form-control" placeholder="Contact No." name="contactno" />
+
+                                    </div>
+                        </div>
+                                <input type="hidden" name="pageheading" value="<?php echo e($page->title); ?>">
+                        <div class="col-md-6 col-sm-6">
+                           <div class="form-group text-area">
+                              <textarea class="form-control" placeholder="Message" name="message"></textarea>
+                           </div>
+                           <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 captcha">
+                              <?php echo app('captcha')->display();; ?>
+
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                           <button type="submit" class="btn btn-default">Send</button>
+                        </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                <?php } ?>
+            <!-- form integration -->
+            <?php if ($page->slug == 'talk-to-jerome-edou') { ?>
+                
+                
+                    <?php if(count($errors) > 0): ?>
+                    <div class="alert alert-danger">
+                        <ul>
+                            <?php foreach($errors->all() as $error): ?>
+                            <li><?php echo e($error); ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <?php endif; ?>
+
+                    
+                    <?php if(Session::has('message')): ?>
+                    <p id="successMessage" class="alert messages <?php echo e(Session::get('alert-class', 'alert-info')); ?>"><?php echo e(Session::get('message')); ?></p>
+                    <?php endif; ?>
+                    
+                    <div class="contact-form inner">
+
+                        <form action="<?php echo e(url()); ?>/submitContact" method="post">
+
+                            <div class="row">
+
+                                <div class="col-md-6 col-sm-6">
+
+                                    <div class="form-group">
+
+                                        <input type="text" class="form-control" placeholder="Name" name="name" />
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <input type="Email" class="form-control" placeholder="Email" name="email" />
+
+                                    </div>
+                                    
+                                    <div class="form-group">
+
+                                        <input type="text" class="form-control" placeholder="Nationality" name="nationality" />
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <input type="text" class="form-control" placeholder="Contact No." name="contactno" />
+
+                                    </div>
+                        </div>
+                                <input type="hidden" name="pageheading" value="<?php echo e($page->title); ?>">
+                        <div class="col-md-6 col-sm-6">
+                           <div class="form-group text-area">
+                              <textarea class="form-control" placeholder="Message" name="message"></textarea>
+                           </div>
+                           <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 captcha">
+                              <?php echo app('captcha')->display();; ?>
+
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                           <button type="submit" class="btn btn-default">Send</button>
+                        </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                <?php } ?>
+
+        </div>
+
+        <?php if(!empty($static)): ?>
+        <?php //print_r($static);?>
+        <div class="feature-wrap">
+            <div class="post">
+                <div class="row">
+                    <?php foreach($static as $data): ?>
+                    <?php if($data->title !== 'essential' && $data->title !== 'video'): ?>
+                        <?php if($data->position == 'top'): ?>
+                            <div class="col-md-4 col-sm-4">
+                                <a class="feature-box bg-wrap" style="background-image: url(<?php echo url().'/images/staticimages/'.$data->image; ?>);" href="<?php echo e(URL::to('/'.$data->url)); ?>">
+                                    <div class="description">
+                                        <div>
+                                            <h4><?php echo $data->title; ?></h4>
+                                            <?php echo $data->content; ?>
+
+                                        </div>
+                                    </div>
+                                    <div class="mask"></div>
+                                </a>
+                            </div>
+                        <?php else: ?>
+                            <div class="col-sm-4 col-md-4">
+                                <div class="thumbnail">
+                                    <a  href="<?php echo e(url()); ?>/<?php echo e($data->url); ?>"><div class="bg-wrap" style="background-image: url(<?php echo url().'/images/staticimages/'.$data->image; ?>);"></div></a>
+                                    <!-- <img src="images/home_body_small_6.jpg" alt="..."> -->
+                                    <div class="caption">
+                                        <h3><a  href="<?php echo e(url()); ?>/<?php echo e($data->url); ?>"><?php echo e($data->title); ?></a></h3>
+                                        <p><?php echo $data->content; ?></p>
+                                        <a class="btn btn-primary" href="<?php echo e(url()); ?>/<?php echo e($data->url); ?>">
+                                            <span class="dots"></span>
+                                            <span class="dots"></span>
+                                            <span class="dots"></span>
+                                            more
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php else: ?>
+                    <div class="col-md-12 col-sm-12">
+                        <?php echo $data->content; ?>
+
+                    </div>
+                    <?php endif; ?>
+
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+
+    <div class="divider"></div>
+
+    <?php $video = \DB::table('p_videos')->where('pages_id', 'LIKE', '%' . $page->id . '%')->get(); ?>
+
+    <?php
+    foreach ($video as $v) {
+        $link = parse_vimeo($v->video);
+        $video_link = "http://player.vimeo.com/video/" . $link;
+        ?>
+
+        <div class="video">
+
+            <iframe src=" <?php echo e($video_link); ?>" height="100%" width="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+        </div>
+      <div class="divider"></div>
+    <?php } ?>
+   
+   
+   <?php echo $__env->make('frontend.includes.new.essential', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+   
+   
+</div>
+<script>
+    
+    
+    $(document).ready(function () {
+        $('.readmore').click(function () {
+            $('.short_content').css('height','auto');
+            $(this).hide();
+        });
+    });
+
+
+
+    $(document).ready(function(){
+
+
+    $('html, body').animate({
+       //scrollTop: $('.alert').offset().top
+    }, 200);
+
+    });
+
+</script>
+
+<script>
+                                                      
+    $(document).ready(function(){
+        var success_id = $('#successMessage');
+        if(!success_id.length){
+            return;
+        }
+        $('html, body').animate({
+           scrollTop: success_id.offset().top
+        }, 2000);
+
+    });
+
+</script>
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

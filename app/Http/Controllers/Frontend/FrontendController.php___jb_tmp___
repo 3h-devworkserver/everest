@@ -1,0 +1,123 @@
+<?php namespace App\Http\Controllers\Frontend;
+
+use App\Http\Controllers\Controller;
+use App\Models\Setting;
+use App\Models\Page;
+use App\Models\Menu;
+use App\Models\InnerPage;
+use App\Models\StaticBlock;
+use App\Models\Summitteers;
+use App\Repositories\Frontend\User\UserContract;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use DB;
+use Input;
+use Illuminate\Http\Request;
+/**
+ * Class FrontendController
+ * @package App\Http\Controllers
+ */
+class FrontendController extends Controller {
+
+	/**
+	 * @return \Illuminate\View\View
+	 */
+
+	 /**
+     * @var UserContract
+     */
+    protected $users;
+
+    public function __construct(UserContract $users) {
+        $this->users = $users;
+        
+    }
+
+
+	public function index(Request $request)
+	{ 
+        $menu = Menu::where('parent_id', 0)->get();
+		$sliders = DB::table('gallerys')
+                    ->Where('type', 'slider')
+                    ->get();
+        $page = InnerPage::where('slug', 'home')->get();
+
+       // dd(\Session::all());
+
+        $searchText = $request->input('q');
+        if($searchText){
+
+            
+        }
+		return view('frontend.index',['sliders'=>$sliders])->withClass('home')->with('page', $page)->with('menus', $menu);
+	}
+
+	public function page(Request $request,$slug)
+    {
+        $menus = Menu::where('parent_id', 0)->get();
+        $page = Page::where('slug',$slug)->first();
+        if(!empty($page)){
+            $static = \DB::table('static_blocks')->where('pid', $page->id)->get();          
+            return view('frontend.page',compact('page','menus','static'))->withClass($slug.'-page');
+        }else{
+
+            $page = InnerPage::where('slug',$slug)->first();
+
+            if(!$page){
+                throw new NotFoundHttpException;
+            }else{
+
+            if($slug == 'summitteers'){
+
+                $name     = $request->input('name');
+                $country  = $request->input('country');
+                $year     = $request->input('year');
+
+                $whereArray = array();
+
+                if(!empty($name) && $name != ''){
+                    $whereArray['name'] = $name;
+                }
+
+                if(!empty($country) && $country != 'Country'){
+                    $whereArray['country'] = $country;
+                }
+                $whereLike = '';
+
+                $summitteers = Summitteers::where($whereArray);
+
+                if(!empty($year) && $year != 'Year'){
+                    $summitteers = $summitteers -> where('date', 'like', '%'.$year.'%');
+                }
+
+                $summitteers =  $summitteers -> orderby('id', 'desc')->get();;
+                    /* $users = DB::table('users')->where([
+                         ['status', '=', '1'],
+                         ['subscribed', '<>', '1'],
+                     ])->get();
+                    */
+
+
+
+
+
+                $static = \DB::table('static_blocks')->where('pid', $page->id)->get();          
+                return view('frontend.sumitter',compact('page', 'summitteers', 'static', 'menus'))->withClass($slug.'-page');
+            }elseif ($slug == 'classic-everest') {
+               $static = \DB::table('static_blocks')->where('pid', $page->id)->get();          
+                return view('frontend.classic',compact('page','static','menus'))->withClass($slug.'-page');
+            }
+
+                $static = \DB::table('static_blocks')->where('pid', $page->id)->get();
+                return view('frontend.everest',compact('page','static','menus'))->withClass($slug.'-page');
+            }
+        }    
+    }
+
+	/**
+	 * @return \Illuminate\View\View
+	 */
+	public function macros()
+	{
+		return view('frontend.macros');
+	}
+}

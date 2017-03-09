@@ -1,0 +1,242 @@
+
+
+<?php $__env->startSection('title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>
+<!--<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>-->
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php /* <section class="banner bg-wrap <?php echo $page->image; ?>" style="background-image: url(<?php echo url().'/images/'.$page->image; ?>);">
+    <div class="container"></div>
+</section> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.region', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.new.search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
+
+
+<div class="main-content">
+	<div class="container">
+			<div class="travel-booking">
+				<div class="travel-booking-step">
+					<div class="row">
+						<div class="col-md-12">
+							<a href="<?php echo e(url('package/'.$slug.'/'.$datePrice.'/'.$travellers[0]->group_id.'/booking-step1')); ?>" >Step 1 - Travellers </a>
+							<a href="#" class="active">Step 2 - Summary  </a>
+							<a href="#">Step 3 -  Confirm </a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 col-sm-8" id="traveller-info">
+						<div class="page-header bold_page-header">
+								<h2><?php echo e($package->title); ?> BOOKING</h2>
+						</div>
+					
+						<div class="booking-summary">
+							<div class="well">							
+							
+								<h2>Booking Overview</h2>
+								
+								<div class="trip-block trip-details">
+									<h3>Trip Details</h3>
+									<?php 
+										$date = $dPrice->daterange;
+										$pieces = explode("-", $date);
+									 ?>
+									<dl class="dl-horizontal">
+										  <dt>Package Name</dt>
+										  <dd><?php echo e($package->title); ?></dd>
+										  <dt>Departure Date</dt>
+										  <dd><?php echo e($pieces[0]); ?></dd>
+										  <dt>Return Date</dt>
+										  <dd><?php echo e($pieces[1]); ?></dd>
+										  <?php /* <dt>Duration</dt>
+										  <dd>15days</dd> */ ?>
+										  <?php /* <dt>Flights</dt>
+										  <dd>Trips includes flights which are subject to availability</dd> */ ?>
+									</dl>
+									
+								</div>
+							<?php if(count($package->optionsAccomodation) != 0): ?>
+								<div class="trip-block trip-accomodation">
+									<h3>Accommodation</h3>
+									<h4><?php echo e($package->optionsAccomodation[0]->name); ?></h4>
+									<?php echo $package->optionsAccomodation[0]->content; ?>
+
+									<?php /* <p> This tour spends 3 nights in standard hotels and 12 nights in mountain lodges (teahouses).</p>
+
+									<p>Most lodges now have twin-bedded rooms but you should still be prepared to sleep in multi-bedded rooms on the occasional night. In the last decade the quality of the lodges and the food has improved significantly, but you should expect fairly basic accommodation at the highest points of the trek. Some lodges now have showers (charged at £2-£4 per shower) and all have basic toilets. </p> */ ?>
+								</div>
+								<?php endif; ?>
+								<div class="trip-block trip-cost">
+									<h3>Trip Cost Breakdown</h3>
+									<dl class="dl-horizontal">
+										  <dt>Base Price</dt>
+										  <dd>USD <?php echo e(count($travellers) * $dPrice->price); ?></dd>
+
+									</dl>
+									
+								</div>
+								<div class="trip-block trip-payment-options">
+										<h3>Payment Options</h3>
+										<dl class="dl-horizontal">
+							
+											<dt>Minimun Deposit</dt>
+											<dd >USD <?php echo e((count($travellers) * $dPrice->price) * (25/100)); ?></dd>
+											<dt>Total Amount</dt>
+											<dd>USD <?php echo e(count($travellers) * $dPrice->price); ?></dd>									
+										</dl>
+										
+								</div>
+								<div class="trip-block travellers-detail">
+										<h3>Travellers detail</h3>
+										<table class="table">
+									  	<tr>
+									  		<th>Travellers Name</th>
+									  		 <th>Passport Number</th>
+									  		<th>DOB</th>
+									  		<!-- <th>Insurance</th>-->
+									  		<!-- <th>Single Suppliment</th>-->
+									  	</tr>
+									  	<?php foreach($travellers as $traveller): ?>
+									   <tr>
+									   		<td><?php echo e($traveller->title); ?>. <?php echo e($traveller->fname); ?> <?php echo e($traveller->mname); ?> <?php echo e($traveller->lname); ?></td>
+									   		<td><?php echo e($traveller->passport); ?></td>
+									   		<td><?php echo e($traveller->dob_year); ?>-<?php echo e($traveller->dob_month); ?>-<?php echo e($traveller->dob_day); ?></td>
+									   </tr>
+									   <?php endforeach; ?>
+									  </table>
+								</div>
+								<div class="trip-block emergency-contact">
+									<h3>Emergency Contact Detail</h3>	
+										<dl class="dl-horizontal">
+											<dt>Full Name</dt>
+											<dd><?php echo e($travellers[0]->em_fname); ?> <?php echo e($travellers[0]->em_mname); ?> <?php echo e($travellers[0]->em_lname); ?></dd>
+											<dt>Phone Number</dt>
+											<dd ><?php echo e($travellers[0]->em_phone); ?></dd>
+										</dl>									
+									
+								</div>
+								<div class="trip-block correspondence-contact">
+									<h3>Correspondence Address</h3>
+									<dl class="dl-horizontal">
+										<dt>Your Detail</dt>
+										<dd><?php echo e($travellers[0]->address); ?>, <?php echo e($travellers[0]->city); ?> <?php echo e($travellers[0]->postal_zip); ?>, <?php echo e($travellers[0]->country); ?></dd>
+										<?php /* <dd>Lalitpur, Patan 0977 Nepal</dd> */ ?>
+									</dl>	
+									
+								</div>
+								<!-- <div class="trip-block regional-flight">
+									<h3>Regional Flight Departure</h3>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox">Please contact me about regional flight departure
+										</label>
+									</div>
+								</div> -->
+								<!-- <div class="trip-block loyalty-discount">
+									<h3>Loyalty Discount</h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ex neque cumque mollitia repellat aliquid eligendi perspiciatis, officiis consectetur saepe. Doloribus quidem itaque nam animi, sequi dignissimos nisi laboriosam cupiditate.
+									</p>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox">Are you entitled to a loyalty discount?
+										</label>
+									</div>
+								</div> -->
+								<!-- <div class="trip-block holiday-doc">
+									<h3>Holliday Documentation</h3>
+								
+									<div class="radio">
+										<label>
+											<input type="radio" name="document">Send documentation to the email of the lead traveller(demo@example.com)
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="document">Send documentation by post
+										</label>
+									</div>
+								</div> -->
+								<div class="trip-block terms-conditions">
+									<h3>Terms &amp; Conditions</h3>
+								
+							<?php echo Form::open(['url'=>'package/'.$slug.'/'.$datePrice.'/booking-step3', 'id'=>'booking-2']); ?>		
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="condition">I have read, understood and accepted the booking <a href="#">terms and conditions</a>
+										</label>
+									</div>
+									<input type="hidden" name="group_id" value="<?php echo e($groupId); ?>">
+							<?php echo Form::close(); ?>
+
+								</div>
+							
+							</div>
+
+							<div class="button-div">
+								<a href="<?php echo e(url('package/'.$slug.'/'.$datePrice.'/'.$travellers[0]->group_id.'/booking-step1')); ?>" class="btn btn-danger pull-left">Back to Step 1</a>
+								<a id="summary-continue" class="btn btn-danger pull-right">Continue</a>
+							</div>
+							
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+					<div class="sidebar-travel">
+						<div class="total-block">
+							<h2 class="block-title">Booking Summary</h2>
+
+							<div class="trip-more-info-block summary">
+							
+									<div class="trip-more-info-list">
+										<div class="info-title sub-heading-title when">When: </div>
+										<div class="info-description"><?php echo e($dPrice->daterange); ?></div>
+									</div>
+									<div class="trip-more-info-list">
+										<div class="info-title sub-heading-title when">Traveller: </div>
+										<div class="info-description" id="traveller">
+											<?php foreach($travellers as $traveller): ?>
+												<p><?php echo e($traveller->title); ?>. <?php echo e($traveller->fname); ?> <?php echo e($traveller->mname); ?> <?php echo e($traveller->lname); ?><p>
+											<?php endforeach; ?></div>
+									</div>
+						
+								<div class="total-price-details-box">
+									
+									<div class="clearfix sub-heading-title">
+										<div class="label-text total-passenger-price pull-left">Tour Cost</div>
+										<div class="content-text total-passenger-price pull-right">USD <?php echo e($dPrice->price); ?></div>
+									</div>
+
+								</div>
+								<div class="total-footer">
+									<div class="clearfix sub-heading-title">
+										<div class="label-text total-passenger-price pull-left">
+										<h3>Total 
+								  		<small>Tax Included</small></h3>
+								  	</div>
+										<div class="content-text total-passenger-price pull-right"><span id = "total">USD <?php echo e(count($travellers) * $dPrice->price); ?></span></div>
+									</div>
+
+								
+								  </div>
+							</div>
+						</div>
+						</div>
+					</div>
+					
+				</div>
+		
+				
+				
+			</div>
+		</div><!--Container -->
+
+
+
+		<?php echo $__env->make('frontend.includes.new.members', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		
+
+		
+	</div>
+
+	<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

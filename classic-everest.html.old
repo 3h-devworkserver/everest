@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Classic Everest</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:800italic,800,700italic,700,600italic,600,400italic,400,300italic,300' rel='stylesheet' type='text/css'>
+	
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/sumoselect.css">
+	<link rel="stylesheet" href="css/jquery-ui-1.10.4.custom.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+
+
+</head>
+<body class="">
+	<header>
+		<div class="container">
+			<div class="logo">
+				<h1>
+					<a href="index.html">
+						<img src="images/upeverest logo.png" alt="">
+					</a>
+				</h1>
+			</div>
+			<div class="header-right">
+				<button class="menu-icon">
+					<span class="bars"></span>
+					<span class="bars"></span>
+					<span class="bars"></span>
+				</button>
+				<div class="search">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search for...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+						</span>
+					</div><!-- /input-group -->
+				</div>
+				<button class="booked">
+					<img src="images/icon~plane.png" alt="">
+					<span class="hidden-xs">BOOK A FLIGHT</span>
+				</button>
+			</div>
+		</div>
+		<div class="mega-menu">
+			<div class="divider"></div>
+			<div class="container">
+				<div class="column">
+					<a class="title" href="#">EVEREST <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					<ul class="sub-menu">
+						<li><a href="trekking.html">Trekking</a></li>
+						<li><a href="everest.html">Everest</a></li>
+						<li><a href="summitteers.html">Summitteers</a></li>
+						<li><a href="#">Expeditions</a></li>
+						<li><a href="#">Peaks</a></li>
+						<li><a href="#">Records</a></li>
+						<li><a href="#">History</a></li>
+						<li><a href="#">Map</a></li>
+					</ul>
+				</div>
+
+				<div class="column">
+					<a class="title"  href="#">ESSENTIALS <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					<div class="divider"></div>
+					<ul class="sub-menu">>
+						<li><a href="#">VISA Information</a></li>
+						<li><a href="#">Permits</a></li>
+						<li><a href="#">Fees</a></li>
+						<li><a href="#">Fitness</a></li>
+						<li><a href="#">Trekking Partners</a></li>
+						<li><a href="#">Insurance</a></li>
+					</ul>
+				</div>
+				<div class="column">
+					<a class="title"  href="#">REGION <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					<div class="divider"></div>
+					<ul class="sub-menu">
+						<li><a href="#">Annapurna</a></li>
+						<li><a href="#">Langtang</a></li>
+						<li><a href="#">Mustang</a></li>
+						<li><a href="#">Manaslu</a></li>
+						<li><a href="#">Makalu</a></li>
+						<li><a href="#">Maps</a></li>
+					</ul>
+				</div>
+
+				<div class="column">
+					<a class="title"  href="#">ADVENTURE SPORT <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					<div class="divider"></div>
+					<ul class="sub-menu">
+						<li><a href="#">Jungle Safari</a></li>
+						<li><a href="#">Bungy Jumping</a></li>
+						<li><a href="#">Paragliding</a></li>
+						<li><a href="#">Zip Flying</a></li>
+						<li><a href="#">Rafting</a></li>
+						<li><a href="#">Mountain Biking</a></li>
+						<li><a href="#">Enfield Tours</a></li>
+						<li><a href="#">Ultra Flight</a></li>
+						<li><a href="#">Everest Flight</a></li>
+					</ul>
+				</div>
+
+				<div class="column">
+					<a class="title"  href="#">ABOUT <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+					<div class="divider"></div>
+					<ul class="sub-menu">
+						<li><a href="#">About Nepal</a></li>
+						<li><a href="#">Who We Are</a></li>
+						<li><a href="#">Team</a></li>
+						<li><a href="#">Advertising Policy</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="mega-footer">
+				<div class="container">
+					<a href="#" class="btn btn-default">BLOG</a>
+					<a href="#" class="btn btn-default">TALK TO EVEREST SUBMITER</a>
+				</div>
+			</div>
+		</div>
+		<div class="booking-form">
+			<div class="container">
+				<div class="info row">
+					<div class="col-md-12">
+						<p>Flight Tickets available for domestic destinations within Nepal only.</p>
+						<span class="close"><!-- <i class="fa fa-times" aria-hidden="true"></i> -->
+							<img src="images/close.png" alt="">
+						</span>
+					</div>
+				</div>
+				<div class="form-wrap row">
+					<form action="">
+						<div class="col-md-12">
+							<div class="radio">
+								<div class="form-group">
+									<input type="radio" id="radio01" name="radio" />
+									<label for="radio01">
+										<span>
+											<span class="inner"></span>
+										</span>
+										Round Trip
+									</label>
+								</div>
+
+								<div class="form-group">
+									<input type="radio" id="radio02" name="radio" />
+									<label for="radio02">
+										<span>
+											<span class="inner"></span>
+										</span>
+										One Way
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<div class="form-group">
+								<select class="SlectBox form-control">
+									<option selected="selected">From</option>
+									<option>Lorem ipsum</option>
+								</select>
+						    </div>
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<div class="form-group">
+						     	 <select class="SlectBox form-control">
+									<option selected="selected">To</option>
+									<option>Consectetur </option>
+								</select>
+						    </div>
+						</div>
+
+						<div class="col-md-6 col-sm-6">
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group date-picker">
+										<label for="from">Departure</label>
+										<input type="text" id="from" name="from">
+										<span class="calender-icon">
+												<img src="images/icon~calendar.png">
+										</span>
+								    </div>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group date-picker">
+										<label for="to">Return</label>
+										<input type="text" id="to" name="to">
+										<span class="calender-icon">
+												<img src="images/icon~calendar.png">
+										</span>	
+								    </div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6">
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<div class="row">
+										<div class="col-md-6 col-sm-6">
+											<div class="form-group">
+												<label for="">Adult</label>
+										     	<select class="SlectBox form-control">
+													<option selected="selected">1</option>
+													<option>2 </option>
+													<option>3 </option>
+												</select>
+										    </div>
+										</div>
+										<div class="col-md-6 col-sm-6">
+											<div class="form-group">
+											<label for="">Children</label>
+										      <select class="SlectBox form-control">
+													<option selected="selected">1</option>
+													<option>2 </option>
+													<option>3 </option>
+												</select>
+										    </div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group">
+										<label for="">Nationality</label>
+								      	<select class="SlectBox form-control">
+											<option selected="selected">Nepali</option>
+										</select>
+								    </div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-offset-9 col-md-3  col-sm-offset-9 col-sm-3">
+							<div class="form-group">
+								<input class="btn btn-default" type="submit" value="FIND FLIGHT">
+							</div>
+						</div>
+					</form>
+				</div><!--form-wrap-->
+			</div>
+		</div>
+	</header>
+	<section class="banner bg-wrap">
+		<div class="container">
+			<!-- <div class="lg-caption">
+				<h1>10 REASONS, WHY NEPAL IS THE BEST<br>TREKKING DESTINATION IN THE WORLD.</h1>
+				<a class="btn btn-default" href="#">READ MORE</a>
+			</div> -->
+		</div>
+	</section>
+	<section class="full-width-search">
+		<div class="container">
+			<div class="row">
+				<form class="form-inline">
+					<div class="form-group col-md-5 col-xs-5 col-sm-5">
+						<select class="SlectBox form-control">
+							<option selected="selected">Select Region</option>
+							<option>Annapurna</option>
+							<option>Mustang</option>
+							<option value="Makalu">Makalu</option>
+						</select>
+					</div>
+					<div class="form-group col-md-5 col-xs-5 col-sm-5">
+						<select class="SlectBox form-control" placeholder="this is placeholder">
+							<option selected="selected">Select Adventure</option>
+							<option>Bungyjumping</option>
+							<option>Paragliding</option>
+							<option value="Makalu">Rafting</option>
+						</select>
+					</div>
+					<div class="form-group  col-md-2 col-xs-2 col-sm-2">
+						<button type="submit" class="btn btn-default">Select</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<div class="main-content">
+		<div class="container">
+			<ol class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Everest</a></li>
+				<li><a href="#">Trekking</a></li>
+				<li class="active">Classic Everest</li>
+			</ol>
+			<div class="row">
+				<div class="col-md-8 col-sm-8 left">
+					<div class="feature-content">
+						<div class="page-header bold_page-header">
+							<h2>CLASSIC EVEREST</h2>
+						</div>
+						
+						<div class="package">
+							<div class="row">
+								<div class="col-md-5 col-sm-7">
+									<p>10 NIGHTS/11 DAYS</p>
+									<p><span>USD1210</span> PER PERSON</p>
+								</div>
+								<div class="col-md-7 col-sm-5">
+									<a href="#" class="btn btn-default">ENQUIRY</a>
+									<a href="#" class="btn btn-default">BOOK NOW</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="package-detail">
+						<div class="row">
+							<div class="col-md-3 col-sm-3">
+								<div class="box">
+									<img src="images/icon~duration.png" alt="">
+									<p>Duration :
+										<span>11 Days</span>
+									</p>
+								</div>
+							</div>
+
+							<div class="col-md-3 col-sm-3">
+								<div class="box">
+									<img src="images/icon_trek.png" alt="">
+									<p>Trek Period :
+										<span>07 Days</span>
+									</p>
+								</div>
+							</div>
+
+							<div class="col-md-3 col-sm-3">
+								<div class="box">
+									<div class="trek-type">
+										<span id="difficult"></span>
+										<span id="hard"></span>
+										<span id="medium"></span>
+										<span id="easy" class="selected"></span>
+									</div>
+									<p>Trek Type :
+										<span>Easy</span>
+									</p>
+								</div>
+							</div>
+
+							<div class="col-md-3 col-sm-3">
+								<div class="box">
+									<img src="images/icon~trek%20start%20point.png" alt="">
+									<p>Trek Start &amp; End Point:
+										<span>Lukla</span>
+									</p>
+								</div>
+							</div>
+
+							<div class="col-md-3 col-sm-3">
+								<div class="box">
+									<img src="images/icon_highest_altitude.png" alt="">
+									<p>Highest Altitude :
+										<span>3,440m</span>
+									</p>
+								</div>
+							</div>
+
+							<div class="col-md-3 col-sm-3">
+								<div class="box">
+									<img src="images/icon~warning.png" alt="">
+									<p>Warning :
+										<span>Altitude Sickness</span>
+									</p>
+								</div>
+							</div>
+
+							<div class="col-md-3 col-sm-3">
+								<div class="box">
+									<img src="images/icon~best%20period.png" alt="">
+									<p>Best Period :
+										<span>Feb-May & Oct-Dec</span>
+									</p>
+								</div>
+							</div>
+
+							<div class="col-md-3 col-sm-3">
+								<div class="box">
+									<img src="images/icon~plane%202.png" alt="">
+									<p>Flights :
+										<span>Ktm-Lukla-Ktm</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="further-detail">
+						<div class="map">
+						<div class="sub-title">
+							<h4>MAP</h4>
+						</div>
+						<ul>
+							<li>National Park: Sagarmatha National Park (1,148 sq. kms)</li>
+							<li>Mountains: Everest, Lhotse, Tamserku, Ama Dablam, Nuptse, Tawatse, Kantega, etc.</li>
+							<li>Rivers: Bhote Kosi, Dudh Kosi</li>
+							<li>Villages: Lukla, Namche, Thyangboche, etc.</li>
+							<li>Tribes: Mostly Sherpas & Tibetans</li>
+							<li>Forests: Of Rhododendron and Pine</li>
+							<li>Landscapes: Varying from temperate valleys to snow clad mountains</li>
+						</ul>
+						<p>
+							For many people trekking in the Himalayas can be very strenuous because of the high altitude. Other reasons may be time constraints. This does not mean that you cannot see the Himalayas, the Sherpa culture, the fluttering prayer flags, mani's and prayer stone walls at close range. This Glimpse of Everest trek would be ideal for such visitors.
+						</p>
+						<p>
+							This trek starts from Lukla after an unforgettable flight from Kathmandu on a twin otter. From here we head northwards crossing hanging bridges, monasteries, Sherpa villages to reach Namche Bazar the biggest village in Khumbu region (Khumbu capital). An hour's hike up from Namche Bazaar and you are in Syangboche from where you can get magnificent views of Himalayas including Mt. Everest, Nupste along with Ama Dhablam, Thamserku and Kagtenga. Then we ascent further to the famous Thyangboche monastery. As seen from Thyangboche the views of Mt. Everest, Mt. Amadablum, Kangtega and their Himalayan kind is a sight that will be embedded in your memory forever. The hospitality of these tough mountain people will remain with you for a long time.
+						</p>
+						<p>
+							Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.
+						</p>
+						<div class="gallery">
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<img src="images/home_body_small_1.jpg" alt="">
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<img src="images/home_body_small_1.jpg" alt="">
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<img src="images/home_body_small_2.jpg" alt="">
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<img src="images/home_body_small_3.jpg" alt="">
+								</div>
+							</div>
+							<a href="#" class="btn btn-default">MORE PICS <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+						</div>
+					</div> <!--map-->
+					<div class="itinerary">
+						<div class="sub-title">
+							<h4>ITINERARY</h4>
+						</div>
+						<div class="accordion">
+							<div class="accordion-section">
+								<a class="accordion-section-title" href="#accordion-1"><span>+</span> Day 1</a>
+								<div id="accordion-1" class="accordion-section-content">
+									<p>Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.</p>
+								</div><!--end .accordion-section-content-->
+							</div><!--end .accordion-section-->
+
+							<div class="accordion-section">
+								<a class="accordion-section-title" href="#accordion-2"><span>+</span> Day 2</a>
+								<div id="accordion-2" class="accordion-section-content">
+									<p>Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.</p>
+								</div><!--end .accordion-section-content-->
+							</div><!--end .accordion-section-->
+
+							<div class="accordion-section">
+								<a class="accordion-section-title" href="#accordion-3"><span>+</span> Day 3</a>
+								<div id="accordion-3" class="accordion-section-content">
+									<p>Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.</p>
+								</div><!--end .accordion-section-content-->
+							</div><!--end .accordion-section-->
+
+							<div class="accordion-section">
+								<a class="accordion-section-title" href="#accordion-4"><span>+</span> Day 4</a>
+								<div id="accordion-4" class="accordion-section-content">
+									<p>Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.</p>
+								</div><!--end .accordion-section-content-->
+							</div><!--end .accordion-section-->
+
+							<div class="accordion-section">
+								<a class="accordion-section-title" href="#accordion-5"><span>+</span> Day 5</a>
+								<div id="accordion-5" class="accordion-section-content">
+									<p>Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.</p>
+								</div><!--end .accordion-section-content-->
+							</div><!--end .accordion-section-->
+
+							<div class="accordion-section">
+								<a class="accordion-section-title" href="#accordion-6"><span>+</span> Day 6</a>
+								<div id="accordion-6" class="accordion-section-content">
+									<p>Our return journey takes us back to the airstrip at Lukla, where we bid farewell to our new found Sherpa friends and fly back to Kathmandu.</p>
+								</div><!--end .accordion-section-content-->
+							</div><!--end .accordion-section-->
+						</div>
+				
+
+
+					</div>
+					
+					<div class="requirement">
+						<div class="sub-title">
+							<h4>WHAT'S INCLUDED</h4>
+						</div>
+						<ul>
+							<li>English-speaking local guide and assistants for the trek</li>
+							<li>Porters included on the trek</li>
+							<li>Trekking to Everest Base Camp</li>
+							<li>Internal flights</li>
+							<li>All transport between destinations and to/from included activities</li>
+						</ul>
+					</div>
+
+					<div class="expert-advice">
+						<div class="sub-title">
+							<h4>EXPERT ADVICE BY DAWA SHERPA (EVEREST SUMMITTER)</h4>
+						</div>
+						<img src="images/home_body_small_7164x149.jpg" alt="">
+						<p>
+							For many people trekking in the Himalayas can be very strenuous because of the high altitude. Other reasons may be time constraints. This does not mean that you cannot see the Himalayas, the Sherpa culture, the fluttering prayer flags, mani's and prayer stone walls at close range. This Glimpse of Everest trek would be ideal for such visitors.
+						</p>
+						<p>If you have any specific inquiry on this trip send in your questions to enquiry@upeverest.com</p>
+					</div>
+					<div class="experience">
+						<div class="sub-title">
+							<h4>EXPERIENCE</h4>
+						</div>
+						<p>
+							For many people trekking in the Himalayas can be very strenuous because of the high altitude. Other reasons may be time constraints. This does not mean that you cannot see the Himalayas, the Sherpa culture, the fluttering prayer flags, mani's and prayer stone walls at close range. This Glimpse of Everest trek would be ideal for such visitors.
+						</p>
+					</div>
+					</div>
+					
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="side-bar">
+						<div class="share_and_adds text-right">
+						<ul class="social-icon">
+							<li>
+								<p>SHARE</p>
+							</li>
+							<li>
+								<a class="fb" href="#">
+									<i class="fa fa-facebook" aria-hidden="true"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="twitter" href="#">
+									<i class="fa fa-twitter" aria-hidden="true"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="instagram" href="#">
+									<i class="fa fa-instagram" aria-hidden="true"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="pinterest" href="#">
+									<i class="fa fa-pinterest-p" aria-hidden="true"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="envelope" href="#">
+									<i class="fa fa-envelope-o" aria-hidden="true"></i>
+								</a>
+							</li>
+						</ul>
+					</div><!--share and adds-->
+						<div class="sidebar-inner">
+							<div class="adds">
+								<ul>
+									<li>Get 10% discount on the instant flight booking.</li>
+									<li>Kathmandu to Pokhra	@ USD 65</li>
+									<li>Book Now.</li>
+								</ul>
+							</div>
+							<div class="sidebar-title">
+								<h4>POPULAR TREKS</h4>
+							</div>
+							<ul class="popular sidebar-links">
+								<li><a href="#">Amazing Annapurna</a></li>
+								<li><a href="#">Majestic Mustang</a></li>
+								<li><a href="#">Langtang</a></li>
+								<li><a href="#">Makalu</a></li>
+								<li><a href="#">Cho-yo Pass</a></li>
+								<li><a href="#">Kala Patthar</a></li>
+							</ul>
+				
+							<div class="sidebar-title">
+								<h4>ADVENTURE SPORTS</h4>
+							</div>
+							<ul class="popular sidebar-links">
+								<li><a href="#">Rafting</a></li>
+								<li><a href="#">Sky Diving</a></li>
+								<li><a href="#">Bungy</a></li>
+								<li><a href="#">Canyouing</a></li>
+								<li><a href="#">Paragliding</a></li>
+								<li><a href="#">Zip Lining</a></li>
+							</ul>
+
+							<div class="sidebar-title">
+								<h4>EXPEDITIONS</h4>
+							</div>
+							<ul class="popular sidebar-links">
+								<li><a href="#">Mt. Anadablam</a></li>
+								<li><a href="#">Mt. Lhotse</a></li>
+								<li><a href="#">Mt. Everest</a></li>
+								<li><a href="#">Meera Peak</a></li>
+								<li><a href="#">Rowling Peak</a></li>
+								<li><a href="#">Mt Lhotse</a></li>
+							</ul>
+
+
+						</div>
+					</div><!--sidebar-->
+				</div><!--col-md-4-->
+			</div><!--row-->
+		</div><!--Container -->
+
+		<div class="divider"></div>
+
+		<div class="essential">
+			<div class="container">
+				<div class="page-header">
+					<h2>Essentials for Adventure in Nepal</h2>
+				</div>
+					<div class="row">
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap visa"></div>
+							<p class="text-center">Visa</p>
+						</div>
+
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap permit"></div>
+							<p class="text-center">Permits</p>
+						</div>
+
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap fees"></div>
+							<p class="text-center">Fees</p>
+						</div>
+
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap fitness"></div>
+							<p class="text-center">Fitness</p>
+						</div>
+
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap trekking-partner"></div>
+							<p class="text-center">Trekking Partner</p>
+						</div>
+
+						<div class="col-md-2 col-sm-2">
+							<div class="item bg-wrap insurance"></div>
+							<p class="text-center">Insurance</p>
+						</div>
+
+					</div> <!--row-->
+			</div><!--container -->
+		</div><!--essential -->
+
+		<div class="video bg-wrap" style="background-image: url(images/home_body_video.jpg);">
+			<div class="container">
+				<div class="lg-caption">
+					<h1>EXPLORE THE UNEXPLORED REGION <span>WATCH THE VIDEO</span></h1>
+					<a class="btn btn-default" href="#"><i class="fa fa-play-circle" aria-hidden="true"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="member">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-3 col-sm-3">
+						<p>Associate Member :</p>
+					</div>
+
+					<div class="col-md-9 col-sm-9">
+						<!-- <img src="images/logo_partners.png" alt=""> -->
+						<div class="column">
+							<a href="#">
+								<img src="images/adv-T.png" alt="">
+							</a>
+						</div>
+						<div class="column">
+							<a href="#">
+								<img src="images/bmc.png" alt="">
+							</a>
+						</div>
+						<div class="column">
+							<a href="#">
+								<img src="images/pata.png" alt="">
+							</a>
+						</div>
+						<div class="column">
+							<a href="#">
+								<img src="images/ntb.png" alt="">
+							</a>
+						</div>
+						<div class="column">
+							<a href="#">
+								<img src="images/taan.png" alt="">
+							</a>
+						</div>
+					</div>
+
+				</div> <!--row-->
+			</div> <!--container -->
+		</div> <!--member -->
+
+	<footer>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-2 col-sm-2">
+					<div class="footer-menu">
+						<ul>
+							<li><a href="#">about nepal</a></li>
+							<li><a href="#">who we are</a></li>
+							<li><a href="#">team</a></li>
+							<li><a href="#">advertising policy</a></li>
+							<li><a href="#">contact</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<div class="blog">
+					<p>Latest Blog</p>
+						<ul>
+							<li><a href="#">Ten Camping Tips</a></li>
+							<li><a href="#">10 Reasons why Nepal is the Best Trekking Destination</a></li>
+							<li><a href="#">Summer 2015 Gear Guide</a></li>
+							<li><a href="#">Ten Camping Tips</a></li>
+							<li><a href="#">10 Reasons why Nepal is the Best Trekking Destination</a></li>
+							<li><a href="#">Summer 2015 Gear Guide</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6">
+					<div class="social-media">
+						<ul>
+							<li>
+								<a class="fb" href="#">
+									<i class="fa fa-facebook"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="twitter" href="#">
+									<i class="fa fa-twitter"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="youtube" href="#">
+									<i class="fa fa-youtube"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="google-p" href="#">
+									<i class="fa fa-google-plus"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="instagram" href="#">
+									<i class="fa fa-instagram"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="flickr" href="#">
+									<i class="fa fa-flickr"></i>
+								</a>
+							</li>
+
+							<li>
+								<a class="tumblr" href="#">
+									<i class="fa fa-tumblr"></i>
+								</a>
+							</li>
+							<li>
+								<a class="pinterest" href="#">
+									<i class="fa fa-pinterest-p"></i>
+								</a>
+							</li>
+							<li>
+								<a class="vine" href="#">
+									<i class="fa fa-vine"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div><!--row-->
+		</div> <!--container-->
+	</footer>
+
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="js/jquery.sumoselect.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/accordion.js"></script>
+	<script src="js/function.js"></script>
+</body>
+</html>

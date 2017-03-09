@@ -1,0 +1,1025 @@
+/* #Media Queries
+================================================== */
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (min-width:1500px) {
+    .valentines-package-page section.banner {
+      -webkit-background-size: cover;
+      background-size: cover;
+    }
+}
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width:768px) and (max-width:960px) {
+    .header-right button.booked {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+    .header-right .menu-icon {
+        margin-left: 20px;
+    }
+    .booking-form .info {
+        padding-left: 30px;
+    }
+    .booking-form .form-wrap {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .mega-menu .divider {
+        top: 67px;
+    }
+    .package .col-md-7 > .btn-default:last-child {
+        margin: 5px 0 0 0;
+    }
+    .package-detail p span {
+        font-size: 20px;
+    }
+    .left {
+        word-break: break-all;
+    }
+    .left::after {
+        right: 0;
+    }
+    .sidebar-inner {
+        padding-left: 0;
+    }
+    .footer-bottom .footer-logo {
+        float: left;
+    }
+    .box-flight .details-wrapper .second-row .time [class*="col-"],
+    .box-flight .details-wrapper .second-row .time [class^="col-"] {
+        border-left: none;
+    }
+}
+@media only screen and (min-width:768px) and (max-width:1024px) {
+    .logo{
+        width: 12%;
+    }
+    .site-text {
+        padding: 10px 0 10px 15px;
+        width: 20%;
+    }
+    .site-text p {
+        font-size: 13px;
+    }
+    .header-right{
+        width: auto;
+    }
+    .header-right .menu{
+        margin-right: 10px;
+    }
+    .header-right .menu ul {
+        /* margin-left: 135px; */
+        margin-left: 0;
+        padding-right: 15px;
+    }
+    .header-right .menu li a {
+        padding: 10px;
+        width: auto;
+    }
+    .header-right .menu-icon {
+        margin-left: 10px;
+    }
+    /* flight pages */
+    .btn-back {
+        font-size: 13px;
+    }
+    .grand-total h4 {
+        margin-top: 20px;
+    }
+    /* modify search */
+    .flight-search-form .well .input-group {
+        padding-right: 0;
+    }
+    /* flight-search-form */
+    .flight-search-form .search-form-content {
+        width: 85%;
+    }
+    .flight-search-form .button-right {
+        width: 15%;
+    }
+    .flight-search-form .btn-default {
+        font-size: 12px;
+    }
+    .flight-search-form .search-form-content .schedule > div {
+        width: 47%;
+    }
+    .flight-search-form .search-form-content .passanger-wrap > div,
+    .passanger-wrap > div {
+        width: 30%;
+    }
+    .flight-search-form .search-form-content .schedule .arrival::before {
+        left: 0;
+    }
+    .oneway-flight .depart-date {
+        padding-right: 10px;
+    }
+    .oneway-flight .arv-date {
+        padding-left: 10px;
+    }
+    /* flight schedule */
+    .flight-schedule .item {
+        padding: 18px 20px;
+    }
+    .item.active {
+        padding: 14px 20px;
+    }
+    .item.active .thumb-price {
+        font-size: 17px;
+    }
+    .full-width-search .form-inline {
+        padding: 0;
+    }
+
+    /* payment page */
+    .tabs-left {
+	  width: 20%;
+	}
+    .payment-tab .tab-content{
+    	width: 80%;
+    }
+    .payment-tab [class*="col-"], 
+	.payment-tab [class^="col-"]{
+		margin-bottom: 10px;
+	}
+	.row-margin-adj {
+	  margin-right: 0;
+	}
+	.row-margin-10{
+		margin: 0;
+	}
+	.payment-tab .tab-content [class*="col-"], 
+	.payment-tab .tab-content [class^="col-"] {
+	  padding-left:0px;
+	  padding-right:0px;
+	}
+	.flight-wrapper .payment-tab .doe .SumoSelect, 
+	.flight-wrapper .payment-tab .doe .form-control.SumoSelect, 
+	.passanger-detail-from .dob .form-control, 
+	.passanger-detail-from .doe .form-control{
+		width: 32%;
+	}
+
+	/* about page */
+    .about .about-text {
+        padding: 15px;
+    }
+    .about .about-text h1 {
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+    .feature-box {
+        height: 250px;
+    }
+    .feature-box .description {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .feature-box .description div {
+        width: 100%;
+    }
+    .post .thumbnail {
+        padding: 5px;
+    }
+    .post .bg-wrap {
+        height: 200px;
+    }
+    .post .thumbnail h3 {
+        font-size: 20px;
+    }
+    .essential .item {
+        -webkit-background-size: 100% auto;
+        background-size: 100% auto;
+    }
+    footer .social-media li {
+        margin-bottom: 10px;
+    }
+    /*Inner page
+	---------------------*/
+    .social-icon li {
+        margin-left: 0;
+    }
+    .left {
+        word-break: break-all;
+    }
+    .video {
+        height: 400px;
+    }
+    /* package pages */
+    .sub-title h2{
+    	font-size: 24px;
+    }
+    .package-full-desc .panel-default > .panel-heading h2 {
+	  font-size: 24px;
+	}
+
+    .package .btn.btn-default{
+    	margin-top: 7px;
+    }
+
+    .package-detail .box{
+    	min-height: 160px;
+    }
+    .package-detail p,
+    .package-detail ul li {
+	  font-size: 14px;
+	}
+    .package-detail p span {
+	  font-size: 16px;
+	}
+	.block-info-title{
+		font-size: 17px;
+	}
+	.package-detail ul li {
+	  font-size: 14px;
+	}
+    .thumb-slider {
+	  min-height: 80px;
+	}
+	.package-full-desc .itinerary .panel-default > .panel-heading a {
+	  font-size: 16px;
+	  
+	}
+	.further-detail h5 {
+	  font-size: 20px;
+	  text-transform: uppercase;
+	}
+	.package-short-info .walk-profile .progress-wrap > .progress-content{
+		width: 47%;
+	}
+	.package-short-info .walk-profile .progress-wrap > .progress-content:last-of-type {
+	  width: 53%;
+	}
+	/* booking page */
+	.add-extra-package .thumbnail .checkbox label, .travel-booking .payment-options .radio label {
+	  font-size: 17px;
+	  min-height: 55px;
+	  line-height: 28px;
+	}
+	.traveller-select .select-menu label {
+	  line-height: 35px;
+	}
+	.travel-form [class*="col-"],
+	.travel-form [class^="col-"]{
+		margin-bottom: 10px;
+	}
+    #valentine-promo .modal-dialog{
+        width: 95%;
+    }
+    .valentines-package-page section.banner{
+        height: 320px;
+    }
+    .pop-img {
+        background-position: -42px 0;
+    }
+    
+}
+@media only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape) {
+    /* .header-right .menu ul {
+        margin-left: 295px;
+    } */
+    .header-right .menu ul {
+        margin-left: 0;
+        padding-right: 30px;
+    }
+    .header-right .menu-icon {
+        margin-left: 30px;
+    }
+    .booking-form .info {
+        padding-left: 80px;
+    }
+    .booking-form .form-wrap {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+    /* modify search */
+    .flight-schedule .item {
+        padding: 20px;
+    }
+    .full-width-search .form-inline {
+        padding: 0 60px;
+    }
+    .package .btn.btn-default {
+        width: 145px;
+    }
+    /* flight.index.html */
+    .depart-date {
+        padding-right: 10px;
+    }
+    .arv-date {
+        padding-left: 10px;
+    }
+    .dep-details,
+    .arr-details {
+        width: 30%;
+    }
+    #flightdetails .nav-tabs > li > a,
+    #flightdetails2 .nav-tabs > li > a,
+    #flightdetails3 .nav-tabs > li > a {
+        font-size: 12px;
+    }
+
+    /* payment page */
+    .payment-tab [class*="col-"], 
+    .payment-tab [class^="col-"] {
+	  margin-bottom: 0;
+	}
+    .payment-tab .tab-content .tab-pane{
+    	padding: 15px;
+    }
+
+    .payment-tab .tab-content [class*="col-"], 
+    .payment-tab .tab-content [class^="col-"] {
+	  padding-left: 5px;
+	  padding-right: 5px;
+	}
+	.flight-wrapper .payment-tab .doe .SumoSelect, 
+	.flight-wrapper .payment-tab .doe .form-control.SumoSelect, 
+	.passanger-detail-from .dob .form-control, 
+	.passanger-detail-from .doe .form-control {
+	  width: 30%;
+	}
+	.flight-wrapper .payment-tab .SumoSelect > .CaptionCont > label {
+	  
+	  width: 13px;
+	}
+	.flight-wrapper .payment-tab .SumoSelect > .CaptionCont > label > i {
+	  height: 8px;
+	  width: 8px;
+	}
+	 /* package pages */
+    .package .btn.btn-default{
+    	margin-top: 30px;
+    }
+    .pop-img {
+        background-position: 0 0;
+    }
+
+
+}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width:767px) {
+    h2 {
+        font-size: 26px;
+    }
+    /*header
+	----------------------*/
+    header {
+        padding: 20px 0 0;
+    }
+    .logo {
+        padding-top: 0;
+        width: 90px;
+        margin-bottom: 20px;
+    }
+    .site-text {
+        height: 60px;
+        max-width: 65%;
+        min-width: 60%;
+        padding: 5px 10px 0;
+    }
+    .site-text p {
+        font-size: 13px;
+        font-weight: normal;
+        padding-left: 0;
+    }
+   /* .header-right {
+        width: auto;
+        float: none;
+        clear: both;
+    }*/
+    .header-right {
+      background: #f5f5f5;
+      clear: both;
+      float: none;
+      height: auto;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding: 15px;
+      width: auto;
+    }
+
+    .header-right .menu {
+        border-right: medium none;
+        float: none;
+        width: 100%;
+        margin: 0;
+    }
+    .valentines-package-page .header-right{
+        padding: 0;
+    }
+    .valentines-package-page .header-right .menu{
+        display: none;
+    }
+    .header-right .menu ul {
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-top: 0;
+        padding-right: 0;
+    }
+    .header-right .menu .list-inline li {
+        padding: 0;
+        width: 49%;
+        margin-bottom: 5px;
+    }
+    .header-right .menu .list-inline li:last-of-type,
+     .header-right .menu .list-inline li:last-of-type .btn{
+        margin-bottom: 0;
+        width: 100%;
+        display: block;
+    }
+    .header-right .menu li a {
+        width: auto;
+    }
+    header .header-right .menu-icon {
+        margin: 13px 0 0 0;
+        position: absolute;
+        top: 25px;
+        right: 10px;
+    }
+    .lg-caption {
+        width: 100%;
+        padding: 0 10px;
+    }
+    .lg-caption h1 {
+        font-size: 22px;
+    }
+    .mega-menu {
+        /* top: 140px; */
+        top:100px;
+    }
+    .mega-menu .divider {
+        display: none;
+    }
+    .mega-menu .column {
+        float: none;
+        width: 100%;
+        position: relative;
+    }
+    .mega-menu .column .divider {
+        left: -15px;
+        right: -15px;
+        top: 40px;
+    }
+    .mega-menu .column a.title i {
+        float: right;
+        font-size: 25px;
+        display: block;
+    }
+    .mega-menu .sub-menu {
+        display: none;
+    }
+    .mega-menu .mega-footer {
+        text-align: center;
+    }
+    .mega-menu .mega-footer a {
+        margin: 0 0 10px 0;
+    }
+    .mega-menu .mega-footer a.last-child {
+        margin-bottom: 0;
+    }
+    .booking-form {
+        /* margin-top: 148px; */
+    }
+    .booking-form .container {
+        top: 148px;
+    }
+    .booking-form .info {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .booking-form .info p {
+        width: 89%;
+    }
+    .booking-form .form-wrap {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    /* flight pages tab into accordin styles */
+    #myTab-accordion .panel-default > .panel-heading{
+    	background: #fff;
+    }
+    #myTab-accordion .panel-default > .panel-heading > .panel-title{
+    	text-transform: capitalize;
+    }
+  
+    /* flight-booking-progress-step */
+    .progress-step > li {
+        float: none;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+    /* flight-search-form */
+    .flight-search-form .search-form-content {
+        width: 100%;
+    }
+    .flight-search-form .schedule {
+        border-color: #ccc;
+        border-style: solid;
+        border-width: 1px 0;
+        padding: 4px 0;
+        margin-bottom: 5px;
+    }
+    .flight-search-form .button-right {
+        width: 100%;
+    }
+    .flight-search-form .well .input-group {
+        padding-right: 0;
+    }
+    /* flight-list-block */
+    .flight-list-block .details {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .box-flight .first-row {
+        margin-top: 10px;
+    }
+    .box-flight .first-row .price {
+        border-left: 0 none;
+        margin-top: 10px;
+        text-align: left;
+    }
+    .box-flight .details-wrapper .second-row .time [class*="col-"],
+    .box-flight .details-wrapper .second-row .time [class^="col-"] {
+        border-left: none;
+        padding-left: 0;
+    }
+    .box-flight .action {
+        border-left: medium none;
+        padding-left: 0;
+    }
+    .depart-date,
+    .arv-date {
+        font-size: 16px;
+        width: 27%;
+    }
+    .arv-date {
+        text-align: right;
+    }
+    .depart-date > small,
+    .arv-date > small {
+        font-size: 10px;
+    }
+    .distance-line,
+    .oneway-flight .distance-line {
+        width: 43%;
+    }
+    .depart-date,
+    .oneway-flight .depart-date {
+        padding-right: 10px;
+    }
+    .arv-date,
+    .oneway-flight .arv-date {
+        padding-left: 10px;
+    }
+    .short-desc {
+        margin-top: 10px;
+    }
+    .box-flight .details-wrapper .second-row .time [class*="col-"]:first-child,
+    .box-flight .details-wrapper .second-row .time [class^="col-"]:first-child {
+        margin-bottom: 15px;
+    }
+    .box-flight .details-wrapper .second-row .time [class*="col-"],
+    .box-flight .details-wrapper .second-row .time [class^="col-"] {
+        min-height: auto;
+    }
+    /* Flight Detail slidedown */
+    .des-row .airlines-thumb {
+        float: none;
+        margin: 0 auto;
+        width: 50%;
+    }
+    .des-row > span {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    .des-row .ttl-time {
+        margin: 10px 0;
+    }
+    .page-header h2 {
+        font-size: 23px;
+    }
+    .full-width-search {
+        margin-top: 0;
+    }
+    .full-width-search .form-inline {
+        padding: 0;
+    }
+    .full-width-search .form-inline .form-group {
+        padding: 0 15px;
+        width: 100%;
+    }
+    .full-width-search .form-inline .form-group:last-child {
+        margin-bottom: 0;
+    }
+	/* flight-review-header */
+	.flight-review-header .airlines-thumb{
+		min-height: 200px;
+		margin-bottom: 20px;
+	}
+	.flight-review-header .box-title {
+	  font-size: 22px;
+	}
+	.mobile-mode:after{
+		border-bottom: 1px solid #ccc;
+		clear: both;
+		content: "";
+		display: block;
+		height: auto;
+		margin-bottom: 15px;
+		padding-bottom: 15px;
+	}
+	.tab-content.visible-tabs {
+	  display: none;
+	}
+	/* payment page */
+	.payment-tab label{
+   	 display: block;
+	}
+	.payment-tab [class*="col-"], 
+	.payment-tab [class^="col-"]{
+		margin-bottom: 10px;
+	}
+	.box-flight .details-wrapper .second-row .time [class*="col-"], 
+	.box-flight .details-wrapper .second-row .time [class^="col-"]{
+		padding-right: 0;
+	}
+	.flight-payment .box-flight figure span.airlines-thumb {
+	  margin-bottom: 15px;
+	  min-height: 163px;
+	}
+	.flight-payment .box-flight .action .passanger-wrap {
+	  border-bottom: 1px solid #ccc;
+	  border-top: 1px solid #ccc;
+	  margin-bottom: 15px;
+	  padding: 15px 0;
+	}
+	.row-margin-10{
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.payment-methods .payment-tab h4 {
+	  margin-bottom: 0;
+	}
+	/* booking page */
+	.traveller-select .select-menu {
+	  clear: both;
+	  float: none;
+	  width: 100%;
+	}
+	.traveller-select .select-menu .SumoSelect {
+	  width: 100%;
+	}
+	.total-block {
+	  margin-top: 40px;
+	}
+	.travel-form [class*="col-"],
+	.travel-form [class^="col-"]{
+		margin-bottom: 10px;
+
+	}
+    /* about page */
+    .about {
+        height: auto;
+    }
+    .about .about-text {
+        padding: 10px;
+    }
+    .about h1 {
+        font-size: 26px;
+    }
+    .about .row .col-md-6:last-child {
+        height: 180px;
+    }
+    .feature-box .description {
+        padding: 10px;
+    }
+    .feature-box .description div {
+        width: 100%;
+    }
+    .post .thumbnail {
+        margin-bottom: 20px;
+    }
+    .post .col-md-4:last-child .thumbnail {
+        margin-bottom: 0;
+    }
+    .post .thumbnail h3 {
+        font-size: 22px;
+    }
+    .essential .col-md-2 {
+        margin-bottom: 15px;
+    }
+    .essential .item {
+        width: 165px;
+        margin: 0 auto;
+    }
+    .member p {
+        text-align: left;
+    }
+    footer {
+        text-align: center;
+    }
+    footer .footer-menu {
+        margin-bottom: 20px;
+    }
+    footer .social-media {
+        text-align: center;
+        margin-top: 40px;
+    }
+    .footer-bottom li {
+        display: block;
+        margin: 0 0 7px 0;
+        text-align: center;
+    }
+    /*Inner Page
+	---------------------------*/
+    .share_and_adds {
+        text-align: center;
+        margin-bottom: 0px;
+        margin-top:30px;
+    }
+    .list-search .form-group {
+        margin-bottom: 15px;
+    }
+    .member p {
+        text-align: center;
+    }
+    .member .column {
+        width: 50%;
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    /*table*/
+    /* Force table to not be like tables anymore */
+    .summitteers-list table,
+    .summitteers-list thead,
+    .summitteers-list tbody,
+    .summitteers-list th,
+    .summitteers-list td,
+    .summitteers-list tr {
+        display: block;
+    }
+    /* Hide table headers (but not display: none;, for accessibility) */
+    .summitteers-list thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    .summitteers-list td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 45% !important;
+        min-height: 40px;
+    }
+    .summitteers-list td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+    /*
+	Label the data
+	*/
+    .summitteers-list td:nth-of-type(1):before {
+        content: "Name :";
+    }
+    .summitteers-list td:nth-of-type(2):before {
+        content: "Country :";
+    }
+    .summitteers-list td:nth-of-type(3):before {
+        content: "Year :";
+    }
+    .summitteers-list td:nth-of-type(4):before {
+        content: "Route :";
+    }
+    .summitteers-list td:nth-of-type(5):before {
+        content: "Team Name :";
+    }
+    .video {
+        height: 300px;
+    }
+    /* login page */
+    #login .modal-dialog {
+	  margin: 0 auto;
+	  width: 100%;
+	}
+	.guest-wrap{
+		padding: 20% 0;
+	}
+    /*-Classic Everest*/
+    .package {
+        text-align: center;
+    }
+    .customer-review h3{
+    	font-size: 18px;
+    	line-height: 25px;
+    }
+    .customer-review span img{
+    	width: 20px;
+    }
+    .package .btn-box {
+	    text-align: center;
+	}
+	.package .btn.btn-default{
+		margin-top: 15px;
+	}
+    .package .btn-box > .btn-default:last-child {
+        margin-left: auto;
+    }
+    .package-detail .package-block .box {
+        text-align: center;
+    }
+    .package-detail .box .trek-type {
+        display: inline-block;
+    }
+    .thumb-slider.lg {
+	  min-height: 250px;
+	}
+    .thumb-slider {
+	  min-height: 60px;
+	}
+	.dot-list {
+	  text-align: left;
+	}
+	.block-info-title{
+		font-size: 18px;
+	}
+	.package-detail p,
+	.package-detail ul li{
+		font-size: 14px;
+	}
+	.sub-title h2,
+	.package-full-desc .panel-default > .panel-heading h2{
+		font-size: 22px;
+	}
+	.package-full-desc .itinerary .panel-default > .panel-heading a{
+		font-size: 15px;
+	}
+	.package .btn.btn-default:last-of-type {
+	  margin-left: 0;
+	  margin-top: 15px;
+	}
+	.review-rating-block [class*="col-"]:after,
+	.review-rating-block [class^="col-"]:after{
+		content: '';
+		display: block;
+		clear: both;
+		margin-bottom:10px;
+	}
+	.review-rating-block .rating h5 {
+	  padding-right: 15px;
+	}
+	.review-rating-block [class*="col-"]:last-child.text-right,
+	.review-rating-block [class^="col-"]:last-child.text-right{
+		text-align: left;
+
+	}
+	.review-rating-block span img{
+		width: 20px;
+	}
+	.package-review-list .thumbnail > h2{
+		font-size: 24px;
+	}
+	
+	.video .btn-default{
+		font-size: 60px;
+	}
+    .gallery {
+        text-align: center;
+    }
+    .sidebar-inner {
+        padding-left: 0;
+    }
+    /* -- Contact Form -- */
+    .contact-form .col-md-6 .form-group:last-child {
+        margin-bottom: 15px;
+    }
+    .contact-form .btn-default {
+        float: left;
+    }
+    #valentine-promo .modal-dialog{
+        width: 95%;
+    }
+    .pop-img {
+      background-position: center 0;
+      min-height: 270px;
+    }
+    .valentines .package-short-info .dot-list {
+      margin: 0 0 20px;
+      min-height: 100%;
+    }
+    .valentines-package-page .help-block a{
+        display: inline-block;
+    }
+    .valentines-package-page .check {
+        width: 100%;
+    }
+    .g-recaptcha{
+        transform:scale(0.77);
+        -webkit-transform:scale(0.77);
+        -moz-transform:scale(0.77);
+        transform-origin:0 0;
+        -webkit-transform-origin:0 0;
+        -moz-transform-origin:0 0;
+    }
+    .feature-content .btn.btn-default.less {
+      margin-top: 15px;
+    }
+    .valentines-package-page section.banner{
+        height: 140px;
+    }
+}
+/*-----------*/
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: landscape) {
+    /* .mega-menu,.booking-form{
+		top:inherit;
+	}
+	.booking-form .container{
+		top:inherit;
+	} */
+    .pop-img {
+      background-position: center -80px;
+      min-height: 270px;
+    }
+}
+@media only screen and (max-width:640px) {
+    .pop-img {
+          background-position: center -80px;
+          min-height: 270px;
+        }
+}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width:480px) {
+    .full-width-search .form-inline .form-group {
+        width: 100%;
+    }
+    .header-right button.booked {
+        background: #ccc none repeat scroll 0 0;
+        font-size: 14px;
+        padding: 6px;
+        margin-bottom: 20px;
+        float: left;
+    }
+    .header-right button.booked img {
+        margin-right: 0;
+        width: 22px;
+    }
+    /*
+	.logo {
+	    float: none;
+	    padding-top: 18px;
+	    text-align: center;
+	    width: 100%;
+	}
+	.header-right {
+	    float: none;
+	    clear: both;
+	    margin-top: 20px;
+	    width: 100%;
+	}
+	.header-right .search {
+	    left: 0;
+	    margin: 0 auto;
+	    padding: 0;
+	    position: absolute;
+	    right: 0;
+	    width: 65%;
+	}
+	*/
+    .header-right .search {
+        width: 65%;
+        margin: 0 0 10px 0;
+        float: left;
+        border: none;
+        padding: 0;
+    }
+    .header-right .menu-icon {
+        float: right;
+        margin: 7px 0 0 0;
+        padding: 0;
+    }
+    .header-right .menu-icon .bars {
+        height: 3px !important;
+    }
+}
+@media only screen and (max-width:320px) {
+    .depart-date,
+    .arv-date {
+        font-size: 15px;
+        width: 26%;
+    }
+    .depart-date > small,
+    .arv-date > small {
+        font-size: 9px;
+    }
+    .pop-img {
+      background-position: center 0;;
+    }
+}

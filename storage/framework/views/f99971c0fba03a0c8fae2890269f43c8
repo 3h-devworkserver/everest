@@ -1,0 +1,18 @@
+<?php $__env->startSection('title', trans('summitteer')); ?>
+
+<?php $__env->startSection('page-header'); ?>
+    <h1>
+        <?php echo e(trans('Summitteer')); ?>
+
+    </h1>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumbs'); ?>
+    <li><a href="#"><i class="fa fa-dashboard"></i> <?php echo e(trans('menus.dashboard')); ?></a></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <?php echo form($form); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

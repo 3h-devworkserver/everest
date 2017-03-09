@@ -1,0 +1,48 @@
+<div class="share_and_adds text-right">
+     <!--
+    <ul class="social-icon">
+        <li>
+            <p>SHARE</p>
+        </li>
+       
+        <li>
+            <span class='st_facebook_large' displayText='Facebook'></span>
+        </li>
+
+        <li>
+            <span class='st_twitter_large' displayText='Tweet'></span>
+        </li>
+
+        <li>
+            <span class='st_linkedin_large' displayText='LinkedIn'></span>
+        </li>
+
+        <li>
+            <span class='st_pinterest_large' displayText='Pinterest'></span>
+        </li>
+
+        <li>
+            <span class='st_email_large' displayText='Email'></span>
+        </li>
+       
+    </ul>
+    -->
+<!--    <p>SHARE</p>-->
+    
+<!-- Go to www.addthis.com/dashboard to customize your tools 
+<div class="addthis_inline_share_toolbox_4vfi"></div>-->
+
+<!--<div class="addthis_inline_share_toolbox" addthis:url="<?php echo e(Request::fullUrl()); ?>"></div>-->
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox"></div>
+
+    <!-- <div class="addthis_inline_share_toolbox" addthis:url="<?php echo e(Request::fullUrl()); ?>"></div> -->
+   <!-- Go to www.addthis.com/dashboard to customize your tools -->
+</div>
+
+
+<style>
+    .at4-jumboshare .at4-count-container{
+        min-width:154px !important;
+    }
+</style>

@@ -1,0 +1,47 @@
+<div class="col-md-4">
+    <div class="book-it">
+        <div class="book-it-price-day">
+            <strong>$<span id="guidePrice"><?php echo e($guide->price); ?></span><span class="pull-right">per day</span></strong>
+        </div>
+        <div class="book-it-content">
+            <?php echo Form::open(['route' => 'frontend.guide.booking.process']); ?>
+
+            <div class="book-it-form">
+                    <div class="form-group">
+                        <label for="from">From</label>
+                        <input type="text" id="bookFrom" value="" name ="bookFrom" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="to">To</label>
+                        <input type="text" class="form-control" id="bookTo" name="bookTo">
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Days</label>
+                        <input class="form-control" id="totalDays" name="totalDays" value="0" readonly>
+                    </div>
+                
+            </div>
+            <div class="book-it-status" style="display: none">
+                <table>
+                    <tr>
+                        <td id="priceCalculation"></td>
+                        <td class="text-center" id="calculatedPrice"></td>
+                    </tr>
+                    <tr>
+                        <td>Service fee</td>
+                        <td id="serviceFee"></td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td id="totalSumPrice"></td>
+                    </tr>
+                </table>
+            </div>
+            <?php echo Form::hidden('gid', $guide->user_id); ?>
+
+            <button <?php if(Auth::guest()): ?> id='loginModal' type='button'<?php else: ?> id ='submit-booking-request' type='submit'<?php endif ?> class="btn btn-primary">Request to Book</button>
+            <?php echo Form::close(); ?>
+
+        </div>
+    </div>
+</div>

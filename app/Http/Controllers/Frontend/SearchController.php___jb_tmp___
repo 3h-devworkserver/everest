@@ -1,0 +1,51 @@
+<?php namespace App\Http\Controllers\Frontend;
+
+use App\Http\Controllers\Controller;
+use App\Repositories\Frontend\User\UserContract;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
+use App\Models\Access\User\User;
+use DB;
+use Carbon\Carbon;
+/**
+ * Class SearchController
+ * @package App\Http\Controllers
+ */
+class SearchController extends Controller {
+
+	/**
+	 * @return \Illuminate\View\View
+	 */
+
+	 /**
+     * @var UserContract
+     */
+    protected $users;
+
+    public function __construct(UserContract $users) {
+        $this->users = $users;
+        
+    }
+
+
+	public function index(Request $request)
+	{
+        $sliders = '';
+        //return view('frontend.index',['sliders'=>$sliders])->withClass('home')->with('page', $page)->with('menus', $menu);
+		return view('frontend.searchResults',['sliders'=>$sliders])->withClass('home');
+	}
+
+	public function autocompletesearch($value = '')
+    {
+        
+        $keywords = Input::get('query');
+        $suggestions['suggestions'] = '';
+
+        $type = Input::get('type');
+        if ($type == 'name') {
+            $suggestions['suggestions'] = User::where('fname', 'LIKE', '%' . $keywords . '%')->lists('fname');
+        }
+        return response()->json($suggestions);
+    }
+}

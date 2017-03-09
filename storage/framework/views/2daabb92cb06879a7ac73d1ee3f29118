@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upeverest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href='https://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:800italic,800,700italic,700,600italic,600,400italic,400,300italic,300' rel='stylesheet' type='text/css'>
+    
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/sumoselect.css">
+    <link rel="stylesheet" href="css/jquery-ui-1.10.4.custom.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <script>
+        var base_url = '<?php echo e(URL::to("")); ?>';
+        var full_current_url = '<?php echo e(URL::full()); ?>';
+        var current_url = '<?php echo e(URL::current()); ?>';
+    </script>
+
+</head>
+<body class="<?php echo e($class); ?>">
+    <?php echo $__env->make('frontend.includes.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->yieldContent('banner'); ?>
+		<?php echo $__env->yieldContent('content'); ?>
+    <?php echo $__env->make('frontend.includes.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="js/jquery.sumoselect.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/function.js"></script>
+</body>
+</html>

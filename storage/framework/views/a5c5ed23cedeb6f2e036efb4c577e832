@@ -1,0 +1,116 @@
+<footer>
+    <div class="container">
+    <div class="member">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                        <p>Associate Member :</p>
+                    </div>
+                    <div class="col-md-9 col-sm-9">
+                        <!-- <img src="images/logo_partners.png" alt=""> -->
+                        <div class="column">
+                            <a href="#">
+                                <img src="images/adv-T.png" alt="">
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a href="#">
+                                <img src="images/bmc.png" alt="">
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a href="#">
+                                <img src="images/pata.png" alt="">
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a href="#">
+                                <img src="images/ntb.png" alt="">
+                            </a>
+                        </div>
+                        <div class="column">
+                            <a href="#">
+                                <img src="images/taan.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-sm-2">
+                <div class="footer-menu">
+                    <ul>
+                        <li><a href="#">about nepal</a></li>
+                        <li><a href="#">who we are</a></li>
+                        <li><a href="#">team</a></li>
+                        <li><a href="#">advertising policy</a></li>
+                        <li><a href="#">contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="blog">
+                    <p>Latest Blog</p>
+                    <ul>
+                        <li><a href="#">Ten Camping Tips</a></li>
+                        <li><a href="#">10 Reasons why Nepal is the Best Trekking Destination</a></li>
+                        <li><a href="#">Summer 2015 Gear Guide</a></li>
+                        <li><a href="#">Ten Camping Tips</a></li>
+                        <li><a href="#">10 Reasons why Nepal is the Best Trekking Destination</a></li>
+                        <li><a href="#">Summer 2015 Gear Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="social-media">
+                    <ul>
+                        <li>
+                            <a class="fb" href="#">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="twitter" href="#">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="youtube" href="#">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="google-p" href="#">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="instagram" href="#">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="flickr" href="#">
+                                <i class="fa fa-flickr"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tumblr" href="#">
+                                <i class="fa fa-tumblr"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="pinterest" href="#">
+                                <i class="fa fa-pinterest-p"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="vine" href="#">
+                                <i class="fa fa-vine"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

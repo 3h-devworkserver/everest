@@ -1,0 +1,32 @@
+[09-Sep-2016 06:29:16 UTC] PHP Fatal error:  Call to a member function getClientOriginalExtension() on null in /home/wwwupeverest/public_html/app/Repositories/Frontend/Sliderupload.php on line 26
+[09-Sep-2016 06:55:43 UTC] PHP Fatal error:  Call to a member function getClientOriginalExtension() on null in /home/wwwupeverest/public_html/app/Repositories/Frontend/Sliderupload.php on line 26
+[14-Sep-2016 04:29:55 UTC] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in /home/wwwupeverest/public_html/storage/framework/views/a82b1dfffcc306ba711c6b45767502b8 on line 1
+[14-Sep-2016 04:30:30 UTC] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in /home/wwwupeverest/public_html/storage/framework/views/a82b1dfffcc306ba711c6b45767502b8 on line 1
+[14-Sep-2016 04:30:33 UTC] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in /home/wwwupeverest/public_html/storage/framework/views/a82b1dfffcc306ba711c6b45767502b8 on line 1
+[14-Sep-2016 04:30:34 UTC] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in /home/wwwupeverest/public_html/storage/framework/views/a82b1dfffcc306ba711c6b45767502b8 on line 1
+[14-Sep-2016 04:31:07 UTC] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in /home/wwwupeverest/public_html/storage/framework/views/a82b1dfffcc306ba711c6b45767502b8 on line 1
+[14-Sep-2016 04:31:31 UTC] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in /home/wwwupeverest/public_html/storage/framework/views/a82b1dfffcc306ba711c6b45767502b8 on line 1
+[14-Sep-2016 04:31:34 UTC] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in /home/wwwupeverest/public_html/storage/framework/views/a82b1dfffcc306ba711c6b45767502b8 on line 1
+[14-Sep-2016 04:32:05 UTC] PHP Parse error:  syntax error, unexpected 'as' (T_AS) in /home/wwwupeverest/public_html/storage/framework/views/a82b1dfffcc306ba711c6b45767502b8 on line 1
+[14-Sep-2016 06:46:28 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' in /home/wwwupeverest/public_html/app/Http/Controllers/Frontend/FrontendController.php on line 92
+[16-Sep-2016 06:36:54 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/wwwupeverest/public_html/storage/framework/views/9f1217f17a4e1f54189a9127b9c7478a on line 2
+[06-Oct-2016 06:26:00 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Frontend\Route' not found in /home/wwwupeverest/public_html/app/Http/Controllers/Frontend/FrontendController.php on line 134
+[06-Oct-2016 06:28:16 UTC] PHP Fatal error:  Call to a member function current() on string in /home/wwwupeverest/public_html/app/Http/Controllers/Frontend/FrontendController.php on line 134
+[06-Oct-2016 06:29:02 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Frontend\Route' not found in /home/wwwupeverest/public_html/app/Http/Controllers/Frontend/FrontendController.php on line 134
+[06-Oct-2016 06:35:04 UTC] PHP Parse error:  syntax error, unexpected ';' in /home/wwwupeverest/public_html/storage/framework/views/9f1217f17a4e1f54189a9127b9c7478a on line 276
+[24-Oct-2016 12:19:06 UTC] PHP Fatal error:  Call to a member function getClientOriginalExtension() on null in /home/wwwupeverest/public_html/app/Repositories/Frontend/Sliderupload.php on line 26
+[24-Oct-2016 12:19:12 UTC] PHP Fatal error:  Call to a member function getClientOriginalExtension() on null in /home/wwwupeverest/public_html/app/Repositories/Frontend/Sliderupload.php on line 26
+[27-Oct-2016 07:49:10 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/wwwupeverest/public_html/app/Http/Controllers/Frontend/FrontendController.php on line 150
+[27-Oct-2016 07:49:20 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/wwwupeverest/public_html/app/Http/Controllers/Frontend/FrontendController.php on line 150
+[27-Oct-2016 07:49:25 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/wwwupeverest/public_html/app/Http/Controllers/Frontend/FrontendController.php on line 150
+[27-Oct-2016 07:49:29 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/wwwupeverest/public_html/app/Http/Controllers/Frontend/FrontendController.php on line 150
+[27-Oct-2016 07:49:31 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home/wwwupeverest/public_html/app/Http/Controllers/Frontend/FrontendController.php on line 150
+[09-Nov-2016 08:03:59 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/wwwupeverest/public_html/storage/framework/views/3e0fe2e01b1f5e39acdc383a29b7cb52 on line 59
+[09-Nov-2016 08:04:19 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/wwwupeverest/public_html/storage/framework/views/3e0fe2e01b1f5e39acdc383a29b7cb52 on line 59
+[09-Nov-2016 08:04:27 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/wwwupeverest/public_html/storage/framework/views/3e0fe2e01b1f5e39acdc383a29b7cb52 on line 59
+[09-Nov-2016 08:04:53 UTC] PHP Parse error:  syntax error, unexpected 'endforeach' (T_ENDFOREACH) in /home/wwwupeverest/public_html/storage/framework/views/3e0fe2e01b1f5e39acdc383a29b7cb52 on line 59
+[29-Nov-2016 10:32:06 UTC] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/wwwupeverest/public_html/storage/framework/views/9f1217f17a4e1f54189a9127b9c7478a on line 374
+[27-Jan-2017 09:46:37 UTC] PHP Parse error:  syntax error, unexpected ',', expecting ']' in /home/wwwupeverest/public_html/app/Models/PackageOption.php on line 12
+[27-Jan-2017 12:16:47 UTC] PHP Parse error:  syntax error, unexpected 'use' (T_USE) in /home/wwwupeverest/public_html/storage/framework/views/d7ac028fb79a6b59555927fec97a56e4 on line 164
+[27-Jan-2017 12:18:17 UTC] PHP Parse error:  syntax error, unexpected 'use' (T_USE) in /home/wwwupeverest/public_html/storage/framework/views/d7ac028fb79a6b59555927fec97a56e4 on line 164
+[27-Jan-2017 12:20:47 UTC] PHP Parse error:  syntax error, unexpected 'images' (T_STRING) in /home/wwwupeverest/public_html/storage/framework/views/d7ac028fb79a6b59555927fec97a56e4 on line 172

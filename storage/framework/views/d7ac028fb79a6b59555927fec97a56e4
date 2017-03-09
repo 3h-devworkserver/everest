@@ -1,0 +1,313 @@
+<?php $__env->startSection('title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>
+<!--<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>-->
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('content'); ?>
+
+
+<?php /* <section class="banner bg-wrap <?php echo $page->image; ?>" style="background-image: url(<?php echo url().'/images/'.$page->image; ?>);">
+    <div class="container"></div>
+</section> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.region', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.new.search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
+
+
+<div class="main-content">
+	<div class="container" >
+		<?php /* <?php echo Form:: open(['url'=>'package/'.$slug.'/'.$datePrice.'/booking-step2', 'id'=>'traveller-info', 'files'=>'true']); ?> */ ?>
+		<div class="travel-booking" id="traveller-info">
+
+			<div class="travel-booking-step">
+				<!--	<div class="row">
+						<div class="col-md-12">
+							<a href="#" class="active">Step 1 - Travellers </a>
+							<a href="#" >Step 2 - Summary  </a>
+							<a href="#">Step 3 - Confirm </a>
+						</div>
+					</div>-->
+				</div> 
+
+				<div class="row">
+					<div class="col-md-8 col-sm-8">
+						<div class="page-header bold_page-header">
+							<h2><?php echo e($package->title); ?> BOOKING</h2>
+						</div>
+						<?php if(session()->has('invalid')): ?>
+						<div class="alert alert-danger">
+							<?php echo e(session('invalid')); ?>
+
+						</div>
+						<?php endif; ?>
+						
+						<div class="alert alert-danger promo-error hide">
+
+						</div>
+						<div class="alert alert-success update hide">
+						</div>
+						<?php if(!empty($success)): ?>
+						<div class="alert alert-success">
+							<?php echo e($success); ?>
+
+						</div>
+						<?php endif; ?>
+
+
+
+						<?php if(empty($success)): ?>
+						<div id="">
+							<div class="travel-form">
+
+								<!--	<p class="form-title">Lead Traveller:</p>  -->
+								<div class="form-info">
+									
+
+									<div class="form-group">
+										<span class="form-title">Promo Code:</span>
+										<form method="post" id="checkPromoForm" action="javascript:;" >
+											<div class="row">
+												<div class="col-md-8 col-sm-6">
+													<?php /* <label>Please enter generated Promo Code <em>*</em></label> */ ?>
+													<?php echo Form::text('promocode',null, ['class'=>'form-control promocode', 'placeholder'=>'Please enter generated Promo Code' ]); ?>
+
+													<input type="hidden" class="token" name="_token" value="<?php echo e(csrf_token()); ?>">
+													<p class="help-block">Promo Code not generated yet ? <a href="javascript:;" data-toggle="modal" data-target="#valentine-promo">GET YOUR PROMO CODE</a></p>
+												</div>
+												<div class="col-md-4">
+													<div class="check">
+														<button class="btn btn-danger checkPromo">Check Promo Code</button><div class="loading hide ">
+														<i class="fa fa-refresh fa-spin"></i>
+													</div>
+												</div>
+											</div>
+											
+										</div>
+									</form>
+
+								</div>
+
+								<?php /* <div id="CoupleInfoForm"> */ ?>
+									<form action="javascript:;" id="CoupleInfoForm" method="post">
+										<div class="form-group hide">
+											<span class="form-title"> Details:</span>
+											<div class="row">
+												<div class="col-md-6 col-sm-6">
+													<label>Full Name </label>
+													<?php echo Form::text('fullname',null, ['class'=>'form-control', ]); ?>
+
+													<?php /* <input type="email" class="form-control"> */ ?>
+												</div>
+												<div class="col-md-6 col-sm-6">
+													<label>Valentine’s Full Name </label>
+													<?php echo Form::text('valentine_fullname',null, ['class'=>'form-control', ]); ?>
+
+													<?php /* <input type="text" class="form-control"> */ ?>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-6 col-sm-6 issue-date">
+													<label>Email</label>
+													<?php echo Form::email('email',null, ['class'=>'form-control', ]); ?>
+
+													<?php /* <input type="text" class="form-control"> */ ?>
+
+												</div>
+
+												<div class="col-md-6 col-sm-6">
+													<label>Contact No</label>
+													<?php echo Form::text('contact',null, ['class'=>'form-control']); ?>
+
+													<?php /* <input type="email" class="form-control"> */ ?>
+												</div>
+												<?php echo Form::hidden('promo_code', null); ?>
+
+											</div>
+											<div class="row">
+												<div class="col-md-12">
+													 <div class="check">
+
+													<button type="submit" class="btn btn-danger">Update Info</button>
+													<div class="loading hide">
+													<i class="fa fa-refresh fa-spin"></i>
+													</div>
+													</div> 
+												</div>
+											</div>
+
+
+									</div>
+								</form>
+
+
+							<?php /* </div> */ ?>
+
+
+						</div>
+						<div class="payment-options hide">
+							<div class="form-group">
+								<span class="form-title">Payment Option:</span>
+								<div class="image-esewa">
+									<img src="<?php echo e(url('images/esewa.jpeg')); ?>" width="90" alt="">
+								</div>
+							</div>
+						</div>
+
+
+<?php /* ?>
+<!-- extra package   -->
+
+<div class="add-extra-package">
+					<div class="row">	
+					
+                                  
+				@foreach($packages as $pack)
+						<div class="col-md-4 col-sm-4">
+							<div class="thumbnail">
+								<div class="">
+								    <input type="checkbox" class="addxtraPack" value={{$pack->price}}>
+								    <label for="check">{{$pack->title}}</label>
+								  </div>
+								<div class="thumb-img bg-wrap" style="background-image:url({{asset('images/packages-new/'.$pack->feat_img) }});"></div>
+								<div class="price">+NPR {{$pack->price}}</div>
+								<a href="{{url('/package/'.$pack->slug)}}" target="_blank" class="btn btn-gray">view itinerary</a>
+							</div>
+						</div>
+					@endforeach
+					</div>
+				</div>
+
+<!-- end of extra package   -->
+<?php */ ?>
+
+
+						<?php /* <?php echo Form::open(['url'=> '#', 'id'=>'esewaForm']); ?> */ ?>
+
+						<?php 
+						$amt = round($dPrice->price, 2);
+						$txAmt = 0;
+						$psc = round(($dPrice->price)*(10/100), 2);
+						$pdc = 0;
+						$tAmt = $amt + $txAmt + $psc + $pdc;
+						?>
+
+						<form action="https://esewa.com.np/epay/main" method="POST" id="esewaForm"> 
+							<input value="<?php echo e($tAmt); ?>" name="tAmt" type="hidden"> 
+							<input value="<?php echo e($amt); ?>" name="amt" type="hidden"> 
+							<input value="<?php echo e($txAmt); ?>" name="txAmt" type="hidden">
+							<input value="<?php echo e($psc); ?>" name="psc" type="hidden"> 
+							<input value="<?php echo e($pdc); ?>" name="pdc" type="hidden"> 
+							<input value="Upeverest_esewa" name="scd" type="hidden">  
+							<input value="Package-<?php echo e($rand); ?>" name="pid" type="hidden"> 
+							<input value="<?php echo e(url('package/'.$package->slug.'/'.$datePrice.'/booking-success/promoid')); ?>?q=su" type="hidden" name="su">
+							<?php /* <input value="http://abc.com/failure.html?q=fu" type="hidden" name="fu">  */ ?>
+							<input value="<?php echo e(url('package/'.$package->slug.'/'.$datePrice.'/valentines-booking')); ?>?q=fu" type="hidden" name="fu"> 
+
+							<div class="row esewabtn hide">
+								<div class="col-md-12">
+									<input value="Purchase Package" type="submit" id="submit" class="btn btn-danger btn-step"> 
+									<?php /* <?php echo Form::submit('Pay By eSewa',['id'=>'submit', 'class'=>'btn btn-danger btn-step']); ?> */ ?>
+									<?php /* <a href="<?php echo e(url('package/'.$slug.'/booking-step3')); ?>" class="btn btn-danger btn-step">Continue</a> */ ?>
+
+								</div>
+							</div>
+							<?php /* </form> */ ?>
+
+
+						</form>
+						<?php /* <?php echo Form::close(); ?> */ ?>
+
+						<?php /* </form> */ ?>
+					</div>
+				</div>
+				<?php endif; ?>
+
+
+
+
+			</div>
+
+			<?php if(empty($success)): ?>
+			<div class="col-md-4 col-sm-4">
+				<div class="sidebar-travel">
+					<div class="total-block">
+						<h2 class="block-title">Booking Summary</h2>
+
+						<div class="trip-more-info-block summary">
+
+							<div class="trip-more-info-list">
+								<div class="info-title sub-heading-title when">When: </div>
+								<div class="info-description"><?php echo e($dPrice->daterange); ?></div>
+							</div>
+							<?php /* <div class="trip-more-info-list">
+								<div class="info-title sub-heading-title when">Traveller: </div>
+								<div class="info-description" id="traveller">2</div>
+							</div> */ ?>
+
+							<div class="total-price-details-box">
+
+								<div class="clearfix sub-heading-title">
+									<div class="label-text total-passenger-price pull-left ">Tour Cost</div>
+									<div class="content-text total-passenger-price pull-right">NPR <?php echo e($dPrice->price); ?></div>
+								</div>
+
+							</div>
+
+<div class="total-price-details-box">
+
+								<div class="clearfix sub-heading-title">
+									<div class="label-text total-passenger-price pull-left">Service Charge (10%)</div>
+									<div class="content-text total-passenger-price pull-right ">NPR <?php echo e(($dPrice->price)*(10/100)); ?></div>
+								</div>
+
+							</div>
+
+<?php /* ?><div class="total-price-details-box">
+
+								<div class="clearfix sub-heading-title">
+									<div class="label-text total-passenger-price pull-left">Extension</div>
+									<div class="content-text total-passenger-price pull-right ext" extprice="0">NPR 0</div>
+								</div>
+
+							</div><?php */ ?>
+
+
+
+							<div class="total-footer">
+								<div class="clearfix sub-heading-title">
+									<div class="label-text total-passenger-price pull-left">
+										<h3>Total 
+											<small>Tax Included</small></h3>
+										</div>
+										<div class="content-text total-passenger-price pull-right"><span id = "total">NPR <?php echo e($dPrice->price + (($dPrice->price)*(10/100))); ?></span></div>
+									</div>
+
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<?php endif; ?>
+
+			</div>
+
+
+
+		</div>
+		<?php /* <?php echo Form::close(); ?> */ ?>
+	</div><!--Container -->
+
+	<div class="divider"></div>
+
+
+	<?php /* <?php echo $__env->make('frontend.includes.new.members', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
+
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
