@@ -97,6 +97,7 @@ class EloquentAuthenticationRepository implements AuthenticationContract {
 		
 		if ($this->auth->attempt($request->only('email', 'password'), $request->has('remember')))
 		{
+
 			// if ($this->auth->user()->hasRole('Traveller')) {
 			// 	$this->auth->logout();
 			// 	throw new GeneralException("You are a traveller....");
@@ -129,7 +130,8 @@ class EloquentAuthenticationRepository implements AuthenticationContract {
 
             elseif(access()->hasRole(2)){
             	event(new UserLoggedIn($this->auth->user()));
-				return true;
+				// return true;
+				return $this->auth->user();
             }
             
             elseif(access()->hasRole(3)){

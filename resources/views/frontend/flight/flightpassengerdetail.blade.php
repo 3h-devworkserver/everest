@@ -19,27 +19,27 @@
                             <!-- <li class="is-complete"> -->
                             <li class="is-complete">
                                 <span class="circle">
-									<i class="fa fa-check"></i>
-								</span>
+                                    <i class="fa fa-check"></i>
+                                </span>
                                 <span class="progress-text">Selection</span>
                             </li>
                             <!-- <li class="is-active"> -->
                             <li class="is-complete">
                                 <span class="circle">
-									<i class="fa fa-file-text"></i>
-								</span>
+                                    <i class="fa fa-file-text"></i>
+                                </span>
                                 <span class="progress-text">Review</span>
                             </li>
                             <li class="is-active">
                                 <span class="circle">
-									<i class="fa fa-user"></i>
-								</span>
+                                    <i class="fa fa-user"></i>
+                                </span>
                                 <span class="progress-text">Passanger Details</span>
                             </li>
                             <li>
                                 <span class="circle">
-									<i class="fa fa-credit-card"></i>
-								</span>
+                                    <i class="fa fa-credit-card"></i>
+                                </span>
                                 <span class="progress-text">Payment</span>
                             </li>
                         </ul>
@@ -100,14 +100,14 @@
                                                         </span>
                                                         <span class="distance-line">
                                                             <span class="distance-time"><i class="fa fa-clock-o"></i><?php 
-					                            								$d1 = $flightDetail->FlightDate.' '.$flightDetail->DepartureTime;
-					                            								$d2 = $flightDetail->FlightDate.' '.$flightDetail->ArrivalTime;
-					                            								$datetime1 = new DateTime($d1);
-					                            								$datetime2 = new DateTime($d2);
-					                            								$interval = $datetime2->diff($datetime1);
-					                            								$elapsed = $interval->format('%h hr %i min');
-					                            								echo $elapsed;
-					                            								?></span>
+                                                                                $d1 = $flightDetail->FlightDate.' '.$flightDetail->DepartureTime;
+                                                                                $d2 = $flightDetail->FlightDate.' '.$flightDetail->ArrivalTime;
+                                                                                $datetime1 = new DateTime($d1);
+                                                                                $datetime2 = new DateTime($d2);
+                                                                                $interval = $datetime2->diff($datetime1);
+                                                                                $elapsed = $interval->format('%h hr %i min');
+                                                                                echo $elapsed;
+                                                                                ?></span>
                                                             <span class="flight-name">{{$flightDetail->FlightNo}}</span>
                                                         </span>
                                                         <span class="arv-date">
@@ -143,14 +143,14 @@
                                                         </span>
                                                         <span class="distance-line">
                                                             <span class="distance-time"><i class="fa fa-clock-o"></i><?php 
-					                            								$d1 = $returnFlightDetail->FlightDate.' '.$returnFlightDetail->DepartureTime;
-					                            								$d2 = $returnFlightDetail->FlightDate.' '.$returnFlightDetail->ArrivalTime;
-					                            								$datetime1 = new DateTime($d1);
-					                            								$datetime2 = new DateTime($d2);
-					                            								$interval = $datetime2->diff($datetime1);
-					                            								$elapsed = $interval->format('%h hr %i min');
-					                            								echo $elapsed;
-					                            								?></span>
+                                                                                $d1 = $returnFlightDetail->FlightDate.' '.$returnFlightDetail->DepartureTime;
+                                                                                $d2 = $returnFlightDetail->FlightDate.' '.$returnFlightDetail->ArrivalTime;
+                                                                                $datetime1 = new DateTime($d1);
+                                                                                $datetime2 = new DateTime($d2);
+                                                                                $interval = $datetime2->diff($datetime1);
+                                                                                $elapsed = $interval->format('%h hr %i min');
+                                                                                echo $elapsed;
+                                                                                ?></span>
                                                             <span class="flight-name">{{$returnFlightDetail->FlightNo}}</span>
                                                         </span>
                                                         <span class="arv-date">
@@ -172,7 +172,7 @@
                                                         <p>Adult</p>
                                                         <div class="passenger-count">
                                                             @if(!empty($flightDetail))
-                                                            	{{$flightDetail->Adult}}
+                                                                {{$flightDetail->Adult}}
                                                             @endif
                                                         </div>
                                                     </div>
@@ -180,7 +180,7 @@
                                                         <p>Child</p>
                                                         <div class="passenger-count">
                                                             @if(!empty($flightDetail))
-                                                            	{{$flightDetail->Child}}
+                                                                {{$flightDetail->Child}}
                                                             @endif
                                                         </div>
 
@@ -203,7 +203,7 @@
                     </article>
 
                     <div class="grand-total">
-                    	<div class="row">
+                        <div class="row">
                             <div class="col-md-9 col-sm-8">
 
 
@@ -1276,7 +1276,7 @@
                                 </div>
                             {!! Form::close() !!}
                             </div>
-                    		<div class="col-md-3 col-sm-4 sidebar-total">
+                            <div class="col-md-3 col-sm-4 sidebar-total">
                                 
                             <div class="flight-more-info">
                                 <ul id="myTab" class="nav nav-tabs hidden-xs" role="tablist">
@@ -1428,7 +1428,7 @@
 
                                     
                                 </div>
-								<!--
+                                <!--
                                 <div class="btm-block">
                                     <div class="discount-wrap">
                                         <h3>Apply Discount</h3>
@@ -1443,8 +1443,8 @@
                                         </form>
                                         
                                     </div>
-                    				
-                    			</div> -->
+                                    
+                                </div> -->
                             
                                 <div class="button-groups text-right btm-block">
 
@@ -1455,8 +1455,8 @@
                                 </div>
 
                                 
-                    		</div>
-                    	</div>
+                            </div>
+                        </div>
 
 
                     </div>

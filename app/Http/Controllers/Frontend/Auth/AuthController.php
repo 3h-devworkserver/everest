@@ -103,10 +103,20 @@ class AuthController extends Controller
 
         //Don't know why the exception handler is not catching this
         try {
-            $this->auth->travellerLogin($request);
+
+            //for ajax -flight
+            $data['stat'] = 'failed';
+
+            $traveller = $this->auth->travellerLogin($request);
 
             if ($throttles) {
                 $this->clearLoginAttempts($request);
+            }
+            //for ajax -flight
+            if ($request->ajax()) {
+                $data['stat'] = 'success';
+                $data['id'] = $traveller->id;
+                return $data;
             }
 
             return redirect()->intended('/traveller/dashboard');

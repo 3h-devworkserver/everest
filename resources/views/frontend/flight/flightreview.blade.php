@@ -531,7 +531,8 @@
 															<p>
 																Already a member? Log-in to speed up the booking process We will fill in most of the details for you. 
 															</p>
-															{!! Form::open(['url' =>'/flight/passengers']) !!}
+															{!! Form::open(['url' =>'/flight/passengers', 'class'=>'registeredUserForm']) !!}
+															<input type="hidden" name="_token" value='{{csrf_token()}}' class="token">
 																<div class="form-group">
 																	<label for="exampleInputEmail1">Email address</label>
 																	<input type="email" name="email" class="form-control email" id="exampleInputEmail1" placeholder="Email">
@@ -540,6 +541,7 @@
 																	<label for="exampleInputPassword1">Password</label>
 																	<input type="password" name="password" class="form-control password" id="exampleInputPassword1" placeholder="Password">
 																</div>
+																
 																<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
 																@if($trip_type == 'R')
 																<input type="hidden" name="returnFlightDetail" value='<?php echo json_encode($returnFlightDetail); ?>'>

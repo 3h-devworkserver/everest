@@ -668,9 +668,9 @@ $.ajax({
         // $('#promoForm').hide();
         $('.form-wrapper').addClass('form-msg');
         if (data['stat'] == 'ok') {
-            $('.form-wrapper').html($data['msg']);
+            $('.form-wrapper').html(data['msg']);
         }else{
-            $('.form-wrapper').html($data['msg']);
+            $('.form-wrapper').html(data['msg']);
         }
     }
 });
@@ -1020,7 +1020,7 @@ $(document).on('click', '.modifySearchFlight', function(){
   }
 });
 
-var form = $("#paxDetailForm").show();
+var form = $("#testForm").show();
 
 form.steps({
     headerTag: "li",
@@ -1113,7 +1113,33 @@ form.steps({
 });
 
 $(document).on('click', '.btnTravellerLogin', function(){
-  alert('lgin');
+  var email = $('.email').val();
+  var password = $('.password').val();
+  var token = $('.token').val();
+
+  $.ajax({
+      url: base_url + '/login' ,
+      headers:
+      {
+       'X-CSRF-Token': token
+     },
+     method: 'post',
+     data: {email: email, password:password } ,
+
+     success:function(data){
+      alert(data['stat']);
+      // alert(data['id']);
+
+      if(data['stat'] == 'success'){
+        $('.registeredUserForm').submit();
+      }else{
+        alert(data['stat']);
+      }
+     }
+
+
+    });
+
 });
 
 

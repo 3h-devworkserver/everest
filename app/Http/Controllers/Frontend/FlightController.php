@@ -427,7 +427,7 @@ return view('frontend.flight.flightreview', compact('flightDetail', 'returnFligh
 }
 
 public function passengersFlight(Request $request){
-
+    // return $request->all();
     // return $request->all();
 
     if( (!empty($request->username)) && (!empty($request->password)) ){
@@ -473,6 +473,99 @@ public function passengersDetail(Request $request){
     $time = time();
     $destination_path = 'images/flight-passenger/passport';
     $random = str_random(10)."-".$time;
+
+
+//validation
+   $validator = Validator::make($request->all(), [       
+        'return_type' => 'required',
+        'flight_id' => 'required',
+        'returnflight_id' => 'required',
+        'flight_detail' => 'required',
+        'returnflight_detail' => 'required',
+        'main_traveller_email' => 'required',
+        'main_traveller_country' => 'required',
+        'em_fullname' => 'required',
+        'em_country' => 'required',
+        'em_email' => 'required',
+        ]);
+    if ($validator->fails())
+    {
+        return redirect()->route('home');
+    }
+
+    if( in_array("", $request->adult_title) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_fname) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_lname) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_dob_year) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_dob_month) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_dob_day) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_passport) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_issue_year) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_issue_month) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_issue_day) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_issue_country) ){
+        return redirect()->route('home');
+    }
+
+    if( in_array("", $request->child_title) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_fname) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_lname) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_dob_year) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_dob_month) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_dob_day) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_passport) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_issue_year) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_issue_month) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_issue_day) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_issue_country) ){
+        return redirect()->route('home');
+    }
+
+
+
+
+
+
 
 //storing flight reservation detail in db
     $flightReservation = FlightReservation::create([
