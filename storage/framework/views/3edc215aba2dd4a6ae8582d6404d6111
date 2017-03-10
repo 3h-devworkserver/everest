@@ -519,10 +519,33 @@
 									<?php echo Form::close(); ?>
 
 
+									<?php if(Auth::check()): ?>
+
+									<?php echo Form::open(['url'=>'/flight/passengers']); ?>
+
+										<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
+										<?php if($trip_type == 'R'): ?>
+										<input type="hidden" name="returnFlightDetail" value='<?php echo json_encode($returnFlightDetail); ?>'>
+										<?php endif; ?>
+										<input type="hidden" name="tripType" class="trip-type" value="<?php echo e($trip_type); ?>">
+									 	<input type="hidden" name="country" value="<?php echo e($country); ?>">
+									 	<input type="hidden" name="departure" value="<?php echo e($departure); ?>">
+									 	<input type="hidden" name="arrival" value="<?php echo e($arrival); ?>">
+									 	<?php /* ?>
+									 	<input type="hidden" name="userId" value="<?php echo Crypt::encrypt(Auth::user()->id) ?>">
+									 	<?php */ ?>
+										<button class="btn btn-continue pull-right">
+											Continue <i class="fa fa-angle-right"></i>
+										</button>
+									<?php echo Form::close(); ?>
+
+
+									<?php else: ?>
 									<button class="btn btn-continue pull-right" data-toggle="modal" data-target="#login">
 										continue <i class="fa fa-angle-right"></i>
 
 									</button>
+									<?php endif; ?>
 								</div>
 
 								<!-- Modal -->
@@ -541,23 +564,35 @@
 															<p>
 																Already a member? Log-in to speed up the booking process We will fill in most of the details for you. 
 															</p>
-															<form>
+															<?php echo Form::open(['url' =>'/flight/passengers', 'class'=>'registeredUserForm']); ?>
+
+															<input type="hidden" name="_token" value='<?php echo e(csrf_token()); ?>' class="token">
 																<div class="form-group">
 																	<label for="exampleInputEmail1">Email address</label>
-																	<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+																	<input type="email" name="email" class="form-control email" id="exampleInputEmail1" placeholder="Email">
 																</div>
 																<div class="form-group">
 																	<label for="exampleInputPassword1">Password</label>
-																	<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+																	<input type="password" name="password" class="form-control password" id="exampleInputPassword1" placeholder="Password">
 																</div>
-
+																
+																<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
+																<?php if($trip_type == 'R'): ?>
+																<input type="hidden" name="returnFlightDetail" value='<?php echo json_encode($returnFlightDetail); ?>'>
+																<?php endif; ?>
+																<input type="hidden" name="tripType" class="trip-type" value="<?php echo e($trip_type); ?>">
+															 	<input type="hidden" name="country" value="<?php echo e($country); ?>">
+															 	<input type="hidden" name="departure" value="<?php echo e($departure); ?>">
+															 	<input type="hidden" name="arrival" value="<?php echo e($arrival); ?>">
+																<!--
 																<div class="checkbox">
 																	<label>
 																		<input type="checkbox"> Remember me
 																	</label>
-																</div>
-																<button type="submit" class="btn btn-continue">Login</button>
-															</form>
+																</div> -->
+																<button type="button" class="btn btn-continue btnTravellerLogin">Login</button>
+															<?php echo Form::close(); ?>
+
 														</div>
 													</div>
 													<div class="col-md-6">

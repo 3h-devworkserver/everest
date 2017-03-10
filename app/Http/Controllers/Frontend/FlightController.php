@@ -5,6 +5,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use DB;
+use Auth;
+use Crypt;
+use Validator;
 use App\Models\Menu;
 use App\Models\TravellerInfo;
 use App\Models\FlightReservation;
@@ -428,11 +431,12 @@ return view('frontend.flight.flightreview', compact('flightDetail', 'returnFligh
 
 public function passengersFlight(Request $request){
     // return $request->all();
-    // return $request->all();
 
-    if( (!empty($request->username)) && (!empty($request->password)) ){
+    // return Crypt::decrypt($request->userId);
+
+    // if( (!empty($request->username)) && (!empty($request->password)) ){
         
-    }
+    // }
 
 if ($request->tripType == 'R') {
      $this->validate($request, [
@@ -453,6 +457,20 @@ if ($request->tripType == 'R') {
 $country = $request->country;
 $departure = $request->departure;
 $arrival = $request->arrival;
+// if(!empty($request->userId)){
+//     if(Auth::check()){
+//         if(Auth::user()->id == $request->userId){
+//             $userId = $request->userId;
+//         }else{
+//             return redirect()->route('home');
+//         }
+//     }
+// }else{
+//     if(Auth::check()){
+//         $userId = Auth::user()->id;
+//     }
+//     $userId = '';
+// }
 
     return view('frontend.flight.flightpassengerdetail', compact('flightDetail', 'returnFlightDetail', 'trip_type', 'country', 'departure', 'arrival'))
     ->with('class', 'home')
@@ -476,18 +494,33 @@ public function passengersDetail(Request $request){
 
 
 //validation
+if($request->trip_type == 'R'){
    $validator = Validator::make($request->all(), [       
-        'return_type' => 'required',
+        'trip_type' => 'required',
         'flight_id' => 'required',
         'returnflight_id' => 'required',
         'flight_detail' => 'required',
         'returnflight_detail' => 'required',
+        'main_traveller' => 'required',
         'main_traveller_email' => 'required',
         'main_traveller_country' => 'required',
         'em_fullname' => 'required',
         'em_country' => 'required',
         'em_email' => 'required',
         ]);
+}else{
+    $validator = Validator::make($request->all(), [       
+        'trip_type' => 'required',
+        'flight_id' => 'required',
+        'flight_detail' => 'required',
+        'main_traveller' => 'required',
+        'main_traveller_email' => 'required',
+        'main_traveller_country' => 'required',
+        'em_fullname' => 'required',
+        'em_country' => 'required',
+        'em_email' => 'required',
+        ]);
+}
     if ($validator->fails())
     {
         return redirect()->route('home');
@@ -527,6 +560,7 @@ public function passengersDetail(Request $request){
         return redirect()->route('home');
     }
 
+if($childCount != 0){
     if( in_array("", $request->child_title) ){
         return redirect()->route('home');
     }
@@ -560,16 +594,20 @@ public function passengersDetail(Request $request){
     if( in_array("", $request->child_issue_country) ){
         return redirect()->route('home');
     }
+}
 
-
-
-
-
+//getting userid
+    if (Auth::check()) {
+       $userId = Auth::user()->id;
+    }else{
+        $userId = '';
+    }
 
 
 //storing flight reservation detail in db
     $flightReservation = FlightReservation::create([
         'group_id'=> $random,
+        'user_id'=> $userId,
         'return_type'=> $request->trip_type,
         'flight_id'=> $request->flight_id,
         'returnflight_id'=> $request->returnflight_id,
@@ -593,10 +631,12 @@ public function passengersDetail(Request $request){
         }else{
             $filename = '';
         }
+        
 
         if($request->main_traveller == (string)($i+1)){
             $adultTravellers[$i] = $flightReservation->travellers()->create([
                 "group_id" => $random,
+                "user_id" => $userId,
                 "person_type" => 'main',
                 "type" => 'flight',
                 "title" => $request->adult_title[$i],

@@ -217,16 +217,17 @@
                 {!! Form::hidden('childno', $flightDetail->Child, ['class'=>'childno']) !!}
                 {!! Form::hidden('trip_type', $trip_type ) !!}
                 {!! Form::hidden('flight_id', $flightDetail->FlightId ) !!}
-                {!! Form::hidden('returnflight_id', $returnFlightDetail->FlightId ) !!}
                 {!! Form::hidden('flightDetail', json_encode($flightDetail) ) !!}
                 @if($trip_type == 'R')
+                {!! Form::hidden('returnflight_id', $returnFlightDetail->FlightId ) !!}
                 {!! Form::hidden('returnFlightDetail', json_encode($returnFlightDetail) ) !!}
+                {!! Form::hidden('totalAmount', custom_number_format( totalPrice($returnFlightDetail->Adult, $returnFlightDetail->Child, $returnFlightDetail->AdultFare, $returnFlightDetail->ChildFare, $returnFlightDetail->ResFare, $returnFlightDetail->FuelSurcharge, $returnFlightDetail->Tax ) + totalPrice($flightDetail->Adult, $flightDetail->Child, $flightDetail->AdultFare, $flightDetail->ChildFare, $flightDetail->ResFare, $flightDetail->FuelSurcharge, $flightDetail->Tax ) ) )  !!}
                 @else
                 {!! Form::hidden('returnFlightDetail', null ) !!}
+                {!! Form::hidden('totalAmount', custom_number_format( totalPrice($flightDetail->Adult, $flightDetail->Child, $flightDetail->AdultFare, $flightDetail->ChildFare, $flightDetail->ResFare, $flightDetail->FuelSurcharge, $flightDetail->Tax ) ) )  !!}
                 @endif
-                {!! Form::hidden('totalAmount', custom_number_format( totalPrice($returnFlightDetail->Adult, $returnFlightDetail->Child, $returnFlightDetail->AdultFare, $returnFlightDetail->ChildFare, $returnFlightDetail->ResFare, $returnFlightDetail->FuelSurcharge, $returnFlightDetail->Tax ) + totalPrice($flightDetail->Adult, $flightDetail->Child, $flightDetail->AdultFare, $flightDetail->ChildFare, $flightDetail->ResFare, $flightDetail->FuelSurcharge, $flightDetail->Tax ) ) )  !!}
-
                 
+
                 {{-- <div id="example-vertical" style="display: none;"> --}}
                 <?php $i =1; ?>
                 @while($i <= $flightDetail->Adult)
@@ -735,22 +736,6 @@
         </section>
     {{-- </form> --}}
           
-                      
-
-
-
-
-
-               
-    
-        {!! Form::open(['class'=>'testForm']) !!}
-            
-
-        {!! Form::close() !!}
-        
-
-
-
 
 
 

@@ -509,10 +509,31 @@
 
 									{!! Form::close() !!}
 
+									@if(Auth::check())
+
+									{!! Form::open(['url'=>'/flight/passengers']) !!}
+										<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
+										@if($trip_type == 'R')
+										<input type="hidden" name="returnFlightDetail" value='<?php echo json_encode($returnFlightDetail); ?>'>
+										@endif
+										<input type="hidden" name="tripType" class="trip-type" value="{{$trip_type}}">
+									 	<input type="hidden" name="country" value="{{$country}}">
+									 	<input type="hidden" name="departure" value="{{$departure}}">
+									 	<input type="hidden" name="arrival" value="{{$arrival}}">
+									 	<?php /* ?>
+									 	<input type="hidden" name="userId" value="<?php echo Crypt::encrypt(Auth::user()->id) ?>">
+									 	<?php */ ?>
+										<button class="btn btn-continue pull-right">
+											Continue <i class="fa fa-angle-right"></i>
+										</button>
+									{!! Form::close() !!}
+
+									@else
 									<button class="btn btn-continue pull-right" data-toggle="modal" data-target="#login">
 										continue <i class="fa fa-angle-right"></i>
 
 									</button>
+									@endif
 								</div>
 
 								<!-- Modal -->

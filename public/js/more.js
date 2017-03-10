@@ -1020,7 +1020,7 @@ $(document).on('click', '.modifySearchFlight', function(){
   }
 });
 
-var form = $("#testForm").show();
+var form = $("#paxDetailForm").show();
 
 form.steps({
     headerTag: "li",
