@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= url() ?>/colorbox/colorbox.css">
     <link rel="stylesheet" href="<?= url() ?>/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= url() ?>/css/sumoselect.css">
     <link rel="stylesheet" href="<?= url() ?>/css/jquery.steps.css">
+    <link rel="stylesheet" href="<?= url() ?>/css/sumoselect.css">
     <link href="<?= url() ?>/css/owl.carousel.css" rel="stylesheet">
     <link href="<?= url() ?>/css/owl.theme.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= url() ?>/css/jquery-ui-1.10.4.custom.css">
@@ -92,7 +92,6 @@
 
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {!! Html::script('js/jquery.sumoselect.min.js') !!}
     {!! Html::script('js/jquery-ui.min.js') !!}
     {!! Html::script('colorbox/jquery.colorbox.js') !!}
     {!! Html::script('js/bootstrap-tabcollapse.js') !!}
@@ -103,6 +102,7 @@
     {!! Html::script('js/jquery.validate.js') !!}
     @endif
     {!! Html::script('js/jquery.steps.min.js') !!}
+    {!! Html::script('js/jquery.sumoselect.min.js') !!}
     @yield('extra-btm')
     <script type="text/javascript">
      $(document).ready(function(){

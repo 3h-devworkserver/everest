@@ -185,6 +185,13 @@ $(document).ready(function(){
 
 	window.asd = $('.SlectBox').SumoSelect({ csvDispCount: 3 });
 
+//from --yojan for searching country
+$( ".country" ).SumoSelect({
+  search: true, 
+  searchText: 'Enter Country'
+});
+
+
 	// $(function() {
 	//     $( "#from" ).datepicker({
 	//     	'dateFormat': 'dd M yy',

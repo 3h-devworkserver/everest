@@ -687,10 +687,12 @@ $( ".locations" ).SumoSelect({
 });
 
 //sumoselect for selecting country for flight search
-$( ".country" ).SumoSelect({
-  search: true, 
-  searchText: 'Enter Country'
-});
+// $( ".country" ).SumoSelect(
+// // {
+// //   search: true, 
+// //   searchText: 'Enter Country'
+// // }
+// );
 
 
 
@@ -1102,7 +1104,9 @@ form.steps({
   unhighlight: function(element) {
     $(element).closest('[class^=col-md]').removeClass('has-error');
   },
-    errorPlacement: function errorPlacement(error, element) { element.before(error); },
+    errorPlacement: function errorPlacement(error, element) { 
+      // element.before(error); 
+    },
     // rules: {
     //   email_confirmation: { 
     //   equalTo: "#email",

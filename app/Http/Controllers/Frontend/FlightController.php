@@ -499,26 +499,28 @@ if($request->trip_type == 'R'){
         'trip_type' => 'required',
         'flight_id' => 'required',
         'returnflight_id' => 'required',
-        'flight_detail' => 'required',
-        'returnflight_detail' => 'required',
+        'flightDetail' => 'required',
+        'returnFlightDetail' => 'required',
         'main_traveller' => 'required',
         'main_traveller_email' => 'required',
         'main_traveller_country' => 'required',
-        'em_fullname' => 'required',
-        'em_country' => 'required',
-        'em_email' => 'required',
+        'totalAmount' => 'required',
+        // 'em_fullname' => 'required',
+        // 'em_country' => 'required',
+        // 'em_email' => 'required',
         ]);
 }else{
     $validator = Validator::make($request->all(), [       
         'trip_type' => 'required',
         'flight_id' => 'required',
-        'flight_detail' => 'required',
+        'flightDetail' => 'required',
         'main_traveller' => 'required',
         'main_traveller_email' => 'required',
         'main_traveller_country' => 'required',
-        'em_fullname' => 'required',
-        'em_country' => 'required',
-        'em_email' => 'required',
+        'totalAmount' => 'required',
+        // 'em_fullname' => 'required',
+        // 'em_country' => 'required',
+        // 'em_email' => 'required',
         ]);
 }
     if ($validator->fails())
@@ -603,7 +605,6 @@ if($childCount != 0){
         $userId = '';
     }
 
-
 //storing flight reservation detail in db
     $flightReservation = FlightReservation::create([
         'group_id'=> $random,
@@ -615,7 +616,6 @@ if($childCount != 0){
         'flight_detail'=> $request->flightDetail,
         'returnflight_detail'=> $request->returnFlightDetail,
     ]); 
-
 //storing adult(normal and main traveller) info 
     $i = 0;
     while($i < $adultCount){
@@ -631,7 +631,6 @@ if($childCount != 0){
         }else{
             $filename = '';
         }
-        
 
         if($request->main_traveller == (string)($i+1)){
             $adultTravellers[$i] = $flightReservation->travellers()->create([

@@ -3474,7 +3474,7 @@ dl.term-description dd {
 .passanger-wrap > div {
     display: inline-block;
     /*width: 32%;*/
-    width: 49%;
+    width: 48%;
 }
 .flight-search-form .search-form-content .schedule p,
 .flight-search-form .search-form-content .passanger-wrap p,
@@ -4045,6 +4045,7 @@ body.modal-open {
     text-align: center;
 }
 /* passanger detail page */
+
 .passanger-detail-from {
     margin-top: 20px;
 }
@@ -4125,6 +4126,153 @@ body.modal-open {
 .passanger-detail-from article:last-of-type {
     padding-bottom: 0px;
 }
+
+#vertical > h4{
+    margin-bottom: 20px;
+}
+.wizard.vertical > .steps{
+  width: 16%;
+}
+.wizard.vertical > .steps a,
+.wizard.vertical > .steps a:hover,
+.wizard.vertical > .steps a:active{
+    position: relative;
+    border-radius: 0;
+    margin: 0;
+    background:#fff;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+    border-color:#ddd;
+    padding: 15px;
+    color: #004998;
+}
+.wizard.vertical > .steps .disabled a,
+.wizard.vertical > .steps .disabled a:hover,
+.wizard.vertical > .steps .disabled a:active{
+    color: #999;
+    cursor: not-allowed;
+}
+.wizard.vertical > .steps a span.number{
+    display: none;
+}
+.wizard > .steps .current a:before{
+    border-bottom: 13px solid transparent;
+    border-left: 10px solid #004998;
+    border-top: 13px solid transparent;
+    content: "";
+    left: 100%;
+    margin-top: -13px;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+}
+.wizard > .steps .current a, 
+.wizard > .steps .current a:hover, 
+.wizard > .steps .current a:active{
+    border-radius: 0;
+    background:#004998;
+    color: #fff;
+    margin: 0;
+}
+
+.wizard.vertical > .content{
+    background-color:#fff;
+    margin: 0;
+    border:1px solid #ddd;
+    border-radius: 0;
+    width: 84%;
+    min-height: 400px;
+}
+.wizard > .content > .body{
+    position: static;   
+}
+.wizard .content .passanger-title{
+    color: #004998;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.wizard .content [class*="col-"],
+.wizard .content [class^="col-"]{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.wizard .content fieldset .SumoSelect .search-txt{
+    display: none;
+    border:none;
+}
+.wizard .content fieldset .SumoSelect.open .search-txt{
+    display: block;
+}
+.wizard .content .SumoSelect .SelectBox {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    height: 35px;
+    line-height: 18px;
+    padding: 8px 10px;
+}
+.wizard .content .SumoSelect .SelectBox span{
+    color: #989898;
+}
+.wizard .content .SumoSelect > .CaptionCont > label {
+  margin: 0;
+  width: 20px;
+}
+.wizard .content .SumoSelect > .CaptionCont > label > i {
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 10px;
+    margin: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 10px;
+}
+.wizard .content .doe .SumoSelect,
+.wizard .content .doe .form-control.SumoSelect,
+.wizard .content .dob .form-control,
+.wizard .content .doe .form-control {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    margin-right: 6px;
+    width: 31%;
+}
+
+.wizard .content .has-error span.help-block{
+    color: red;
+}
+.wizard .content .has-error .SumoSelect .SelectBox,
+.wizard .content .has-error .form-control{
+    border-color: red;
+}
+
+.wizard > .actions a,
+.wizard > .actions a:hover,
+.wizard > .actions a:active {
+    background-color: #5e5e5e;
+    border-color: #5e5e5e;
+    border-radius: 0;
+    color: #fff;
+    margin-top: 20px;
+    padding: 8px 25px;
+    text-transform: capitalize;
+}
+.flight-payment .box-flight.oneway-flight .second-row .short-desc{
+    text-align: center;
+}
+
+
+
+
+
+
+
 /* payment page */
 .flight-payment .box-flight figure span.airlines-thumb {
     min-height: 90px;
