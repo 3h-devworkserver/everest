@@ -20,9 +20,9 @@ class FlightReservation extends Model
      */
     protected $guarded = ['id'];
 
-    public function travellers()
+    public function mainTraveller()
     {
-        return $this->hasMany('App\Models\TravellerInfo','booking_id');
+        return $this->hasOne('App\Models\MainTraveller','flight_reservation_id');
     }
 
 

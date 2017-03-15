@@ -27,9 +27,4 @@ class Profile extends Model
     }
 
 
-    public function picture($resolution){
-        $value = explode('.', $this->profileImg);
-        $fileName = $value[0].'_'.$resolution.'.'.$value[1];
-        return $fileName;
-    }
 }

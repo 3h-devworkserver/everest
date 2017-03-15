@@ -16,7 +16,7 @@ use App\Models\TravellerInfo;
 use App\Models\Promocode;
 use App\Models\ESewaIpn;
 use App\Models\Contact;
-use App\Models\Booking;
+use App\Models\PackageBooking;
 use Session;
 use App\Repositories\Frontend\User\UserContract;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -935,7 +935,7 @@ $i++;
     }else{
         $addon_packages_detail = '';
     }
-    $booking = Booking::where('group_id', $groupId)->first();
+    $booking = PackageBooking::where('group_id', $groupId)->first();
     if(!empty($booking)){
         $booking->update([
                 "package_selected" => $packageId,

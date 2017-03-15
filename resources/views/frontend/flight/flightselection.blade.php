@@ -62,23 +62,24 @@
 							</div>
 							<div class="col-md-5 col-sm-4">
 								<div class="schedule">
-									<div class="departure">
-										<p class="departure-caption">Departing</p>
-										<span class="departure-timings">
-												<!-- <span class="date">
-													<i class="fa fa-calendar-o"></i>
-													27
-												</span> -->
-												<span class="month">
-													<?php if(!empty($date_depart)){
-														echo (new DateTime($date_depart))->format('j M Y D') ;
-													}?>
-													{{-- 27 oct 2016
-													thu --}}
-												</span>
+										<div class="departure">
+											<p class="departure-caption">Departing</p>
+											<span class="departure-timings">
+													<!-- <span class="date">
+														<i class="fa fa-calendar-o"></i>
+														27
+													</span> -->
+													<span class="month">
+														<?php if(!empty($date_depart)){
+															echo (new DateTime($date_depart))->format('j M Y D') ;
+														}?>
+														{{-- 27 oct 2016
+														thu --}}
+													</span>
 											</span>
-											
+												
 										</div>
+										@if(!empty($inAvailability))
 										<div class="arrival">
 											<p class="departure-caption">Returning</p>
 											<span class="departure-timings">
@@ -94,8 +95,8 @@
 													thu --}}
 												</span>
 											</span>
-											
 										</div>
+										@endif
 									</div>
 
 								</div>
@@ -160,7 +161,7 @@
 				</div>
 		</div>
 
-		@if( (!empty($outAvailability)) && (!empty($outAvailability)) )
+		@if( (!empty($outAvailability)) && (!empty($inAvailability)) )
 			<div class="container">
 				<!-- <h2>{{$departureFull}} to {{$arrivalFull}}</h3> -->
 
@@ -326,7 +327,7 @@
 					                            			<div class="col-md-8 col-sm-8 col-xs-12">
 					                            				<img src="{{$avail->AirlineLogo}}" alt="">
 					                            				<h4 class="box-title"><?php echo airlinesName($avail->Airline); ?> ({{$avail->FlightNo}})</h4>
-					                            				<!-- <a class="badge">1 STOP</a> --><a class="badge">Class {{$avail->FlightClassCode}}</a>
+					                            				<!-- <a class="badge">1 STOP</a> --><span class="badge">Class {{$avail->FlightClassCode}}</span>
 					                            				
 
 					                            			</div>
@@ -600,7 +601,7 @@
 					                            			<div class="col-md-8 col-sm-8 col-xs-12">
 					                            				<img src="{{$avail->AirlineLogo}}" alt="">
 					                            				<h4 class="box-title"><?php echo airlinesName($avail->Airline); ?> ({{$avail->FlightNo}})</h4>
-					                            				<!-- <a class="badge">1 STOP</a> --><a class="badge">Class {{$avail->FlightClassCode}}</a>
+					                            				<!-- <a class="badge">1 STOP</a> --><span class="badge">Class {{$avail->FlightClassCode}}</span>
 					                            			</div>
 					                            			<div class="col-md-2 col-sm-2">
 					                            				<span class="fare-type">
@@ -759,7 +760,7 @@
 		@else
 		<div class="noResult">
 			<div class="container">
-			<p>No result found.. Please modify your search</p>
+			<p class="alert alert-danger">No result found.. Please modify your search</p>
 			</div>
 		</div>
 		<script type="text/javascript">

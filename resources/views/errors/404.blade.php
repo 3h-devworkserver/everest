@@ -1,3 +1,32 @@
+@extends('frontend.layouts.master-new')
+@section('title') Traveller Account | {{ $siteTitle }}@endsection
+@section('content')
+
+<section class="main-content dashboard-wrapper">
+
+    
+</section>
+@endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php /* ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -58,3 +87,5 @@
 </body>
 </html>
 <!-- IE needs 512+ bytes: http://blogs.msdn.com/b/ieinternals/archive/2010/08/19/http-error-pages-in-internet-explorer.aspx -->
+
+<?php */ ?>

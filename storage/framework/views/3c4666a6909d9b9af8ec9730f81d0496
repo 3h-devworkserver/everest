@@ -1,8 +1,36 @@
+<?php $__env->startSection('title'); ?> Traveller Account | <?php echo e($siteTitle); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+
+<section class="main-content dashboard-wrapper">
+
+    
+</section>
+<?php $__env->stopSection(); ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php /* ?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title><?php echo e(trans('strings.page_not_found')); ?></title>
+    <title>{{ trans('strings.page_not_found') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
 
@@ -37,7 +65,7 @@
             width: 280px;
         }
 
-        @media  only screen and (max-width: 280px) {
+        @media only screen and (max-width: 280px) {
 
             body, p {
                 width: 95%;
@@ -53,8 +81,11 @@
     </style>
 </head>
 <body>
-    <h1><?php echo e(trans('strings.page_not_found')); ?></h1>
-    <p><?php echo e(trans('strings.sorry_page_you_were_trying')); ?></p>
+    <h1>{{ trans('strings.page_not_found') }}</h1>
+    <p>{{ trans('strings.sorry_page_you_were_trying') }}</p>
 </body>
 </html>
 <!-- IE needs 512+ bytes: http://blogs.msdn.com/b/ieinternals/archive/2010/08/19/http-error-pages-in-internet-explorer.aspx -->
+
+<?php */ ?>
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

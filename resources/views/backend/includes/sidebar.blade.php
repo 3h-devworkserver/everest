@@ -106,6 +106,20 @@
                   </li>
                 @endauth -->
 <!-- end previous code -->
+  
+              @permission ('view-customer-management')
+                <li class="{{ Active::pattern('admin/customers*')}} treeview">
+                  <a href="#">
+                    <i class="fa fa-user"></i><span>{{ trans('Customers') }}</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu {{ Active::pattern('admin/customers*', 'menu-open') }}" style="display: none; {{ Active::pattern('admin/customers*', 'display: block;') }}">
+                    <li class="{{ Active::pattern('admin/customers') }}">
+                      <a href="{!! url('admin/customers') !!}"><i class="fa fa-file-text-o"></i> {{ trans('All Customers') }}</a>
+                    </li>
+                  </ul>
+                </li>
+                @endauth
 
                 @permission ('view-menu-management')
                 <li class="{{ Active::pattern('admin/menus*')}} treeview">

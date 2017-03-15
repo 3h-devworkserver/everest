@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= url() ?>/colorbox/colorbox.css">
     <link rel="stylesheet" href="<?= url() ?>/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= url() ?>/css/sumoselect.css">
     <link rel="stylesheet" href="<?= url() ?>/css/jquery.steps.css">
+    <link rel="stylesheet" href="<?= url() ?>/css/sumoselect.css">
     <link href="<?= url() ?>/css/owl.carousel.css" rel="stylesheet">
     <link href="<?= url() ?>/css/owl.theme.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= url() ?>/css/jquery-ui-1.10.4.custom.css">
@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="<?= url() ?>/css/responsive.css">
     <link rel="icon" type="image/png" href="<?php echo e(url('/favicon.png')); ?>" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="<?php echo e(asset('js/countries.js')); ?>"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <?php echo $__env->yieldContent('extra'); ?>
 
@@ -76,7 +77,7 @@
 <?php */ ?>
 
 </head>
-<body class="<?php echo e($class); ?>">
+<body class="<?php echo e(isset($class) ? $class : ''); ?>">
 <?php echo $__env->yieldContent('loader'); ?>
 <div class="main">
     <?php if(url::full() != url().'/admin'): ?>
@@ -92,8 +93,6 @@
 
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <?php echo Html::script('js/jquery.sumoselect.min.js'); ?>
-
     <?php echo Html::script('js/jquery-ui.min.js'); ?>
 
     <?php echo Html::script('colorbox/jquery.colorbox.js'); ?>
@@ -110,6 +109,8 @@
 
     <?php endif; ?>
     <?php echo Html::script('js/jquery.steps.min.js'); ?>
+
+    <?php echo Html::script('js/jquery.sumoselect.min.js'); ?>
 
     <?php echo $__env->yieldContent('extra-btm'); ?>
     <script type="text/javascript">

@@ -186,13 +186,13 @@
         	</div>
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
-        			<label>Province of State</label>
-        			{!!Form::text('state[]',null, ['class'=>'form-control']) !!}
-        		</div>
-        		<div class="col-md-4 col-sm-6">
         			<label>Country<em>*</em></label>
-        			{!!Form::text('country[]',null, ['class'=>'form-control', ]) !!}
+        			{!!Form::select('country[]', [], null, ['class'=>'form-control countrylist' ]) !!}
         		</div>
+                <div class="col-md-4 col-sm-6">
+                    <label>Province of State</label>
+                    {!!Form::select('state[]', [], null, ['class'=>'form-control statelist']) !!}
+                </div>
         	</div>
 
         </div>
@@ -215,14 +215,13 @@
         	</div>
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
-        			<label>Province of State</label>
-        			{!!Form::text('em_state[]',null, ['class'=>'form-control']) !!}
-        		</div>
-        		<div class="col-md-4 col-sm-6">
         			<label>Country<em>*</em></label>
-        			{!!Form::text('em_country[]',null, ['class'=>'form-control', ]) !!}
+        			{!!Form::select('em_country[]', [], null, ['class'=>'form-control countrylist' ]) !!}
         		</div>
-
+                <div class="col-md-4 col-sm-6">
+                    <label>Province of State</label>
+                    {!!Form::select('em_state[]', [], null, ['class'=>'form-control statelist']) !!}
+                </div>
         	</div>
 
         </div>
@@ -395,14 +394,13 @@
         	</div>
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
-        			<label>Province of State</label>
-        			{!!Form::text('state[]',null, ['class'=>'form-control']) !!}
-        		</div>
-        		<div class="col-md-4 col-sm-6">
         			<label>Country<em>*</em></label>
-        			{!!Form::text('country[]',null, ['class'=>'form-control', ]) !!}
+        			{!!Form::select('country[]', [], null, ['class'=>'form-control countrylist' ]) !!}
         		</div>
-
+                <div class="col-md-4 col-sm-6">
+                    <label>Province of State</label>
+                    {!!Form::select('state[]', [], null, ['class'=>'form-control statelist']) !!}
+                </div>
         	</div>
         </div>
 
@@ -424,14 +422,13 @@
         	</div>
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
-        			<label>Province of State</label>
-        			{!!Form::text('em_state[]',null, ['class'=>'form-control']) !!}
-        		</div>
-        		<div class="col-md-4 col-sm-6">
         			<label>Country<em>*</em></label>
-        			{!!Form::text('em_country[]',null, ['class'=>'form-control', ]) !!}
+        			{!!Form::select('em_country[]', [], null, ['class'=>'form-control countrylist' ]) !!}
         		</div>
-
+                <div class="col-md-4 col-sm-6">
+                    <label>Province of State</label>
+                    {!!Form::select('em_state[]', [], null, ['class'=>'form-control statelist']) !!}
+                </div>
         	</div>
 
         </div>
@@ -670,14 +667,14 @@
 					                    	</div>
 					                    	<div class="row">
 					                    		<div class="col-md-4 col-sm-6">
-					                    			<label>Province of State</label>
-					                    			{!!Form::text('state[]',null, ['class'=>'form-control']) !!}
-					                    		</div>
-					                    		<div class="col-md-4 col-sm-6">
 					                    			<label>Country<em>*</em></label>
-					                    			{!!Form::text('country[]',null, ['class'=>'form-control', ]) !!}
+                                                    {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'id' => 'country_id' ]) !!}
+					                    			{{-- {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'id' => 'country_id', 'onchange'=>"print_state(this.closest('[class^=col-md]').next(),this.selectedIndex);" ]) !!} --}}
 					                    		</div>
-
+                                                <div class="col-md-4 col-sm-6">
+                                                    <label>Province of State</label>
+                                                    {!!Form::select('state[]', [], null, ['class'=>'form-control statelist']) !!}
+                                                </div>
 					                    	</div>
 
 					                    </div>
@@ -701,14 +698,13 @@
 					                    	</div>
 					                    	<div class="row">
 					                    		<div class="col-md-4 col-sm-6">
-					                    			<label>Province of State</label>
-					                    			{!!Form::text('em_state[]',null, ['class'=>'form-control']) !!}
-					                    		</div>
-					                    		<div class="col-md-4 col-sm-6">
 					                    			<label>Country<em>*</em></label>
-					                    			{!!Form::text('em_country[]',null, ['class'=>'form-control', ]) !!}
+					                    			{!!Form::select('em_country[]', [], null, ['class'=>'form-control countrylist', ]) !!}
 					                    		</div>
-
+                                                <div class="col-md-4 col-sm-6">
+                                                    <label>Province of State</label>
+                                                    {!!Form::select('em_state[]', [], null, ['class'=>'form-control statelist']) !!}
+                                                </div>
 					                    	</div>
 
 					                    </div>
@@ -731,23 +727,24 @@
                                                     </div>
                                                     <div class="price">+NPR {{$pack->price}} <small>per Person</small></div>
                                                     <div class="addextraPackageDiv">
-                                                        <label>For</label>
-                                                        <select name="addon_packages_detail[]" data-id="{{$pack->id}}" class="form-control addonPackage ">
-                                                            <option value="">-- Select --</option>
-                                                            <option value="{{$pack->id.'-'.'1'.'-'.$pack->price}}" data-no="1" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price}}">1</option>
-                                                            <option value="{{$pack->id.'-'.'2'.'-'.$pack->price * 2}}" data-no="2" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *2}}">2</option>
-                                                            <option value="{{$pack->id.'-'.'3'.'-'.$pack->price * 3}}" data-no="3" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *3}}">3</option>
-                                                            <option value="{{$pack->id.'-'.'4'.'-'.$pack->price * 4}}" data-no="4" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *4}}">4</option>
-                                                            <option value="{{$pack->id.'-'.'5'.'-'.$pack->price * 5}}" data-no="5" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *5}}">5</option>
-                                                            <option value="{{$pack->id.'-'.'6'.'-'.$pack->price * 6}}" data-no="6" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *6}}">6</option>
-                                                            <option value="{{$pack->id.'-'.'7'.'-'.$pack->price * 7}}" data-no="7" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *7}}">7</option>
-                                                            <option value="{{$pack->id.'-'.'8'.'-'.$pack->price * 8}}" data-no="8" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *8}}">8</option>
-                                                            <option value="{{$pack->id.'-'.'9'.'-'.$pack->price * 9}}" data-no="9" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *9}}">9</option>
-                                                            <option value="{{$pack->id.'-'.'10'.'-'.$pack->price * 10}}" data-no="10" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *10}}">10</option>
-
-                                                        </select>
+                                                        <div class="select-number">
+                                                            <label>For</label>
+                                                            <select name="addon_packages_detail[]" data-id="{{$pack->id}}" class="form-control addonPackage ">
+                                                                <option value="">-- Select --</option>
+                                                                <option value="{{$pack->id.'-'.'1'.'-'.$pack->price}}" data-no="1" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price}}">1</option>
+                                                                <option value="{{$pack->id.'-'.'2'.'-'.$pack->price * 2}}" data-no="2" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *2}}">2</option>
+                                                                <option value="{{$pack->id.'-'.'3'.'-'.$pack->price * 3}}" data-no="3" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *3}}">3</option>
+                                                                <option value="{{$pack->id.'-'.'4'.'-'.$pack->price * 4}}" data-no="4" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *4}}">4</option>
+                                                                <option value="{{$pack->id.'-'.'5'.'-'.$pack->price * 5}}" data-no="5" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *5}}">5</option>
+                                                                <option value="{{$pack->id.'-'.'6'.'-'.$pack->price * 6}}" data-no="6" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *6}}">6</option>
+                                                                <option value="{{$pack->id.'-'.'7'.'-'.$pack->price * 7}}" data-no="7" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *7}}">7</option>
+                                                                <option value="{{$pack->id.'-'.'8'.'-'.$pack->price * 8}}" data-no="8" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *8}}">8</option>
+                                                                <option value="{{$pack->id.'-'.'9'.'-'.$pack->price * 9}}" data-no="9" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *9}}">9</option>
+                                                                <option value="{{$pack->id.'-'.'10'.'-'.$pack->price * 10}}" data-no="10" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *10}}">10</option>
+                                                            </select>
+                                                        </div>
+                                                        <a href="{{url('/package/'.$pack->slug)}}" target="_blank" class="btn btn-gray">view itinerary</a>
                                                     </div>
-                                                    <a href="{{url('/package/'.$pack->slug)}}" target="_blank" class="btn btn-gray">view itinerary</a>
                                                 </div>
                                             </div>
                                             <?php $i++; ?>

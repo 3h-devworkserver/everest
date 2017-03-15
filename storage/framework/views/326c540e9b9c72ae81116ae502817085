@@ -1,6 +1,5 @@
 <div class="booking-form">			
 
-
 	<div class="tab-wrapper">
 
 		<!-- Nav tabs -->

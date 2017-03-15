@@ -62,7 +62,7 @@ class FrontendController extends Controller {
 
 
         //flight sector code
-        //ini_set("max_execution_time",120);
+        ini_set("max_execution_time",120);
         $wsdl              = 'http://dev.usbooking.org/us/UnitedSolutions?wsdl';
         $endpoint          =  array('location'=>'http://dev.usbooking.org/us/UnitedSolutions');
         $soapClient        = new \SoapClient($wsdl, $endpoint);

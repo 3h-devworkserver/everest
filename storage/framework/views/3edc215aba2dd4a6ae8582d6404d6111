@@ -64,7 +64,7 @@
 									</div>
 									<div class="col-md-8 col-sm-7 mobile-mode">
 										<h4 class="box-title"><?php echo airlinesName($flightDetail->Airline); ?> (<?php echo e($flightDetail->FlightNo); ?>)<small>Departure flight</small></h4>
-										<a class="badge">Class <?php echo e($flightDetail->FlightClassCode); ?></a>
+										<span class="badge">Class <?php echo e($flightDetail->FlightClassCode); ?></span>
 									</div>
 									<!-- <div class="col-md-3 col-sm-3 text-right">
 										<a href="flight.html" class="btn btn-back"><i class="fa fa-angle-left"></i>Back To Flight List</a>
@@ -195,7 +195,7 @@
 									</div>
 									<div class="col-md-8 col-sm-7 mobile-mode">
 										<h4 class="box-title"><?php echo airlinesName($returnFlightDetail->Airline); ?> (<?php echo e($returnFlightDetail->FlightNo); ?>)<small>Return flight</small></h4>
-										<a class="badge">Class <?php echo e($returnFlightDetail->FlightClassCode); ?></a>
+										<span class="badge">Class <?php echo e($returnFlightDetail->FlightClassCode); ?></span>
 									</div>
 									<!-- <div class="col-md-3 col-sm-3 text-right">
 										<a href="flight.html" class="btn btn-back"><i class="fa fa-angle-left"></i>Back To Flight List</a>

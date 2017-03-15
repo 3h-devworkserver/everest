@@ -42,6 +42,7 @@ $router->group(['namespace' => 'Backend'], function () use ($router)
 			require(__DIR__ . "/Routes/Backend/Packages.php");
 			require(__DIR__ . "/Routes/Backend/Summitteers.php");
 			require(__DIR__ . "/Routes/Backend/Video.php");
+			require(__DIR__ . "/Routes/Backend/Customers.php");
                         require(__DIR__ . "/Routes/Backend/Ad.php");
                         require(__DIR__ . "/Routes/Backend/LinkSearch.php");
 		 });
@@ -91,7 +92,14 @@ $router->group(['namespace' => 'Backend'], function () use ($router)
 	   get('table/package/category', ['as'=>'api.table.package.category', 'uses'=>'DataTableController@getPackageCategory']); 
 	//for package option
 	   get('table/package/option', ['as'=>'api.table.package.option', 'uses'=> 'DataTableController@getPackageOption']);
+	   
+	   //for customer list in backend
+	   get('table/customer', ['as'=>'api.table.customer', 'uses'=> 'DataTableController@getCustomers']);
+ 		//for registered customer list in backend
+	   get('table/customer/registered', ['as'=>'api.table.customer.registered', 'uses'=> 'DataTableController@getRegisteredCustomers']);
 
+
+	   
 
 	});
 });

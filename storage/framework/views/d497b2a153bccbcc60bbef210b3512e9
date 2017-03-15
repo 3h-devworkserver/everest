@@ -106,6 +106,20 @@
                   </li>
                 <?php endif; ?> -->
 <!-- end previous code -->
+  
+              <?php if (access()->can('view-customer-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/customers*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-user"></i><span><?php echo e(trans('Customers')); ?></span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/customers*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/customers*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/customers')); ?>">
+                      <a href="<?php echo url('admin/customers'); ?>"><i class="fa fa-file-text-o"></i> <?php echo e(trans('All Customers')); ?></a>
+                    </li>
+                  </ul>
+                </li>
+                <?php endif; ?>
 
                 <?php if (access()->can('view-menu-management')): ?>
                 <li class="<?php echo e(Active::pattern('admin/menus*')); ?> treeview">

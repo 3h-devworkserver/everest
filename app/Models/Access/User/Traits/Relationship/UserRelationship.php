@@ -33,6 +33,12 @@ trait UserRelationship {
         return $this->belongsToMany(config('access.permission'), config('access.permission_user_table'), 'user_id', 'permission_id');
     }
 
+    public function profile(){
+        return $this->hasOne(Profile::class,'user_id','id');
+    }
+
+
+
 //commented , not used --yojan
     // /**
     //  * @return mixed

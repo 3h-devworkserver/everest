@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Booking extends Model 
+class PackageBooking extends Model 
 {
      /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'bookings';
+    protected $table = 'packages_bookings';
     
     /**
      * The attributes that are not mass assignable.

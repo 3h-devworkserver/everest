@@ -4274,6 +4274,11 @@ body.modal-open {
 
 
 /* payment page */
+.flight-payment .box-flight .details-wrapper .second-row .time h5 i.fa-long-arrow-right,
+.flight-payment .box-flight .details-wrapper .second-row .time h5 i.fa-long-arrow-left{
+    margin-left: 45px;
+    margin-right: 45px;
+}
 .flight-payment .box-flight figure span.airlines-thumb {
     min-height: 90px;
 }
@@ -4281,7 +4286,6 @@ body.modal-open {
     float: left;
     margin-right: 10px;
     width: 30px;
-
 }
 .flight-payment .box-flight .second-row .short-desc{
     margin-top: 15px;
@@ -4304,9 +4308,9 @@ body.modal-open {
   border-radius: 0;
   font-size: 11px;
   font-weight: normal;
-    margin-left: 5px;
-    margin-top: 8px;
-    padding: 6px;
+  margin-left: 5px;
+  padding: 6px;
+  /* margin-top: 8px; */
 }
 .flight-payment .box-flight .second-row .ailrline-wrap .box-title{
     font-size: 16px;
@@ -4680,6 +4684,14 @@ body.modal-open {
     overflow: hidden;
     padding: 15px;
 }
+.addextraPackageDiv .select-number{
+    width: 55%;
+}
+.addextraPackageDiv a.btn{
+    float: right;
+    font-size: 12px;
+    line-height: normal;
+}
 .addextraPackageDiv label,
 .addextraPackageDiv .form-control{
     float: left;
@@ -4721,6 +4733,22 @@ body.modal-open {
 /***  by yojan  ****/
 .display-none{
     display: none;
+}
+.loader{
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.loader p{
+    margin-top: 15px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
 }
 /***  by yojan  ****/
 /*-----------------

@@ -211,7 +211,7 @@
         <section id="vertical">
             <h4>Passanger Details</h4>
 
-            <form id="paxDetailForm" action="{{url('/flight/passengerdetail')}}" style="display: none;" method="post" enctype="multipart/form-data">
+            <form id="paxDetailForm" action="{{url('/flight/passengerdetail')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {!! Form::hidden('adultno', $flightDetail->Adult, ['class'=>'adultno']) !!}
                 {!! Form::hidden('childno', $flightDetail->Child, ['class'=>'childno']) !!}
@@ -229,7 +229,6 @@
                 
 
                 {{-- <div id="example-vertical" style="display: none;"> --}}
-                <li>Contact Details</li> 
 
                 <?php $i =1; ?>
                 @while($i <= $flightDetail->Adult)
@@ -242,142 +241,6 @@
                 <li>Child {{$i}}</li>
                 <?php $i++; ?>
                 @endwhile
-                    
-
-                    <fieldset>
-                        <div class="tab-pane" id="contact">
-                                <article class="personal-info">
-                                    <div class="row-fluid">
-                                        <div class="col-md-12">
-                                            
-                                        <h5 class="passanger-title">Contact Details</h5>
-                                        
-                                        <hr>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        
-                                        <div class="row-fluid">
-                                            
-                                            <div class="col-md-6">
-                                                <label>Primary contact <small>(for this booking)</small></label>
-                                                <select name="main_traveller" class="SlectBox form-control" required>
-                                                <?php $i =1; ?>
-                                                @while($i <= $flightDetail->Adult)
-                                                    <option value="{{$i}}">Adult {{$i}}</option>
-                                                    <?php $i++; ?>
-                                                @endwhile
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row-fluid">
-                                            <div class="col-md-5">
-                                                <label for="">Country</label>
-                                               {!! Form::select('main_traveller_country',$countries, 'NP', ['class'=>'country form-control', 'required']) !!}
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label for="">Phone</label>
-                                                <select name="main_traveller_phonetype" id="" class="SlectBox form-control">
-                                                    <option>Mobile</option>
-                                                    <option>Home</option>
-                                                    <option>Office</option>
-                                                </select>
-                                               
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="">Number</label>
-                                                <input type="text" name="main_traveller_phone" class="form-control" placeholder="Enter Number">
-                                                
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        
-                                        <div class="row-fluid">
-                                            <div class="col-md-6">
-                                                <label for="">Email Address</label>
-                                                <input type="email" id="email" name="main_traveller_email" class="form-control" placeholder="Email Address" required>
-                                                
-                                            </div>
-                                            <div class="col-md-6">
-                                               <label for="">Repeat Email Address</label>
-                                                <input type="email" name ="main_traveller_email_confirm" class="form-control" placeholder="Email Address" required>
-                                               
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    
-                                </article>
-                                <?php /* ?>
-                                <article class="personal-info">
-                                    <div class="row-fluid">
-                                        <div class="col-md-12">
-                                            
-                                        <h5 class="passanger-title">Emergency Contact Details <small>(optional)</small></h5>
-                                        
-                                        <hr>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        
-                                        <div class="row-fluid">
-                                            
-                                            <div class="col-md-6">
-                                                <label>Name</label>
-                                                <input type="text" name="em_fullname" class="form-control" placeholder="Enter Full Name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row-fluid">
-                                            <div class="col-md-5">
-                                                <label for="">Country</label>
-                                               {!! Form::select('em_country',$countries, 'NP', ['class'=>'SlectBox country form-control' ]) !!}
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label for="">Phone</label>
-                                                <select name="em_phonetype" id="" class="SlectBox form-control">
-                                                    <option>Mobile</option>
-                                                    <option>Home</option>
-                                                    <option>Office</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="">Number</label>
-                                                <input type="text" name="em_phone" class="form-control" placeholder="Enter Number">
-                                                
-                                            </div>
-
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        
-                                        <div class="row-fluid">
-                                            <div class="col-md-6">
-                                                <label for="">Email Address</label>
-                                                <input type="email" name="em_email" class="form-control" placeholder="Email Address">
-                                                
-                                            </div>
-                                            <div class="col-md-6">
-                                               <label for="">Repeat Email Address</label>
-                                                <input type="email" name="em_email_confirm" class="form-control" placeholder="Email Address" >
-                                               
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    
-                                </article>
-                                <?php */ ?>
-                                
-                            
-                        </div>
-                    </fieldset>
 
                     <?php $i = 1; ?>
                     @while($i <= $flightDetail->Adult)
@@ -431,7 +294,7 @@
                                     <div class="row-fluid">
                                         <div class="col-md-4">
                                         <label for="">Document Type</label>
-                                           <input type="text" name="adult_document_type[]" class="form-control" placeholder="Document Number" required>
+                                            {!! Form::select('adult_document_type[]',['passport' => 'Passport', 'id-card'=> 'ID Card', 'birth-certificate'=>'Birth Certificate'], 'NP', ['class'=>'form-control SlectBox', 'required']) !!}
                                         </div>
                                         <div class="col-md-4">
                                         <label for="">Document Number</label>
@@ -455,6 +318,7 @@
                                         </div>
                                         <?php */ ?>
                                     </div>
+
                                 </div>
                                 
                                 <?php /* ?>
@@ -485,13 +349,17 @@
                                     </div>
                                 </div>
                                 <?php */ ?>
-                                <div class="col-md-3 col-sm-6">
-                                    <label>Passport Image</label>
-                                    <span class="btn btn-primary btn-file btn-sm">
-                                        <i class="fa fa-folder-open"></i>Upload
-                                        <input type="file" id="image" class="image" name="adult_passport_image[]" >
-                                    </span>
-                                    <span class="image-name"></span>
+                                <div class="form-group">
+                                    <div class="row-fluid">
+                                        <div class="col-md-3 col-sm-6">
+                                            <label>Document Image</label>
+                                            <span class="btn btn-primary btn-file btn-sm">
+                                                <i class="fa fa-folder-open"></i>Upload
+                                                <input type="file" id="image" class="image" name="adult_document_image[]" >
+                                            </span>
+                                            <span class="image-name"></span>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!--
@@ -528,6 +396,17 @@
                                     </div>
                                 </div> 
                                 -->
+                                <div class="form-group">
+                                    <div class="row-fluid">
+                                        <div class="col-md-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                  <input type="checkbox" name="main_traveller" value="{{$i}}"> I am Lead Traveller
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </article>
                                 
                             
@@ -555,7 +434,7 @@
                                 <div class="form-group">
                                     <div class="row-fluid">
                                         <div class="col-md-12">
-                                            <label for="">Full name <small>(as per passport)</small></label>
+                                            <label for="">Full name</label>
                                             
                                         </div>
                                     </div>
@@ -587,16 +466,16 @@
                                 <div class="form-group">
                                     <div class="row-fluid">
                                         <div class="col-md-4">
-                                        <label for="">Passport Number</label>
-                                           <input type="text" name="child_passport[]"class="form-control" placeholder="Passport Number" required>
+                                        <label for="">Document Type</label>
+                                         {!! Form::select('child_document_type[]',['birth-certificate'=>'Birth Certificate','passport' => 'Passport', 'id-card'=> 'ID Card' ], 'NP', ['class'=>'form-control SlectBox', 'required']) !!}
                                         </div>
                                         <div class="col-md-4">
-                                        <label for="">Passport Number</label>
-                                           <input type="text" name="child_passport[]"class="form-control" placeholder="Passport Number" required>
+                                        <label for="">Document Number</label>
+                                           <input type="text" name="child_document_no[]"class="form-control" placeholder="Document Number" required>
                                         </div>
                                         <div class="col-md-4">
-                                        <label for="">Issuing Country</label>
-                                            {!! Form::select('child_issue_country[]',$countries, 'NP', ['class'=>'SlectBox country form-control', 'required']) !!}
+                                        <label for="">Nationality</label>
+                                            {!! Form::select('child_nationality[]',$countries, 'NP', ['class'=>'SlectBox country form-control', 'required']) !!}
                                         </div>
                                     
                                     <?php /* ?>
@@ -645,10 +524,10 @@
                                 </div>
 
                                 <div class="col-md-3 col-sm-6">
-                                    <label>Upload Passport Image</label>
+                                    <label>Document Image</label>
                                     <span class="btn btn-primary btn-file btn-sm">
                                         <i class="fa fa-folder-open"></i>Upload
-                                        <input type="file" id="image" class="image" name="child_passport_image[]" >
+                                        <input type="file" id="image" class="image" name="child_document_image[]" >
                                     </span>
                                     <span class="image-name"></span>
                                 </div>
@@ -665,7 +544,7 @@
           
 
 
-
+<?php /*  ?>
                             {!! Form::open(['class'=>'']) !!}
                                 <h4>Passanger Details</h4>
                                 <div class="passanger-detail-from">
@@ -1187,6 +1066,7 @@
                           
                                 </div>
                             {!! Form::close() !!}
+<?php */ ?>
                             </div>
                             <div class="col-md-3 col-sm-4 sidebar-total">
                                 

@@ -16,6 +16,8 @@ use App\Models\LinkSearch;
 use Illuminate\Http\Request;
 use App\Models\PackageCategory;
 use App\Models\PackageOption;
+use App\Models\MainTraveller;
+use App\Models\Access\User\User;
 
 
 class DataTableController extends Controller {
@@ -620,6 +622,85 @@ public function getPackageCategory() {
     // }
 
 
+    //get all customers
+    public function getCustomers(){
+    $maintravellers = MainTraveller::orderby('created_at', 'desc')->get();
+        return Datatable::collection($maintravellers)
+                        ->showColumns('id')
+                        ->addColumn('name', function($model) {
+                            return ucfirst($model->profile->fname) . ' ' . ucfirst($model->profile->mname) . ' ' . ucfirst($model->profile->lname);
+                        })
+                        ->addColumn('email', function($model){
+                            return $model->profile->email;
+                        })
+                        ->addColumn('customer_type', function($model) {
+                            if(!empty($model->user_id)){
+                                return '<label class="label label-success">Registered</label>';
+                            }else{
+                                return '<label class="label label-danger">Guest</label>';
+                            }
+                        })
+                        ->addColumn('created_at', function($model) {
+                            return $model->created_at->diffForHumans();
+                        })
+                        ->addColumn('', function($model) {
+                            return get_ops('customers', $model->id, 3);
+                        })
+                        ->searchColumns('name')
+                        ->make();
+    }
+
+    // //get registered customers
+    // public function getRegisteredCustomers(){
+    // $maintravellers = User::orderby('created_at', 'desc')->where('user_id', '!=', 0)->get();
+    //     return Datatable::collection($maintravellers)
+    //                     ->showColumns('id')
+    //                     ->addColumn('name', function($model) {
+    //                         return ucfirst($model->profile->fname) . ' ' . ucfirst($model->profile->mname) . ' ' . ucfirst($model->profile->lname);
+    //                     })
+    //                     ->addColumn('email', function($model){
+    //                        return $model->profile->email;
+    //                    })
+    //                     ->addColumn('customer_type', function($model) {
+    //                         if(!empty($model->user_id)){
+    //                             return 'Registered';
+    //                         }else{
+    //                             return 'Guest';
+    //                         }
+    //                     })
+    //                     ->addColumn('created_at', function($model) {
+    //                         return $model->created_at->diffForHumans();
+    //                     })
+    //                     ->addColumn('', function($model) {
+    //                         return get_ops('customers', $model->id, 3);
+    //                     })
+    //                     ->searchColumns('name')
+    //                     ->make();
+    // }
+
+    //get registered customers
+    public function getRegisteredCustomers(){
+    $customers = User::orderby('created_at', 'desc')->get();
+        return Datatable::collection($customers)
+                        ->showColumns('id')
+                        ->addColumn('name', function($model) {
+                            return ucfirst($model->profile->fname) . ' ' . ucfirst($model->profile->mname) . ' ' . ucfirst($model->profile->lname);
+                        })
+                        ->addColumn('email', function($model){
+                            return $model->profile->email;
+                        })
+                        ->addColumn('customer_type', function($model) {
+                                return 'Registered';
+                        })
+                        ->addColumn('created_at', function($model) {
+                            return $model->created_at->diffForHumans();
+                        })
+                        ->addColumn('', function($model) {
+                            return get_ops('customers', $model->id, 3);
+                        })
+                        ->searchColumns('name')
+                        ->make();
+    }
 
 
 

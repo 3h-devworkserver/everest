@@ -25,7 +25,7 @@ use DB;
 use Input;
 use App\Models\Gallery;
 use App\Models\Profile;
-use App\Models\Booking;
+use App\Models\PackageBooking;
 use App\Models\Availability;
 use App\Models\Setting;
 

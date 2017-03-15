@@ -2,7 +2,7 @@
           <footer class="main-footer">
            
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2016 3hammers.com 
+            <strong>Copyright &copy; <?php echo date('Y'); ?> 3hammers.com 
             <!-- <a href="#"><?php echo e($siteTitle); ?></a>. -->
             </strong> <?php echo e(trans('strings.all_rights_reserved')); ?>
 

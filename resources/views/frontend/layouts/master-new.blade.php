@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="<?= url() ?>/css/responsive.css">
     <link rel="icon" type="image/png" href="{{url('/favicon.png')}}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="{{asset('js/countries.js')}}"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     @yield('extra')
 
@@ -76,7 +77,7 @@
 <?php */ ?>
 
 </head>
-<body class="{{$class}}">
+<body class="{{$class or ''}}">
 @yield('loader')
 <div class="main">
     @if(url::full() != url().'/admin')

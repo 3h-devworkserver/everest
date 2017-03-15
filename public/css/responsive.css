@@ -48,6 +48,18 @@
     .box-flight .details-wrapper .second-row .time [class^="col-"] {
         border-left: none;
     }
+    /* package > booking step*/
+    .addextraPackageDiv{
+        text-align:center;
+    }
+    .addextraPackageDiv .select-number{
+        width: 100%;
+    }
+    .addextraPackageDiv > a.btn{
+        margin-top: 10px;
+        float: none;
+        width: 100%;
+    }
 }
 @media only screen and (min-width:768px) and (max-width:1024px) {
     .logo{
@@ -352,6 +364,10 @@
     .pop-img {
         background-position: 0 0;
     }
+        /* package > booking step*/
+    .addextraPackageDiv a.btn{
+        padding:9px;
+    }
 
 
 }
@@ -417,7 +433,8 @@
     }
     .header-right .menu .list-inline li {
         padding: 0;
-        width: 49%;
+        /* width: 49%; */
+        width: 100%;
         margin-bottom: 5px;
     }
     .header-right .menu .list-inline li:last-of-type,
@@ -934,6 +951,9 @@
     .valentines-package-page section.banner{
         height: 140px;
     }
+    .travel-booking-step a{
+        margin-bottom: 5px;
+    }
 }
 /*-----------*/
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
@@ -1021,5 +1041,18 @@
     }
     .pop-img {
       background-position: center 0;;
+    }
+
+    /* package > booking step*/
+    .addextraPackageDiv{
+        text-align:center;
+    }
+    .addextraPackageDiv .select-number{
+        width: 100%;
+    }
+    .addextraPackageDiv > a.btn{
+        margin-top: 10px;
+        float: none;
+        width: 100%;
     }
 }

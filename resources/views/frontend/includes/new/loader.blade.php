@@ -1,3 +1,3 @@
 <div class="loader display-none">
-    <span>Please wait</span>
+    <span> <img src="{{url('loader.gif')}}" > <p class="wait">Please wait..</p></span>
 </div>
