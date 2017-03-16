@@ -1,8 +1,10 @@
-<?php $__env->startSection('title'); ?> Traveller Account | <?php echo e($siteTitle); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?> Page Not Found | <?php echo e($siteTitle); ?><?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
-<section class="main-content dashboard-wrapper">
 
+<section class="main-content dashboard-wrapper">
+    <h1><?php echo e(trans('strings.page_not_found')); ?></h1>
+    <p><?php echo e(trans('strings.sorry_page_you_were_trying')); ?></p>
     
 </section>
 <?php $__env->stopSection(); ?>

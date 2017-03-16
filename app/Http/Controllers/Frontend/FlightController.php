@@ -431,7 +431,6 @@ return view('frontend.flight.flightreview', compact('flightDetail', 'returnFligh
 }
 
 public function passengersFlight(Request $request){
-    // return $request->all();
 
     // return Crypt::decrypt($request->userId);
 
@@ -472,8 +471,8 @@ $arrival = $request->arrival;
 //     }
 //     $userId = '';
 // }
-
-    return view('frontend.flight.flightpassengerdetail', compact('flightDetail', 'returnFlightDetail', 'trip_type', 'country', 'departure', 'arrival'))
+$menus = Menu::where('parent_id', 0)->orderby('order')->get();
+    return view('frontend.flight.flightpassengerdetail', compact('menus', 'flightDetail', 'returnFlightDetail', 'trip_type', 'country', 'departure', 'arrival'))
     ->with('class', 'home')
     ->with('prevValidationJs', 'true')
     ->with('countries', $this->countries)
@@ -502,7 +501,7 @@ if($request->trip_type == 'R'){
         'returnflight_id' => 'required',
         'flightDetail' => 'required',
         'returnFlightDetail' => 'required',
-        'main_traveller' => 'required',
+        // 'main_traveller' => 'required',
         // 'main_traveller_email' => 'required',
         // 'main_traveller_country' => 'required',
         'totalAmount' => 'required',
@@ -512,7 +511,7 @@ if($request->trip_type == 'R'){
         'trip_type' => 'required',
         'flight_id' => 'required',
         'flightDetail' => 'required',
-        'main_traveller' => 'required',
+        // 'main_traveller' => 'required',
         // 'main_traveller_email' => 'required',
         // 'main_traveller_country' => 'required',
         'totalAmount' => 'required',
@@ -523,6 +522,13 @@ if($request->trip_type == 'R'){
         return redirect()->route('home');
     }
 
+
+// return "1";
+
+if($adultCount != 0){
+    if(empty($request->main_traveller) ){
+        return redirect()->route('home');
+    }
     if( in_array("", $request->adult_title) ){
         return redirect()->route('home');
     }
@@ -541,9 +547,29 @@ if($request->trip_type == 'R'){
     if( in_array("", $request->adult_nationality) ){
         return redirect()->route('home');
     }
+    if( in_array("", $request->adult_email) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_phone_type) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->adult_phone_no) ){
+        return redirect()->route('home');
+    }
+}
 
+// return "2";
 
 if($childCount != 0){
+    if($adultCount == 0){
+        if(empty($request->main_child_traveller)){
+            // return $request->main_child_traveller;
+            return redirect()->route('home');
+        }
+    }
+
+    // return "3";
+
     if( in_array("", $request->child_title) ){
         return redirect()->route('home');
     }
@@ -571,17 +597,26 @@ if($childCount != 0){
     if( in_array("", $request->child_nationality) ){
         return redirect()->route('home');
     }
+    if( in_array("", $request->child_email) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_phone_type) ){
+        return redirect()->route('home');
+    }
+    if( in_array("", $request->child_phone_no) ){
+        return redirect()->route('home');
+    }
    
 }
-
-// return "validated";
-
+// return "here";
 //getting userid
     if (Auth::check()) {
        $userId = Auth::user()->id;
     }else{
         $userId = '';
     }
+
+
 
 //storing flight reservation detail in db
     $flightReservation = FlightReservation::create([
@@ -594,13 +629,15 @@ if($childCount != 0){
         'flight_detail'=> $request->flightDetail,
         'returnflight_detail'=> $request->returnFlightDetail,
     ]); 
+
+
 //storing adult(normal and main traveller) info 
 
-
     $files = $request->file('adult_document_image');
+            $k = 0;
+
         if(!empty($files)){
 
-            $k = 0;
             while($k < $adultCount){
                 if(!empty($files[$k])){
                     $filename[$k] = $time. '-'.str_random(4).'-' . $files[$k]->getClientOriginalName();
@@ -614,6 +651,8 @@ if($childCount != 0){
             $filename[$k] = '';
         }
 
+// return "a sdf dsa";
+
         $j = 0;
         while($j < $adultCount){
             if($request->main_traveller == (string)($j+1)){
@@ -621,25 +660,29 @@ if($childCount != 0){
                     "group_id" => $random,
                     "user_id" => $userId,
                     "type" => 'flight',
+                    "person_type" => 'adult',
                 ]);
 
                 $mainTraveller->profile()->create([
-                    "user_id" => $userId,
+                    // "user_id" => $userId,
                     "group_id" => $random,
-                    "title" => $request->adult_title[$i],
-                    "fname" => $request->adult_fname[$i],
-                    "mname" => $request->adult_mname[$i],
-                    "lname" => $request->adult_lname[$i],
+                    "title" => $request->adult_title[$j],
+                    "fname" => $request->adult_fname[$j],
+                    "mname" => $request->adult_mname[$j],
+                    "lname" => $request->adult_lname[$j],
                         // "email" => $request->main_traveller_email,  //extra information for main traveller
                         // "phone_type" => $request->main_traveller_phonetype,  //extra information for main traveller
                         // "phone" => $request->main_traveller_phone,  //extra information for main traveller
                     // "dob_year" => $request->adult_dob_year[$i],
                     // "dob_month" => $request->adult_dob_month[$i],
                     // "dob_day" => $request->adult_dob_day[$i],
-                    "document_type" => $request->adult_document_type[$i],
-                    "document_no" => $request->adult_document_no[$i],
-                    "document_img" => $filename[$i],
-                    "nationality" => $request->adult_nationality[$i],  //extra information for main traveller
+                    "document_type" => $request->adult_document_type[$j],
+                    "document_no" => $request->adult_document_no[$j],
+                    "document_img" => $filename[$j],
+                    "nationality" => $request->adult_nationality[$j],  
+                    "email" => $request->adult_email[$j],  
+                    "phone_type" => $request->adult_phone_type[$j],  
+                    "phone" => $request->adult_phone_no[$j],  
                     // "issue_year" => $request->adult_issue_year[$i],
                     // "issue_month" => $request->adult_issue_month[$i],
                     // "issue_day" => $request->adult_issue_day[$i],
@@ -735,7 +778,10 @@ if($childCount != 0){
                 "document_type" => $request->adult_document_type[$i],
                 "document_no" => $request->adult_document_no[$i],
                 "document_img" => $filename[$i],
-                "nationality" => $request->adult_nationality[$i],  //extra information for main traveller
+                "nationality" => $request->adult_nationality[$i],  
+                "email" => $request->adult_email[$i],
+                "phone_type" => $request->adult_phone_type[$i], 
+                "phone" => $request->adult_phone_no[$i],  
                 // "issue_year" => $request->adult_issue_year[$i],
                 // "issue_month" => $request->adult_issue_month[$i],
                 // "issue_day" => $request->adult_issue_day[$i],
@@ -753,50 +799,145 @@ if($childCount != 0){
         $i++;
     }
 
-    return "adult info inserted";
+
+// return "end of adult";
 
 //storing child info
+
+    $files = $request->file('child_document_image');
+        $k = 0;
+        if(!empty($files)){
+
+            while($k < $childCount){
+                if(!empty($files[$k])){
+                    $filename2[$k] = $time. '-'.str_random(4).'-' . $files[$k]->getClientOriginalName();
+                    $files[$k]->move($destination_path, $filename2[$k]);
+                }else{
+                    $filename2[$k] = '';
+                }
+                $k++;
+            }
+        }else{
+            $filename2[$k] = '';
+        }
+
+// return "image";
+
+    $j = 0;
+    if(!empty($request->main_child_traveller)){
+        while($j < $childCount){
+            if($request->main_child_traveller == (string)($j+1)){
+                $mainTraveller = $flightReservation->mainTraveller()->create([
+                    "group_id" => $random,
+                    "user_id" => $userId,
+                    "type" => 'flight',
+                    "person_type" => 'child',
+                ]);
+
+                $mainTraveller->profile()->create([
+                    // "user_id" => $userId,
+                    "group_id" => $random,
+                    "title" => $request->child_title[$j],
+                    "fname" => $request->child_fname[$j],
+                    "mname" => $request->child_mname[$j],
+                    "lname" => $request->child_lname[$j],
+                    "document_type" => $request->child_document_type[$j],
+                    "document_no" => $request->child_document_no[$j],
+                    "document_img" => $filename2[$j],
+                    "dob_year" => $request->child_dob_year[$j],
+                    "dob_month" => $request->child_dob_month[$j],
+                    "dob_day" => $request->child_dob_day[$j],
+                    "nationality" => $request->child_nationality[$j],  
+                    "email" => $request->child_email[$j],  
+                    "phone_type" => $request->child_phone_type[$j],  
+                    "phone" => $request->child_phone_no[$j],  
+                ]);
+            }
+            $j++;
+        }
+    }
+
+// return  "yuyuy";
+
     $i = 0;
     while($i < $childCount){
 
-        $files = $request->file('child_document_image');
-        if(!empty($files)){
-            if(!empty($files[$i])){
-                $filename = $time. '-'.str_random(4).'-'. $files[$i]->getClientOriginalName();
-                $files[$i]->move($destination_path, $filename);
-            }else{
-                $filename = '';
-            }
-        }else{
-            $filename = '';
+        // $files = $request->file('child_document_image');
+        // if(!empty($files)){
+        //     if(!empty($files[$i])){
+        //         $filename = $time. '-'.str_random(4).'-'. $files[$i]->getClientOriginalName();
+        //         $files[$i]->move($destination_path, $filename);
+        //     }else{
+        //         $filename = '';
+        //     }
+        // }else{
+        //     $filename = '';
+        // }
+
+        if($request->main_child_traveller != (string)($i+1)){
+            $childOtherTravellers[$i] = $mainTraveller->otherTravellers()->create([
+                "group_id" => $random,
+                "person_type" => 'child',
+                // "type" => 'flight',
+            ]);
+
+            $childOtherTravellers[$i]->profile()->create([
+                // "user_id" => $userId,
+                "group_id" => $random,
+                "title" => $request->child_title[$i],
+                "fname" => $request->child_fname[$i],
+                "mname" => $request->child_mname[$i],
+                "lname" => $request->child_lname[$i],
+                "document_type" => $request->child_document_type[$i],
+                "document_no" => $request->child_document_no[$i],
+                "document_img" => $filename2[$i],
+                "nationality" => $request->child_nationality[$i],  
+                "dob_year" => $request->child_dob_year[$i],
+                "dob_month" => $request->child_dob_month[$i],
+                "dob_day" => $request->child_dob_day[$i],
+                "email" => $request->child_email[$i], 
+                "phone_type" => $request->child_phone_type[$i],  
+                "phone" => $request->child_phone_no[$i],  
+
+                ]);
         }
-
-            $childTravellers[$i] = $flightReservation->travellers()->create([
-            "group_id" => $random,
-            "person_type" => "child",
-            "type" => "flight",
-            "title" => $request->child_title[$i],
-            "fname" => $request->child_fname[$i],
-            "mname" => $request->child_mname[$i],
-            "lname" => $request->child_lname[$i],
-            "dob_year" => $request->child_dob_year[$i],
-            "dob_month" => $request->child_dob_month[$i],
-            "dob_day" => $request->child_dob_day[$i],
-            "passport" => $request->child_passport[$i],
-            "passport_img" => $filename,
-            "issue_year" => $request->child_issue_year[$i],
-            "issue_month" => $request->child_issue_month[$i],
-            "issue_day" => $request->child_issue_day[$i],
-            "issue_country" => $request->child_issue_country[$i],
-        ]);
+            // $childTravellers[$i] = $flightReservation->travellers()->create([
+            // "group_id" => $random,
+            // "person_type" => "child",
+            // "type" => "flight",
+            // "title" => $request->child_title[$i],
+            // "fname" => $request->child_fname[$i],
+            // "mname" => $request->child_mname[$i],
+            // "lname" => $request->child_lname[$i],
+            // "dob_year" => $request->child_dob_year[$i],
+            // "dob_month" => $request->child_dob_month[$i],
+            // "dob_day" => $request->child_dob_day[$i],
+            // "passport" => $request->child_passport[$i],
+            // "passport_img" => $filename,
+            // "issue_year" => $request->child_issue_year[$i],
+            // "issue_month" => $request->child_issue_month[$i],
+            // "issue_day" => $request->child_issue_day[$i],
+            // "issue_country" => $request->child_issue_country[$i],
+            // ]);
         $i++;
-    }       
+    }    
 
-     
+    // return "zzzz";   
 
-
-
-return "traveller info inserted";
+    $menus = Menu::where('parent_id', 0)->orderby('order')->get();
+    return view('frontend.flight.flightpayment', compact('menus'))
+    ->with('class', 'home')
+    ->with('countries', $this->countries)
+    ->with('meta_title', 'Flight Payment | Upeverest')
+    ->with('meta_keywords', 'Flight Payment, Upeverest')
+    ->with('meta_desc', 'Flight Payment, Upeverest')
+    ->with('flightDetail', json_decode($request->flightDetail))
+    ->with('returnFlightDetail', json_decode($request->returnFlightDetail))
+    ->with('trip_type', $request->trip_type)
+    ->with('country', $request->country)
+    ->with('departure', $request->departure)
+    ->with('arrival', $request->arrival);
+    
 }
 
 

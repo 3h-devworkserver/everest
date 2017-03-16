@@ -1131,9 +1131,6 @@ $(document).on('click', '.btnTravellerLogin', function(){
      data: {email: email, password:password } ,
 
      success:function(data){
-      alert(data['stat']);
-      // alert(data['id']);
-
       if(data['stat'] == 'success'){
         $('.registeredUserForm').submit();
       }else{

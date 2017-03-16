@@ -727,7 +727,7 @@
 					 </div>
 
 					 @if($trip_type == "R")
-					 <form action="{{url('/flight/review')}}" method="post" class="flightSelectFormR">
+					 <form action="{{url('/flight/review')}}" method="post" class="flightSelectFormR loaderDisplay">
 					 	<input type="hidden" name="_token" value="{{csrf_token()}}" class="token">
 					 	<input type="hidden" name="flightId" class="flight-id">
 					 	<input type="hidden" name="flightDetail" class="flight-detail">
@@ -740,7 +740,7 @@
 					 	<button class="btn btn-next flightSelectForm-btn" disabled>Continue</button>
 					 </form>
 					 @else
-					 <form action="{{url('/flight/review')}}" method="post" class="flightSelectFormO">
+					 <form action="{{url('/flight/review')}}" method="post" class="flightSelectFormO loaderDisplay">
 					 	<input type="hidden" name="_token" value="{{csrf_token()}}" class="token">
 					 	<input type="hidden" name="flightId" class="flight-id">
 					 	<input type="hidden" name="flightDetail" class="flight-detail">

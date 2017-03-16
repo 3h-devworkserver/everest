@@ -69,11 +69,11 @@
 								                    					<label>Adult: 12+yrs</label>
 								                    					<div class="input-group">
 								                    						<span class="input-group-btn">
-								                    							<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="adult">
+								                    							<button type="button" class="btn btn-default btn-number" @if(!empty($adult)) @if($adult == 0) disabled="disabled" @endif @else disabled="disabled" @endif data-type="minus" data-field="adult">
 								                    								<span class="glyphicon glyphicon-minus"></span>
 								                    							</button>
 								                    						</span>
-								                    						<input type="text" name="adult" class="form-control input-number" value="{{$adult or 1}}" min="1" max="100">
+								                    						<input type="text" name="adult" class="form-control input-number" value="{{$adult or 0}}" min="0" max="100">
 								                    						<span class="input-group-btn">
 								                    							<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="adult">
 								                    								<span class="glyphicon glyphicon-plus"></span>
@@ -85,7 +85,7 @@
 								                    					<label>Child:2-12yrs</label>
 								                    					<div class="input-group">
 								                    						<span class="input-group-btn">
-								                    							<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="child">
+								                    							<button type="button" class="btn btn-default btn-number" @if(!empty($child)) @if($child == 0) disabled="disabled" @endif @else disabled="disabled" @endif data-type="minus" data-field="child">
 								                    								<span class="glyphicon glyphicon-minus"></span>
 								                    							</button>
 								                    						</span>
@@ -232,11 +232,11 @@
 																			<label>Adult: 12+yrs</label>
 																			<div class="input-group">
 																				<span class="input-group-btn">
-																					<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="adult">
+																					<button type="button" class="btn btn-default btn-number" @if(!empty($adult)) @if($adult == 0) disabled="disabled" @endif @else disabled="disabled" @endif data-type="minus" data-field="adult">
 																						<span class="glyphicon glyphicon-minus"></span>
 																					</button>
 																				</span>
-																				<input type="text" name="adult" class="form-control input-number" value="{{$adult or 1}}" min="1" max="100">
+																				<input type="text" name="adult" class="form-control input-number" value="{{$adult or 0}}" min="0" max="100">
 																				<span class="input-group-btn">
 																					<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="adult">
 																						<span class="glyphicon glyphicon-plus"></span>
@@ -248,7 +248,7 @@
 																			<label>Child:2-12yrs</label>
 																			<div class="input-group">
 																				<span class="input-group-btn">
-																					<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="child">
+																					<button type="button" class="btn btn-default btn-number" @if(!empty($child)) @if($child == 0) disabled="disabled" @endif @else disabled="disabled" @endif data-type="minus" data-field="child">
 																						<span class="glyphicon glyphicon-minus"></span>
 																					</button>
 																				</span>

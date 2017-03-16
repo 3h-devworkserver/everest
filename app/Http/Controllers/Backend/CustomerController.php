@@ -15,25 +15,32 @@ use App\Models\MainTraveller;
 class CustomerController extends Controller
 {
 
-  // public function index(){
-  //   $mainTravellers = MainTraveller::all();
-  //   return $mainTravellers;
-  // }
-
   public function index(){
-        $table = $this->CustomerDatatable();
+        $table = $this->registeredCustomers();
         return view('backend.flight.customer.index', compact('table'));
   }
 
-  public function CustomerDatatable(){
-      // $pacakges = Packages::select('id','title'); 
-      $route = route('api.table.customer');              
-      return Datatable::table()
+  // public function CustomerDatatable(){
+  //     // $pacakges = Packages::select('id','title'); 
+  //     $route = route('api.table.customer');              
+  //     return Datatable::table()
+  //     ->addColumn(trans('Id'), trans('Name'), trans('Email'), trans('Customer Type'), trans('Created At'))
+  //     ->addColumn(trans('Actions'))
+  //     ->setUrl($route)
+  //     ->setOrder([4=>'desc'])
+  //     ->render();
+  // }
+
+  public function registeredCustomers(){
+     $route = route('api.table.customer.registered');              
+      return $table = Datatable::table()
       ->addColumn(trans('Id'), trans('Name'), trans('Email'), trans('Customer Type'), trans('Created At'))
       ->addColumn(trans('Actions'))
       ->setUrl($route)
+      ->setOrder([4=>'desc'])
       ->render();
-  }
+
+}
 
   public function edit($id){
     $mainTraveller = MainTraveller::findOrFail($id);
@@ -48,16 +55,7 @@ class CustomerController extends Controller
     return redirect('admin/customers')->withFlashSuccess('Customer Deleted Successfully');
 }
 
-public function registeredCustomers(){
-     $route = route('api.table.customer.registered');              
-      $table = Datatable::table()
-      ->addColumn(trans('Id'), trans('Name'), trans('Email'), trans('Customer Type'), trans('Created At'))
-      ->addColumn(trans('Actions'))
-      ->setUrl($route)
-      ->render();
 
-        return view('backend.flight.customer.index', compact('table'));
-}
 
 
 }

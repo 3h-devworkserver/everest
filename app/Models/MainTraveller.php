@@ -26,6 +26,10 @@ class MainTraveller extends Model
         	return $this->hasMany('App\Models\OtherTraveller', 'main_traveller_id');
     	}
 
+    	public function user(){
+        	return $this->belongsTo('App\Models\Access\User\User', 'user_id');
+    	}
+
 
 
 }

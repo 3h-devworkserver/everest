@@ -141,9 +141,11 @@ class DataTableController extends Controller {
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
+    //currently only selecting admin user only, used in Persmission>Users(from sidebar backend)
     public function getUsers(UserContract $users) {
 
-        return Datatable::collection($users->getAllUsers())
+        // return Datatable::collection($users->getAllUsers())
+        return Datatable::collection($users->getUsers('1', '1'))
                         ->showColumns('id')
                         ->addColumn('name', function($model) {
                             return $model->fname . ' ' . $model->lname;
@@ -622,33 +624,42 @@ public function getPackageCategory() {
     // }
 
 
-    //get all customers
-    public function getCustomers(){
-    $maintravellers = MainTraveller::orderby('created_at', 'desc')->get();
-        return Datatable::collection($maintravellers)
-                        ->showColumns('id')
-                        ->addColumn('name', function($model) {
-                            return ucfirst($model->profile->fname) . ' ' . ucfirst($model->profile->mname) . ' ' . ucfirst($model->profile->lname);
-                        })
-                        ->addColumn('email', function($model){
-                            return $model->profile->email;
-                        })
-                        ->addColumn('customer_type', function($model) {
-                            if(!empty($model->user_id)){
-                                return '<label class="label label-success">Registered</label>';
-                            }else{
-                                return '<label class="label label-danger">Guest</label>';
-                            }
-                        })
-                        ->addColumn('created_at', function($model) {
-                            return $model->created_at->diffForHumans();
-                        })
-                        ->addColumn('', function($model) {
-                            return get_ops('customers', $model->id, 3);
-                        })
-                        ->searchColumns('name')
-                        ->make();
-    }
+    // //get all customers
+    // public function getCustomers(){
+    // $maintravellers = MainTraveller::orderby('created_at', 'desc')->get();
+    //     return Datatable::collection($maintravellers)
+    //                     ->showColumns('id')
+    //                     ->addColumn('name', function($model) {
+    //                         if (!empty($model->user_id)) {
+    //                             return ucfirst($model->user->profile->fname) . ' ' . ucfirst($model->user->profile->mname) . ' ' . ucfirst($model->user->profile->lname);
+    //                         }
+    //                         return ucfirst($model->profile->fname) . ' ' . ucfirst($model->profile->mname) . ' ' . ucfirst($model->profile->lname);
+    //                     })
+    //                     ->addColumn('email', function($model){
+    //                         if (!empty($model->user_id)) {
+    //                             return $model->user->profile->email;
+    //                         }
+    //                         return $model->profile->email;
+    //                     })
+    //                     ->addColumn('customer_type', function($model) {
+    //                         if(!empty($model->user_id)){
+    //                             return '<label class="label label-success">Registered</label>';
+    //                         }else{
+    //                             return '<label class="label label-danger">Guest</label>';
+    //                         }
+    //                     })
+    //                     ->addColumn('created_at', function($model) {
+    //                         if(!empty($model->user_id)){
+    //                             return \Carbon\Carbon::parse($model->user->created_at)->format('Y/m/d');
+    //                         }
+    //                         return \Carbon\Carbon::parse($model->created_at)->format('Y/m/d');
+    //                     })
+    //                     ->addColumn('', function($model) {
+    //                         return get_ops('customers', $model->id, 3);
+    //                     })
+    //                     ->searchColumns('name', 'email')
+    //                     ->make();
+    // }
 
     // //get registered customers
     // public function getRegisteredCustomers(){
@@ -680,20 +691,27 @@ public function getPackageCategory() {
 
     //get registered customers
     public function getRegisteredCustomers(){
-    $customers = User::orderby('created_at', 'desc')->get();
+    // $customers = User::orderby('created_at', 'desc')->get();
+        $customers = User::orderby('created_at', 'desc')->where('id', '22')->get();
         return Datatable::collection($customers)
                         ->showColumns('id')
                         ->addColumn('name', function($model) {
-                            return ucfirst($model->profile->fname) . ' ' . ucfirst($model->profile->mname) . ' ' . ucfirst($model->profile->lname);
+                            if(!empty($model->profile())){
+                                return ucfirst($model->profile->fname) . ' ' . ucfirst($model->profile->mname) . ' ' . ucfirst($model->profile->lname);
+                            }
+                            return "test";
                         })
                         ->addColumn('email', function($model){
-                            return $model->profile->email;
+                            if(!empty($model->profile())){
+                                return $model->profile->email;
+                            }
+                            return "here";
                         })
                         ->addColumn('customer_type', function($model) {
-                                return 'Registered';
+                            return 'Registered';
                         })
                         ->addColumn('created_at', function($model) {
-                            return $model->created_at->diffForHumans();
+                            return \Carbon\Carbon::parse($model->created_at)->format('Y/m/d');
                         })
                         ->addColumn('', function($model) {
                             return get_ops('customers', $model->id, 3);

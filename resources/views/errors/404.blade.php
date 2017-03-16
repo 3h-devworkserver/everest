@@ -1,9 +1,11 @@
 @extends('frontend.layouts.master-new')
-@section('title') Traveller Account | {{ $siteTitle }}@endsection
+@section('title') Page Not Found | {{ $siteTitle }}@endsection
 @section('content')
 
-<section class="main-content dashboard-wrapper">
 
+<section class="main-content dashboard-wrapper">
+    <h1>{{ trans('strings.page_not_found') }}</h1>
+    <p>{{ trans('strings.sorry_page_you_were_trying') }}</p>
     
 </section>
 @endsection
