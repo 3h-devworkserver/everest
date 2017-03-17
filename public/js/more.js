@@ -1117,6 +1117,8 @@ form.steps({
 });
 
 $(document).on('click', '.btnTravellerLogin', function(){
+  $('body .loader').show();
+  $('body .main').hide();
   var email = $('.email').val();
   var password = $('.password').val();
   var token = $('.token').val();
@@ -1134,7 +1136,9 @@ $(document).on('click', '.btnTravellerLogin', function(){
       if(data['stat'] == 'success'){
         $('.registeredUserForm').submit();
       }else{
-        alert(data['stat']);
+        $('body .loader').hide();
+        $('body .main').show();
+        $('.login-wrap .error-msg').text(data['msg']).show();
       }
      }
 

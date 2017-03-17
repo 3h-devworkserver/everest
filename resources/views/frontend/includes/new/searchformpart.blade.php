@@ -161,11 +161,12 @@
 												</div>
 												<div class="form-group">
 													<div class="row">
+													<!--
 														<div class="col-md-6 col-sm-6">
 															<label>Promotion Code <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Promotion Code"></i></label>
 							    						<input type="text" class="form-control" placeholder="Enter Promotional Code">
 
-														</div>
+														</div> -->
 														<input type="hidden" name="trip_type" value="R">
 														<div class="col-md-6 col-sm-6">
 
@@ -326,10 +327,12 @@
 							    			</div>
 							    			<div class="form-group">
 							    				<div class="row">
+							    				<!--
 							    					<div class="col-md-6 col-sm-6">
 							    						<label>Promotion Code <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Promotion Code"></i></label>
 							    						<input type="text" class="form-control" placeholder="Enter Promotional Code">
 							    					</div>
+							    					-->
 							    					<input type="hidden" name="trip_type" value="O">
 							    					<div class="col-md-6 col-sm-6">
 

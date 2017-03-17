@@ -32,6 +32,10 @@ $router->group(['namespace' => 'Auth'], function () use ($router)
 		//for traveller login
 		get('login', 'AuthController@getTravellerLogin')->name('auth.traveller');
 		post('login', 'AuthController@postTravellerLogin');
+
+		//for traveller register
+		get('register', 'AuthController@getTravellerRegister');
+		post('register', 'AuthController@postTravellerRegister');
 		
 	});
 });

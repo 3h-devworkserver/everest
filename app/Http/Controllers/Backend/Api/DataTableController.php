@@ -690,25 +690,17 @@ public function getPackageCategory() {
     // }
 
     //get registered customers
-    public function getRegisteredCustomers(){
+    public function getRegisteredCustomers(UserContract $users){
     // $customers = User::orderby('created_at', 'desc')->get();
-        $customers = User::orderby('created_at', 'desc')->where('id', '22')->get();
-        return Datatable::collection($customers)
+    return Datatable::collection($users->getUsers('1', '2'))
+        // $customers = User::orderby('created_at', 'desc')->where('id', '22')->get();
+        // return Datatable::collection($customers)
                         ->showColumns('id')
                         ->addColumn('name', function($model) {
-                            if(!empty($model->profile())){
-                                return ucfirst($model->profile->fname) . ' ' . ucfirst($model->profile->mname) . ' ' . ucfirst($model->profile->lname);
-                            }
-                            return "test";
+                                return ucfirst($model->fname) . ' ' . ucfirst($model->mname) . ' ' . ucfirst($model->lname);
                         })
                         ->addColumn('email', function($model){
-                            if(!empty($model->profile())){
-                                return $model->profile->email;
-                            }
-                            return "here";
-                        })
-                        ->addColumn('customer_type', function($model) {
-                            return 'Registered';
+                                return $model->email;
                         })
                         ->addColumn('created_at', function($model) {
                             return \Carbon\Carbon::parse($model->created_at)->format('Y/m/d');

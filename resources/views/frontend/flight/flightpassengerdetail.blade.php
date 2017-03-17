@@ -104,7 +104,6 @@
                                                     </div>
 
                                                 </div>
-                                
 
                                                     <h5><i class="fa fa-plane"></i>{{ucfirst(strtolower($flightDetail->Departure))}} <i class="fa fa-long-arrow-right"></i>{{ucfirst(strtolower($flightDetail->Arrival))}}</h5>
                                                     <div class="short-desc">
@@ -287,7 +286,7 @@
                                                         <div class="form-group">
                                                             <div class="row-fluid">
                                                                 <div class="col-md-12">
-                                                                    <label for="">Full name <small>(as per passport)</small></label>
+                                                                    <label for="">Full name <small>(as per passport)<em>*</em></small></label>
                                                                     
                                                                 </div>
                                                             </div>
@@ -302,6 +301,7 @@
                                                                                     echo 'selected = "selected"';
                                                                                 }
                                                                             }  ?> >Mr</option>
+
                                                                         <option value="MRS" <?php  if(!empty($leadAdult)){
                                                                                 if($lead->profile->title == 'MRS'){
                                                                                     echo 'selected = "selected"';
@@ -750,7 +750,6 @@
                                                         @if($returnFlightDetail->Adult != 0)
                                                         <tr>
                                                             <td>Adult(s) ‎({{$returnFlightDetail->Adult}} X {{custom_number_format($returnFlightDetail->AdultFare)}})‎</td>
-                                                            </td>
                                                             <td>{{custom_number_format($returnFlightDetail->Adult * $returnFlightDetail->AdultFare)}}</td>
                                                         </tr>
                                                         @endif
@@ -837,7 +836,7 @@
                                 </div>
 
                                 
-                            </div>
+                            {{-- </div> --}}
                         </div>
 
 

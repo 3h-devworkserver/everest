@@ -272,7 +272,7 @@ class FlightController extends Controller {
         );
 
 //return to home page with  http-get method is used
-public function searchFlightGet(){
+public function returnHome(){
     return redirect()->route('home');
 }
 

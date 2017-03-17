@@ -1991,6 +1991,7 @@ ul.page-list li label{
     }
 /*use image as background for gallery*/
   .show-img-bg2{
+    -webkit-background-size: cover;
     background-size: cover;
     background-position: center center;
     height: 150px;
@@ -2049,3 +2050,23 @@ ul.page-list li label{
     top:0;
     left:79%;
 }*/
+
+.element-wrapper{
+    overflow: hidden;
+}
+.element-wrapper select{
+    margin: 0;
+    color: #8d8d8d;
+}
+.element-wrapper .form-group{
+    width: 50%;
+    padding-right:15px;
+    float: left;
+}
+.element-wrapper .form-group:nth-child(even){
+    padding-right: 0;
+}
+.element-wrapper .form-group label{
+    font-weight: normal;
+    display: block;
+}

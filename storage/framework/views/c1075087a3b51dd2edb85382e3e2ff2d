@@ -5,7 +5,7 @@
         <div class="login-page">
           <div class="container">
             <div class="row">
-              <div class="col-md-offset-4 col-md-4">
+              <div class="col-md-12">
                 <?php echo $__env->make('includes.partials.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
               
                 <div class="form-wrapper">
@@ -35,7 +35,7 @@
                           </div>
                           <div class="btn-grp">
                             <input class="btn btn-default" value="Login" type="submit">
-                            <a href="register.html" class="btn btn-default">Register</a>
+                            <a href="<?php echo e(url('/register')); ?>" class="btn btn-default register-btn">Register</a>
                           </div>
 
                           <?php echo Form::close(); ?>

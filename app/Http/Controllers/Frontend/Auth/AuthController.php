@@ -33,7 +33,10 @@ class AuthController extends Controller
         return view('frontend.auth.register');
     }
 
- 
+//register page for traveller
+    public function getTravellerRegister(){
+        return view('frontend.auth.travellerregister');
+    }
 
 
     /**
@@ -84,6 +87,28 @@ class AuthController extends Controller
         // return response()->json($data);
     }
 
+    //  public function postTravellerRegister(RegisterRequest $request)
+    // {
+    //     $data['stat']='error';
+    //     if (config('access.users.confirm_email')) {
+    //         $this->auth->create($request->all());
+    //         $data['stat']='confirm';
+    //         $data['success']='Your account was successfully created. We have sent you an e-mail to confirm your account.';
+    //         return response()->json($data);
+    //     } else {
+    //         //Use native auth login because do not need to check status when registering
+    //        // $this->auth->create($request->all());
+    //         $data['stat']='ok';
+    //         // $data['stat']='ok';
+    //           auth()->login($this->auth->create($request->all()));
+    //         // return redirect()->route('frontend.dashboard');
+    //         //$data['msg'] =$request->all();
+    //         return response()->json($data);
+    //     }
+    //     // $data['msg'] =$request->all();
+    //     // return response()->json($data);
+    // }
+
  
 
  /**
@@ -126,6 +151,12 @@ class AuthController extends Controller
             // user surpasses their maximum number of attempts they will get locked out.
             if ($throttles) {
                 $this->incrementLoginAttempts($request);
+            }
+
+            if ($request->ajax()) {
+                $data['stat'] = 'error';
+                $data['msg'] = $e->getMessage();
+                return $data;
             }
 
             return redirect()->back()->withInput()->withFlashDanger($e->getMessage());

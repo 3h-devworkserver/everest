@@ -338,10 +338,10 @@ a.readmore {
 .header-right .menu li a {
     background: #272e36;
     display: block;
-    padding: 10px;
+    padding: 10px 15px;
     color: #dfe4e8;
     text-transform: uppercase;
-    width: 140px;
+    /* width: 140px; */
     text-align: center;
     font-size: 12px;
 }
@@ -356,6 +356,9 @@ a.readmore {
     line-height: 20px;
     margin-right: 10px;
     width: 20px;
+}
+.menu ul li a i.fa-sign-in{
+    font-size: 10px;
 }
 /*Mega menu
 -----------------------------*/
@@ -4888,6 +4891,10 @@ body.modal-open {
     padding: 80px 0;
   background: #edefec;
 }
+.login-page .form-wrapper{
+    width: 38%;
+    margin: 0 auto;
+}
 .login-page .login-wrapper {
     border: 1px solid #d6dcdd;
     margin-top: 30px;
@@ -4948,8 +4955,14 @@ body.modal-open {
     border-radius: 0;
     padding: 8px 16px;
 }
-.login-page .login-wrapper .login-form .btn-grp .btn:last-child {
+.login-page .login-wrapper .login-form .btn-grp .btn.register-btn {
     margin-right: 0;
+    background: #272e36;
+    border-color: #272e36;
+}
+.login-page .login-wrapper .login-form .btn-grp .btn.register-btn:hover {
+    background: #e42e2a ;
+    border-color: #e42e2a ;
 }
 .profile{
     padding: 40px 0;
@@ -5168,3 +5181,123 @@ body.modal-open {
   color: red;
   outline: 0 none;
 }*/
+
+
+/*Register page*/
+.register-page {
+  background: #edefec none repeat scroll 0 0;
+  padding: 80px 0;
+}
+
+.register-page .register-wrapper .title {
+  padding: 20px 0;
+}
+.register-page .register-wrapper .title h3 {
+  border-left: 4px solid #e42e2a;
+  color: #e42e2a;
+  font-weight: 600;
+  margin: 0;
+  padding: 10px 20px;
+  text-transform: uppercase;
+}
+
+.register-page .register-wrapper .register-form {
+  padding: 0 25px 25px;
+}
+.register-page .register-wrapper .register-form label{
+    font-weight: normal;
+}
+.register-page .register-wrapper .register-form .form-control{
+    border-radius: 0;
+    box-shadow: none;
+}
+.register-page .btn.register-btn {
+    background: #272e36;
+    border-color: #272e36;
+    border-radius: 0;
+    width: 130px;
+    padding: 8px 16px;
+}
+.register-page .btn.register-btn:hover {
+    background: #e42e2a ;
+    border-color: #e42e2a ;
+}
+
+/* Page Not Found */
+
+.page-not-found{
+    background-color: #EDEFEC;
+    padding:100px 0;
+}
+.page-not-found img{
+    width: 300px;
+    float: left;
+}
+.page-not-found .error-text{
+    float: left;
+    padding:70px 0 0 40px;
+}
+.page-not-found .error-text h1{
+    margin-bottom: 20px;
+}
+.page-not-found p{
+    margin-bottom: 20px;
+}
+.page-not-found a {
+  background: #0D4E96 none repeat scroll 0 0;
+  border-color: #272e36;
+  border-radius: 0;
+  padding: 8px 16px;
+  color: #fff;
+  display: inline-block;
+}
+
+
+/* UI Datepicker */
+.ui-datepicker{
+    padding:0;
+    border-radius: 0;
+    width: 260px;
+}
+.ui-datepicker .ui-widget-header {
+    border-radius: 0;
+    border:none;
+    padding:8px;
+}
+.ui-datepicker .ui-datepicker-prev, 
+.ui-datepicker .ui-datepicker-next{
+    top:10px;
+}
+.ui-datepicker-calendar{
+    border-collapse: collapse;
+    border-spacing:0;
+}
+.ui-datepicker table{
+    margin-bottom: 0;
+}
+.ui-datepicker th{
+    width: 14%;
+}
+.ui-state-default, 
+.ui-widget-content .ui-state-default, 
+.ui-widget-header .ui-state-default{
+    border:none;
+    text-align: center;
+    height: 30px;
+    line-height: 27px;
+}
+.ui-state-active, 
+.ui-widget-content .ui-state-active, 
+.ui-widget-header .ui-state-active{
+    background-color: #e42e2a;
+}
+.ui-state-default:hover, 
+.ui-widget-content .ui-state-default:hover, 
+.ui-widget-header .ui-state-default:hover{
+    background-color: #e42e2a;
+    color: #fff;
+}
+.ui-state-disabled .ui-state-default:hover{
+    background-color: #f6f6f6 ;
+    color: #454545;
+}

@@ -1,0 +1,41 @@
+<?php $__env->startSection('title', trans('Customer Management')); ?>
+
+<?php $__env->startSection('page-header'); ?>
+<h1>
+	<?php echo e(trans('Customer Management')); ?>
+
+	<small><?php echo e(trans('menus.customer.create')); ?></small>
+	<a href="<?php echo e(url('admin/customers/create')); ?>" class="btn btn-info left-spacer">Create Customer</a>
+</h1>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumbs'); ?>
+<li><a href="<?php echo route('backend.dashboard'); ?>"><i class="fa fa-dashboard"></i> <?php echo e(trans('menus.dashboard')); ?></a></li>
+<li class="active"><?php echo link_to_route('admin.customers.index', trans('Customer Management')); ?></li>
+<?php /* <li class="active"><?php echo trans('Packages Category'); ?></li> */ ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+ <div class="select-options">
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <?php echo e(trans('Customers')); ?> <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu pull-right" role="menu">
+            <li><a href="<?php echo e(route('admin.customers.index')); ?>"><?php echo e(trans('All Customers')); ?></a></li>
+
+            <?php /* <li><a href="<?php echo e(route('admin.customers.registered')); ?>"><?php echo e(trans('Registered')); ?></a></li> */ ?>
+            <li><a href="#"><?php echo e(trans('Registered')); ?></a></li>
+            
+          </ul>
+        </div>    
+    </div>
+
+    <div class="clearfix"></div>
+
+<?php echo $table; ?>
+
+
+<div class="clearfix"></div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

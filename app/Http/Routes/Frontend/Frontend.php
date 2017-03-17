@@ -56,10 +56,13 @@ post('/package/{slug}/{datePrice}/booking-step3-payment','PackageController@book
 post('package/contactpackage', 'PackageController@contactPackage');
 
 //flight search
-get('/flight/search', 'FlightController@searchFlightGet'); 
+get('/flight/search', 'FlightController@returnHome'); 
 post('/flight/search', 'FlightController@searchFlight'); 
+get('/flight/review', 'FlightController@returnHome'); 
 post('/flight/review', 'FlightController@reviewFlight'); 
+get('/flight/passengers', 'FlightController@returnHome'); 
 post('/flight/passengers', 'FlightController@passengersFlight'); 
+get('/flight/passengerdetail', 'FlightController@returnHome'); 
 post('/flight/passengerdetail', 'FlightController@passengersDetail'); 
 get('/flight/flightsearch', 'FlightController@searchFormFlight'); 
 // get('/flight/locations', 'FlightController@flightLocation'); 

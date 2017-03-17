@@ -940,5 +940,39 @@ function readURLmap(input) {
 
   }
 
+//preview profile pic in customer management
+function readURLprofile(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('.profile-avatar').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }else{
+            $('.profile-avatar').attr('src', '');
+    }
+}
+
+//preview document pic in customer management
+function readURLdoc(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#doc-preview').css('background-image', 'url('+e.target.result+')').show();
+        }
+        reader.readAsDataURL(input.files[0]);
+    }else{
+      $('#doc-preview').css('background-image', 'url(\'\')').removeClass('show-img-bg2');
+    }
+}
+
+  $(document).ready(function(){
+  });
+
 
 /* ------ end of js for package -----  */

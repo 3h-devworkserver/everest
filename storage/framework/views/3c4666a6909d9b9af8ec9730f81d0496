@@ -2,9 +2,20 @@
 <?php $__env->startSection('content'); ?>
 
 
-<section class="main-content dashboard-wrapper">
-    <h1><?php echo e(trans('strings.page_not_found')); ?></h1>
-    <p><?php echo e(trans('strings.sorry_page_you_were_trying')); ?></p>
+<section class="main-content page-not-found">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <img src="<?php echo e(url('images/travel.png')); ?>" alt="">
+                <div class="error-text">
+                    <h1><?php echo e(trans('strings.page_not_found')); ?></h1>
+                    <p><?php echo e(trans('strings.sorry_page_you_were_trying')); ?></p>
+                    <a href="<?php echo e(url()); ?>">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     
 </section>
 <?php $__env->stopSection(); ?>

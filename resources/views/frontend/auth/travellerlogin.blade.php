@@ -6,7 +6,7 @@
         <div class="login-page">
           <div class="container">
             <div class="row">
-              <div class="col-md-offset-4 col-md-4">
+              <div class="col-md-12">
                 @include('includes.partials.messages')
               
                 <div class="form-wrapper">
@@ -35,7 +35,7 @@
                           </div>
                           <div class="btn-grp">
                             <input class="btn btn-default" value="Login" type="submit">
-                            <a href="register.html" class="btn btn-default">Register</a>
+                            <a href="{{url('/register')}}" class="btn btn-default register-btn">Register</a>
                           </div>
 
                           {!! Form::close() !!}

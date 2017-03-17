@@ -54,8 +54,7 @@
           {!! HTML::script('js/backend/jquery.fileupload-validate.js') !!}
           {!! HTML::script('js/backend/jquery.fileupload-ui.js') !!}
           {!! HTML::script('js/backend/jquery.fileupload-jquery-ui.js') !!}
-          
-
+          {!! HTML::script('js/countries.js') !!}
 
        <script>
           var base_url = '{{ URL::to("") }}';
@@ -113,6 +112,6 @@
         {!! HTML::script('js/backend/app.js') !!}
         {!! HTML::script('js/backend/icheck.min.js') !!}
         {!! HTML::script('js/backend/selectize.min.js') !!}
-        
+
     </body>
 </html>

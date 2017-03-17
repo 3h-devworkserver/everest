@@ -85,7 +85,7 @@
 
           <?php echo HTML::script('js/backend/jquery.fileupload-jquery-ui.js'); ?>
 
-          
+          <?php echo HTML::script('js/countries.js'); ?>
 
 
        <script>
@@ -151,6 +151,6 @@
 
         <?php echo HTML::script('js/backend/selectize.min.js'); ?>
 
-        
+
     </body>
 </html>

@@ -491,7 +491,7 @@
 				<div class="button-groups">
 							<div class="row">
 								<div class="col-md-12">
-								{!! Form::open(['url'=>'/flight/search', 'class' => 'modifyFlightSearchForm'])!!}
+								{!! Form::open(['url'=>'/flight/search', 'class' => 'modifyFlightSearchForm loaderDisplay'])!!}
 													{!!Form::hidden('departure', $departure)!!}
 													{!!Form::hidden('arrival', $arrival)!!}
 													{!!Form::hidden('adult', $flightDetail->Adult)!!}
@@ -511,7 +511,7 @@
 
 									@if(Auth::check())
 
-									{!! Form::open(['url'=>'/flight/passengers']) !!}
+									{!! Form::open(['url'=>'/flight/passengers', 'class'=>'loaderDisplay']) !!}
 										<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
 										@if($trip_type == 'R')
 										<input type="hidden" name="returnFlightDetail" value='<?php echo json_encode($returnFlightDetail); ?>'>
@@ -529,7 +529,7 @@
 									{!! Form::close() !!}
 
 									@else
-									<button class="btn btn-continue pull-right" data-toggle="modal" data-target="#login">
+									<button class="btn btn-continue pull-right loaderDisplay" data-toggle="modal" data-target="#login">
 										continue <i class="fa fa-angle-right"></i>
 
 									</button>
@@ -546,13 +546,13 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="login-wrap">
-
+															<p><span class="alert alert-danger display-none error-msg"></span></p>
 
 															<h3>Login to upeverst</h3>
 															<p>
 																Already a member? Log-in to speed up the booking process We will fill in most of the details for you. 
 															</p>
-															{!! Form::open(['url' =>'/flight/passengers', 'class'=>'registeredUserForm']) !!}
+															{!! Form::open(['url' =>'/flight/passengers', 'class'=>'registeredUserForm loaderDisplay']) !!}
 															<input type="hidden" name="_token" value='{{csrf_token()}}' class="token">
 																<div class="form-group">
 																	<label for="exampleInputEmail1">Email address</label>

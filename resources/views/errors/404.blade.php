@@ -3,9 +3,20 @@
 @section('content')
 
 
-<section class="main-content dashboard-wrapper">
-    <h1>{{ trans('strings.page_not_found') }}</h1>
-    <p>{{ trans('strings.sorry_page_you_were_trying') }}</p>
+<section class="main-content page-not-found">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <img src="{{url('images/travel.png')}}" alt="">
+                <div class="error-text">
+                    <h1>{{ trans('strings.page_not_found') }}</h1>
+                    <p>{{ trans('strings.sorry_page_you_were_trying') }}</p>
+                    <a href="{{url()}}">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     
 </section>
 @endsection
