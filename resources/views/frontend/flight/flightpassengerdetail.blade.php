@@ -292,6 +292,9 @@
                                                             </div>
                                                             <div class="row-fluid row-margin-adj">
                                                                 <div class="col-md-2">
+                                                                @if(!empty($leadAdult))
+                                                                    <input name="adult_title[]" class="form-control" required readonly value="{{$lead->profile->title}}">
+                                                                @else
                                                                     <select name="adult_title[]" id="" class="SlectBox form-control" required <?php  if(!empty($leadAdult)){
                                                                                echo "readonly";
                                                                             }  ?>>
@@ -313,6 +316,7 @@
                                                                                 }
                                                                             }  ?>>Ms</option>
                                                                     </select>
+                                                                @endif
                                                                 </div>
                                                                 <div class="col-md-10">
                                                                     <div class="row-fluid">
@@ -349,7 +353,10 @@
                                                                 <div class="col-md-4">
                                                                 <label for="">Nationality</label>
                                                                 @if(!empty($leadAdult))
+                                                                    <input name="adult_nationality[]" class="form-control" required readonly value="{{$lead->profile->nationality}}">
+                                                                    <?php /* ?>
                                                                     {!! Form::select('adult_nationality[]',$countries, $lead->profile->nationality, ['class'=>'form-control country', 'required', 'readonly']) !!}
+                                                                    <?php */ ?>
                                                                 @else
                                                                     {!! Form::select('adult_nationality[]',$countries, 'NP', ['class'=>'form-control country', 'required']) !!}
                                                                 @endif
@@ -493,6 +500,9 @@
                                                             </div>
                                                             <div class="row-fluid row-margin-adj">
                                                                 <div class="col-md-2">
+                                                                    @if(!empty($leadChild))
+                                                                        <input name="child_title[]" class="form-control" required readonly value="{{$lead->profile->title}}">
+                                                                    @else
                                                                     <select name="child_title[]" id="" class="SlectBox form-control" required <?php  if(!empty($leadChild)){
                                                                                echo "readonly";
                                                                              } ?>>
@@ -513,6 +523,7 @@
                                                                                 }
                                                                             }  ?>>Ms</option>
                                                                     </select>
+                                                                    @endif
                                                                 </div>
                                                                 <div class="col-md-10">
                                                                     <div class="row-fluid">
@@ -549,7 +560,10 @@
                                                                 <div class="col-md-4">
                                                                 <label for="">Nationality</label>
                                                                     @if(!empty($leadChild))
+                                                                        <input name="child_nationality[]" class="form-control" required readonly value="{{$lead->profile->nationality}}">
+                                                                    <?php /* ?>
                                                                     {!! Form::select('child_nationality[]',$countries, $lead->profile->nationality, ['class'=>'form-control country', 'required', 'readonly']) !!}
+                                                                    <?php */ ?>
                                                                 @else
                                                                     {!! Form::select('child_nationality[]',$countries, 'NP', ['class'=>'form-control country', 'required']) !!}
                                                                 @endif

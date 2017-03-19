@@ -48,14 +48,14 @@ class CustomerController extends Controller
 
   public function store(Request $request){
     // return $request->all();
-      $this->validate($request, [
-        'title' => 'required',
-        'fname' => 'required',
-        'lname' => 'required',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|confirmed|min:6',
-        'country' => 'required',
-        'state' => 'required',
+    $this->validate($request, [
+      'title' => 'required',
+      'fname' => 'required',
+      'lname' => 'required',
+      'email' => 'required|email|unique:users,email',
+      'password' => 'required|confirmed|min:6',
+      'country' => 'required',
+      'state' => 'required',
     ]);
 
       $user = User::create([
@@ -114,16 +114,86 @@ class CustomerController extends Controller
 
   public function edit($id){
     $customer = User::findOrFail($id);
-    // $profile = $customer->profile();
-    // return $profile;
-    // return $customer;
     return view('backend.customer.edit', compact('customer'));
+  }
+
+  public function update(Request $request, $id){
+    // return $request->all();
+
+    $this->validate($request, [
+      'title' => 'required',
+      'fname' => 'required',
+      'lname' => 'required',
+      'email' => 'required|email|unique:users,email,'.$id,
+      'password' => 'required|confirmed|min:6',
+      'country' => 'required',
+      'state' => 'required',
+    ]);
+
+    $user = User::findOrFail($id);
+  if($user->password == $request->password){
+    $user->update([
+      'fname'=> $request->fname,
+      'mname'=> $request->mname,
+      'lname'=> $request->lname,
+      'email'=> $request->email,
+    ]);
+  }else{
+      $user->update([
+      'fname'=> $request->fname,
+      'mname'=> $request->mname,
+      'lname'=> $request->lname,
+      'email'=> $request->email,
+      'password'=> Hash::make($request->password),
+    ]);
+  }
+
+    if ($request->hasFile('profilePic')) {
+      $file = $request->file('profilePic');
+      $destination_path = 'images/user/profile';
+      $filename = time() . '-' . $file->getClientOriginalName();
+      $file->move($destination_path, $filename);
+    }else{
+      $filename = $user->profile->profile_pic;
+    }
+
+    if ($request->hasFile('DocUpload')) {
+      $file = $request->file('DocUpload');
+      $destination_path = 'images/user/document';
+      $filename2 = time() . '-' . $file->getClientOriginalName();
+      $file->move($destination_path, $filename2);
+    }else{
+      $filename2 = $user->profile->document_img;
+    }
+
+    $user->profile()->update([
+      'title'=> $request->title,
+      'fname'=> $request->fname,
+      'mname'=> $request->mname,
+      'lname'=> $request->lname,
+      'email'=> $request->email,
+      'profile_pic'=> $filename,
+      'document_img'=> $filename2,
+      'address'=> $request->address,
+      'nationality'=> $request->country,
+      'state'=> $request->state,
+      'phone_type'=> $request->phone_type,
+      'phone'=> $request->phone_number,
+      'document_type'=> $request->document_type,
+      'document_no'=> $request->document_no,
+    ]);
+
+    return redirect()->route('admin.customers.edit', $id)->withFlashSuccess('Information Updated Successfullly');
+
   }
 
   public function destroy($id){
     $customer = User::findOrFail($id);
-    return $customer;
-    $customer->delete();
+    // return $customer;
+    $customer->update([
+        'status'=>'0',
+        'deleted_at' => \Carbon\Carbon::now(),
+      ]);
     return redirect('admin/customers')->withFlashSuccess('Customer Deleted Successfully');
 }
 

@@ -102,7 +102,7 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label">Phone Type</label>
-						{!! Form::select('phone_type', [''=>'-- Select Phone Type', 'Mobile'=>'Mobile', 'Home'=>'Home', 'Office'=>'Office'], null , ['class'=>'form-control']) !!}
+						{!! Form::select('phone_type', [''=>'-- Select Phone Type --', 'Mobile'=>'Mobile', 'Home'=>'Home', 'Office'=>'Office'], null , ['class'=>'form-control']) !!}
 					</div>
 					<div class="form-group">
 						<label class="control-label">Phone Number</label>

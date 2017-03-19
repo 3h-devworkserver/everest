@@ -160,7 +160,7 @@
 				</div>
 		</div>
 
-		<?php if( (!empty($outAvailability)) && (!empty($inAvailability)) ): ?>
+		<?php if( (!empty($outAvailability)) || (!empty($inAvailability)) ): ?>
 			<div class="container">
 				<!-- <h2><?php echo e($departureFull); ?> to <?php echo e($arrivalFull); ?></h3> -->
 

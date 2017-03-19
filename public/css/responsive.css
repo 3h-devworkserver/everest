@@ -446,6 +446,9 @@
     .header-right .menu li a {
         width: auto;
     }
+    .header-right .menu li.btn-login{
+        margin:10px 0 0;
+    }
     header .header-right .menu-icon {
         margin: 13px 0 0 0;
         position: absolute;
@@ -540,6 +543,7 @@
     }
     .flight-search-form .well .input-group {
         padding-right: 0;
+        z-index: 1;
     }
     /* flight-list-block */
     .flight-list-block .details {

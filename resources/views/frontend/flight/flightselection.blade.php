@@ -161,7 +161,7 @@
 				</div>
 		</div>
 
-		@if( (!empty($outAvailability)) && (!empty($inAvailability)) )
+		@if( (!empty($outAvailability)) || (!empty($inAvailability)) )
 			<div class="container">
 				<!-- <h2>{{$departureFull}} to {{$arrivalFull}}</h3> -->
 

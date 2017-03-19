@@ -322,6 +322,9 @@
                                                             </div>
                                                             <div class="row-fluid row-margin-adj">
                                                                 <div class="col-md-2">
+                                                                <?php if(!empty($leadAdult)): ?>
+                                                                    <input name="adult_title[]" class="form-control" required readonly value="<?php echo e($lead->profile->title); ?>">
+                                                                <?php else: ?>
                                                                     <select name="adult_title[]" id="" class="SlectBox form-control" required <?php  if(!empty($leadAdult)){
                                                                                echo "readonly";
                                                                             }  ?>>
@@ -343,6 +346,7 @@
                                                                                 }
                                                                             }  ?>>Ms</option>
                                                                     </select>
+                                                                <?php endif; ?>
                                                                 </div>
                                                                 <div class="col-md-10">
                                                                     <div class="row-fluid">
@@ -380,8 +384,10 @@
                                                                 <div class="col-md-4">
                                                                 <label for="">Nationality</label>
                                                                 <?php if(!empty($leadAdult)): ?>
-                                                                    <?php echo Form::select('adult_nationality[]',$countries, $lead->profile->nationality, ['class'=>'form-control country', 'required', 'readonly']); ?>
-
+                                                                    <input name="adult_nationality[]" class="form-control" required readonly value="<?php echo e($lead->profile->nationality); ?>">
+                                                                    <?php /* ?>
+                                                                    {!! Form::select('adult_nationality[]',$countries, $lead->profile->nationality, ['class'=>'form-control country', 'required', 'readonly']) !!}
+                                                                    <?php */ ?>
                                                                 <?php else: ?>
                                                                     <?php echo Form::select('adult_nationality[]',$countries, 'NP', ['class'=>'form-control country', 'required']); ?>
 
@@ -526,6 +532,9 @@
                                                             </div>
                                                             <div class="row-fluid row-margin-adj">
                                                                 <div class="col-md-2">
+                                                                    <?php if(!empty($leadChild)): ?>
+                                                                        <input name="child_title[]" class="form-control" required readonly value="<?php echo e($lead->profile->title); ?>">
+                                                                    <?php else: ?>
                                                                     <select name="child_title[]" id="" class="SlectBox form-control" required <?php  if(!empty($leadChild)){
                                                                                echo "readonly";
                                                                              } ?>>
@@ -546,6 +555,7 @@
                                                                                 }
                                                                             }  ?>>Ms</option>
                                                                     </select>
+                                                                    <?php endif; ?>
                                                                 </div>
                                                                 <div class="col-md-10">
                                                                     <div class="row-fluid">
@@ -583,8 +593,10 @@
                                                                 <div class="col-md-4">
                                                                 <label for="">Nationality</label>
                                                                     <?php if(!empty($leadChild)): ?>
-                                                                    <?php echo Form::select('child_nationality[]',$countries, $lead->profile->nationality, ['class'=>'form-control country', 'required', 'readonly']); ?>
-
+                                                                        <input name="child_nationality[]" class="form-control" required readonly value="<?php echo e($lead->profile->nationality); ?>">
+                                                                    <?php /* ?>
+                                                                    {!! Form::select('child_nationality[]',$countries, $lead->profile->nationality, ['class'=>'form-control country', 'required', 'readonly']) !!}
+                                                                    <?php */ ?>
                                                                 <?php else: ?>
                                                                     <?php echo Form::select('child_nationality[]',$countries, 'NP', ['class'=>'form-control country', 'required']); ?>
 

@@ -66,9 +66,10 @@
                     <li class="<?php echo e(Active::pattern('admin/packages ')); ?>">
                       <a href="<?php echo url('admin/packages'); ?>"><i class="fa fa-file-text-o"></i> <?php echo e(trans('All Packages')); ?></a>
                     </li>
+                    <!--
                     <li class="<?php echo e(Active::pattern('admin/packages/create ')); ?>">
                       <a href="<?php echo url('admin/packages/create'); ?>"><i class="fa fa-plus"></i> <?php echo e(trans('Add New Package')); ?></a>
-                    </li>
+                    </li> -->
                     <li class="<?php echo e(Active::pattern('admin/packages/datesprices ')); ?>">
                       <a href="<?php echo url('admin/packages/datesprices'); ?>"><i class="glyphicon glyphicon-th-list"></i> <?php echo e(trans('Package Date & Price')); ?></a>
                     </li>

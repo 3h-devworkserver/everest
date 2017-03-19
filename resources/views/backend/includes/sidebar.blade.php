@@ -66,9 +66,10 @@
                     <li class="{{ Active::pattern('admin/packages ') }}">
                       <a href="{!! url('admin/packages') !!}"><i class="fa fa-file-text-o"></i> {{ trans('All Packages') }}</a>
                     </li>
+                    <!--
                     <li class="{{ Active::pattern('admin/packages/create ') }}">
                       <a href="{!! url('admin/packages/create') !!}"><i class="fa fa-plus"></i> {{ trans('Add New Package') }}</a>
-                    </li>
+                    </li> -->
                     <li class="{{ Active::pattern('admin/packages/datesprices ') }}">
                       <a href="{!! url('admin/packages/datesprices') !!}"><i class="glyphicon glyphicon-th-list"></i> {{ trans('Package Date & Price') }}</a>
                     </li>

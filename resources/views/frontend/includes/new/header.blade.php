@@ -13,7 +13,7 @@
 					<ul class="list-unstyled list-inline">
 						<li><a href="{{url('/flight/flightsearch')}}"><i class="fa fa-plane"></i>flight</a></li>
 						<li><a href="{{url('trekking')}}"><i class="fa fa-map-o"></i>trekking</a></li>
-						<li><a href="{{url('/login')}}"><i class="fa fa-sign-in"></i>login / register</a></li>
+						<li class="btn-login"><a href="{{url('/login')}}">login</a> <span>/</span> <a href="{{url('/register')}}">register</a></li>
 						<!-- <li><a href="#"><i class="fa fa-bed"></i>local room</a></li>
 						<li><a href="#"><i class="fa fa-car"></i>car rental</a></li> -->
 						<?php /* ?>

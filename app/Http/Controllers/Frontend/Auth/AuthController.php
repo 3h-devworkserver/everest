@@ -7,6 +7,10 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Http\Requests\Frontend\Access\LoginRequest;
 use App\Http\Requests\Frontend\Access\RegisterRequest;
 use App\Repositories\Frontend\Auth\AuthenticationContract;
+use App\Models\Access\User\User;
+use App\Models\Access\Role\Role;
+use Hash;
+use Mail;
 
 /**
  * Class AuthController
@@ -38,6 +42,64 @@ class AuthController extends Controller
         return view('frontend.auth.travellerregister');
     }
 
+    public function getTravellerUserRole() {
+        return Role::where('name', 'Traveller')->first();
+    }
+
+//register traveller from frontend register page
+public function postTravellerRegister(Request $request){
+   $this->validate($request, [
+      'title' => 'required',
+      'fname' => 'required',
+      'lname' => 'required',
+      'email' => 'required|email|unique:users,email',
+      'password' => 'required|confirmed|min:6',
+      'country' => 'required',
+      'state' => 'required',
+    ]);
+
+      $user = User::create([
+          'fname'=> $request->fname,
+          'mname'=> $request->mname,
+          'lname'=> $request->lname,
+          'email'=> $request->email,
+          'password'=> Hash::make($request->password),
+          'confirmation_code' => md5(uniqid(mt_rand(), true)),
+          'status'=> 0,
+          'confirmed'=> 0,
+      ]);
+
+      $user->attachRole($this->getTravellerUserRole());
+
+      $user->profile()->create([
+          'title'=> $request->title,
+          'fname'=> $request->fname,
+          'mname'=> $request->mname,
+          'lname'=> $request->lname,
+          'email'=> $request->email,
+          'address'=> $request->address,
+          'nationality'=> $request->country,
+          'state'=> $request->state,
+          'phone_type'=> $request->phone_type,
+          'phone'=> $request->phone_number,
+          'document_type'=> $request->document_type,
+          'document_no'=> $request->document_no,
+        ]);
+
+        if(!empty($user->mname)){
+            $name = $user->fname.' '.$user->mname.' '.$user->lname;
+        }else{
+            $name = $user->fname.' '.$user->lname;
+        }
+
+     Mail::send('emails.confirm', ['token' => $user->confirmation_code], function ($message) use ($user, $name) {
+            $message->to($user->email, $name)->subject('Confirm your account!');
+        });
+  
+      return redirect('/register')->withFlashSuccess('Confirmation email is sent to your email');
+    }
+
+
 
     /**
      * @param RegisterRequest $request
@@ -65,27 +127,27 @@ class AuthController extends Controller
      * @param RegisterRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postTravellerRegister(RegisterRequest $request)
-    {
-        $data['stat']='error';
-        if (config('access.users.confirm_email')) {
-            $this->auth->create($request->all());
-            $data['stat']='confirm';
-            $data['success']='Your account was successfully created. We have sent you an e-mail to confirm your account.';
-            return response()->json($data);
-        } else {
-            //Use native auth login because do not need to check status when registering
-           // $this->auth->create($request->all());
-            $data['stat']='ok';
-            // $data['stat']='ok';
-              auth()->login($this->auth->create($request->all()));
-            // return redirect()->route('frontend.dashboard');
-            //$data['msg'] =$request->all();
-            return response()->json($data);
-        }
-        // $data['msg'] =$request->all();
-        // return response()->json($data);
-    }
+    // public function postTravellerRegister(RegisterRequest $request)
+    // {
+    //     $data['stat']='error';
+    //     if (config('access.users.confirm_email')) {
+    //         $this->auth->create($request->all());
+    //         $data['stat']='confirm';
+    //         $data['success']='Your account was successfully created. We have sent you an e-mail to confirm your account.';
+    //         return response()->json($data);
+    //     } else {
+    //         //Use native auth login because do not need to check status when registering
+    //        // $this->auth->create($request->all());
+    //         $data['stat']='ok';
+    //         // $data['stat']='ok';
+    //           auth()->login($this->auth->create($request->all()));
+    //         // return redirect()->route('frontend.dashboard');
+    //         //$data['msg'] =$request->all();
+    //         return response()->json($data);
+    //     }
+    //     // $data['msg'] =$request->all();
+    //     // return response()->json($data);
+    // }
 
     //  public function postTravellerRegister(RegisterRequest $request)
     // {

@@ -1116,7 +1116,25 @@ form.steps({
   
 });
 
+ $('.registeredUserForm').validate({
+      rules :{
+        'email': {
+          required: true,
+          email: true
+        },
+        password: { 
+         required: true,
+         minlength: 6
+        }
+      },
+  });
+
+
 $(document).on('click', '.btnTravellerLogin', function(){
+
+  if ( !($('.registeredUserForm').valid() )) {
+    return;
+  }
   $('body .loader').show();
   $('body .main').hide();
   var email = $('.email').val();
@@ -1147,9 +1165,29 @@ $(document).on('click', '.btnTravellerLogin', function(){
 
 });
 
-// print_country("country_id","");
 
-
+//validate frontend traveller register form
+$('.customerRegisterForm').validate({
+  rules :{
+    'title': 'required',
+    'fname': 'required',
+    'lname': 'required',
+    'email': {
+          required: true,
+          email: true
+        },
+    password: { 
+     required: true,
+     minlength: 6
+    },
+    password_confirmation: { 
+      equalTo: "#password",
+      minlength: 6
+    },
+    'country': 'required',
+    'state': 'required',
+  }
+});
 
 
 });

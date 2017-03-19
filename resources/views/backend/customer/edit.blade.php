@@ -18,14 +18,14 @@
 @section('content')
 <!-- Main content -->
 
-{!! Form::model($customer, ['url'=>'admin/customers', 'id'=>'myForm', 'class'=>'customerForm', 'method'=>'patch', 'files'=> 'true']) !!}
+{!! Form::model($customer, ['url'=>'admin/customers/'.$customer->id, 'id'=>'myForm', 'class'=>'customerForm', 'method'=>'patch', 'files'=> 'true']) !!}
 <div class="row">
   <div class="col-md-3">
     <!-- Profile Image -->
     <div class="box box-primary">
       <div class="box-body box-profile">
         <img class="profile-user-img img-responsive img-circle profile-avatar" src="{{url('images/user/profile/'.$customer->profile->profile_pic)}}" alt="User profile picture">
-        <h3 class="profile-username text-center"></h3>
+        <h3 class="profile-username text-center">{{$customer->fname}}@if(!empty($customer->mname)) {{$customer->mname}}@endif {{$customer->lname}}</h3>
         <p class="text-muted text-center">
          Traveller
         </p>
@@ -82,11 +82,11 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label">Password</label>
-						{!! Form::input('password', 'password', null,['class'=>'form-control', 'placeholder'=>'Enter Password']) !!}
+						{!! Form::input('password', 'password', $customer->password,['class'=>'form-control', 'placeholder'=>'Enter Password']) !!}
 					</div>
 					<div class="form-group">
 						<label class="control-label">Confirm Password</label>
-						{!! Form::input('password', 'password_confirmation',null,['class'=>'form-control', 'placeholder'=>'Confirm Password']) !!}
+						{!! Form::input('password', 'password_confirmation',$customer->password,['class'=>'form-control', 'placeholder'=>'Confirm Password']) !!}
 					</div>
 					<div class="form-group">
 						<label class="control-label">Nationality</label>
@@ -102,7 +102,7 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label">Phone Type</label>
-						{!! Form::select('phone_type', [''=>'-- Select Phone Type', 'Mobile'=>'Mobile', 'Home'=>'Home', 'Office'=>'Office'], $customer->profile->phone_type , ['class'=>'form-control']) !!}
+						{!! Form::select('phone_type', [''=>'-- Select Phone Type --', 'Mobile'=>'Mobile', 'Home'=>'Home', 'Office'=>'Office'], $customer->profile->phone_type , ['class'=>'form-control']) !!}
 					</div>
 					<div class="form-group">
 						<label class="control-label">Phone Number</label>
@@ -122,7 +122,11 @@
 							<i class="fa fa-folder-open"></i>Upload Map Image
 							<input type="file" onchange="readURLdoc(this);" name="DocUpload" accept="image/*" class="image-upload">
 						</span>
-						<div id="doc-preview" class="show-img-bg " @if(!empty($customer->profile->document_img)) style="background-image:url('images/user/document/{{$customer->profile->document_img}}')" @endif alt="Image Preview"></div>
+						@if(!empty($customer->profile->document_img))
+							<div id="doc-preview" class="show-img-bg" style="background-image:url({{url('images/user/document/'.$customer->profile->document_img)}})"  alt="Image Preview"></div>
+						@else
+							<div id="doc-preview" class="show-img-bg display-none" alt="Image Preview"></div>
+						@endif
 					</div>
 				</div>
 					<div class="form-group">
@@ -134,102 +138,8 @@
 </div><!-- /.row -->
 {!! Form::close() !!}
 
-
-
-
-
-
-
-
-
-<?php  /* ?>
-
-
-{!! Form::open(['url'=>'admin/customers', 'id'=>'myForm', 'files'=> 'true']) !!}
-<div class="row">
-
-	<div class="col-md-9">
-		<div class="box">
-			<div class="box-body">
-				<div class="form-group">
-					<label class="control-label">Title</label>
-					{!! Form::select('title[]', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms'], null, ['class'=>'box form-control' ]) !!}
-				</div>
-				<div class="form-group">
-					<label class="control-label">First Name</label>
-					{!! Form::text('fname',null,['class'=>'form-control', 'placeholder'=>'Enter First Name']) !!}
-				</div>
-				<div class="form-group">
-					<label class="control-label">Middle Name</label>
-					{!! Form::text('mname',null,['class'=>'form-control', 'placeholder'=>'Enter Middle Name']) !!}
-				</div>
-				<div class="form-group">
-					<label class="control-label">Last Name</label>
-					{!! Form::text('lname',null,['class'=>'form-control', 'placeholder'=>'Enter Last Name']) !!}
-				</div>
-				<div class="form-group">
-					<label class="control-label">Email</label>
-					{!! Form::email('email',null,['class'=>'form-control', 'placeholder'=>'Enter Email']) !!}
-				</div>
-				<div class="form-group">
-					<label class="control-label">Password</label>
-					{!! Form::input('password', 'password', null,['class'=>'form-control', 'placeholder'=>'Enter Password']) !!}
-				</div>
-				<div class="form-group">
-					<label class="control-label">Confirm Password</label>
-					{!! Form::input('password', 'password_confirmation',null,['class'=>'form-control', 'placeholder'=>'Confirm Password']) !!}
-				</div>
-				<div class="form-group">
-					<label class="control-label">Address</label>
-					{!! Form::text('address',null,['class'=>'form-control', 'placeholder'=>'Enter Address']) !!}
-				</div>
-				<div class="form-group">
-					<label class="control-label">Nationality</label>
-					<select name="country" id="country" class="form-control" onchange="print_state('state',this.selectedIndex);">
-
-					</select>
-				</div>
-				<div class="form-group">
-					<label class="control-label">State / Province</label>
-					<select name="state" id="state" class="form-control" >
-
-					</select>
-				</div>
-				<div class="form-group">
-					<label class="control-label">Phone Type</label>
-					{!! Form::select('phone_type', ['Mobile'=>'Mobile', 'Home'=>'Home', 'Office'=>'Office'], null , ['class'=>'form-control']) !!}
-				</div>
-				<div class="form-group">
-					<label class="control-label">Phone Number</label>
-					{!! Form::text('phone_number',null,['class'=>'form-control', 'placeholder'=>'Enter Phone Number']) !!}
-				</div>
-
-			</div>
-		</div>
-
-	</div> <!-- col -->
-
-	<div class="col-md-3">
-
-	</div>
-
-</div>
-
-
-
-<div class="row">
-	<div class="col-md-offset-9 col-md-3">
-		{!! Form::submit('Save',['class'=>'btn btn-orange']) !!}
-	</div>
-	
-</div>
-
-
-{!! Form::close() !!}
-<?php */?>
-
 <script language="javascript">
-	print_country("country","{{$customer->profile->nationality}}");
+	print_country_edit("country","{{$customer->profile->nationality}}");
 	$("#state").append(new Option("{{ $customer->profile->state }}", "{{ $customer->profile->state }}"));
 </script>
 

@@ -348,6 +348,19 @@ a.readmore {
 .header-right .menu li a:hover {
     background: #e42e2a;
 }
+
+.header-right .menu li.btn-login{
+    margin-left: 15px;
+}
+.header-right .menu li.btn-login a {
+    background: transparent none repeat scroll 0 0;
+    color: inherit;
+    padding: 0;
+    display: inline-block;
+}
+.header-right .menu li.btn-login a:hover{
+    color: #E42E2A;
+}
 .menu ul li a i {
     border: 1px solid;
     border-radius: 50%;
@@ -4042,6 +4055,9 @@ body.modal-open {
 #login .login-wrap {
     padding: 25px;
 }
+#login .login-wrap span.error-msg{
+    color: #E42E2A;
+}
 .guest-wrap {
     background: #f2f2f2 none repeat scroll 0 0;
     padding: 29% 0;
@@ -4185,9 +4201,13 @@ body.modal-open {
     border-radius: 0;
     width: 84%;
     min-height: 400px;
+    overflow: visible;
 }
 .wizard > .content > .body{
     position: static;   
+}
+.wizard, .tabcontrol{
+    overflow: visible;
 }
 .wizard .content .passanger-title{
     color: #004998;
@@ -4955,14 +4975,18 @@ body.modal-open {
     border-radius: 0;
     padding: 8px 16px;
 }
+.login-page .login-wrapper .login-form .btn-grp .btn:hover{
+    background-color: #3079c8;
+    border-color: #3079c8;
+}
 .login-page .login-wrapper .login-form .btn-grp .btn.register-btn {
     margin-right: 0;
     background: #272e36;
     border-color: #272e36;
 }
 .login-page .login-wrapper .login-form .btn-grp .btn.register-btn:hover {
-    background: #e42e2a ;
-    border-color: #e42e2a ;
+    background: #5E5E5E ;
+    border-color: #5E5E5E ;
 }
 .profile{
     padding: 40px 0;
@@ -5210,6 +5234,7 @@ body.modal-open {
 .register-page .register-wrapper .register-form .form-control{
     border-radius: 0;
     box-shadow: none;
+    height: 32px;
 }
 .register-page .btn.register-btn {
     background: #272e36;

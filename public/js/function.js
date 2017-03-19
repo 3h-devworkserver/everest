@@ -191,6 +191,12 @@ $( ".country" ).SumoSelect({
   searchText: 'Enter Country'
 });
 
+// //from --yojan for searching state
+// $( ".state" ).SumoSelect({
+//   search: true, 
+//   searchText: 'Enter State'
+// });
+
 
 	// $(function() {
 	//     $( "#from" ).datepicker({

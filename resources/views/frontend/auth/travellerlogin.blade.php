@@ -7,10 +7,10 @@
           <div class="container">
             <div class="row">
               <div class="col-md-12">
-                @include('includes.partials.messages')
               
                 <div class="form-wrapper">
-                  
+                @include('includes.partials.messages')
+
                   <div class="login-wrapper">
                     <div class="light-block">
                       <div class="title">
