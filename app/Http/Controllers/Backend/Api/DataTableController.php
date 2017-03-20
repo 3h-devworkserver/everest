@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Models\PackageCategory;
 use App\Models\PackageOption;
 use App\Models\MainTraveller;
+use App\Models\Booking;
 use App\Models\Access\User\User;
 
 
@@ -693,11 +694,13 @@ public function getPackageCategory() {
     public function getRegisteredCustomers(UserContract $users){
     // $customers = User::orderby('created_at', 'desc')->get();
     return Datatable::collection($users->getUsers('1', '2'))
-        // $customers = User::orderby('created_at', 'desc')->where('id', '22')->get();
-        // return Datatable::collection($customers)
                         ->showColumns('id')
                         ->addColumn('name', function($model) {
-                                return ucfirst($model->fname) . ' ' . ucfirst($model->mname) . ' ' . ucfirst($model->lname);
+                            if(empty($model->mname)){
+                                return ucfirst($model->fname). ' ' . ucfirst($model->lname);
+                            }else{
+                                return ucfirst($model->fname) .' '. ucfirst($model->mname) . ' ' . ucfirst($model->lname);
+                            }
                         })
                         ->addColumn('email', function($model){
                                 return $model->email;
@@ -709,6 +712,36 @@ public function getPackageCategory() {
                             return get_ops('customers', $model->id, 3);
                         })
                         ->searchColumns('name')
+                        ->make();
+    }
+
+    //get purchase orders
+    public function getPurchases(){
+    $purchases = Booking::where('status', 'paid')->get();
+    return Datatable::collection($purchases)
+                        ->showColumns('id', 'order_id')
+                        ->addColumn('customer', function($model){
+                            $profile = $model->flightReservation->mainTraveller->profile;
+                            if(empty($profile->mname)){
+                                return ucfirst($profile->fname). ' ' . ucfirst($profile->lname);
+                            }else{
+                                return ucfirst($profile->fname) .' '. ucfirst($profile->mname) . ' ' . ucfirst($profile->lname);
+                            }
+                        })
+                        ->addColumn('package_type', function($model) {
+                                if($model->type == 'flight'){
+                                    return 'Flight';
+                                }else{
+                                    return 'Package';
+                                }
+                        })
+                        ->addColumn('purchased_at', function($model) {
+                            return \Carbon\Carbon::parse($model->purchased_at)->format('Y/m/d');
+                        })
+                        ->addColumn('action', function($model) {
+                            return '<a class="btn btn-orange" href="'.url('/admin/purchases/'.$model->id).'/summary">View</a>';
+                        })
+                        ->searchColumns('customer, order_id')
                         ->make();
     }
 

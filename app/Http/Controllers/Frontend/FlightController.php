@@ -12,6 +12,7 @@ use App\Models\Menu;
 use App\Models\MainTraveller;
 use App\Models\OtherTraveller;
 use App\Models\FlightReservation;
+use App\Models\Booking;
 
 class FlightController extends Controller {
     private $strUserId = 'UPEVES';
@@ -481,7 +482,15 @@ $menus = Menu::where('parent_id', 0)->orderby('order')->get();
     ->with('meta_desc', 'Flight Passengers Detail, Upeverest');
 }
 
-
+public function generateRandomString($length = 8) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 
 public function passengersDetail(Request $request){
     // return $request->all();
@@ -616,12 +625,19 @@ if($childCount != 0){
         $userId = '';
     }
 
-
-
-//storing flight reservation detail in db
-    $flightReservation = FlightReservation::create([
+//storing booking information
+    $booking = Booking::create([
         'group_id'=> $random,
         'user_id'=> $userId,
+        'order_id'=> $this->generateRandomString(),
+        'type'=> 'flight',
+        'status'=> 'unpaid',
+    ]);
+
+//storing flight reservation detail in db
+    // $flightReservation = FlightReservation::create([
+    $flightReservation = $booking->flightReservation()->create([
+        
         'return_type'=> $request->trip_type,
         'flight_id'=> $request->flight_id,
         'returnflight_id'=> $request->returnflight_id,
@@ -657,7 +673,7 @@ if($childCount != 0){
         while($j < $adultCount){
             if($request->main_traveller == (string)($j+1)){
                 $mainTraveller = $flightReservation->mainTraveller()->create([
-                    "group_id" => $random,
+                    // "group_id" => $random,
                     "user_id" => $userId,
                     "type" => 'flight',
                     "person_type" => 'adult',
@@ -757,14 +773,14 @@ if($childCount != 0){
 
         if($request->main_traveller != (string)($i+1)){
             $adultOtherTravellers[$i] = $mainTraveller->otherTravellers()->create([
-                "group_id" => $random,
+                // "group_id" => $random,
                 "person_type" => 'adult',
                 // "type" => 'flight',
             ]);
 
             $adultOtherTravellers[$i]->profile()->create([
                 // "user_id" => $userId,
-                "group_id" => $random,
+                // "group_id" => $random,
                 "title" => $request->adult_title[$i],
                 "fname" => $request->adult_fname[$i],
                 "mname" => $request->adult_mname[$i],
@@ -828,15 +844,15 @@ if($childCount != 0){
         while($j < $childCount){
             if($request->main_child_traveller == (string)($j+1)){
                 $mainTraveller = $flightReservation->mainTraveller()->create([
-                    "group_id" => $random,
+                    // "group_id" => $random,
                     "user_id" => $userId,
                     "type" => 'flight',
                     "person_type" => 'child',
                 ]);
 
                 $mainTraveller->profile()->create([
-                    // "user_id" => $userId,
-                    "group_id" => $random,
+                    "user_id" => $userId,
+                    // "group_id" => $random,
                     "title" => $request->child_title[$j],
                     "fname" => $request->child_fname[$j],
                     "mname" => $request->child_mname[$j],
@@ -876,14 +892,14 @@ if($childCount != 0){
 
         if($request->main_child_traveller != (string)($i+1)){
             $childOtherTravellers[$i] = $mainTraveller->otherTravellers()->create([
-                "group_id" => $random,
+                // "group_id" => $random,
                 "person_type" => 'child',
                 // "type" => 'flight',
             ]);
 
             $childOtherTravellers[$i]->profile()->create([
                 // "user_id" => $userId,
-                "group_id" => $random,
+                // "group_id" => $random,
                 "title" => $request->child_title[$i],
                 "fname" => $request->child_fname[$i],
                 "mname" => $request->child_mname[$i],

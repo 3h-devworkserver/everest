@@ -120,7 +120,21 @@
                     </li>
                   </ul>
                 </li>
-                <?php endif; ?>
+              <?php endif; ?>
+
+              <?php if (access()->can('view-purchase-order-management')): ?>
+                <li class="<?php echo e(Active::pattern('admin/purchases*')); ?> treeview">
+                  <a href="#">
+                    <i class="fa fa-user"></i><span><?php echo e(trans('Purchase Order Summary')); ?></span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu <?php echo e(Active::pattern('admin/purchases*', 'menu-open')); ?>" style="display: none; <?php echo e(Active::pattern('admin/purchases*', 'display: block;')); ?>">
+                    <li class="<?php echo e(Active::pattern('admin/purchases')); ?>">
+                      <a href="<?php echo url('admin/purchases'); ?>"><i class="fa fa-file-text-o"></i> <?php echo e(trans('All Order')); ?></a>
+                    </li>
+                  </ul>
+                </li>
+              <?php endif; ?>
 
                 <?php if (access()->can('view-menu-management')): ?>
                 <li class="<?php echo e(Active::pattern('admin/menus*')); ?> treeview">

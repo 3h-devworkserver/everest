@@ -120,7 +120,21 @@
                     </li>
                   </ul>
                 </li>
-                @endauth
+              @endauth
+
+              @permission ('view-purchase-order-management')
+                <li class="{{ Active::pattern('admin/purchases*')}} treeview">
+                  <a href="#">
+                    <i class="fa fa-user"></i><span>{{ trans('Purchase Order Summary') }}</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                  </a>
+                  <ul class="treeview-menu {{ Active::pattern('admin/purchases*', 'menu-open') }}" style="display: none; {{ Active::pattern('admin/purchases*', 'display: block;') }}">
+                    <li class="{{ Active::pattern('admin/purchases') }}">
+                      <a href="{!! url('admin/purchases') !!}"><i class="fa fa-file-text-o"></i> {{ trans('All Order') }}</a>
+                    </li>
+                  </ul>
+                </li>
+              @endauth
 
                 @permission ('view-menu-management')
                 <li class="{{ Active::pattern('admin/menus*')}} treeview">

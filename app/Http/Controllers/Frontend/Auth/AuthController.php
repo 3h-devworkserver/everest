@@ -9,8 +9,10 @@ use App\Http\Requests\Frontend\Access\RegisterRequest;
 use App\Repositories\Frontend\Auth\AuthenticationContract;
 use App\Models\Access\User\User;
 use App\Models\Access\Role\Role;
+use App\Models\Menu;
 use Hash;
 use Mail;
+use Validator;
 
 /**
  * Class AuthController
@@ -39,7 +41,11 @@ class AuthController extends Controller
 
 //register page for traveller
     public function getTravellerRegister(){
-        return view('frontend.auth.travellerregister');
+        return view('frontend.auth.travellerregister')
+        ->with('menus', Menu::where('parent_id', 0)->orderby('order')->get())
+        ->with('meta_title', 'Traveller Register | Upeverest')
+        ->with('meta_keywords', 'Traveller Register | Upeverest') 
+        ->with('meta_desc', 'Traveller Register | Upeverest');
     }
 
     public function getTravellerUserRole() {
@@ -65,7 +71,7 @@ public function postTravellerRegister(Request $request){
           'email'=> $request->email,
           'password'=> Hash::make($request->password),
           'confirmation_code' => md5(uniqid(mt_rand(), true)),
-          'status'=> 0,
+          'status'=> 1,
           'confirmed'=> 0,
       ]);
 
@@ -177,8 +183,25 @@ public function postTravellerRegister(Request $request){
      * @param  LoginRequest                        $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postTravellerLogin(LoginRequest $request)
-    {
+    public function postTravellerLogin(Request $request)
+    {   
+        if($request->ajax()){
+            $validator = Validator::make($request->all(), [       
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+            if($validator->fails()){
+                $data['stat'] = 'error';
+                $data['msg'] =  'Invalid Email or Password';
+                return $data;
+            }
+        }
+        else{
+            $this->validate($request, [
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+        }
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -190,9 +213,6 @@ public function postTravellerRegister(Request $request){
 
         //Don't know why the exception handler is not catching this
         try {
-
-            //for ajax -flight
-            $data['stat'] = 'failed';
 
             $traveller = $this->auth->travellerLogin($request);
 
@@ -292,7 +312,11 @@ public function postTravellerRegister(Request $request){
      */
     public function getTravellerLogin()
     {
-        return view('frontend.auth.travellerlogin')->withClass('travellerLoginArea');
+        return view('frontend.auth.travellerlogin')->withClass('travellerLoginArea')
+        ->with('menus', Menu::where('parent_id', 0)->orderby('order')->get())
+        ->with('meta_title', 'Traveller Login | Upeverest')
+        ->with('meta_keywords', 'Traveller Login | Upeverest') 
+        ->with('meta_desc', 'Traveller Login | Upeverest');
     }
 
      /**
