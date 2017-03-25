@@ -719,14 +719,21 @@ public function getPackageCategory() {
     public function getPurchases(){
     $purchases = Booking::where('status', 'paid')->get();
     return Datatable::collection($purchases)
-                        ->showColumns('id', 'order_id')
-                        ->addColumn('customer', function($model){
-                            $profile = $model->flightReservation->mainTraveller->profile;
-                            if(empty($profile->mname)){
-                                return ucfirst($profile->fname). ' ' . ucfirst($profile->lname);
+                        ->showColumns('id')
+                        ->addColumn('order_id', function($model) {
+                            if($model->type == 'flight'){
+                               return $model->flightReservation->order_id;
                             }else{
-                                return ucfirst($profile->fname) .' '. ucfirst($profile->mname) . ' ' . ucfirst($profile->lname);
+                               return $model->packageBooking->order_id;
                             }
+                        })
+                        ->addColumn('customer', function($model){
+                            if($model->type == 'flight'){
+                                $profile = $model->flightReservation->mainTraveller->profile;
+                            }else{
+                                $profile = $model->packageBooking->mainTraveller->profile;
+                            }
+                                return ucfirst($profile->fname) .' '. ucfirst($profile->mname) . ' ' . ucfirst($profile->lname);
                         })
                         ->addColumn('package_type', function($model) {
                                 if($model->type == 'flight'){
@@ -739,7 +746,7 @@ public function getPackageCategory() {
                             return \Carbon\Carbon::parse($model->purchased_at)->format('Y/m/d');
                         })
                         ->addColumn('action', function($model) {
-                            return '<a class="btn btn-orange" href="'.url('/admin/purchases/'.$model->id).'/summary">View</a>';
+                            return '<a class="btn btn-orange" href="'.url('/admin/purchases/'.$model->id).'/summary"><i class="fa fa-eye" aria-hidden="true"> View</i></a>';
                         })
                         ->searchColumns('customer, order_id')
                         ->make();

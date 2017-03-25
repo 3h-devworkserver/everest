@@ -25,10 +25,13 @@ use Input;
 use Illuminate\Http\Request;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Models\PackageDatePrice;
+use App\Models\Booking;
 use File;
 use Hash;
 use Mail;
 use Validator;
+use Auth;
+use Image;
 
 /**
  * Class PackageController
@@ -49,7 +52,7 @@ class PackageController extends Controller {
         parent::__construct();
     }
 
-    public function generateRandomString($length = 4) {
+    public function generateRandomString($length) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -72,14 +75,14 @@ class PackageController extends Controller {
         $packageCategory =  $package->packageCategory;
         foreach($packageCategory as $category){
             if ($category->title == 'Valentine\'s Special'){
-                return view('frontend.new.valentines', compact('count','package','page', 'menus', 'meta_title', 'meta_keywords', 'meta_desc'))->withClass($slug . '-page')
+                return view('frontend.package.valentines', compact('count','package','page', 'menus', 'meta_title', 'meta_keywords', 'meta_desc'))->withClass($slug . '-page')
                 ->with('meta_title', $package->title)
                 ->with('meta_keywords', 'Valentine\'s Special Package Valentine\'s Offer')
                 ->with('meta_desc', 'Valentine\'s Special Package for couple')
                 ->with('title', $package->title);
             }
         }
-        return view('frontend.new.classic-everest', compact('package','page', 'menus', 'meta_title', 'meta_keywords', 'meta_desc'))->withClass($slug . '-page')
+        return view('frontend.package.classic-everest', compact('package','page', 'menus', 'meta_title', 'meta_keywords', 'meta_desc'))->withClass($slug . '-page')
         ->with('meta_title', $package->title)
         ->with('meta_keywords', $page->meta_key)
         ->with('meta_desc', $page->meta_desc)
@@ -130,11 +133,11 @@ class PackageController extends Controller {
         if ($dPrice->package->id != $package->id ) {
             abort(404);
         }
-        $rand = $this->generateRandomString();
+        $rand = $this->generateRandomString(4);
 
         $packages = Packages::where('id', '!=',  21)->where('status', 1)->get();
 
-        return view('frontend.new.valentinesbooking', compact('rand','package','packages','datePrice','page', 'menus', 'slug', 'dPrice', 'count'))->withClass($slug . '-page')
+        return view('frontend.package.valentinesbooking', compact('rand','package','packages','datePrice','page', 'menus', 'slug', 'dPrice', 'count'))->withClass($slug . '-page')
         ->with('meta_title', $package->title)
         ->with('meta_keywords', 'Valentine\'s Special Package Valentine\'s Offer')
         ->with('meta_desc', 'Valentine\'s Special Package for couple')
@@ -183,7 +186,7 @@ class PackageController extends Controller {
             if ($dPrice->package->id != $package->id ) {
                 abort(404);
             }
-            $rand = $this->generateRandomString();
+            $rand = $this->generateRandomString(4);
 
             $promo = Promocode::where('promocode', $promocode)->first();
             if (!empty($promo)) {
@@ -243,7 +246,7 @@ class PackageController extends Controller {
 
 
 
-                return view('frontend.new.valentinesbooking', compact('rand','package','datePrice','page', 'menus', 'slug', 'dPrice', 'promo', 'promoRow'))
+                return view('frontend.package.valentinesbooking', compact('rand','package','datePrice','page', 'menus', 'slug', 'dPrice', 'promo', 'promoRow'))
                         // ->with('success', 'You have successfully purchased Package')
                 ->with('success', '<p class="package_success_msg">Thanks for booking with us. Your reservation has been confirmed with the following details: <br><br>Airlines: Yeti Airlines <br>Hotel: Lakeside Retreat.<br><br>Your flight ticket with details will be sent to you within 12 working hrs. <br><br>Note: Incase you don\'t see mail in your inbox, plz check your spam folder.</p>')
                 ->with('purchase', 'true')->withClass($slug . '-page')
@@ -395,8 +398,10 @@ public function bookingStep1($slug, $datePrice){
     if ($dPrice->package->id != $package->id ) {
         abort(404);
     }
-    $addon = Packages::where('status', 1)->where('pack_type', 'addon')->get();
-    return view('frontend.new.bookingstep1', compact('package','datePrice','page', 'menus', 'slug', 'dPrice', 'addon'))->withClass($slug . '-page')
+    // $addon = Packages::where('status', 1)->where('pack_type', 'addon')->get();
+    $addon = explode(',', $package->addon_package);
+    // return $addon;
+    return view('frontend.package.bookingstep1', compact('package','datePrice','page', 'menus', 'slug', 'dPrice', 'addon'))->withClass($slug . '-page')
     ->with('meta_title', 'Booking Step 1')
     ->with('meta_keywords', $page->meta_key)
     ->with('meta_desc', $page->meta_desc)
@@ -416,7 +421,7 @@ public function bookingStep1Edit($slug, $datePrice, $groupId){
 // $booking = Booking::findOrFail($travellers[0]->user_id);
 // $addonSelected = explode(',', $booking->addon_selected);
 $addon = Packages::where('status', 1)->where('pack_type', 'addon')->get();
-return view('frontend.new.bookingstep1-edit', compact('package','groupId','travellers', 'datePrice','page', 'menus', 'slug', 'dPrice', 'addon'))->withClass($slug . '-page')
+return view('frontend.package.bookingstep1-edit', compact('package','groupId','travellers', 'datePrice','page', 'menus', 'slug', 'dPrice', 'addon'))->withClass($slug . '-page')
 ->with('meta_title', 'Booking Step 1')
 ->with('meta_keywords', $page->meta_key)
 ->with('meta_desc', $page->meta_desc)
@@ -436,12 +441,15 @@ public function bookingStep2Edit($slug, $datePrice, $groupId, Request $request){
 //start of validation
     $datePriceRow = PackageDatePrice::findOrFail($datePrice);
     $packageId = $datePriceRow->package->id;
+
+    if(Auth::guest()){
     $validator = Validator::make($request->all(), [       
         'password' => 'required|min:6|confirmed',
         ]);
-    if ($validator->fails())
-    {
-        return redirect()->back()->with('invalid', "Error in password fields");
+        if ($validator->fails())
+        {
+            return redirect()->back()->with('invalid', "Error in password fields");
+        }
     }
 
     $arry= $request->all();
@@ -977,7 +985,7 @@ $i++;
     if ($dPrice->package->id != $package->id ) {
         abort(404);
     }
-    return view('frontend.new.bookingstep2', compact('travellers','groupId', 'package','dPrice','datePrice', 'page', 'menus', 'slug'))->withClass($slug . '-page')
+    return view('frontend.package.bookingstep2', compact('travellers','groupId', 'package','dPrice','datePrice', 'page', 'menus', 'slug'))->withClass($slug . '-page')
     ->with('meta_title', 'Booking Step 2')
     ->with('meta_keywords', $page->meta_key)
     ->with('meta_desc', $page->meta_desc)
@@ -1018,14 +1026,17 @@ public function username($fname,$lname,$rand=null){
 
     public function bookingStep2($slug, $datePrice, Request $request){
     // return $request->all();
+
         $datePriceRow = PackageDatePrice::findOrFail($datePrice);
         $packageId = $datePriceRow->package->id;
-        $validator = Validator::make($request->all(), [       
-            'password' => 'required|min:6|confirmed',
-            ]);
-        if ($validator->fails())
-        {
-            return redirect()->back()->with('invalid', "Error in password fields");
+        if(Auth::guest()){
+            $validator = Validator::make($request->all(), [       
+                'password' => 'required|min:6|confirmed',
+                ]);
+            if ($validator->fails())
+            {
+                return redirect()->back()->with('invalid', "Error in password fields");
+            }
         }
 
         $arry= $request->all();
@@ -1141,223 +1152,202 @@ public function username($fname,$lname,$rand=null){
             return redirect()->back()->with('invalid', $msg);
         }
 
-
-
-
-// //previous validation used
-//  $arr2 = array_values($arry);
-
-// $i = 0; 
-// foreach($arr2 as $arr){
-//    // skip _token and no of travellers field
-//     if($i == 0 || $i ==1){
-//         $i++;
-//             continue;
-//         }
-//         // return $arr;
-//     foreach ($arr as $param) {
-//         //skip optional fields
-//         if($i == 0 ||$i == 1 || $i == 4 || $i == 7 || $i == 12 || $i == 16 || $i == 23 || $i == 28 ){
-//             break;
-//         }
-//         if(empty($param)){
-//             $msg = "All the required fields are not entered ";
-//             return redirect()->back()->with('invalid', $msg);
-//             // return $msg;
-//         }
-//     }
-//     $i++;
-// }
-// //end of previous validation
-
-// return "validated";
-
-
-
-//validation
-    // $validator =  Validator::make($request->all(), [
-    //             // 'title_it.*'=>'required',
-    //              "title[]" => 'required',
-    //             "fname" => 'required',
-    //             "lname" => 'required',
-    //             "email" => "required",
-    //             "dob_year" => "required",
-    //             "dob_month" => "required",
-    //             "dob_day" => "required",
-    //             "passport" => "required",
-    //             "image" => "required",
-    //             "issue_year" => "required",
-    //             "issue_month" => "required",
-    //             "issue_day" => "required",
-    //             "exp_year" => "required",
-    //             "exp_month" => "required",
-    //             "exp_day" => "required",
-    //             "address" => "required",
-    //             "city" => "required",
-    //             "postal_zip" => "required",
-    //             "country" => "required",
-    //             "em_fname" => "required",
-    //             "em_lname" => "required",
-    //             "em_phone" => "required",
-    //             "em_country" => "required",
-    //         ]);
-    //      if ($validator->fails()) {
-    //         return redirect()->back()->withErrors($validator);
-    //       }
-    // return "validated";
-
 //end of validation
 
+        //saving request array to variable to use it in next steps
+        $data = $request;
+        // return $data->all();
+        $request->session()->put('packageInfo', $request->except('image'));
+    //     $request->session()->put('packageInfo', $request);
+    // $datas = $request->session()->get('packageInfo');
+    // return $datas;
 
+
+// $_SESSION['obj'] = serialize($request);
+
+// $obj = unserialize($_SESSION['obj']);
+// return $obj;
+//         // return $data->all();
 
         $count = count($request->fname);
         $time = time();
-        $destination_path = 'images/packages-new/passport';
+        $destination_path = 'images/packages-new/passport/tmp';
         $random = str_random(10)."-".$time;
-
-    //insert lead traveller info in user table
-        $user = new User;
-        $user->fname = $request->fname[0];
-        $user->lname = $request->lname[0];
-        $user->username = $this->username($request->fname[0], $request->lname[0]);
-        $user->email = $request->email[0];
-        // $pass = '123456';
-        // $pass = str_random(10);
-        // return $pass;
-        // $user->password = Hash::make($pass);
-        $user->password = Hash::make($request->password);
-        $user->gender = '';
-        // $user->status = isset($input['status']) ? 1 : 0;
-        $user->status =  1;
-        // $user->confirmation_code = md5(uniqid(mt_rand(), true));
-        // $user->confirmed = isset($input['confirmed']) ? 1 : 0;
-        $user->confirmed = 1 ;
-
-        //insert data in users table as well as assigned_roles table
-        if ($user->save()) {
-            //User Created, Validate Roles
-            $this->validateRoleAmount($user, 'Traveller');
-            $role = \App\Models\Access\Role\Role::where('name', 'Traveller')->first();
-            // return $role;
-            //Attach new roles
-            $user->attachRole($role);
-            // $price = $input['price'];
-            //Attach other permissions
-            // $user->attachPermissions(null);
-        }
-
-        // return $request->title[0];
-        for ($i=0; $i < $count; $i++) { 
+        $filename = array();
+         for ($i=0; $i < $count; $i++) { 
             $files = $request->file('image');
+            $prevFiles = $request->prevImage;
             if(!empty($files)){
                 if(!empty($files[$i])){
-                    $filename = $time. '-' . $files[$i]->getClientOriginalName();
-                    $files[$i]->move($destination_path, $filename);
+                    $filename[$i] = $time. '-' .str_random(4).'-' . $files[$i]->getClientOriginalName();
+                    $files[$i]->move($destination_path, $filename[$i]);
                 }else{
-                    $filename = '';
+                    if(!empty($prevFiles)){
+                        if(!empty($prevFiles[$i])){
+                            $filename[$i] = $prevFiles[$i];
+                        }else{
+                            $filename[$i] = '';
+                        }
+                    }else{
+                        $filename[$i] = '';
+                    }
                 }
             }else{
-                $filename = '';
+                $filename[$i] = '';
             }
+        }
+        // return $filename;
+      $request->session()->put('filenames', $filename);
+
+        // $filenames = $request->session()->get('filenames');
+        // return $filenames;
+
+//     //insert lead traveller info in user table
+//         $user = new User;
+//         $user->fname = $request->fname[0];
+//         $user->lname = $request->lname[0];
+//         $user->username = $this->username($request->fname[0], $request->lname[0]);
+//         $user->email = $request->email[0];
+//         // $pass = '123456';
+//         // $pass = str_random(10);
+//         // return $pass;
+//         // $user->password = Hash::make($pass);
+//         $user->password = Hash::make($request->password);
+//         $user->gender = '';
+//         // $user->status = isset($input['status']) ? 1 : 0;
+//         $user->status =  1;
+//         // $user->confirmation_code = md5(uniqid(mt_rand(), true));
+//         // $user->confirmed = isset($input['confirmed']) ? 1 : 0;
+//         $user->confirmed = 1 ;
+
+//         //insert data in users table as well as assigned_roles table
+//         if ($user->save()) {
+//             //User Created, Validate Roles
+//             $this->validateRoleAmount($user, 'Traveller');
+//             $role = \App\Models\Access\Role\Role::where('name', 'Traveller')->first();
+//             // return $role;
+//             //Attach new roles
+//             $user->attachRole($role);
+//             // $price = $input['price'];
+//             //Attach other permissions
+//             // $user->attachPermissions(null);
+//         }
+
+//         // return $request->title[0];
+//         for ($i=0; $i < $count; $i++) { 
+//             $files = $request->file('image');
+//             if(!empty($files)){
+//                 if(!empty($files[$i])){
+//                     $filename = $time. '-' . $files[$i]->getClientOriginalName();
+//                     $files[$i]->move($destination_path, $filename);
+//                 }else{
+//                     $filename = '';
+//                 }
+//             }else{
+//                 $filename = '';
+//             }
 
 
 
-// return $packageId . ' '. $datePrice;
-        //insert data in travller_info table
-            if ($i == 0) {
-                $travellers[$i] = TravellerInfo::create([
-                    "group_id" => $random,
-                    "user_id" => $user->id,
-                    "title" => $request->title[$i],
-                    "fname" => $request->fname[$i],
-                    "mname" => $request->mname[$i],
-                    "lname" => $request->lname[$i],
-                    "email" => $request->email[$i],
-                    "phone" => $request->phone[$i],
-                    "dob_year" => $request->dob_year[$i],
-                    "dob_month" => $request->dob_month[$i],
-                    "dob_day" => $request->dob_day[$i],
-                    "passport" => $request->passport[$i],
-                    "passport_img" => $filename,
-                    "nationality" => $request->nationality[$i],
-                    "issue_year" => $request->issue_year[$i],
-                    "issue_month" => $request->issue_month[$i],
-                    "issue_day" => $request->issue_day[$i],
-                    "issue_place" => $request->issue_place[$i],
-                    "exp_year" => $request->exp_year[$i],
-                    "exp_month" => $request->exp_month[$i],
-                    "exp_day" => $request->exp_day[$i],
-                    "address" => $request->address[$i],
-                    "city" => $request->city[$i],
-                    "postal_zip" => $request->postal_zip[$i],
-                    "state" => $request->state[$i],
-                    "country" => $request->country[$i],
-                    "em_fname" => $request->em_fname[$i],
-                    "em_lname" => $request->em_lname[$i],
-                    "em_phone" => $request->em_phone[$i],
-                    "em_state" => $request->em_state[$i],
-                    "em_country" => $request->em_country[$i],
+// // return $packageId . ' '. $datePrice;
+//         //insert data in travller_info table
+//             if ($i == 0) {
+//                 $travellers[$i] = TravellerInfo::create([
+//                     "group_id" => $random,
+//                     "user_id" => $user->id,
+//                     "title" => $request->title[$i],
+//                     "fname" => $request->fname[$i],
+//                     "mname" => $request->mname[$i],
+//                     "lname" => $request->lname[$i],
+//                     "email" => $request->email[$i],
+//                     "phone" => $request->phone[$i],
+//                     "dob_year" => $request->dob_year[$i],
+//                     "dob_month" => $request->dob_month[$i],
+//                     "dob_day" => $request->dob_day[$i],
+//                     "passport" => $request->passport[$i],
+//                     "passport_img" => $filename,
+//                     "nationality" => $request->nationality[$i],
+//                     "issue_year" => $request->issue_year[$i],
+//                     "issue_month" => $request->issue_month[$i],
+//                     "issue_day" => $request->issue_day[$i],
+//                     "issue_place" => $request->issue_place[$i],
+//                     "exp_year" => $request->exp_year[$i],
+//                     "exp_month" => $request->exp_month[$i],
+//                     "exp_day" => $request->exp_day[$i],
+//                     "address" => $request->address[$i],
+//                     "city" => $request->city[$i],
+//                     "postal_zip" => $request->postal_zip[$i],
+//                     "state" => $request->state[$i],
+//                     "country" => $request->country[$i],
+//                     "em_fname" => $request->em_fname[$i],
+//                     "em_lname" => $request->em_lname[$i],
+//                     "em_phone" => $request->em_phone[$i],
+//                     "em_state" => $request->em_state[$i],
+//                     "em_country" => $request->em_country[$i],
 
-                    ]);
+//                     ]);
 
-    if (!empty($request->addon_pack)) {
-        $addon_pack = implode(',', $request->addon_pack);
-    }else{
-        $addon_pack = '';
-    }
-    if (!empty($request->addon_packages_detail)) {
-        $addon_packages_detail = implode(',', $request->addon_packages_detail);
-    }else{
-        $addon_packages_detail = '';
-    }
+//     if (!empty($request->addon_pack)) {
+//         $addon_pack = implode(',', $request->addon_pack);
+//     }else{
+//         $addon_pack = '';
+//     }
+//     if (!empty($request->addon_packages_detail)) {
+//         $addon_packages_detail = implode(',', $request->addon_packages_detail);
+//     }else{
+//         $addon_packages_detail = '';
+//     }
 
-$user->bookings()->create([
-    "package_selected" => $packageId,
-    "dateprice_selected" => $datePrice,
-    "addon_selected" => $addon_pack,
-    "total_amount" => $request->total_amount,
-    "addon_packages_detail" => $addon_packages_detail,
-    "group_id" => $random,
-    ]);
+// $user->bookings()->create([
+//     "package_selected" => $packageId,
+//     "dateprice_selected" => $datePrice,
+//     "addon_selected" => $addon_pack,
+//     "total_amount" => $request->total_amount,
+//     "addon_packages_detail" => $addon_packages_detail,
+//     "group_id" => $random,
+//     ]);
 
-}else{
-    $travellers[$i] = TravellerInfo::create([
-        "group_id" => $random,
-        "title" => $request->title[$i],
-        "fname" => $request->fname[$i],
-        "mname" => $request->mname[$i],
-        "lname" => $request->lname[$i],
-        "email" => $request->email[$i],
-        "phone" => $request->phone[$i],
-        "dob_year" => $request->dob_year[$i],
-        "dob_month" => $request->dob_month[$i],
-        "dob_day" => $request->dob_day[$i],
-        "passport" => $request->passport[$i],
-        "passport_img" => $filename,
-        "nationality" => $request->nationality[$i],
-        "issue_year" => $request->issue_year[$i],
-        "issue_month" => $request->issue_month[$i],
-        "issue_day" => $request->issue_day[$i],
-        "issue_place" => $request->issue_place[$i],
-        "exp_year" => $request->exp_year[$i],
-        "exp_month" => $request->exp_month[$i],
-        "exp_day" => $request->exp_day[$i],
-        "address" => $request->address[$i],
-        "city" => $request->city[$i],
-        "postal_zip" => $request->postal_zip[$i],
-        "state" => $request->state[$i],
-        "country" => $request->country[$i],
-        "em_fname" => $request->em_fname[$i],
-        "em_lname" => $request->em_lname[$i],
-        "em_phone" => $request->em_phone[$i],
-        "em_state" => $request->em_state[$i],
-        "em_country" => $request->em_country[$i],
+// }else{
+//     $travellers[$i] = TravellerInfo::create([
+//         "group_id" => $random,
+//         "title" => $request->title[$i],
+//         "fname" => $request->fname[$i],
+//         "mname" => $request->mname[$i],
+//         "lname" => $request->lname[$i],
+//         "email" => $request->email[$i],
+//         "phone" => $request->phone[$i],
+//         "dob_year" => $request->dob_year[$i],
+//         "dob_month" => $request->dob_month[$i],
+//         "dob_day" => $request->dob_day[$i],
+//         "passport" => $request->passport[$i],
+//         "passport_img" => $filename,
+//         "nationality" => $request->nationality[$i],
+//         "issue_year" => $request->issue_year[$i],
+//         "issue_month" => $request->issue_month[$i],
+//         "issue_day" => $request->issue_day[$i],
+//         "issue_place" => $request->issue_place[$i],
+//         "exp_year" => $request->exp_year[$i],
+//         "exp_month" => $request->exp_month[$i],
+//         "exp_day" => $request->exp_day[$i],
+//         "address" => $request->address[$i],
+//         "city" => $request->city[$i],
+//         "postal_zip" => $request->postal_zip[$i],
+//         "state" => $request->state[$i],
+//         "country" => $request->country[$i],
+//         "em_fname" => $request->em_fname[$i],
+//         "em_lname" => $request->em_lname[$i],
+//         "em_phone" => $request->em_phone[$i],
+//         "em_state" => $request->em_state[$i],
+//         "em_country" => $request->em_country[$i],
 
-        ]);
+//         ]);
 
-}
-}
+// }
+// }
 
+
+
+// //for sending email
 // $traveller = array();
 // $traveller['email']= $travellers[0]->email;
 // if (!empty($travellers[0]->mname)) {
@@ -1379,47 +1369,290 @@ $menus = Menu::where('parent_id', 0)->orderby('order')->get();
 $page = InnerPage::where('slug', 'trekking')->first();
 $package = Packages::where('slug', $slug)->first();
 $dPrice = PackageDatePrice::findOrFail($datePrice);
-$groupId = $travellers[0]->group_id;
+// $groupId = $travellers[0]->group_id;
 
 if ($dPrice->package->id != $package->id ) {
     abort(404);
 }
-return view('frontend.new.bookingstep2', compact('travellers','groupId','package','dPrice','datePrice', 'page', 'menus', 'slug'))->withClass($slug . '-page')
+
+// return view('frontend.new.bookingstep2', compact('travellers','groupId','package','dPrice','datePrice', 'page', 'menus', 'slug'))->withClass($slug . '-page')
+return view('frontend.package.bookingstep2', compact('data', 'filename', 'package','dPrice','datePrice', 'page', 'menus', 'slug'))->withClass($slug . '-page')
 ->with('meta_title', 'Booking Step 2')
 ->with('meta_keywords', $page->meta_key)
 ->with('meta_desc', $page->meta_desc)
 ->with('title', 'Booking Step 2')
 ->with('totalAmount', $request->total_amount)
 ->with('extensionText', $request->extensionText);
-        // return view('frontend.new.bookingstep3', compact('package','page', 'menus', 'slug'))->withClass($slug . '-page')
-        //              ->with('meta_title', 'Booking Step 3')
-        //             ->with('meta_keywords', $page->meta_key)
-        //             ->with('meta_desc', $page->meta_desc)
-        //             ->with('title', 'Booking Step 3');
+        
 }
 
+public function bookingStep1EditGET($slug, $datePrice, Request $request){
+    $datas = $request->session()->get('packageInfo');
+    $filenames = $request->session()->get('filenames');
+    // return $filenames;
+    // return $datas;
+    // return $datas['addon_pack'];
+    
+    // return view('frontend.package.bookingstep1edit', compact('datas', 'slug', 'datePrice')); 
 
+    $menus = Menu::where('parent_id', 0)->orderby('order')->get();
+    $dPrice = PackageDatePrice::findOrFail($datePrice);
+    $page = InnerPage::where('slug', 'trekking')->first();
+    $package = Packages::where('slug', $slug)->where('status', 1)->first();
+
+        // return $dPrice->package->id;
+    if ($dPrice->package->id != $package->id ) {
+        abort(404);
+    }
+    $addon = explode(',', $package->addon_package);
+    return view('frontend.package.bookingstep1edit', compact('datas', 'filenames', 'package','datePrice','page', 'menus', 'slug', 'dPrice', 'addon'))->withClass($slug . '-page')
+    ->with('meta_title', 'Booking Step 1')
+    ->with('meta_keywords', $page->meta_key)
+    ->with('meta_desc', $page->meta_desc)
+    ->with('title', 'Booking Step 1');
+// ->with('totalAmount', $request->total_amount)
+// ->with('extensionText', $request->extensionText);   
+}
 
 public function bookingStep3($slug, $datePrice, Request $request){
  $this->validate($request, [
     'condition' => 'required',
     ]);
+    $datePriceRow = PackageDatePrice::findOrFail($datePrice);
+    $packageId = $datePriceRow->package->id;
+    $datas = $request->session()->get('packageInfo');
+    // return $datas;
+
+    $datas= (object)$datas;
+    // $datas= $datas->toObject();
+    // return $datas;
+    // return $datas->toArray();
+    // return $datas->state;
+
+        $count = count($datas->fname);
+        $time = time();
+        $destination_path = 'images/packages-new/passport';
+        $tmp_path = 'images/packages-new/passport/tmp';
+        $random = str_random(10)."-".$time;
+
+        $filenames = $request->session()->get('filenames');
+        // return $filenames;
+
+        foreach($filenames as $filename){
+            if(!empty($filename)){
+                if(File::exists($tmp_path.'/'.$filename)){
+                    $img = Image::make($tmp_path.'/'.$filename);
+                    $img->save($destination_path.'/'.$filename);
+                    if (File::exists($tmp_path.'/'.$filename)) {
+                        unlink($tmp_path.'/'.$filename);
+                    }
+
+                }
+            }
+        }
+
+    //insert lead traveller info in user table
+    if (Auth::guest()) {
+        $user = new User;
+        $user->fname = $datas->fname[0];
+        $user->mname = $datas->mname[0];
+        $user->lname = $datas->lname[0];
+        $user->username = $this->username($datas->fname[0], $datas->lname[0]);
+        $user->email = $datas->email[0];
+        $user->password = Hash::make($datas->password);
+        $user->gender = '';
+        $user->status =  1;
+        // $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        // $user->confirmed = isset($input['confirmed']) ? 1 : 0;
+        $user->confirmed = 1 ;
+
+        //insert data in users table as well as assigned_roles table
+        if ($user->save()) {
+            //User Created, Validate Roles
+            $this->validateRoleAmount($user, 'Traveller');
+            $role = \App\Models\Access\Role\Role::where('name', 'Traveller')->first();
+            //Attach new roles
+            $user->attachRole($role);
+        }
+    }
+
+    for ($i=0; $i < $count; $i++) { 
+
+        //getting userid
+        if (Auth::check()) {
+           $userId = Auth::user()->id;
+        }else{
+            $userId = $user->id;
+        }
+
+        //insert data in travller_info table
+        if ($i == 0) {
+
+            if (!empty($datas->addon_pack)) {
+                $addon_pack = implode(',', $datas->addon_pack);
+            }else{
+                $addon_pack = '';
+            }
+            if (!empty($datas->addon_packages_detail)) {
+                $addon_packages_detail = implode(',', $datas->addon_packages_detail);
+            }else{
+                $addon_packages_detail = '';
+            }
+
+            //storing booking information
+            $booking = Booking::create([
+                'group_id'=> $random,
+                'user_id'=> $userId,
+                // 'order_id'=> $this->generateRandomString(),
+                'type'=> 'package',
+                'status'=> 'unpaid',
+            ]);
+
+            $packageBooking = $booking->packageBooking()->create([
+                "order_id"=> $this->generateRandomString(8),
+                "total_person" => $count,
+                "package_selected" => $packageId,
+                "dateprice_selected" => $datePrice,
+                "addon_selected" => $addon_pack,
+                "main_package_amount" => $datas->main_package_amount,
+                "total_amount" => $datas->total_amount,
+                "addon_packages_detail" => $addon_packages_detail,
+            ]); 
+
+            $mainTraveller = $packageBooking->mainTraveller()->create([
+                "user_id" => $userId,
+                "type" => 'package',
+                "person_type" => 'lead',
+            ]);
+            // return "here";
+
+            //changing user_id to null for logged in user for storing in profile table
+            // as profile table will already have logged in user's profile(ie. to avoid 1:m relation)
+            if (Auth::check()) {
+               $userId = '';
+            }
+
+            $mainTraveller->profile()->create([
+                "user_id" => $userId,
+                "title" => $datas->title[$i],
+                "fname" => $datas->fname[$i],
+                "mname" => $datas->mname[$i],
+                "lname" => $datas->lname[$i],
+                "phone" => $datas->phone[$i],  
+                "dob_year" => $request->dob_year[$i],
+                "dob_month" => $request->dob_month[$i],
+                "dob_day" => $request->dob_day[$i],
+                "email" => $datas->email[$i],  
+                "document_type" => 'passport',
+                "document_no" => $datas->passport[$i],
+                "nationality" => $datas->nationality[$i],  
+                "issue_year" => $datas->issue_year[$i],
+                "issue_month" => $datas->issue_month[$i],
+                "issue_day" => $datas->issue_day[$i],
+                "issue_place" => $datas->issue_place[$i],
+                "document_img" => $filenames[$i],
+                "exp_year" => $datas->exp_year[$i],
+                "exp_month" => $datas->exp_month[$i],
+                "exp_day" => $datas->exp_day[$i],
+                "address" => $datas->address[$i],
+                "city" => $datas->city[$i],
+                "postal_zip" => $datas->postal_zip[$i],
+                "state" => $datas->state[$i],
+                "country" => $datas->country[$i],
+                "em_fname" => $datas->em_fname[$i],
+                "em_lname" => $datas->em_lname[$i],
+                "em_phone" => $datas->em_phone[$i],
+                "em_state" => $datas->em_state[$i],
+                "em_country" => $datas->em_country[$i],
+            ]);
+
+                // $travellers[$i] = TravellerInfo::create([
+                //     "group_id" => $random,
+                //     "user_id" => $user->id,
+                //     "title" => $request->title[$i],
+                //     "fname" => $request->fname[$i],
+                //     "mname" => $request->mname[$i],
+                //     "lname" => $request->lname[$i],
+                //     "email" => $request->email[$i],
+                //     "phone" => $request->phone[$i],
+                //     "dob_year" => $request->dob_year[$i],
+                //     "dob_month" => $request->dob_month[$i],
+                //     "dob_day" => $request->dob_day[$i],
+                //     "passport" => $request->passport[$i],
+                //     "passport_img" => $filename,
+                //     "nationality" => $request->nationality[$i],
+                //     "issue_year" => $request->issue_year[$i],
+                //     "issue_month" => $request->issue_month[$i],
+                //     "issue_day" => $request->issue_day[$i],
+                //     "issue_place" => $request->issue_place[$i],
+                //     "exp_year" => $request->exp_year[$i],
+                //     "exp_month" => $request->exp_month[$i],
+                //     "exp_day" => $request->exp_day[$i],
+                //     "address" => $request->address[$i],
+                //     "city" => $request->city[$i],
+                //     "postal_zip" => $request->postal_zip[$i],
+                //     "state" => $request->state[$i],
+                //     "country" => $request->country[$i],
+                //     "em_fname" => $request->em_fname[$i],
+                //     "em_lname" => $request->em_lname[$i],
+                //     "em_phone" => $request->em_phone[$i],
+                //     "em_state" => $request->em_state[$i],
+                //     "em_country" => $request->em_country[$i],
+
+                //     ]);
+
+        }else{
+
+            $otherTravellers[$i] = $mainTraveller->otherTravellers()->create([
+                "person_type" => 'other',
+            ]);
+
+            $otherTravellers[$i]->profile()->create([
+                "title" => $datas->title[$i],
+                "fname" => $datas->fname[$i],
+                "mname" => $datas->mname[$i],
+                "lname" => $datas->lname[$i],
+                "phone" => $datas->phone[$i],  
+                "dob_year" => $request->dob_year[$i],
+                "dob_month" => $request->dob_month[$i],
+                "dob_day" => $request->dob_day[$i],
+                "email" => $datas->email[$i],  
+                "document_type" => 'passport',
+                "document_no" => $datas->passport[$i],
+                "nationality" => $datas->nationality[$i],  
+                "issue_year" => $datas->issue_year[$i],
+                "issue_month" => $datas->issue_month[$i],
+                "issue_day" => $datas->issue_day[$i],
+                "issue_place" => $datas->issue_place[$i],
+                "document_img" => $filenames[$i],
+                "exp_year" => $datas->exp_year[$i],
+                "exp_month" => $datas->exp_month[$i],
+                "exp_day" => $datas->exp_day[$i],
+                "address" => $datas->address[$i],
+                "city" => $datas->city[$i],
+                "postal_zip" => $datas->postal_zip[$i],
+                "state" => $datas->state[$i],
+                "country" => $datas->country[$i],
+            ]);
+        }
+    }
+
 
  $menus = Menu::where('parent_id', 0)->orderby('order')->get();
  $page = InnerPage::where('slug', 'trekking')->first();
  $package = Packages::where('slug', $slug)->first();
  $dPrice = PackageDatePrice::findOrFail($datePrice);
- $groupId = $request->group_id;
- $travellers = TravellerInfo::where('group_id', $groupId)->get();
+ // $travellers = TravellerInfo::where('group_id', $groupId)->get();
+
  if ($dPrice->package->id != $package->id ) {
     abort(404);
 }
 
-return view('frontend.new.bookingstep3', compact('travellers','groupId', 'package','dPrice','datePrice', 'page', 'menus', 'slug'))->withClass($slug . '-page')
-->with('meta_title', 'Booking Step 2')
+return view('frontend.package.bookingstep3', compact('booking', 'packageBooking', 'datas', 'package','dPrice','datePrice', 'page', 'menus', 'slug'))->withClass($slug . '-page')
+->with('meta_title', 'Booking Step 3')
 ->with('meta_keywords', $page->meta_key)
 ->with('meta_desc', $page->meta_desc)
-->with('title', 'Booking Step 2');;
+->with('title', 'Booking Step 3');;
 }
 
 public function bookingStep3Payment($slug, $datePrice, Request $request){

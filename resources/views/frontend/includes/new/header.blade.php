@@ -13,7 +13,9 @@
 					<ul class="list-unstyled list-inline">
 						<li><a href="{{url('/flight/flightsearch')}}"><i class="fa fa-plane"></i>flight</a></li>
 						<li><a href="{{url('trekking')}}"><i class="fa fa-map-o"></i>trekking</a></li>
+						@if(Auth::guest())
 						<li class="btn-login"><a href="{{url('/login')}}">login</a> <span>/</span> <a href="{{url('/register')}}">register</a></li>
+						@endif
 						<!-- <li><a href="#"><i class="fa fa-bed"></i>local room</a></li>
 						<li><a href="#"><i class="fa fa-car"></i>car rental</a></li> -->
 						<?php /* ?>
@@ -25,6 +27,27 @@
 						</li>
 						<?php */ ?>
 					</ul>
+					@if(Auth::check())
+					<div class="auth">
+					    <div class="auth-thumb">
+					      <span class="auth-img">
+					        <i class="fa fa-user-o"></i>
+					      </span>
+					      <span class="auth-name">{{Auth::user()->fname}} {{Auth::user()->mname}} {{Auth::user()->lname}}</span>
+					    </div>
+					    <ul class="list-unstyled">
+					        <li class="dropdown">
+					            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+					                <i class="fa fa-angle-down"></i>
+					              </a>
+					            <ul class="dropdown-menu navmenu-nav">
+					                <li><a href="#"><i aria-hidden="true" class="fa fa-tachometer"></i>Dashboard</a></li>
+					                <li><a href="#"><i class="fa fa-sign-out"></i>log out</a></li>
+					            </ul>
+					        </li>
+					    </ul>
+					</div>
+					@endif
 			</div>
 			
 			<button class="menu-icon">

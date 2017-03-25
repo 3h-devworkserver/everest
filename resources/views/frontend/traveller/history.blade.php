@@ -26,6 +26,8 @@
 					</div>
 				</div>
 				<div class="col-md-9 col-sm-9">
+              		@include('includes.partials.messages')
+
 					<div class="user-activity">
 						
 						<h3>Package List</h3>						

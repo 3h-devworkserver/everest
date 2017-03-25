@@ -319,23 +319,26 @@ a.readmore {
     background-color: #e42e2a;
 }
 .header-right .menu {
-    /*float: left;*/
+    /*float: left;
     border-right: 1px solid #ccc;
-    display: inline-block;
     margin-right: 40px;
-}
-.header-right .menu ul {
-    margin-bottom: 26px;
-    margin-left: 20px;
-    /*margin-left: 110px;*/
-    
-    margin-top: 26px;
-    padding-right: 40px;
-}
-.header-right .menu li {
+    */
     display: inline-block;
 }
-.header-right .menu li a {
+.header-right .menu > ul {
+    padding:26px 30px 26px 0;
+    border-right:1px solid #ccc;
+    margin:0 30px 0 0 ;
+    display: inline-block;
+    /*margin-bottom: 26px;
+     margin-left: 20px;    
+    margin-top: 26px;
+    padding-right: 40px;*/ 
+}
+.header-right .menu > ul li {
+    display: inline-block;
+}
+.header-right .menu > ul li a {
     background: #272e36;
     display: block;
     padding: 10px 15px;
@@ -345,23 +348,23 @@ a.readmore {
     text-align: center;
     font-size: 12px;
 }
-.header-right .menu li a:hover {
+.header-right .menu > ul  li a:hover {
     background: #e42e2a;
 }
 
-.header-right .menu li.btn-login{
+.header-right .menu > ul li.btn-login{
     margin-left: 15px;
 }
-.header-right .menu li.btn-login a {
+.header-right .menu > ul li.btn-login a {
     background: transparent none repeat scroll 0 0;
     color: inherit;
     padding: 0;
     display: inline-block;
 }
-.header-right .menu li.btn-login a:hover{
+.header-right .menu > ul li.btn-login a:hover{
     color: #E42E2A;
 }
-.menu ul li a i {
+.menu > ul li a i {
     border: 1px solid;
     border-radius: 50%;
     font-size: 9px;
@@ -370,8 +373,36 @@ a.readmore {
     margin-right: 10px;
     width: 20px;
 }
-.menu ul li a i.fa-sign-in{
+.menu > ul li a i.fa-sign-in{
     font-size: 10px;
+}
+.header-right .auth,
+.header-right .auth > ul,
+.header-right .auth .auth-thumb{
+    display: inline-block;
+}
+.header-right .auth{
+    margin-right: 30px;
+}
+.header-right .auth .auth-thumb span{
+    margin-right: 5px;
+}
+.header-right .auth .auth-thumb .auth-img i{
+    background: #123394 none repeat scroll 0 0;
+    border-radius: 50%;
+    color: #fff;
+    height: 30px;
+    line-height: 27px;
+    text-align: center;
+    width: 30px;
+}
+.auth .dropdown-menu{
+    left: inherit;
+    right:-43px;
+    margin-top: 20px;
+}
+.auth .dropdown-menu li a i{
+    margin-right: 10px;
 }
 /*Mega menu
 -----------------------------*/
@@ -2880,6 +2911,8 @@ dl.term-description dd {
 }
 .sidebar-travel{
     /*position: relative;*/
+    z-index: 1;
+    background-color:#fff;
 }
 .total-block{
     /*position: fixed;*/
@@ -3230,8 +3263,8 @@ dl.term-description dd {
 
 .travel-booking .payment-options .radio {
   display: inline-block;
-  margin-bottom: 40px;
-  width: 30%;
+  width: 20%;
+  margin: 35px 40px 40px 0; 
 }
 #traveller-info .travel-form .form-group {
   background: #fefefe none repeat scroll 0 0;
@@ -4704,8 +4737,12 @@ body.modal-open {
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
     margin-bottom: 25px;
-    overflow: hidden;
     padding: 15px;
+}
+.addextraPackageDiv:after{
+    content: "";
+    display: block;
+    clear: both;
 }
 .addextraPackageDiv .select-number{
     width: 55%;
@@ -4714,16 +4751,18 @@ body.modal-open {
     float: right;
     font-size: 12px;
     line-height: normal;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
-.addextraPackageDiv label,
-.addextraPackageDiv .form-control{
+.addextraPackageDiv .select-number > label,
+.addextraPackageDiv .select-number > .SumoSelect{
     float: left;
 }
-.addextraPackageDiv label{
+.addextraPackageDiv .select-number > label{
     width: 20%;
     line-height: 30px;
 }
-.addextraPackageDiv .form-control{
+.addextraPackageDiv .select-number > .SumoSelect{
     width: 80%;
 }
 .valentines-package-page .package_success_msg {
@@ -4841,7 +4880,7 @@ body.modal-open {
 .profile-bg:after {
     border-color: transparent transparent #fff;
     border-style: solid;
-    border-width: 0 0 55px 14vw;
+    border-width: 0 0 55px 20vw;
     bottom: 0;
     height: 0;
     position: absolute;
@@ -5025,7 +5064,7 @@ body.modal-open {
     color: #e42e2a;
 }
 .profile .form-group{
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .profile .form-group label{
     font-weight: normal;
@@ -5042,9 +5081,10 @@ body.modal-open {
 .gender-block .radio{
     width: 30%;
     float: left;
+    margin: 0;
 }
 .gender-block .radio + .radio{
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 .profile input[type="submit"]{
 }
@@ -5098,6 +5138,13 @@ body.modal-open {
   height: 200px;
   line-height: 200px;
   width: 100%;
+}
+#documentPreview{
+    height: 250px;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
 }
 
 /*flight reservation sidebar*/
@@ -5208,6 +5255,10 @@ body.modal-open {
 
 
 /*Register page*/
+.SumoSelect > .CaptionCont{
+    border-color: #ccc;
+    border-radius: 0;
+}
 .register-page {
   background: #edefec none repeat scroll 0 0;
   padding: 80px 0;
@@ -5246,6 +5297,9 @@ body.modal-open {
 .register-page .btn.register-btn:hover {
     background: #e42e2a ;
     border-color: #e42e2a ;
+}
+.has-error .SumoSelect > .CaptionCont{
+    border-color:#e42e29;
 }
 
 /* Page Not Found */
@@ -5325,4 +5379,17 @@ body.modal-open {
 .ui-state-disabled .ui-state-default:hover{
     background-color: #f6f6f6 ;
     color: #454545;
+}
+
+
+/* trekking package contact us popup*/
+#package-contactform input[type="submit"],
+#package-contactform .loading{
+    float: left;
+}
+#package-contactform input[type="submit"]{
+    margin-right: 10px;
+}
+#package-contactform .loading{
+    margin-top: 7px;
 }

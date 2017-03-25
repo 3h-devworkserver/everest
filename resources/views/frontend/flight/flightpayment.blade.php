@@ -230,6 +230,7 @@
                                         <!-- <div class="col-xs-3">  -->
                                             <!-- required for floating -->
                                           <!-- Nav tabs -->
+                                          <?php /* ?>
                                           <ul class="nav nav-tabs tabs-left sideways" id="myTab">
                                             <li class="active"><a href="#creditcard" data-toggle="tab">Credit Card</a></li>
                                             <li><a href="#debitcard" data-toggle="tab">Debit Card</a></li>
@@ -238,12 +239,62 @@
                                             <li><a href="#paypal" data-toggle="tab">Paypal</a></li>
                                             <!-- <li><a href="#wallets" data-toggle="tab">Wallets</a></li> -->
                                           </ul>
+                                          <?php */ ?>
+
+                                          <ul class="nav nav-tabs tabs-left sideways" id="myTab">
+                                            <li class="active"><a href="#esewa" data-toggle="tab">ESewa</a></li>
+                                            <li><a href="#creditcard" data-toggle="tab">Credit Card</a></li>
+                                          </ul>
                                         <!-- </div> -->
 
                                         <!-- <div class="col-xs-9"> -->
                                           <!-- Tab panes -->
-                                          <div class="tab-content">
-                                            <div class="tab-pane active" id="creditcard">
+                                        <div class="tab-content">
+                                        <div class="tab-pane active" id="esewa">
+                                            <?php 
+                                                $amt = round($flightReservation->total_amount, 2);
+                                                $txAmt = 0;
+                                                $psc = 0;
+                                                $pdc = 0;
+                                                $tAmt = $amt + $txAmt + $psc + $pdc;
+                                            ?>
+
+                                                {{-- <form action="https://esewa.com.np/epay/main" method="POST" id="esewaForm">  --}}
+                                                <form action="http://dev.esewa.com.np/epay/main" method="POST" id="esewaForm"> 
+                                                    <input value="0.01" name="tAmt" type="hidden"> 
+                                                    <input value="0.01" name="amt" type="hidden"> 
+                                                   {{--  <input value="{{$tAmt}}" name="tAmt" type="hidden"> 
+                                                    <input value="{{$amt}}" name="amt" type="hidden">  --}}
+                                                    <input value="{{$txAmt}}" name="txAmt" type="hidden">
+                                                    <input value="{{$psc}}" name="psc" type="hidden"> 
+                                                    <input value="{{$pdc}}" name="pdc" type="hidden"> 
+                                                    <input value="upeverest" name="scd" type="hidden">  
+                                                    {{-- <input value="Upeverest_esewa" name="scd" type="hidden">   --}}
+                                                    <input value="{{$booking->flightReservation->order_id}}" name="pid" type="hidden"> 
+                                                    <input value="{{url('flight/booking-success/esewa')}}?q=su" type="hidden" name="su">
+                                                    <input value="{{url()}}" type="hidden" name="fu"> 
+
+                                                    <div class="form-group">
+                                                        <span class="total-price">
+                                                            <h4>Total Amount: <span>{{$flightDetail->Currency}} {{$amt}}</span></h4>
+                                                        </span>
+                                                    </div>
+                                                    <div class="row-fluid">
+                                                        <div class="col-md-12">
+                                                            <div class="button-groups">
+                                                                <button class="btn btn-danger payment-btn">
+                                                                    <i class="fa fa-money"></i>Make a secure payment
+                                                                </button>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+
+
+                                                </form>
+                                                
+                                        </div>
+                                            <div class="tab-pane" id="creditcard">
                                                 <form action="#">
                                                     <div class="form-group">
                                                         <div class="row-fluid">
@@ -305,279 +356,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <span class="total-price">
-                                                            <h4>Total Amount: <span>650 USD</span></h4>
-                                                        </span>
-                                                    </div>
-                                                    <div class="row-fluid">
-                                                        <div class="col-md-12">
-                                                            <div class="button-groups">
-                                                                <button type="button" class="btn btn-danger payment-btn">
-                                                                    <i class="fa fa-money"></i>Make a secure payment                                               
-                                                                </button>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-
-
-                                                </form>
-                                                
-                                            </div>
-                                            <div class="tab-pane" id="debitcard">
-                                                <form action="#">
-                                                    <div class="form-group">
-                                                        <div class="row-fluid">
-                                                            <div class="col-md-12">
-                                                                <label>Select Bank</label>
-                                                                 <select name="" id="" class="SlectBox form-control">
-                                                                        <option selected="selected">Select Your Bank</option>
-                                                                        <option>Bank 1</option>
-                                                                        <option>Bank 2</option>
-                                                                        
-                                                                    </select>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="row-fluid">
-                                                            <div class="col-md-12">
-                                                                <label>Card Number <small>(we support all major cards)</small></label>
-                                                                <input type="text" class="form-control" placeholder="Card Number">
-                                                                
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="row-fluid">
-                                                            <div class="col-md-12">
-                                                                <label>Card Holder Name <small>(as mentioned on cards)</small></label>
-                                                                <input type="text" class="form-control" placeholder="Card Holder Name">
-                                                                
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        
-                                                        <div class="row-fluid row-margin-10">
-                                                            <div class="col-md-8">
-                                                                <div class="row-fluid">
-                                                                    <div class="col-md-12">
-                                                                        <label>Expiry Date</label>
-                                                                        
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row-fluid">
-                                                                    
-                                                                    <div class="col-md-6">
-                                                                        <select class="SlectBox form-control">
-                                                                            <option> Month</option>
-                                                                            <option> 1</option>
-                                                                            <option> 2</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        
-                                                                        <select class="SlectBox form-control">
-                                                                            <option> Year</option>
-                                                                            <option> 1</option>
-                                                                            <option> 2</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <label>CW</label>
-                                                                <input type="text" class="form-control">
-                                                            </div>
-                                                        </div>
-                                                      
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <span class="total-price">
-                                                            <h4>Total Amount: <span>650 USD</span></h4>
-                                                        </span>
-                                                    </div>
-                                                    <div class="row-fluid">
-                                                        <div class="col-md-12">
-                                                            <div class="button-groups">
-                                                                <button type="button" class="btn btn-danger payment-btn">
-                                                                    <i class="fa fa-money"></i>Make a secure payment                                               
-                                                                </button>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-
-
-                                                </form>
-                                                
-                                            </div>
-                                            <!-- <div class="tab-pane" id="netbanking">
-                                                <form action="#">
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <label>Select Bank</label>
-                                                                 <select name="" id="" class="SlectBox form-control">
-                                                                        <option selected="selected">Select Your Bank</option>
-                                                                        <option>Bank 1</option>
-                                                                        <option>Bank 2</option>
-                                                                        
-                                                                    </select>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    
-
-                                                    
-                                                    <div class="form-group">
-                                                        <span class="total-price">
-                                                            <h4>Total Amount: <span>650 USD</span></h4>
-                                                        </span>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="button-groups">
-                                                                <button type="button" class="btn btn-danger payment-btn">
-                                                                    <i class="fa fa-money"></i>Make a secure payment                                               
-                                                                </button>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-
-
-                                                </form>
-                                                
-                                            </div> -->
-                                            
-                                            
-                                            <!-- <div class="tab-pane" id="emi">
-                                                <form action="#">
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <label>Select Bank</label>
-                                                                 <select name="" id="" class="SlectBox form-control">
-                                                                        <option selected="selected">Select Your Bank</option>
-                                                                        <option>Bank 1</option>
-                                                                        <option>Bank 2</option>
-                                                                        
-                                                                    </select>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <label>Select Emi Tenure <small>See interest rates &amp; monthly instalment upfront</small></label>
-                                                                 <div class="table-responsive">
-                                                                     <table class="table table-bordered">
-                                                                        <thead> 
-                                                                            <tr> 
-                                                                                <th>Select</th>
-                                                                                <th>Tenure</th>
-                                                                                <th> Interest rate(per year)</th> 
-                                                                                <th>Monthly Installment</th> 
-                                                                                <th>Total Interest Paid to Bank</th>
-                                                                                <th>Total Amount Paid to Bank (inclusive of interest)</th>
-                                                                            </tr> 
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr> 
-                                                                                <td><input type="radio" name="check"></td>
-                                                                                <td>3 months</td>
-                                                                                <td> 14%</td> 
-                                                                                <td>100 USD</td> 
-                                                                                <td>10 USD</td>
-                                                                                <td>620 USD</td>
-                                                                            </tr>
-                                                                            <tr> 
-                                                                                <td><input type="radio" name="check"></td>
-                                                                                <td>3 months</td>
-                                                                                <td> 14%</td> 
-                                                                                <td>100 USD</td> 
-                                                                                <td>10 USD</td>
-                                                                                <td>620 USD</td>
-                                                                            </tr>
-                                                                            <tr> 
-                                                                                <td><input type="radio" name="check"></td>
-                                                                                <td>3 months</td>
-                                                                                <td> 14%</td> 
-                                                                                <td>100 USD</td> 
-                                                                                <td>10 USD</td>
-                                                                                <td>620 USD</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                         
-                                                                     </table>
-                                                                 </div>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    
-
-                                                    
-                                                    <div class="form-group">
-                                                        <span class="total-price">
-                                                            <h4>Total Amount: <span>650 USD</span></h4>
-                                                        </span>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="button-groups">
-                                                                <button type="button" class="btn btn-danger payment-btn">
-                                                                    <i class="fa fa-money"></i>Make a secure payment                                               
-                                                                </button>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-
-
-                                                </form>
-                                                
-                                            </div> -->
-                                             <div class="tab-pane" id="paypal">
-                                                <form action="#">
-                                                    <div class="form-group">
-                                                        <div class="row-fluid">
-                                                            <div class="col-md-12">
-                                                                <label>Fast and Convenient</label>
-                                                                <p>Use PayPal only if you are using an international credit card or if you have registered your PayPal account outside of India</p>
-                                                                 <select name="" id="" class="SlectBox form-control">
-                                                                        <option selected="selected">Change Currency</option>
-                                                                        
-                                                                        <option _alias="EUR" value="EUR-0.0133-3.0">EUR</option>
-                                                                        <option _alias="GBP" value="GBP-0.0103-3.0">GBP</option>
-                                                                        <option _alias="HKD" value="HKD-0.1154-3.0">HKD</option>
-                                                                        <option _alias="SGD" value="SGD-0.0205-3.0">SGD</option>
-                                                                        <option _alias="THB" value="THB-0.5309-3.0">THB</option>
-                                                                        <option _alias="USD" value="USD-0.0148-3.0">USD</option>
-                                                                        
-                                                                    </select>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    
-
-                                                    
-                                                    <div class="form-group">
-                                                        <span class="total-price">
-                                                            <h4>Total Amount: <span>650 USD</span></h4>
+                                                            <h4>Total Amount: <span>{{$flightDetail->Currency}} {{$amt}}</span></h4>
                                                         </span>
                                                     </div>
                                                     <div class="row-fluid">

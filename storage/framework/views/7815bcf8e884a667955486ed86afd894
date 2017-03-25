@@ -1,0 +1,70 @@
+<?php $__env->startSection('title', trans('Package Itinerary Management')); ?>
+
+<?php $__env->startSection('page-header'); ?>
+<h1>
+	<?php echo e(trans('Package Itinerary Management')); ?>
+
+	<small><?php echo e(trans('menus.packages.itinerary.create')); ?></small>
+	<a href="<?php echo e(url('admin/packages/itinerary/create')); ?>" class="btn btn-info left-spacer">Create Package Itinerary</a>
+</h1>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumbs'); ?>
+<li><a href="<?php echo route('backend.dashboard'); ?>"><i class="fa fa-dashboard"></i> <?php echo e(trans('menus.dashboard')); ?></a></li>
+<li class="active"><?php echo link_to_route('admin.packages.index', trans('Package Management')); ?></li>
+<?php /* <li class="active"><?php echo trans('Packages Category'); ?></li> */ ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<table id="example" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>S.N</th>
+                  <th>Package Selected</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $sn=1; ?>
+                <?php foreach($itinerarys as $itinerary): ?>
+                <tr>
+                  <td><?php echo e($sn++); ?></td>
+                  <?php
+		$title = \DB::table('packages')->where('id', $itinerary->package_id)->value('title');
+					?>
+                  <td><?php echo e($title); ?></td>
+                  <td>
+                 
+                      <a  href="<?php echo e(url('admin/packages/itinerary/'.$itinerary->package_id.'/edit')); ?>" title="Edit Itinerary"><i class="btn btn-info btn-xs glyphicon glyphicon-edit btn-with-icon"> Edit</i></a>
+	                
+	                  <?php echo Form::open(['url'=>'admin/packages/itinerary/'.$itinerary->package_id.'/delete', 'method'=>'DELETE' , 'class'=>'display-none', 'id'=>'form-delete-'.$itinerary->package_id]); ?>
+
+	                  <?php echo Form::close(); ?>
+
+	                	<a  type ="submit" href="#" onclick="save('<?php echo e($itinerary->package_id); ?>')" title="Delete Itinerary"><i class="btn btn-danger btn-xs glyphicon glyphicon-trash btn-with-icon"> Delete</i></a>
+
+	               </td>
+                </tr>
+                <?php endforeach; ?>
+                
+                </tbody>
+              </table>
+
+ <script >
+ $(document).ready(function(){
+ 	$('#example').dataTable();
+
+ });
+ </script>
+  <script type="text/javascript">
+         function save(id){
+         	if (confirm('Are you sure want to delete !!!')) {
+         		document.getElementById("form-delete-"+id).submit();
+         	}
+         }
+         </script>
+
+<div class="clearfix"></div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -476,7 +476,6 @@ $menus = Menu::where('parent_id', 0)->orderby('order')->get();
     return view('frontend.flight.flightpassengerdetail', compact('menus', 'flightDetail', 'returnFlightDetail', 'trip_type', 'country', 'departure', 'arrival'))
     ->with('class', 'home')
     ->with('prevValidationJs', 'true')
-    ->with('countries', $this->countries)
     ->with('meta_title', 'Flight Passengers Detail | Upeverest')
     ->with('meta_keywords', 'Flight Passengers Detail, Upeverest')
     ->with('meta_desc', 'Flight Passengers Detail, Upeverest');
@@ -629,7 +628,7 @@ if($childCount != 0){
     $booking = Booking::create([
         'group_id'=> $random,
         'user_id'=> $userId,
-        'order_id'=> $this->generateRandomString(),
+        // 'order_id'=> $this->generateRandomString(),
         'type'=> 'flight',
         'status'=> 'unpaid',
     ]);
@@ -637,7 +636,7 @@ if($childCount != 0){
 //storing flight reservation detail in db
     // $flightReservation = FlightReservation::create([
     $flightReservation = $booking->flightReservation()->create([
-        
+        'order_id'=> $this->generateRandomString(),
         'return_type'=> $request->trip_type,
         'flight_id'=> $request->flight_id,
         'returnflight_id'=> $request->returnflight_id,
@@ -681,7 +680,7 @@ if($childCount != 0){
 
                 $mainTraveller->profile()->create([
                     // "user_id" => $userId,
-                    "group_id" => $random,
+                    // "group_id" => $random,
                     "title" => $request->adult_title[$j],
                     "fname" => $request->adult_fname[$j],
                     "mname" => $request->adult_mname[$j],
@@ -941,7 +940,7 @@ if($childCount != 0){
     // return "zzzz";   
 
     $menus = Menu::where('parent_id', 0)->orderby('order')->get();
-    return view('frontend.flight.flightpayment', compact('menus'))
+    return view('frontend.flight.flightpayment', compact('menus', 'booking', 'flightReservation'))
     ->with('class', 'home')
     ->with('countries', $this->countries)
     ->with('meta_title', 'Flight Payment | Upeverest')

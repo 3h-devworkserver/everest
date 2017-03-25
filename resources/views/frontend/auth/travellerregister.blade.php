@@ -85,7 +85,7 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <label>State</label>
-                              {!! Form::select('state', [], null , ['class'=>'form-control state', 'id'=>'state']) !!}
+                              {!! Form::select('state', [], null , ['class'=>'form-control state statelist', 'id'=>'state']) !!}
                              {{--  <select name="state" id="state" class="form-control" >
 
                               </select> --}}
@@ -133,9 +133,8 @@
   $("#state").append(new Option("-- Select State --", ""));
 
   $(document).on('change', '.country', function(){
-    // $('#state').removeClass('state');
     print_state('state',this.selectedIndex);
-    // $('#state').addClass('state');
+    $('#state')[0].sumo.reload();
   })
 </script>
 @endsection

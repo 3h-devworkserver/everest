@@ -143,7 +143,7 @@ class PackageController extends Controller
     $request->request->add(['slug' => $this->generateUniqueUrl($request->title)]);
     if ($request->pack_type == 'main') {
       if (!empty($request->addon_pack)) {
-        $string = implode(', ', $request->addon_pack);
+        $string = implode(',', $request->addon_pack);
         $request->request->add(['addon_package' => $string ]);
       }
     }
@@ -242,7 +242,7 @@ $request->request->add(['map_image' => $filename]);
     //updating addon package
     if ($request->pack_type == 'main') {
       if (!empty($request->addon_pack)) {
-        $string = implode(', ', $request->addon_pack);
+        $string = implode(',', $request->addon_pack);
         $request->request->add(['addon_package' => $string ]);
       }
     }

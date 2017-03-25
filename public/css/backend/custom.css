@@ -2070,3 +2070,29 @@ ul.page-list li label{
     font-weight: normal;
     display: block;
 }
+
+.box-body h5{
+    margin-bottom: 15px;
+}
+
+.purchase-table{
+    margin-bottom: 15px;
+}
+.purchase-table p{
+    margin-bottom: 5px;
+}
+.purchase-table table{
+    width: 100%;
+}
+.purchase-table table tr{
+    display: block;
+    padding:10px;
+    overflow: hidden;
+}
+.purchase-table table tr:nth-child(odd){
+    background:#F8F8F8;
+}
+.purchase-table table tr td{
+    width: 50%;
+    float: left;
+}

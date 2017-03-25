@@ -73,7 +73,7 @@ class CustomerController extends Controller
     if ($request->hasFile('profilePic')) {
       $file = $request->file('profilePic');
       $destination_path = 'images/user/profile';
-      $filename = time() . '-' . $file->getClientOriginalName();
+      $filename = time() . '-'.str_random(4) . $file->getClientOriginalName();
       $file->move($destination_path, $filename);
     }else{
       $filename = '';

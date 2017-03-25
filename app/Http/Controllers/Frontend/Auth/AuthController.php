@@ -84,7 +84,7 @@ public function postTravellerRegister(Request $request){
           'lname'=> $request->lname,
           'email'=> $request->email,
           'address'=> $request->address,
-          'nationality'=> $request->country,
+          'country'=> $request->country,
           'state'=> $request->state,
           'phone_type'=> $request->phone_type,
           'phone'=> $request->phone_number,

@@ -318,32 +318,39 @@ function print_country_edit(country_id,country){
 	}
 }
 
-// //method modified --yojan
-// function print_country(country_id,country){
-// 	// given the id of the <select> tag as function argument, it inserts <option> tags
-// 	var option_str = document.getElementById(country_id);
-// 	// var option_str = document.getElementsByClassName(country_id); // -by yojan to select using class
-// 	console.log(option_str);
-// 	option_str.length=0;
-// 	option_str.options[0] = new Option(country,country);
-// 	option_str.selectedIndex = 0;
-// 	for (var i=0; i<country_arr.length; i++) {
-// 		option_str.options[option_str.length] = new Option(country_arr[i],country_arr[i]);
-// 	}
-// }
+//method modified by --yojan
+function print_country_package(country_id,country){
+	// given the id of the <select> tag as function argument, it inserts <option> tags
+	var option_str = document.getElementsByClassName(country_id);
+	// console.log(option_str[4]);
+	$(option_str).each(function() {
+	 	this.length=0;
+		this.options[0] = new Option(country,'');
+		this.selectedIndex = 0;
+		for (var i=0; i<country_arr.length; i++) {
+			this.options[this.length] = new Option(country_arr[i],country_arr[i]);
+		}
+	});
+	
+}
 
-// function print_state(state_id, state_index){
-// 	console.log(state_id);
-// 	var tmp = state_id.find('.statelist');
-// 	console.log(tmp);
-// 	// var option_str = document.getElementById(state_id);
-// 	var option_str = document.getElementsByClassName(state_id); // -by yojan to select using class
-
-// 	option_str.length=0;	// Fixed by Julian Woods
-// 	option_str.options[0] = new Option('Select State','');
-// 	option_str.selectedIndex = 0;
-// 	var state_arr = s_a[state_index].split("|");
-// 	for (var i=0; i<state_arr.length; i++) {
-// 		option_str.options[option_str.length] = new Option(state_arr[i],state_arr[i]);
-// 	}
-// }
+//method modified by --yojan
+function print_state_package(state_id, state_index){
+	// console.log(state_id);
+	var tmp = state_id.closest('.row');
+	// console.log(tmp);
+	// var tmp2 = $(tmp).find('.statelist');
+	// console.log(tmp2);
+	// var option_str = document.getElementById(state_id);
+	var option_str = $(tmp).find('.statelist'); 
+	$(option_str).each(function() {
+		this.length=0;	// Fixed by Julian Woods
+		this.options[0] = new Option('-- Select State --','');
+		this.selectedIndex = 0;
+		var state_arr = s_a[state_index].split("|");
+		for (var i=0; i<state_arr.length; i++) {
+			this.options[this.length] = new Option(state_arr[i],state_arr[i]);
+		}
+		this.sumo.reload();
+	});
+}

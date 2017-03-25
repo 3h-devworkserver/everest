@@ -17,9 +17,9 @@
             <ul class="nav navbar-nav">
               <li class="{{ Active::pattern('traveller/dashboard*') }}"><a href="{{route('frontend.traveller.dashboard')}}">Dashboard <span class="sr-only">(current)</span></a></li>
               <li class="{{ Active::pattern('traveller/profile*') }}"><a href="{{route('frontend.traveller.profile')}}">Profile</a></li>
-              <li class="{{ Active::pattern('traveller/account*') }}"><a href="{{route('frontend.traveller.account')}}">Account</a></li>
-              <li class="{{ Active::pattern('traveller/history*') }}"><a href="{{route('frontend.traveller.history')}}">Package Purchased History</a></li>
-              <li class="{{ Active::pattern('traveller/image*') }}"><a href="{{route('frontend.traveller.image')}}">Passport Image Upload</a></li>
+              {{-- <li class="{{ Active::pattern('traveller/account*') }}"><a href="{{route('frontend.traveller.account')}}">Account</a></li> --}}
+              <li class="{{ Active::pattern('traveller/history*') }}"><a href="{{route('frontend.traveller.history')}}">Purchased History</a></li>
+              {{-- <li class="{{ Active::pattern('traveller/image*') }}"><a href="{{route('frontend.traveller.image')}}">Passport Image Upload</a></li> --}}
               
             </ul>
             

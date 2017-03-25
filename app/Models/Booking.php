@@ -22,7 +22,12 @@ class Booking extends Model
 
     public function flightReservation()
     {
-        return $this->hasOne('App\Models\flightReservation','booking_id');
+        return $this->hasOne('App\Models\FlightReservation','booking_id');
+    }
+
+    public function packageBooking()
+    {
+        return $this->hasOne('App\Models\PackageBooking','booking_id');
     }
 
 }

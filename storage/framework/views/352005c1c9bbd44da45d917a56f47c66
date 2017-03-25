@@ -16,7 +16,8 @@
 			<div class="travel-booking-step">
 				<div class="row">
 					<div class="col-md-12">
-						<a href="<?php echo e(url('package/'.$slug.'/'.$datePrice.'/'.$travellers[0]->group_id.'/booking-step1')); ?>" >Step 1 - Travellers </a>
+						<?php /* <a href="<?php echo e(url('package/'.$slug.'/'.$datePrice.'/'.$travellers[0]->group_id.'/booking-step1')); ?>" >Step 1 - Travellers </a> */ ?>
+						<a href="<?php echo e(url('/package/'.$slug.'/'.$datePrice.'/booking-step1/edit')); ?>" >Step 1 - Travellers </a>
 						<a href="#" class="active">Step 2 - Summary  </a>
 						<a href="#">Step 3 -  Confirm </a>
 					</div>
@@ -68,7 +69,7 @@
 									<h3>Trip Cost Breakdown</h3>
 									<dl class="dl-horizontal">
 										<dt>Base Price</dt>
-										<dd>USD <?php echo e(count($travellers) * $dPrice->price); ?></dd>
+										<dd>USD <?php echo e(count($data->fname) * $dPrice->price); ?></dd>
 
 									</dl>
 									
@@ -78,9 +79,9 @@
 									<dl class="dl-horizontal">
 
 										<dt>Minimun Deposit</dt>
-										<dd >USD <?php echo e((count($travellers) * $dPrice->price) * (25/100)); ?></dd>
+										<dd >USD <?php echo e((count($data->fname) * $dPrice->price) * (25/100)); ?></dd>
 										<dt>Total Amount</dt>
-										<dd>USD <?php echo e(count($travellers) * $dPrice->price); ?></dd>									
+										<dd>USD <?php echo e(count($data->fname) * $dPrice->price); ?></dd>									
 									</dl>
 
 								</div>
@@ -94,67 +95,68 @@
 											<!-- <th>Insurance</th>-->
 											<!-- <th>Single Suppliment</th>-->
 										</tr>
-										<?php foreach($travellers as $traveller): ?>
+
+										<?php /* ?>
+										@foreach($travellers as $traveller)
 										<tr>
-											<td><?php echo e($traveller->title); ?>. <?php echo e($traveller->fname); ?> <?php echo e($traveller->mname); ?> <?php echo e($traveller->lname); ?></td>
-											<td><?php echo e($traveller->passport); ?></td>
-											<td><?php echo e($traveller->dob_year); ?>-<?php echo e($traveller->dob_month); ?>-<?php echo e($traveller->dob_day); ?></td>
+											<td>{{$traveller->title}}. {{$traveller->fname}} {{$traveller->mname}} {{$traveller->lname}}</td>
+											<td>{{$traveller->passport}}</td>
+											<td>{{$traveller->dob_year}}-{{$traveller->dob_month}}-{{$traveller->dob_day}}</td>
 										</tr>
-										<?php endforeach; ?>
+										@endforeach
+										<?php */ ?>
+										
+										<?php $y = 0; ?>
+										<?php while($y < count($data->fname)): ?>
+										<tr>
+											<td><?php echo e($data->title[$y]); ?>. <?php echo e($data->fname[$y]); ?> <?php echo e($data->mname[$y]); ?> <?php echo e($data->lname[$y]); ?></td>
+											<td><?php echo e($data->passport[$y]); ?></td>
+											<td><?php echo e($data->dob_year[$y]); ?>-<?php echo e($data->dob_month[$y]); ?>-<?php echo e($data->dob_day[$y]); ?></td>
+										</tr>
+										<?php $y++; ?>
+										<?php endwhile; ?>
 									</table>
 								</div>
+
+								<?php /* ?>
 								<div class="trip-block emergency-contact">
 									<h3>Emergency Contact Detail</h3>	
 									<dl class="dl-horizontal">
 										<dt>Full Name</dt>
-										<dd><?php echo e($travellers[0]->em_fname); ?> <?php echo e($travellers[0]->em_mname); ?> <?php echo e($travellers[0]->em_lname); ?></dd>
+										<dd>{{$travellers[0]->em_fname}} {{$travellers[0]->em_mname}} {{$travellers[0]->em_lname}}</dd>
 										<dt>Phone Number</dt>
-										<dd ><?php echo e($travellers[0]->em_phone); ?></dd>
+										<dd >{{$travellers[0]->em_phone}}</dd>
 									</dl>									
-									
 								</div>
+								<?php */ ?>
+
+								<div class="trip-block emergency-contact">
+									<h3>Emergency Contact Detail</h3>	
+									<dl class="dl-horizontal">
+										<dt>Full Name</dt>
+										<dd><?php echo e($data->em_fname[0]); ?> <?php echo e($data->em_mname[0]); ?> <?php echo e($data->em_lname[0]); ?></dd>
+										<dt>Phone Number</dt>
+										<dd ><?php echo e($data->em_phone[0]); ?></dd>
+									</dl>									
+								</div>
+								
+								<?php /* ?>
 								<div class="trip-block correspondence-contact">
 									<h3>Correspondence Address</h3>
 									<dl class="dl-horizontal">
 										<dt>Your Detail</dt>
-										<dd><?php echo e($travellers[0]->address); ?>, <?php echo e($travellers[0]->city); ?> <?php echo e($travellers[0]->postal_zip); ?>, <?php echo e($travellers[0]->country); ?></dd>
-										<?php /* <dd>Lalitpur, Patan 0977 Nepal</dd> */ ?>
+										<dd>{{$travellers[0]->address}}, {{$travellers[0]->city}} {{$travellers[0]->postal_zip}}, {{$travellers[0]->country}}</dd>
 									</dl>	
-									
 								</div>
-								<!-- <div class="trip-block regional-flight">
-									<h3>Regional Flight Departure</h3>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox">Please contact me about regional flight departure
-										</label>
-									</div>
-								</div> -->
-								<!-- <div class="trip-block loyalty-discount">
-									<h3>Loyalty Discount</h3>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ex neque cumque mollitia repellat aliquid eligendi perspiciatis, officiis consectetur saepe. Doloribus quidem itaque nam animi, sequi dignissimos nisi laboriosam cupiditate.
-									</p>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox">Are you entitled to a loyalty discount?
-										</label>
-									</div>
-								</div> -->
-								<!-- <div class="trip-block holiday-doc">
-									<h3>Holliday Documentation</h3>
+								<?php */  ?>
+								<div class="trip-block correspondence-contact">
+									<h3>Correspondence Address</h3>
+									<dl class="dl-horizontal">
+										<dt>Your Detail</dt>
+										<dd><?php echo e($data->address[0]); ?>, <?php echo e($data->city[0]); ?> <?php echo e($data->postal_zip[0]); ?>, <?php echo e($data->country[0]); ?></dd>
+									</dl>	
+								</div>
 								
-									<div class="radio">
-										<label>
-											<input type="radio" name="document">Send documentation to the email of the lead traveller(demo@example.com)
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="document">Send documentation by post
-										</label>
-									</div>
-								</div> -->
 								<div class="trip-block terms-conditions">
 									<h3>Terms &amp; Conditions</h3>
 
@@ -164,7 +166,11 @@
 											<input type="checkbox" name="condition">I have read, understood and accepted the booking <a href="#">terms and conditions</a>
 										</label>
 									</div>
-									<input type="hidden" name="group_id" value="<?php echo e($groupId); ?>">
+									
+									<?php /* ?>
+									<input type="hidden" name="group_id" value="{{$groupId}}">
+									<?php */ ?>
+
 									<?php echo Form::close(); ?>
 
 								</div>
@@ -172,7 +178,8 @@
 							</div>
 
 							<div class="button-div">
-								<a href="<?php echo e(url('package/'.$slug.'/'.$datePrice.'/'.$travellers[0]->group_id.'/booking-step1')); ?>" class="btn btn-danger pull-left">Back to Step 1</a>
+								<?php /* <a href="<?php echo e(url('package/'.$slug.'/'.$datePrice.'/'.$travellers[0]->group_id.'/booking-step1')); ?>" class="btn btn-danger pull-left">Back to Step 1</a> */ ?>
+								<a href="#" class="btn btn-danger pull-left">Back to Step 1</a>
 								<a id="summary-continue" class="btn btn-danger pull-right">Continue</a>
 							</div>
 							
@@ -192,10 +199,19 @@
 									<div class="trip-more-info-list">
 										<div class="info-title sub-heading-title when">Traveller: </div>
 										<div class="info-description" id="traveller">
-											<?php foreach($travellers as $traveller): ?>
-											<p><?php echo e($traveller->title); ?>. <?php echo e($traveller->fname); ?> <?php echo e($traveller->mname); ?> <?php echo e($traveller->lname); ?><p>
-												<?php endforeach; ?></div>
-											</div>
+											<?php /* ?>
+											@foreach($travellers as $traveller)
+											{{$traveller->title}}. {{$traveller->fname}} {{$traveller->mname}} {{$traveller->lname}}<p>
+											@endforeach
+											<?php */ ?>
+
+											<?php $y = 0; ?>
+											<?php while($y < count($data->fname)): ?>
+											<p><?php echo e($data->title[$y]); ?>. <?php echo e($data->fname[$y]); ?> <?php echo e($data->mname[$y]); ?> <?php echo e($data->lname[$y]); ?></p>
+											<?php $y++; ?>
+											<?php endwhile; ?>
+										</div>
+									</div>
 
 											<div class="total-price-details-box">
 												<div class="clearfix sub-heading-title">

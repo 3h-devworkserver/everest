@@ -16,6 +16,7 @@ $router->group(['namespace' => 'Frontend'], function () use ($router)
 	require(__DIR__ . "/Routes/Frontend/Traveller/Frontend.php");
 	// require(__DIR__ . "/Routes/Frontend/Payment.php");
 });
+
 /**
  * Backend Routes
  * Namespaces indicate folder structure
@@ -111,4 +112,4 @@ $router->group(['namespace' => 'Backend'], function () use ($router)
 //this is most general so is placed at last, otherwise will generate error
 Route::get('/{part1}/{part2}','Frontend\FrontendController@page2');
 //this is most general so is placed at last, otherwise will generate error
-Route::get('/{part1}/{part2}','Frontend\FrontendController@page2');
+Route::get('/{part1}/{part2}/{part3}','Frontend\FrontendController@page3');

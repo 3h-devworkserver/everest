@@ -12,6 +12,7 @@ use App\Models\Summitteers;
 use App\Models\Packages;
 use App\Models\PackageGallery;
 use App\Models\Promocode;
+use App\Models\Access\User\User;
 use App\Repositories\Frontend\User\UserContract;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use DB;
@@ -408,7 +409,7 @@ $countries = array
 
                     // return $title;
                     $packages = Packages::where('status', 1)->where('pack_type', 'main')->get();
-                     return view('frontend.new.trekking', compact('packages','page', 'menus'))->withClass($slug . '-page')
+                     return view('frontend.package.trekking', compact('packages','page', 'menus'))->withClass($slug . '-page')
                      ->with('meta_title', $meta_title)
                     ->with('meta_keywords', $meta_keywords)
                     ->with('meta_desc', $meta_desc)
@@ -695,6 +696,16 @@ return "success";
 
 }
 return "error";
+}
+
+
+public function checkEmail(Request $request){
+    $check = User::where('email', $request->email)->first();
+    if(empty($check)){
+        return 'unique';
+    }else{
+        return 'not unique';
+    }
 }
 
 }

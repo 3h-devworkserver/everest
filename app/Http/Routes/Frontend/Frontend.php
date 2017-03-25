@@ -5,7 +5,13 @@
  */
 get('/', 'FrontendController@index')->name('home');
 
+//checking for unique email in package bookingstep1
+get('/emailcheck', 'FrontendController@checkEmail');
 
+//booking success msg page
+get('/success', function(){
+	return "success";
+});
 
 get('/{page}','FrontendController@page')->name('page');
 
@@ -44,6 +50,7 @@ post('package/checkpromocode', 'PackageController@checkPromoCode');
 post('package/updatecoupleinfo','PackageController@UpdatePromoCodeInfo');
 
 get('/package/{slug}/{datePrice}/booking-step1','PackageController@bookingStep1');
+get('/package/{slug}/{datePrice}/booking-step1/edit','PackageController@bookingStep1EditGET');
 get('/package/{slug}/{datePrice}/{groupId}/booking-step1','PackageController@bookingStep1Edit');
 patch('/package/{slug}/{datePrice}/booking-step2/{groupId}','PackageController@bookingStep2Edit');
 post('/package/{slug}/{datePrice}/booking-step2/{groupId}','PackageController@bookingStep2Edit');
@@ -67,5 +74,7 @@ post('/flight/passengerdetail', 'FlightController@passengersDetail');
 get('/flight/flightsearch', 'FlightController@searchFormFlight'); 
 // get('/flight/locations', 'FlightController@flightLocation'); 
 
+get('/flight/booking-success/esewa', 'PaymentController@flightBookingSuccess');
+get('/package/booking-success/esewa', 'PaymentController@packageBookingSuccess');
 
 

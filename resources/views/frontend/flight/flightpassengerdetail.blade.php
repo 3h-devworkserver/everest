@@ -353,12 +353,14 @@
                                                                 <div class="col-md-4">
                                                                 <label for="">Nationality</label>
                                                                 @if(!empty($leadAdult))
-                                                                    <input name="adult_nationality[]" class="form-control" required readonly value="{{$lead->profile->nationality}}">
                                                                     <?php /* ?>
-                                                                    {!! Form::select('adult_nationality[]',$countries, $lead->profile->nationality, ['class'=>'form-control country', 'required', 'readonly']) !!}
+                                                                    <input type="text" name="adult_nationality[]" class="form-control" required readonly value="{{$lead->profile->nationality}}">
                                                                     <?php */ ?>
+                                                                    {!!Form::select('adult_nationality[]', [], null, ['class'=>'form-control countrylist', 'required' ]) !!}
+                                                                    
                                                                 @else
-                                                                    {!! Form::select('adult_nationality[]',$countries, 'NP', ['class'=>'form-control country', 'required']) !!}
+                                                                {!!Form::select('adult_nationality[]', [], null, ['class'=>'form-control countrylist', 'required' ]) !!}
+                                                                    {{-- {!! Form::select('adult_nationality[]',$countries, 'NP', ['class'=>'form-control country', 'required']) !!} --}}
                                                                 @endif
                                                                 </div>
                                                                 <?php /* ?>
@@ -560,12 +562,14 @@
                                                                 <div class="col-md-4">
                                                                 <label for="">Nationality</label>
                                                                     @if(!empty($leadChild))
-                                                                        <input name="child_nationality[]" class="form-control" required readonly value="{{$lead->profile->nationality}}">
-                                                                    <?php /* ?>
-                                                                    {!! Form::select('child_nationality[]',$countries, $lead->profile->nationality, ['class'=>'form-control country', 'required', 'readonly']) !!}
-                                                                    <?php */ ?>
+                                                                        <?php /* ?>
+                                                                        <input name=" type="text" child_nationality[]" class="form-control" required readonly value="{{$lead->profile->nationality}}">
+                                                                        <?php */ ?>
+                                                                    {!!Form::select('child_nationality[]', [], null, ['class'=>'form-control countrylist', 'required' ]) !!}
+                                                                    
                                                                 @else
-                                                                    {!! Form::select('child_nationality[]',$countries, 'NP', ['class'=>'form-control country', 'required']) !!}
+                                                                {!!Form::select('child_nationality[]', [], null, ['class'=>'form-control countrylist', 'required' ]) !!}
+                                                                    {{-- {!! Form::select('child_nationality[]',$countries, 'NP', ['class'=>'form-control country', 'required']) !!} --}}
                                                                 @endif
                                                                 </div>
                                                             
@@ -861,5 +865,9 @@
             </div>
         </div>
     </section>
+
+    <script type="text/javascript">
+    print_country_package('countrylist', '-- Select Country --');
+    </script>
 
 @endsection

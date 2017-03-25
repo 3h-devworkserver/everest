@@ -1,0 +1,369 @@
+<?php $__env->startSection('title', trans('Purchase Order Summary')); ?>
+
+<?php $__env->startSection('page-header'); ?>
+<h1>
+	<?php echo e(trans('Purchase Order Summary')); ?>
+
+	<small><?php echo e(trans('menus.purchases.summary')); ?></small>
+</h1>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumbs'); ?>
+<li><a href="<?php echo route('backend.dashboard'); ?>"><i class="fa fa-dashboard"></i> <?php echo e(trans('menus.dashboard')); ?></a></li>
+<li class="active"><?php echo link_to_route('admin.purchases.index', trans('Purchase Order Summary')); ?></li>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<?php echo $__env->make('frontend.includes.new.functions', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<!-- Main content -->
+<div class="row">
+
+	<div class="col-md-6">
+		
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">Purchase Details</h3>
+				<div class="box-tools pull-right">
+					<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				</div><!-- /.box-tools -->
+			</div>
+			<div class="box-body">
+				<div class="purchase-table">
+					<table>
+						<tr>
+							<td>Order Id</td>
+							<?php if($booking->type == 'flight'): ?>
+							<td><?php echo e($booking->flightReservation->order_id); ?></td>
+							<?php else: ?>
+							<td><?php echo e($booking->packageBooking->order_id); ?></td>
+							<?php endif; ?>
+						</tr>
+						<tr>
+							<td>Type</td>
+							<td><?php echo e($booking->type); ?></td>
+						</tr>
+						<tr>
+							<td>Status</td>
+							<td><?php echo e($booking->status); ?></td>
+						</tr>
+						<tr>
+							<td>Purchased Date</td>
+							<td><?php echo e(\Carbon\Carbon::parse($booking->purchased_at)->format('Y/m/d')); ?></td>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+		</div>  <!-- box -->
+
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title"><?php if($booking->type == 'flight'): ?>Flight Information <?php else: ?> Package <?php endif; ?></h3>
+				<div class="box-tools pull-right">
+					<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				</div><!-- /.box-tools -->
+			</div>
+			<div class="box-body">
+				<?php if($booking->type == 'flight'): ?>
+				<p>Flight Type : <?php if($flight->return_type == 'R'): ?> Round Trip <?php else: ?> One Way <?php endif; ?></p>
+				<div class="purchase-table">
+					<?php if(!empty($flightDetail)): ?>
+					<table>
+						<p>Departure Flight</p>
+						<tr>
+							<td>Airline</td>
+							<td><?php echo e(airlinesName($flightDetail->Airline)); ?></td>
+						</tr>
+						<tr>
+							<td>Flight Date</td>
+							<td><?php echo e($flightDetail->FlightDate); ?></td>
+						</tr>
+						<tr>
+							<td>Departure</td>
+							<td><?php echo e($flightDetail->Departure); ?></td>
+						</tr>
+						<tr>
+							<td>Departure Time</td>
+							<td><?php echo e($flightDetail->DepartureTime); ?></td>
+						</tr>
+						<tr>
+							<td>Arrival</td>
+							<td><?php echo e($flightDetail->Arrival); ?></td>
+						</tr>
+						<tr>
+							<td>Arrival Time</td>
+							<td><?php echo e($flightDetail->ArrivalTime); ?></td>
+						</tr>
+						<tr>
+							<td>Flight No</td>
+							<td><?php echo e($flightDetail->FlightNo); ?></td>
+						</tr>
+						<tr>
+							<td>Flight Id</td>
+							<td><?php echo e($flightDetail->FlightId); ?></td>
+						</tr>
+						<tr>
+							<td>Flight Class</td>
+							<td><?php echo e($flightDetail->FlightClassCode); ?></td>
+						</tr>
+					</table>
+					<?php endif; ?>
+
+						<?php if($flight->return_type == 'R'): ?>
+							<div class="purchase-table">
+							<?php if(!empty($flightDetail)): ?>
+								<table>
+								<p>Return Flight</p>
+								<tr>
+									<td>Airline</td>
+									<td><?php echo e(airlinesName($returnFlightDetail->Airline)); ?></td>
+								</tr>
+								<tr>
+									<td>Flight Date</td>
+									<td><?php echo e($returnFlightDetail->FlightDate); ?></td>
+								</tr>
+								<tr>
+									<td>Departure</td>
+									<td><?php echo e($returnFlightDetail->Departure); ?></td>
+								</tr>
+								<tr>
+									<td>Departure Time</td>
+									<td><?php echo e($returnFlightDetail->DepartureTime); ?></td>
+								</tr>
+								<tr>
+									<td>Arrival</td>
+									<td><?php echo e($returnFlightDetail->Arrival); ?></td>
+								</tr>
+								<tr>
+									<td>Arrival Time</td>
+									<td><?php echo e($returnFlightDetail->ArrivalTime); ?></td>
+								</tr>
+								<tr>
+									<td>Flight No</td>
+									<td><?php echo e($returnFlightDetail->FlightNo); ?></td>
+								</tr>
+								<tr>
+									<td>Flight Id</td>
+									<td><?php echo e($returnFlightDetail->FlightId); ?></td>
+								</tr>
+								<tr>
+									<td>Flight Class</td>
+									<td><?php echo e($returnFlightDetail->FlightClassCode); ?></td>
+								</tr>
+								</table>
+							<?php endif; ?>
+							</div>
+						<?php endif; ?>
+
+					</table>
+				</div>
+				<?php else: ?>
+					<div class="purchase-table">
+						<table>
+							<tr>
+								<td>Package</td>
+								<td><?php echo e($package->title); ?></td>
+							</tr>
+							<tr>
+								<td>Date</td>
+								<td><?php echo e($datePrice->daterange); ?></td>
+							</tr>
+							<tr>
+								<td>Main Package Amount</td>
+								<td><?php echo e($packageBooking->total_person); ?> <?php if($packageBooking->total_person == 1): ?>Person <?php else: ?> Persons <?php endif; ?> -USD <?php echo e($packageBooking->main_package_amount); ?></td>
+							</tr>
+							<?php if(!empty($addon)): ?>
+							<tr>
+								<td>Addon Packages</td>
+								<td>
+								<?php /* ?>
+								<?php $i = 0; ?>
+								@foreach($addon as $xtra)
+									<?php 
+										$pack = DB::table('packages')->where('id', $xtra)->first();
+										$addonDetailPart = explode('-', $addonDetail[$i]);
+									?>
+
+									<p>{{$pack->title}} - {{$addonDetailPart[1]}} @if($addonDetailPart[1] == 1)Person @else Persons @endif - USD {{$addonDetailPart[2]}} </p>
+									<?php $i++; ?>
+								@endforeach
+								<?php */ ?>
+
+								<?php $i = 0; ?>
+								<?php foreach($addonDetail as $detail): ?>
+									<?php if(!empty($detail)): ?>
+										<?php 
+											$addonDetailPart = explode('-', $detail);
+											$pack = DB::table('packages')->where('id', $addonDetailPart[0])->first();
+										?>
+
+										<p><?php echo e($pack->title); ?> - <?php echo e($addonDetailPart[1]); ?> <?php if($addonDetailPart[1] == 1): ?>Person <?php else: ?> Persons <?php endif; ?> - USD <?php echo e($addonDetailPart[2]); ?> </p>
+									<?php endif; ?>
+									<?php $i++; ?>
+								<?php endforeach; ?>
+
+								</td>
+							</tr>
+							<?php endif; ?>
+							<tr>
+								<td>Total Amount</td>
+								<td>USD <?php echo e($packageBooking->total_amount); ?></td>
+							</tr>
+						</table>
+					</div>
+				<?php endif; ?>
+				
+			</div>
+		</div>  <!-- box -->
+
+	</div> <!-- col -->
+
+	<div class="col-md-6">
+
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">Traveller Information</h3>
+				<div class="box-tools pull-right">
+					<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				</div><!-- /.box-tools -->
+			</div>
+			<div class="box-body">
+				<?php if($booking->type == 'flight'): ?>
+				<div class="purchase-table">
+					<table>
+						<tr>
+							<td>No. of Adult</td>
+							<td><?php echo e($flightDetail->Adult); ?></td>
+						</tr>
+						<tr>
+							<td>No. of Child</td>
+							<td><?php echo e($flightDetail->Child); ?></td>
+						</tr>
+						<tr>
+							<td>Lead Traveller Name</td>
+							<td><?php echo e($mainTraveller->title); ?>. <?php echo e($mainTraveller->fname); ?> <?php echo e($mainTraveller->mname); ?> <?php echo e($mainTraveller->lname); ?></td>
+						</tr>
+						<tr>
+							<td>Email</td>
+							<td><?php echo e($mainTraveller->email); ?></td>
+						</tr>
+						<tr>
+							<td>Phone (<?php echo e($mainTraveller->phone_type); ?>)</td>
+							<td><?php echo e($mainTraveller->phone); ?></td>
+						</tr>
+						<tr>
+							<td>Nationality</td>
+							<td><?php echo e($mainTraveller->nationality); ?></td>
+						</tr>
+						<tr>
+							<td>Address</td>
+							<td><?php if($mainTraveller->address): ?><?php echo e($mainTraveller->address); ?>,<?php endif; ?> <?php if($mainTraveller->city): ?><?php echo e($mainTraveller->city); ?>,<?php endif; ?> <?php if($mainTraveller->postal_zip): ?><?php echo e($mainTraveller->postal_zip); ?>,<?php endif; ?> <?php if($mainTraveller->state): ?><?php echo e($mainTraveller->state); ?>,<?php endif; ?> <?php if($mainTraveller->country): ?><?php echo e($mainTraveller->country); ?><?php endif; ?></td>
+						</tr>
+
+					</table>
+				</div>
+				<?php else: ?>
+					<div class="purchase-table">
+						<table>
+							<tr>
+								<td>No. of Traveller</td>
+								<td><?php echo e($packageBooking->total_person); ?></td>
+							</tr>
+							<tr>
+								<td>Lead Traveller Name</td>
+								<td><?php echo e($mainTraveller->title); ?>. <?php echo e($mainTraveller->fname); ?> <?php echo e($mainTraveller->mname); ?> <?php echo e($mainTraveller->lname); ?></td>
+							</tr>
+							<tr>
+								<td>Email</td>
+								<td><?php echo e($mainTraveller->email); ?></td>
+							</tr>
+							<tr>
+								<td>Phone</td>
+								<td><?php echo e($mainTraveller->phone); ?></td>
+							</tr>
+							<tr>
+								<td>Nationality</td>
+								<td><?php echo e($mainTraveller->nationality); ?></td>
+							</tr>
+							<tr>
+								<td>Address</td>
+								<td><?php if($mainTraveller->address): ?><?php echo e($mainTraveller->address); ?>,<?php endif; ?> <?php if($mainTraveller->city): ?><?php echo e($mainTraveller->city); ?>,<?php endif; ?> <?php if($mainTraveller->postal_zip): ?><?php echo e($mainTraveller->postal_zip); ?>,<?php endif; ?> <?php if($mainTraveller->state): ?><?php echo e($mainTraveller->state); ?>,<?php endif; ?> <?php if($mainTraveller->country): ?><?php echo e($mainTraveller->country); ?><?php endif; ?></td>
+							</tr>
+						</table>
+					</div>
+				<?php endif; ?>
+				
+			</div>
+		</div>  <!-- box -->
+		
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title">Payment Information</h3>
+				<div class="box-tools pull-right">
+					<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				</div><!-- /.box-tools -->
+			</div>
+			<div class="box-body">
+				<div class="purchase-table">
+					<?php if($booking->type == 'flight'): ?>
+						<table>
+							<tr>
+								<td>Payment Option</td>
+								<td><?php echo e($flight->payment_type); ?></td>
+							</tr>
+							<tr>
+								<td>Order Id</td>
+								<td><?php echo e($flight->order_id); ?></td>
+							</tr>
+							<tr>
+								<td>Ref Id</td>
+								<td><?php echo e($flight->refId); ?></td>
+							</tr>
+							<tr>
+								<td>Total Amount</td>
+								<td><?php echo e($flightDetail->Currency); ?> <?php echo e($flight->total_amount); ?></td>
+							</tr>
+						</table>
+					<?php else: ?>
+						<table>
+							<tr>
+								<td>Payment Option</td>
+								<td><?php echo e($packageBooking->payment_type); ?></td>
+							</tr>
+							<tr>
+								<td>Order Id</td>
+								<td><?php echo e($packageBooking->order_id); ?></td>
+							</tr>
+							<tr>
+								<td>Ref Id</td>
+								<td><?php echo e($packageBooking->refId); ?></td>
+							</tr>
+							<tr>
+								<td>Total Amount</td>
+								<td><?php echo e($packageBooking->total_amount); ?></td>
+							</tr>
+						</table>
+					<?php endif; ?>
+				</div>
+				
+			</div>
+		</div>  <!-- box -->
+
+		
+
+
+	</div>
+
+</div>
+
+
+<div class="clearfix"></div>
+
+<?php $__env->stopSection(); ?>
+
+
+
+
+<?php echo $__env->make('backend.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

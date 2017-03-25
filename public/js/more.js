@@ -72,7 +72,7 @@ $(document).on('change','.addextraPackage', function(){
         $('.exten-text').removeClass('hide');
 
         $('.ext').attr('extprice',amount);
-        $('.ext').html('NPR '+amount);
+        $('.ext').html('USD '+amount);
 
         titleText='';
         var i = 0;
@@ -82,7 +82,7 @@ $(document).on('change','.addextraPackage', function(){
           }else if (checkedNo[i] == '2') {
             no='couple';
           }
-            titleText = titleText + '<div class="clearfix"><div class="ext-text pull-left"><p>'+checkedTitle[i]+'<br><small>('+no +')</small></p></div><div class="content-text total-passenger-price ext pull-right">NPR '+checkedPrices[i]+'</div></div>';
+            titleText = titleText + '<div class="clearfix"><div class="ext-text pull-left"><p>'+checkedTitle[i]+'<br><small>('+no +')</small></p></div><div class="content-text total-passenger-price ext pull-right">USD '+checkedPrices[i]+'</div></div>';
             i++;
           });
         if (i == 0) {
@@ -94,7 +94,7 @@ $(document).on('change','.addextraPackage', function(){
 
         var total = $('#total').attr('initial-total');
         $('#total').attr('totalprice',parseFloat(total) + amount);
-        $('#total').html('NPR '+(parseFloat(total)+amount));
+        $('#total').html('USD '+(parseFloat(total)+amount));
 
         //change esewa form values
         var psc = $('#esewaForm input[name=psc]').val();
@@ -151,7 +151,7 @@ $(document).on('change','.addonPackage', function(){
 
   $('.exten-text').removeClass('hide');
   $('.ext').attr('extprice',amount);
-  $('.ext').html('NPR '+amount);
+  $('.ext').html('USD '+amount);
 
   titleText='';
         var i = 0;
@@ -162,7 +162,7 @@ $(document).on('change','.addonPackage', function(){
           }else{
             no = checkedNo[i] +' persons';
           }
-            titleText = titleText + '<div class="clearfix"><div class="ext-text pull-left"><p>'+checkedTitle[i]+'<br><small>('+no +')</small></p></div><div class="content-text total-passenger-price ext pull-right">NPR '+checkedPrices[i]+'</div></div>';
+            titleText = titleText + '<div class="clearfix"><div class="ext-text pull-left"><p>'+checkedTitle[i]+'<br><small>('+no +')</small></p></div><div class="content-text total-passenger-price ext pull-right">USD '+checkedPrices[i]+'</div></div>';
             i++;
           });
 
@@ -173,6 +173,10 @@ $(document).on('change','.addonPackage', function(){
         $('.extension').html('');
         $('.extension').html(titleText);
         $('.extensionText').val(titleText);
+        var extfullhtml = $('.exten-text').html();
+        // console.log(extfullhtml);
+        $('.extensionFullText').val(extfullhtml);
+        
 
         var total = $('#total').attr('initial-total');
         var check = $('#adult').length;
@@ -183,8 +187,10 @@ $(document).on('change','.addonPackage', function(){
         }
         var finalAmount = no*parseFloat(total) + amount;
         $('#total').attr('totalprice',finalAmount);
-        $('#total').html('NPR '+finalAmount);
+        $('#total').html('USD '+finalAmount);
         $('.totalAmount').val(finalAmount);
+        var totalText = $('.total-text').html();
+        $('.totalText').val(totalText);
         $('.addonId').val(checkedValues);
 
 });
@@ -234,10 +240,10 @@ $(document).on('change','.addonPackage', function(){
 //           });
 //         // alert(amount);
 //         $('.ext').attr('extprice',amount);
-//         $('.ext').html('NPR '+amount);
+//         $('.ext').html('USD '+amount);
 //         var total = $('#total').attr('initial-total');
 //         $('#total').attr('totalprice',parseFloat(total) + amount);
-//         $('#total').html('NPR '+(parseFloat(total)+amount));
+//         $('#total').html('USD '+(parseFloat(total)+amount));
 
 //         //change esewa form values
 //         var psc = $('#esewaForm input[name=psc]').val();
@@ -288,44 +294,23 @@ $(".group1").colorbox({rel:'group1'});
 
 // change no. of travellers in bookingstep1
 $('#adult').change(function(){
-	var no = $(this).val();
-	var price = no * $(this).attr('data-rate');
-	$('#traveller').text(no);
-	$('#total').text('USD ' +price);
-  $('.form-info').html('');
-  for(var i = 1; i <= no; i++) {
-    if (i != 1) {
-      $('.form-info').append('<p class="form-title"> Traveller: '+i+'</p>');
-      var html = $('.extra-traveller2').html();
-    }else{
-      var html = $('.extra-traveller').html();
-    }
-    $('.form-info').append(html);
-    var rate = $('#total').attr('initial-total');
-    $('#total').attr('totalprice',no* rate);
-    $('.ext').attr('extprice', 0);
-    $('.exten-text').addClass('hide');
-    $('.extension').html('');
-    $('.addonPackage').val('');
-    $('.thumbnail').removeClass('select-msg');
-    
-    // $('.box').addClass('SlectBox');
-    // $('.SlectBox').SumoSelect({ csvDispCount: 3 });
-  }
-});
-
-//change no. of travellers in bookingstep1 Edit
-$('#adult-edit').change(function(){
   var no = $(this).val();
   var price = no * $(this).attr('data-rate');
   $('#traveller').text(no);
   $('#total').text('USD ' +price);
-  var html = $('.extra-traveller').html();
+  $('.tour-cost').text('USD ' +price);
+  $('.packageTotal').val(price);
+  // var html = $('.extra-traveller').html();
   var count = $('#count').val();
   // var number = count;
   if (count< no) {
     while (count != no){
       count++;
+      if(count == 1){
+        var html = $('.extra-traveller').html();
+      }else{
+        var html = $('.extra-traveller2').html();
+      }
       $('.form-main').append(html);
       $('.form-main .form-info').last().prepend('<p class="form-title"> Traveller: '+count+ '</p>');
     }
@@ -337,6 +322,124 @@ $('#adult-edit').change(function(){
     }
     $('#count').val(count);
   }
+
+  // $('.box').each(function(){
+  //   $(this).sumo.reload();
+  // });
+
+  // $('.box').removeClass('SlectBox');
+  // $('.box').addClass('SlectBox');
+  $('.form-main .box').addClass('SlectBox');
+
+  $('.SlectBox').SumoSelect();
+  $('.form-main .countrylist').SumoSelect({
+    search: true, 
+    searchText: 'Enter Country'
+  });
+  $('.form-main .statelist').SumoSelect({
+    search: true, 
+    searchText: 'Enter State'
+  });
+
+  
+
+	// var no = $(this).val();
+	// var price = no * $(this).attr('data-rate');
+	// $('#traveller').text(no);
+	// $('#total').text('USD ' +price);
+ //  $('.form-info').html('');
+ //  for(var i = 1; i <= no; i++) {
+ //    if (i != 1) {
+ //      $('.form-info').append('<p class="form-title"> Traveller: '+i+'</p>');
+ //      var html = $('.extra-traveller2').html();
+ //    }else{
+ //      var html = $('.extra-traveller').html();
+ //    }
+ //    $('.form-info').append(html);
+
+
+    var rate = $('#total').attr('initial-total');
+    $('#total').attr('totalprice',no* rate);
+    $('.ext').attr('extprice', 0);
+    $('.exten-text').addClass('hide');
+    $('.extension').html('');
+    $('.addonPackage').val('');
+    $('.thumbnail').removeClass('select-msg');
+    $('.addonPackage').prop('selectedIndex','');
+    $('.addonPackage').each(function(){
+      this.sumo.reload();
+    });
+
+    $('.totalAmount').val(price);
+    $('.addonId').val('');
+    $('.extensionText').val('');
+    $('.extensionFullText').val('');
+    $('.totalText').val('');
+
+    
+});
+
+//change no. of travellers in bookingstep1 Edit
+$('#adult-edit').change(function(){
+  var no = $(this).val();
+  var price = no * $(this).attr('data-rate');
+  $('#traveller').text(no);
+  $('#total').text('USD ' +price);
+  $('.tour-cost').text('USD ' +price);
+  $('.packageTotal').val(price);
+  // var html = $('.extra-traveller').html();
+  var count = $('#count').val();
+  // var number = count;
+  if (count< no) {
+    while (count != no){
+      count++;
+      if(count == 1){
+        var html = $('.extra-traveller').html();
+      }else{
+        var html = $('.extra-traveller2').html();
+      }
+      $('.form-main').append(html);
+      $('.form-main .form-info').last().prepend('<p class="form-title"> Traveller: '+count+ '</p>');
+    }
+    $('#count').val(count);
+  }else if(count > no){
+    while(count != no){
+      $('.form-main .form-info').last().remove();
+      count--;
+    }
+    $('#count').val(count);
+  }
+
+   $('.form-main .box').addClass('SlectBox');
+
+  $('.SlectBox').SumoSelect();
+  $('.form-main .countrylist').SumoSelect({
+    search: true, 
+    searchText: 'Enter Country'
+  });
+  $('.form-main .statelist').SumoSelect({
+    search: true, 
+    searchText: 'Enter State'
+  });
+
+  var rate = $('#total').attr('initial-total');
+    $('#total').attr('totalprice',no* rate);
+    $('.ext').attr('extprice', 0);
+    $('.exten-text').addClass('hide');
+    $('.extension').html('');
+    $('.addonPackage').val('');
+    $('.thumbnail').removeClass('select-msg');
+    $('.addonPackage').prop('selectedIndex','');
+    $('.addonPackage').each(function(){
+      this.sumo.reload();
+    });
+
+    $('.totalAmount').val(price);
+    $('.addonId').val('');
+    $('.extensionText').val('');
+    $('.extensionFullText').val('');
+    $('.totalText').val('');
+
 });
 
 // $('.booking-edit').validate({
@@ -368,7 +471,7 @@ $.validator.setDefaults({
         } else {
 
         	// if (element.parent('.input-group').length || element.prop('type') === 'email' ) {
-        	// 	error.insertAfter(element);
+        	// error.insertAfter(element);
         	// }
         	// error.insertAfter(element);
    		// element.attr("placeholder",error.text());
@@ -420,6 +523,7 @@ $('#summary-continue').click(function(){
 
 
 $('#traveller-info').validate({
+  ignore: ".ignore",
   rules: {
     "adult": "required",
     "title[]": "required",
@@ -441,7 +545,7 @@ $('#traveller-info').validate({
   "dob_month[]": "required",
   "dob_day[]": "required",
   "passport[]": "required",
-  "image[]": "required",
+  // "image[]": "required",
   "issue_year[]": "required",
   "issue_month[]": "required",
   "issue_day[]": "required",
@@ -460,13 +564,45 @@ $('#traveller-info').validate({
 }
 
 });
-$('#submit').click(function(e){
+
+//custom validation method for checking if email exists or not
+
+$('#btn-submit').click(function(e){
+  // email = $('.emailcheck').val();
+  // alert(email);
+  // return;
 
 	if (!($('#traveller-info').valid())) {
 return;
 }
-$('#traveller-info').submit();
+ var inputElem = $('.emailcheck');
+ if(inputElem.length != 0){
+        data = { "email" : inputElem.val() };
+$.ajax(
+    {
+        type: "get",
+        url: base_url + '/emailcheck',
+        data: data, 
+        success: function(returnData)
+        { 
+            if(returnData == 'unique'){
+              // alert('unique');
+              $('#traveller-info').submit();
+
+            }else{
+              alert('Email of Lead Traveller must be unique');
+            }
+           
+        }
+    });
+ }else{
+    $('#traveller-info').submit();
+ }
+// $('#traveller-info').submit();
 });
+
+//using sumoselect in traveller info form
+$('.form-main .box').addClass('SlectBox');
 
 //display name of file selected in booking-step1
 $(document).on('change','.image', function(){
@@ -1189,5 +1325,115 @@ $('.customerRegisterForm').validate({
   }
 });
 
+//generalized method for sumbitting form by <a> tag
+$(document).on('click', 'a.submitForm', function(){
+  $(this).closest('form').submit();
+}); 
+
+
+// sumoselect for selecting country for package traveller detai form
+$( ".form-main .countrylist" ).SumoSelect(
+{
+  search: true, 
+  searchText: 'Enter Country'
+}
+);
+
+//sumoselect for state
+$( ".form-main .statelist" ).SumoSelect(
+{
+  search: true, 
+  searchText: 'Enter State'
+}
+);
+
+// SumoSelect for country in flight passenger form
+$( "#paxDetailForm .countrylist" ).SumoSelect(
+{
+  search: true, 
+  searchText: 'Enter Country'
+}
+);
+
+$(document).on('click', '#optionsRadios0', function(){
+  $('.payForm').hide();
+  $('#esewaForm').show();
+});
+
+$(document).on('click', '#optionsRadios1', function(){
+  $('.payForm').hide();
+  $('#creditCardForm').show();
+});
+
+$(document).on('click', '#optionsRadios3', function(){
+  $('.payForm').hide();
+  $('#creditCardForm2').show();
+});
+
+
+//traveller js
+$('.profileSelect').SumoSelect();
+
+//validate traveller profile form in frontend traveller panel
+$('.travellerProfileForm').validate();
+
+$('.travellerPaswordForm').validate({
+  rules:{
+    old_password: { 
+     required: true,
+     minlength: 6
+    },
+    password: { 
+     required: true,
+     minlength: 6
+    },
+    password_confirmation: { 
+      equalTo: "#password",
+      minlength: 6
+    },
+  }
+});
 
 });
+
+// preview of traveller profile image in frontend traveller admin
+function travellerReadURL(input) {
+  $('.msg').hide();
+  if (input.files && input.files[0]) {
+    // alert(input.files[0].size);
+    if(input.files[0].size > 500000){
+      $('.msg').show();
+    }else{
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          // $('#feat-img-preview').hide();
+          $('.profile-picture .profile-bg').css('background-image', 'url('+e.target.result+')').show();
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }else{
+      $('.profile-picture .profile-bg').hide().css('background-image', 'url(\'\')');
+    }
+}
+
+// preview of traveller profile image in frontend traveller admin
+function documentReadURL(input) {
+  $('.msg').hide();
+  if (input.files && input.files[0]) {
+    // alert(input.files[0].size);
+    if(input.files[0].size > 500000){
+      $('.msg').show();
+    }else{
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          // $('#feat-img-preview').hide();
+          $('#documentPreview').css('background-image', 'url('+e.target.result+')').show();
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }else{
+      $('#documentPreview').hide().css('background-image', 'url(\'\')');
+    }
+}
