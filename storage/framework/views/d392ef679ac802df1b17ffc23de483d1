@@ -10,7 +10,7 @@
 				<div class="site-text"><p>Nepal- adventure of a life time</p></div>
 		<div class="header-right">
 			<div class="menu">
-					<ul class="list-unstyled list-inline">
+					<ul class="list-unstyled list-inline mobile-btn-block">
 						<li><a href="<?php echo e(url('/flight/flightsearch')); ?>"><i class="fa fa-plane"></i>flight</a></li>
 						<li><a href="<?php echo e(url('trekking')); ?>"><i class="fa fa-map-o"></i>trekking</a></li>
 						<?php if(Auth::guest()): ?>
