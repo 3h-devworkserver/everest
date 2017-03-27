@@ -1,6 +1,5 @@
 <div class="booking-form">			
 
-
 	<div class="tab-wrapper">
 
 		<!-- Nav tabs -->
@@ -74,11 +73,11 @@
 								                    					<label>Adult: 12+yrs</label>
 								                    					<div class="input-group">
 								                    						<span class="input-group-btn">
-								                    							<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="adult">
+								                    							<button type="button" class="btn btn-default btn-number" <?php if(!empty($adult)): ?> <?php if($adult == 0): ?> disabled="disabled" <?php endif; ?> <?php else: ?> disabled="disabled" <?php endif; ?> data-type="minus" data-field="adult">
 								                    								<span class="glyphicon glyphicon-minus"></span>
 								                    							</button>
 								                    						</span>
-								                    						<input type="text" name="adult" class="form-control input-number" value="<?php echo e(isset($adult) ? $adult : 1); ?>" min="1" max="100">
+								                    						<input type="text" name="adult" class="form-control input-number" value="<?php echo e(isset($adult) ? $adult : 0); ?>" min="0" max="100">
 								                    						<span class="input-group-btn">
 								                    							<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="adult">
 								                    								<span class="glyphicon glyphicon-plus"></span>
@@ -90,7 +89,7 @@
 								                    					<label>Child:2-12yrs</label>
 								                    					<div class="input-group">
 								                    						<span class="input-group-btn">
-								                    							<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="child">
+								                    							<button type="button" class="btn btn-default btn-number" <?php if(!empty($child)): ?> <?php if($child == 0): ?> disabled="disabled" <?php endif; ?> <?php else: ?> disabled="disabled" <?php endif; ?> data-type="minus" data-field="child">
 								                    								<span class="glyphicon glyphicon-minus"></span>
 								                    							</button>
 								                    						</span>
@@ -168,11 +167,12 @@
 												</div>
 												<div class="form-group">
 													<div class="row">
+													<!--
 														<div class="col-md-6 col-sm-6">
 															<label>Promotion Code <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Promotion Code"></i></label>
 							    						<input type="text" class="form-control" placeholder="Enter Promotional Code">
 
-														</div>
+														</div> -->
 														<input type="hidden" name="trip_type" value="R">
 														<div class="col-md-6 col-sm-6">
 
@@ -243,11 +243,11 @@
 																			<label>Adult: 12+yrs</label>
 																			<div class="input-group">
 																				<span class="input-group-btn">
-																					<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="adult">
+																					<button type="button" class="btn btn-default btn-number" <?php if(!empty($adult)): ?> <?php if($adult == 0): ?> disabled="disabled" <?php endif; ?> <?php else: ?> disabled="disabled" <?php endif; ?> data-type="minus" data-field="adult">
 																						<span class="glyphicon glyphicon-minus"></span>
 																					</button>
 																				</span>
-																				<input type="text" name="adult" class="form-control input-number" value="<?php echo e(isset($adult) ? $adult : 1); ?>" min="1" max="100">
+																				<input type="text" name="adult" class="form-control input-number" value="<?php echo e(isset($adult) ? $adult : 0); ?>" min="0" max="100">
 																				<span class="input-group-btn">
 																					<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="adult">
 																						<span class="glyphicon glyphicon-plus"></span>
@@ -259,7 +259,7 @@
 																			<label>Child:2-12yrs</label>
 																			<div class="input-group">
 																				<span class="input-group-btn">
-																					<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="child">
+																					<button type="button" class="btn btn-default btn-number" <?php if(!empty($child)): ?> <?php if($child == 0): ?> disabled="disabled" <?php endif; ?> <?php else: ?> disabled="disabled" <?php endif; ?> data-type="minus" data-field="child">
 																						<span class="glyphicon glyphicon-minus"></span>
 																					</button>
 																				</span>
@@ -339,10 +339,12 @@
 							    			</div>
 							    			<div class="form-group">
 							    				<div class="row">
+							    				<!--
 							    					<div class="col-md-6 col-sm-6">
 							    						<label>Promotion Code <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Promotion Code"></i></label>
 							    						<input type="text" class="form-control" placeholder="Enter Promotional Code">
 							    					</div>
+							    					-->
 							    					<input type="hidden" name="trip_type" value="O">
 							    					<div class="col-md-6 col-sm-6">
 

@@ -396,13 +396,50 @@ a.readmore {
     text-align: center;
     width: 30px;
 }
-.auth .dropdown-menu{
+/*.auth .dropdown-menu{
     left: inherit;
     right:-43px;
     margin-top: 20px;
+}*/
+.auth .dropdown-menu li a{
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+.auth .dropdown-menu li:last-child a{
+    border-bottom:medium none;
 }
 .auth .dropdown-menu li a i{
     margin-right: 10px;
+}
+
+.auth .open .dropdown-menu::before {
+  border-bottom: 6px solid #fff;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: -6px;
+  z-index: 10;
+}
+.auth .open .dropdown-menu::after {
+  border-bottom: 8px solid #d6d7d7;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: -8px;
+  z-index: 9;
+}
+.auth .open .dropdown-menu {
+  border: 1px solid #d6d7d7;
+  left: inherit;
+  margin-left: 40px;
+  margin-top: 5px;
+  position: absolute;
+  right: 0;
+  top: 51px;
 }
 /*Mega menu
 -----------------------------*/

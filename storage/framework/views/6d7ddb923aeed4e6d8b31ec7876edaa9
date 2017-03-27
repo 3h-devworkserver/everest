@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="<?= url() ?>/css/responsive.css">
     <link rel="icon" type="image/png" href="<?php echo e(url('/favicon.png')); ?>" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="<?php echo e(asset('js/countries.js')); ?>"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <?php echo $__env->yieldContent('extra'); ?>
 
@@ -76,7 +77,7 @@
 <?php */ ?>
 
 </head>
-<body class="<?php echo e($class); ?>">
+<body class="<?php echo e(isset($class) ? $class : ''); ?>">
 <?php echo $__env->yieldContent('loader'); ?>
 <div class="main">
     <?php if(url::full() != url().'/admin'): ?>

@@ -17,9 +17,9 @@
             <ul class="nav navbar-nav">
               <li class="<?php echo e(Active::pattern('traveller/dashboard*')); ?>"><a href="<?php echo e(route('frontend.traveller.dashboard')); ?>">Dashboard <span class="sr-only">(current)</span></a></li>
               <li class="<?php echo e(Active::pattern('traveller/profile*')); ?>"><a href="<?php echo e(route('frontend.traveller.profile')); ?>">Profile</a></li>
-              <li class="<?php echo e(Active::pattern('traveller/account*')); ?>"><a href="<?php echo e(route('frontend.traveller.account')); ?>">Account</a></li>
-              <li class="<?php echo e(Active::pattern('traveller/history*')); ?>"><a href="<?php echo e(route('frontend.traveller.history')); ?>">Package Purchased History</a></li>
-              <li class="<?php echo e(Active::pattern('traveller/image*')); ?>"><a href="<?php echo e(route('frontend.traveller.image')); ?>">Passport Image Upload</a></li>
+              <?php /* <li class="<?php echo e(Active::pattern('traveller/account*')); ?>"><a href="<?php echo e(route('frontend.traveller.account')); ?>">Account</a></li> */ ?>
+              <li class="<?php echo e(Active::pattern('traveller/history*')); ?>"><a href="<?php echo e(route('frontend.traveller.history')); ?>">Purchased History</a></li>
+              <?php /* <li class="<?php echo e(Active::pattern('traveller/image*')); ?>"><a href="<?php echo e(route('frontend.traveller.image')); ?>">Passport Image Upload</a></li> */ ?>
               
             </ul>
             

@@ -33,11 +33,12 @@
 					      <span class="auth-img">
 					        <i class="fa fa-user-o"></i>
 					      </span>
-					      <span class="auth-name">{{Auth::user()->fname}} </span>
+					      
 					    </div>
 					    <ul class="list-unstyled">
 					        <li class="dropdown">
 					            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+					            	<span class="auth-name">{{Auth::user()->fname}} </span>
 					                <i class="fa fa-angle-down"></i>
 					              </a>
 					            <ul class="dropdown-menu navmenu-nav">

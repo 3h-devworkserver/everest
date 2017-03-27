@@ -1,4 +1,8 @@
 <?php $__env->startSection('title'); ?> Traveller Dashboard | <?php echo e($siteTitle); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 
 <section class="main-content dashboard-wrapper">
@@ -12,168 +16,96 @@
           <div class="profile-block">
             <div class="profile-picture">
               <div class="profile-bg" style="background-image:url(<?php echo e(asset('images/new/mountain-biking.jpg')); ?>)"></div>
-              <div class="profile-img" style="background-image:url('images/mountain-biking.jpg');"></div>
+              <?php if(!empty($user->profile->profile_pic)): ?>
+                <div class="profile-img" style="background-image:url(<?php echo e(asset('images/user/profile/'.$user->profile->profile_pic)); ?>);"></div>
+              <?php else: ?>
+                <div class="profile-img" style="background-image:url()}});"></div>
+              <?php endif; ?>
             </div>
             <div class="profile-desc text-center">
-              <h3>Caroline Belfort</h3>
-              <h5>Kusunti,Jawlakhel</h5>
+              <h3><?php echo e($user->profile->fname); ?> <?php echo e($user->profile->mname); ?> <?php echo e($user->profile->lname); ?></h3>
+                    <h5><?php echo e($user->profile->address); ?> <?php if($user->profile->city): ?>, <?php echo e($user->profile->city); ?> <?php endif; ?> <?php if($user->profile->state): ?>, <?php echo e($user->profile->state); ?> <?php endif; ?> </h5>
             </div>
 
             <div class="profile-footer text-center">
-              <a href="#" class="btn btn-default">view profile</a>
+              <a href="<?php echo e(url('traveller/profile')); ?>" class="btn btn-default">view profile</a>
             </div>
           </div>
         </div>
         <div class="col-md-9 col-sm-9">
-          <div class="user-activity">
-            
-            <h3>Package Purchased</h3>            
-            
-            <article class="activity-wrap">
-              <div class="row">
-                <div class="col-md-2">
-                  <figure>
-                    <img src="<?php echo e(asset('images/new/valentines.png')); ?>" alt="">
-                    
-                  </figure>
-                </div>
-                <div class="col-md-10">
-                  <h4>Pokhara Calling</h4>
-                  <div class="meta-activity">
-                    <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Valentine Package</li>
-                      <li>
-                        <i class="fa fa-clock-o"></i> 10 Feb 2017
-                      </li>
-                    </ul>
-                  </div>
-                  <p>
-                    Surprise your Valentine with a get away to romantic Pokhara, where our Valentine’s Day package has been designed to inspire romance, without damaging your wallet too deep.
-                  </p>
-                  
-                </div>
-              </div>
-            </article>
-            <article class="activity-wrap">
-              <div class="row">
-                <div class="col-md-2">
-                  <figure>
-                    <img src="<?php echo e(asset('images/new/inside_everest_trekking_small_1.jpg')); ?>" alt="">
-                    
-                  </figure>
-                </div>
-                <div class="col-md-10">
-                  <h4>Trekking in the Everest region</h4>
-                  <div class="meta-activity">
-                    <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Trekking Package</li>
-                      <li>
-                        <i class="fa fa-clock-o"></i> 28 Jan 2017
-                      </li>
-                    </ul>
-                  </div>
-                  <p>
-                    When Everest comes calling they say there is no stopping oneself. There are numerous mountaineering options in Nepal. Eight of the 14 mountains over 8,000 meters high are located in 
-                  </p>
-                  
-                </div>
-              </div>
-            </article>
+          <?php echo $__env->make('includes.partials.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
+          <div class="user-activity">
+          
+          <?php if(count($user->userPackageBookingsLimit) != 0): ?>
+            <h3>Package Purchased</h3>         
+
+            <?php foreach($user->userPackageBookingsLimit as $booking): ?>
+              <?php $pack = $booking->packageBooking->package; ?>
             <article class="activity-wrap">
               <div class="row">
                 <div class="col-md-2">
                   <figure>
-                    <img src="<?php echo e(asset('images/new/paragliding.jpg')); ?>" alt="">
+                    <img src="<?php echo e(asset('images/packages-new/'.$pack->feat_img)); ?>" alt="">
                     
                   </figure>
                 </div>
                 <div class="col-md-10">
-                  <h4>Paragliding</h4>
+                  <h4><?php echo e($pack->title); ?></h4>
                   <div class="meta-activity">
                     <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Trekking Package</li>
+                      <li> <i class="fa fa-tag"></i>
+                      <?php $i = 1; ?>
+                        <?php foreach($pack->packageCategory as $cat): ?>
+                          <?php if($i == 1): ?>
+                            <?php echo e($cat->title); ?>
+
+                          <?php else: ?>
+                            , <?php echo e($cat->title); ?>
+
+                          <?php endif; ?>
+                          <?php $i++; ?>
+                        <?php endforeach; ?>
+                      </li>
                       <li>
-                        <i class="fa fa-clock-o"></i> 28 Jan 2017
+                        <i class="fa fa-clock-o"></i> <?php echo e(Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')); ?> 
                       </li>
                     </ul>
                   </div>
                   <p>
-                    When Everest comes calling they say there is no stopping oneself. There are numerous mountaineering options in Nepal. Eight of the 14 mountains over 8,000 meters high are located in 
+                    <?php echo $pack->description; ?>
+
                   </p>
                   
                 </div>
               </div>
             </article>
+            <?php endforeach; ?>
+          <?php endif; ?>
+
+          <?php if(count($user->userFlightBookingsLimit) != 0): ?>
 
             <h3>Flight Booking</h3>           
-            
+            <?php foreach($user->userFlightBookingsLimit as $booking): ?>
+            <?php 
+              $flight = $booking->flightReservation;
+            ?>
             <article class="activity-wrap">
               <div class="row">
                 <div class="col-md-2">
                   <figure>
-                    <img src="<?php echo e(asset('images/new/buddha-air-logo.png')); ?>" alt="">
+                    <img src="<?php echo e(asset('images/upeverest-logo.png')); ?>" alt="">
                     
                   </figure>
                 </div>
                 <div class="col-md-10">
-                  <h4>Indianapolis to Paris</h4>
+                  <h4><?php echo e(title_case($flight->departure)); ?> to <?php echo e(title_case($flight->arrival)); ?></h4>
                   <div class="meta-activity">
                     <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Oneway Flight</li>
+                      <li> <i class="fa fa-tag"></i><?php if($flight->return_type == 'R'): ?> Round Trip Flight <?php else: ?> One Way Flight <?php endif; ?> </li>
                       <li>
-                        <i class="fa fa-clock-o"></i> 10 Feb 2017
-                      </li>
-                    </ul>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, nisi perferendis dolorem saepe laboriosam. Itaque quo, esse earum ducimus repellendus iusto aperiam quam minus quos dicta 
-                  </p>
-                  
-                </div>
-              </div>
-            </article>
-            <article class="activity-wrap">
-              <div class="row">
-                <div class="col-md-2">
-                  <figure>
-                    <img src="<?php echo e(asset('images/new/buddha-air-logo.png')); ?>" alt="">
-                    
-                  </figure>
-                </div>
-                <div class="col-md-10">
-                  <h4>Indianapolis to Paris</h4>
-                  <div class="meta-activity">
-                    <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Round Trips</li>
-                      <li>
-                        <i class="fa fa-clock-o"></i> 28 Jan 2017
-                      </li>
-                    </ul>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, nisi perferendis dolorem saepe laboriosam. Itaque quo, esse earum ducimus repellendus iusto aperiam quam minus quos dicta 
-                  </p>
-                  
-                </div>
-              </div>
-            </article>
+                        <i class="fa fa-clock-o"></i> <?php echo e(Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')); ?>
 
-            <article class="activity-wrap">
-              <div class="row">
-                <div class="col-md-2">
-                  <figure>
-                    <img src="<?php echo e(asset('images/new/buddha-air-logo.png')); ?>" alt="">
-                    
-                  </figure>
-                </div>
-                <div class="col-md-10">
-                  <h4>Indianapolis to Paris</h4>
-                  <div class="meta-activity">
-                    <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Twoway Flight</li>
-                      <li>
-                        <i class="fa fa-clock-o"></i> 28 Jan 2017
                       </li>
                     </ul>
                   </div>
@@ -184,6 +116,10 @@
                 </div>
               </div>
             </article>
+            <?php endforeach; ?>
+          <?php endif; ?>
+
+
           </div>
         </div>
       </div>
