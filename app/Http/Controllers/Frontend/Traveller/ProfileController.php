@@ -4,7 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use Hash;
-
+use File;
+use App\Models\Menu;
 
 /**
  * Class ProfileController
@@ -13,27 +14,47 @@ use Hash;
 class ProfileController extends Controller {
 
 	public function dashboard(){
-		return view('frontend.traveller.dashboard')->with('class', 'home');
+		$user = Auth::user();
+		// return $user->userPackageBookingsLimit;
+		$menus = Menu::where('parent_id', 0)->orderby('order')->get();
+		return view('frontend.traveller.dashboard', compact('user', 'menus'))
+		->with('meta_title', 'Traveller Dashboard | Upeverest')
+	    ->with('meta_keywords', 'Traveller Dashboard, Upeverest')
+	    ->with('meta_desc', 'Traveller Dashboard, Upeverest')
+		->with('class', 'home');
 	}
 
 	public function profile(){
 		$user = Auth::user();
 		$profile = Auth::user()->profile;
+		$menus = Menu::where('parent_id', 0)->orderby('order')->get();
 
-		return view('frontend.traveller.profile', compact('user', 'profile'))->with('class', 'home');
+		return view('frontend.traveller.profile', compact('user', 'profile', 'menus'))
+		->with('meta_title', 'Traveller Profile | Upeverest')
+	    ->with('meta_keywords', 'Traveller Profile, Upeverest')
+	    ->with('meta_desc', 'Traveller Profile, Upeverest')
+		->with('class', 'home');
 	}
 
-	public function account(){
-		return view('frontend.traveller.account')->with('class', 'home');
-	}
+	// public function account(){
+	// 	$menus = Menu::where('parent_id', 0)->orderby('order')->get();
+	// 	return view('frontend.traveller.account')->with('class', 'home');
+	// }
 
 	public function history(){
-		return view('frontend.traveller.history')->with('class', 'home');
+		$user = Auth::user();
+		$menus = Menu::where('parent_id', 0)->orderby('order')->get();
+		return view('frontend.traveller.history', compact('user', 'menus'))
+		->with('meta_title', 'Traveller Purchase History | Upeverest')
+	    ->with('meta_keywords', 'Traveller Purchase History, Upeverest')
+	    ->with('meta_desc', 'Traveller Purchase History, Upeverest')
+		->with('class', 'home');
 	}
 
-	public function image(){
-		return view('frontend.traveller.image')->with('class', 'home');
-	}
+	// public function image(){
+	// 	// return $user->userBookings[0]->packageBooking->package;
+	// 	return view('frontend.traveller.image')->with('class', 'home');
+	// }
 
 	public function updateProfile(Request $request){
 		$this->validate($request, [
@@ -84,9 +105,20 @@ class ProfileController extends Controller {
 	      $filename = time() . '-'.str_random(4) . $file->getClientOriginalName();
 	      $file->move($destination_path, $filename);
 
+	      if (!empty(Auth::user()->profile->profile_pic)) {
+	      	$prevImg = Auth::user()->profile->profile_pic;
+	      }
+
 	      Auth::user()->profile->update([
 	      	'profile_pic' => $filename,
 	      ]);
+
+	      if (!empty($prevImg)) {
+		    if (File::exists($destination_path.'/'.$prevImg)) {
+	            unlink($destination_path.'/'.$prevImg);
+	        }
+	      }
+
 	    }else{
 			return redirect()->route('frontend.traveller.profile')->withFlashWarning('No image was chosen');
 	    }
@@ -109,6 +141,59 @@ class ProfileController extends Controller {
 	    }else{
 			return redirect()->route('frontend.traveller.profile')->withFlashSuccess('Old Password does not match');
 	    }
+	}
+
+	public function updatePassport(Request $request){
+		$this->validate($request, [
+			'document_no' => 'required',
+			'issue_year' => 'required',
+			'issue_month' => 'required',
+			'issue_day' => 'required',
+			'exp_year' => 'required',
+			'exp_month' => 'required',
+			'exp_day' => 'required',
+	    ]);
+
+	    if ($request->hasFile('passport_img')) {
+	      $file = $request->file('passport_img');
+	      $destination_path = 'images/user/document';
+	      $filename = time() . '-'.str_random(4) . $file->getClientOriginalName();
+	      $file->move($destination_path, $filename);
+
+	      if (!empty(Auth::user()->profile->document_img)) {
+	      	$prevImg = Auth::user()->profile->document_img;
+	      }
+	      Auth::user()->profile->update([
+	      	'document_type' => 'passport',
+	      	'document_no' => $request->document_no,
+	      	'document_img' => $filename,
+	      	'issue_year' => $request->issue_year,
+	      	'issue_month' => $request->issue_month,
+	      	'issue_day' => $request->issue_day,
+	      	'exp_year' => $request->exp_year,
+	      	'exp_month' => $request->exp_month,
+	      	'exp_day' => $request->exp_day,
+	      ]);
+	      	if (!empty($prevImg)) {
+			    if (File::exists($destination_path.'/'.$prevImg)) {
+		            unlink($destination_path.'/'.$prevImg);
+		        }
+	      	}
+
+	    }else{
+	    	Auth::user()->profile->update([
+	      	'document_type' => 'passport',
+	      	'document_no' => $request->document_no,
+	      	'issue_year' => $request->issue_year,
+	      	'issue_month' => $request->issue_month,
+	      	'issue_day' => $request->issue_day,
+	      	'exp_year' => $request->exp_year,
+	      	'exp_month' => $request->exp_month,
+	      	'exp_day' => $request->exp_day,
+	      ]);
+	    }
+		return redirect()->route('frontend.traveller.profile')->withFlashSuccess('Passport Information Updated Successfully');
+
 	}
 	
 }

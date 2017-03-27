@@ -817,9 +817,10 @@
                                     $i=1; 
                                     $string = implode(',', $datas['addon_pack']);
                                     $selectedAddon = explode(',', $string);
-                                    $string2 = implode(',', $datas['addon_packages_detail']);
-                                    $selectedAddonDetail = explode(',', $string2);
-
+                                    if(!empty($addon)){
+                                        $string2 = implode(',', $datas['addon_packages_detail']);
+                                        $selectedAddonDetail = explode(',', $string2);
+                                    }
                                 ?> 	
                                 @foreach($addon as $id)
                                 <?php 
@@ -939,7 +940,7 @@
                                         <h3>Total 
                                            <small>Tax Included</small></h3>
                                        </div>
-                                       <div class="content-text total-passenger-price pull-right">
+                                       <div class="content-text total-passenger-price pull-right total-text">
                                            @if(empty($datas['totalText']))
                                            <span id = "total" initial-total="{{$dPrice->price}}" totalprice = "{{$datas['count'] * $dPrice->price}}">USD {{$datas['count'] * $dPrice->price}}</span>
                                            @else

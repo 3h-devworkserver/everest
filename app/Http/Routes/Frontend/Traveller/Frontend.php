@@ -24,10 +24,12 @@ $router->group(['middleware' => 'access.routeNeedsRole:Traveller'], function ()
 	post('traveller/profile/password', 'ProfileController@changepassword');
 	patch('traveller/profile/passport', 'ProfileController@updatePassport');
 
-	
-
-
 
 });
 
+});
+
+$router->group(['middleware' => 'access.routeNeedsRole:Traveller'], function ()
+{
+	get('traveller/logout', 'Auth\AuthController@travellerLogout');
 });

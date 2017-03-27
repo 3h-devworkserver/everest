@@ -221,21 +221,24 @@
                                 <section id="vertical">
                                     <h4>Passanger Details</h4>
 
-                                    <form id="paxDetailForm" class="loaderDisplay" action="{{url('/flight/passengerdetail')}}" method="post" enctype="multipart/form-data">
+                                    <form id="paxDetailForm" class="loaderDisplay" action="{{url('/flight/payment')}}" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         {!! Form::hidden('adultno', $flightDetail->Adult, ['class'=>'adultno']) !!}
                                         {!! Form::hidden('childno', $flightDetail->Child, ['class'=>'childno']) !!}
                                         {!! Form::hidden('trip_type', $trip_type ) !!}
-                                        {!! Form::hidden('departure', $departure ) !!}
-                                        {!! Form::hidden('arrival', $arrival ) !!}
+                                        {!! Form::hidden('departure', $flightDetail->Departure ) !!}
+                                        {!! Form::hidden('arrival', $flightDetail->Arrival ) !!}
                                         {!! Form::hidden('country', $country ) !!}
                                         {!! Form::hidden('flight_id', $flightDetail->FlightId ) !!}
                                         {!! Form::hidden('flightDetail', json_encode($flightDetail) ) !!}
+                                        {!! Form::hidden('departure_total', totalPrice($flightDetail->Adult, $flightDetail->Child, $flightDetail->AdultFare, $flightDetail->ChildFare, $flightDetail->ResFare, $flightDetail->FuelSurcharge, $flightDetail->Tax ) ) !!}
                                         @if($trip_type == 'R')
+                                        {!! Form::hidden('return_total', totalPrice($returnFlightDetail->Adult, $returnFlightDetail->Child, $returnFlightDetail->AdultFare, $returnFlightDetail->ChildFare, $returnFlightDetail->ResFare, $returnFlightDetail->FuelSurcharge, $returnFlightDetail->Tax ) ) !!}
                                         {!! Form::hidden('returnflight_id', $returnFlightDetail->FlightId ) !!}
                                         {!! Form::hidden('returnFlightDetail', json_encode($returnFlightDetail) ) !!}
                                         {!! Form::hidden('totalAmount', totalPrice($returnFlightDetail->Adult, $returnFlightDetail->Child, $returnFlightDetail->AdultFare, $returnFlightDetail->ChildFare, $returnFlightDetail->ResFare, $returnFlightDetail->FuelSurcharge, $returnFlightDetail->Tax ) + totalPrice($flightDetail->Adult, $flightDetail->Child, $flightDetail->AdultFare, $flightDetail->ChildFare, $flightDetail->ResFare, $flightDetail->FuelSurcharge, $flightDetail->Tax )  )  !!}
                                         @else
+                                        {!! Form::hidden('return_total', null ) !!}
                                         {!! Form::hidden('returnFlightDetail', null ) !!}
                                         {!! Form::hidden('totalAmount', totalPrice($flightDetail->Adult, $flightDetail->Child, $flightDetail->AdultFare, $flightDetail->ChildFare, $flightDetail->ResFare, $flightDetail->FuelSurcharge, $flightDetail->Tax ) )  !!}
                                         @endif
@@ -363,19 +366,6 @@
                                                                     {{-- {!! Form::select('adult_nationality[]',$countries, 'NP', ['class'=>'form-control country', 'required']) !!} --}}
                                                                 @endif
                                                                 </div>
-                                                                <?php /* ?>
-                                                                <div class="col-md-4 doe">
-                                                                <label for="">Date of Issue</label>
-
-                                                                <select name="adult_issue_day[]" class="SlectBox daypicker form-control" required >
-                                                                    <option value="">DD</option>
-                                                                </select>
-                                                                    {!! Form::select('adult_issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'SlectBox form-control', 'required']) !!}
-                                                                    <select name="adult_issue_year[]" class="yearpicker SlectBox form-control" required>
-                                                                        <option value="">YEAR</option>
-                                                                    </select>
-                                                                </div>
-                                                                <?php */ ?>
                                                             </div>
 
                                                         </div>
@@ -415,40 +405,6 @@
                                                             </div>
                                                         </div>
 
-                                                        <!--
-                                                        <div class="form-group">
-                                                            <div class="row-fluid">
-                                                                <div class="col-md-6">
-                                                                    <label>Frequent flyer programme(optional)</label>
-                                                                    <select class="SlectBox form-control">   
-                                                                        <option selected="selected" value="">Select frequent flyer programme</option>   
-                                                                        <option value="QR">Qatar Airways</option>   
-                                                                        <option value="ab">Airberlin</option>  
-                                                                        <option value="AA">American Airlines</option>   
-                                                                        <option value="OZ">Asiana Airlines</option> 
-                                                                        <option value="BA">British Airways</option> <option value="CX">Cathay Pacific</option>  
-                                                                        <option value="AY">Finnair</option> <option value="G3">Gol Airlines
-                                                                        </option>    
-                                                                        <option value="IB">Iberia</option> <option value="JL">Japan Airlines</option>  
-                                                                        <option value="LA">Lan</option> <option value="MH">Malaysia Airlines</option>   
-                                                                        <option value="ME">Middle East Airlines</option>    
-                                                                        <option value="QF">Qantas</option> <option value="AT">Royal Air Maroc
-                                                                        </option> 
-                                                                        <option value="RJ">Royal Jordanian
-                                                                        </option> 
-                                                                        <option value="S7">S7 Airlines
-                                                                        </option> 
-                                                                        <option value="JJ">Tam</option> 
-                                                                        <option value="UL">Srilankan Airlines</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label>Frequent flyer number</label>
-                                                                    <input type="text" class="form-control" placeholder="Flyer number">
-                                                                </div>
-                                                            </div>
-                                                        </div> 
-                                                        -->
                                                         @if($i == 1)
                                                         <div class="form-group">
                                                             <div class="row-fluid">

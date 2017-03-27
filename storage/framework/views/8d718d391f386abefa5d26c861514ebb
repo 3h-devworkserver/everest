@@ -1,4 +1,8 @@
 <?php $__env->startSection('title'); ?> Traveller Profile | <?php echo e($siteTitle); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 
 <section class="main-content dashboard-wrapper">
@@ -168,8 +172,11 @@
                     <div class="col-md-4">
                       <div class="profile-block">
                         <div class="profile-picture">
-                          <div class="profile-bg" style="background-image:url(<?php echo e(asset('images/user/profile/'.$profile->profile_pic)); ?>);"></div>
-                          
+                          <?php if(!empty($profile->profile_pic)): ?>
+                            <div class="profile-bg" style="background-image:url(<?php echo e(asset('images/user/profile/'.$profile->profile_pic)); ?>);"></div>
+                          <?php else: ?>
+                            <div class="profile-bg" style="background-image:url();"></div> 
+                          <?php endif; ?>
                         </div>
                       </div>
                     </div>
@@ -179,12 +186,18 @@
                         Clear frontal face photos are an important way for hosts and guests to learn about each other. It’s not much fun to host a landscape! Please upload a photo that clearly shows your face. 
                       </p>
                       <div class="btn-grp">
+                        <span class="btn btn-primary btn-file btn-sm">
+                          <i class="fa fa-folder-open"></i>Upload
+                          <input type="file" name="upload" onchange="travellerReadURL(this)" >
+                        </span>
+                        <!--
                         <span class="btn btn-default btn-file">
                           <i class="fa fa-image"></i>
                           Upload Picture
                           <input type="file" name="upload" onchange="travellerReadURL(this)">
                         </span>
-                        <div class="msg display-none"><span class="text-danger">File should be less than 1000KB</span></div>
+                        -->
+                        <div class="msg display-none"><span class="text-danger">File should be less than 500KB</span></div>
                         <input type="submit" class="btn btn-danger" value="Save">
                         
                       </div>
@@ -233,16 +246,17 @@
                 <?php echo Form::close(); ?>
 
               </div>
+
               <div role="tabpanel" class="tab-pane" id="d">
                 <h4>Passport Info</h4>
                 <hr>
-                <?php echo Form::model($profile, ['url'=>'traveller/profile/passport', 'class'=>'travellerPassportForm', 'method'=>'patch']); ?>
+                <?php echo Form::model($profile, ['url'=>'traveller/profile/passport', 'class'=>'travellerPassportForm', 'method'=>'patch', 'files'=>true]); ?>
 
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-6">
                         <label>Passport Number <em>*</em></label>
-                        <?php echo Form::text('passport_no',null, ['placeholder'=>'Your Passport Number', 'class'=>'form-control']); ?>                   
+                        <?php echo Form::text('document_no',null, ['placeholder'=>'Your Passport Number', 'class'=>'form-control', 'required']); ?>                   
                       </div>
                       <div class="col-md-6">
                         <label>Passport Type</label>
@@ -340,17 +354,23 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-12">
+                      <span class="btn btn-primary btn-file btn-sm">
+                        <i class="fa fa-folder-open"></i>Upload
+                        <input type="file" class="image" name="passport_img" onchange="documentReadURL(this)" >
+                      </span>
+                      <!--
                         <span class="btn btn-default btn-file passport-img">
                           <i class="fa fa-image"></i>
                           Upload Picture
                           <input type="file" name="passport_img" onchange="documentReadURL(this)">
-                        </span>
+                        </span> -->
 
                         <p class="help-block">
                           image size not exceeds more than 500kb
                         </p>
+                        <div class="msgPassport display-none"><span class="text-danger">File should be less than 500KB</span></div>
                         <?php if(!empty($profile->document_img)): ?>
-                          <div id="documentPreview" class="show-img-bg" style="background-image:url(<?php echo e(url('images/user/document/'.$customer->profile->document_img)); ?>)"  alt="Image Preview"></div>
+                          <div id="documentPreview" class="show-img-bg" style="background-image:url(<?php echo e(url('images/user/document/'.$profile->document_img)); ?>)"  alt="Image Preview"></div>
                           <?php else: ?>
                           <div id="documentPreview" class="show-img-bg display-none" alt="Image Preview"></div>
                         <?php endif; ?>
@@ -358,7 +378,7 @@
                       
                     </div>
                   </div>
-                  <!-- <input type="submit" class="btn btn-danger" value="Upload"> -->
+                  <input type="submit" class="btn btn-danger" value="Upload">
                 <?php echo Form::close(); ?>
 
               </div>

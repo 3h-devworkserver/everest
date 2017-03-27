@@ -14,16 +14,17 @@ use Carbon\Carbon;
 
 class PaymentController extends Controller {
 
-public function flightBookingSuccess(Request $request){
+public function flightBookingSuccess($token, Request $request){
     if($request->q == 'su' && (!empty($request->oid)) && (!empty($request->amt)) && (!empty($request->refId)) ){
 
-        $flightReservation = FlightReservation::where('order_id', $request->oid)->first();
-        // if(!empty($flightReservation) && $flightReservation->total_amount == $request->amt){
-        if(!empty($flightReservation) ){
+        $flightReservation = FlightReservation::where('token', $token)->first();
+        if(!empty($flightReservation) && $flightReservation->total_amount == $request->amt){
+        // if(!empty($flightReservation) ){
             $flightReservation->update([
                 'refId' => $request->refId,
                 'status' =>'paid',
                 'payment_type' =>'esewa',
+                'token' => '',
             ]);
         }else{
             abort(404);
@@ -59,16 +60,17 @@ public function flightBookingSuccess(Request $request){
     
 }
 
-public function packageBookingSuccess(Request $request){
+public function packageBookingSuccess($token, Request $request){
     if($request->q == 'su' && (!empty($request->oid)) && (!empty($request->amt)) && (!empty($request->refId)) ){
 
-        $packageBooking = PackageBooking::where('order_id', $request->oid)->first();
-        // if(!empty($packageBooking) && $packageBooking->total_amount == $request->amt){
-        if(!empty($packageBooking) ){
+        $packageBooking = PackageBooking::where('token', $token)->first();
+        if(!empty($packageBooking) && $packageBooking->total_amount == $request->amt){
+        // if(!empty($packageBooking) ){
             $packageBooking->update([
                 'refId' => $request->refId,
                 'status' =>'paid',
                 'payment_type' =>'esewa',
+                'token' => '',
             ]);
         }else{
             abort(404);

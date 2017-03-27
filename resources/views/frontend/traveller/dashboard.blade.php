@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master-new')
 @section('title') Traveller Dashboard | {{ $siteTitle }}@endsection
+@section('meta_title'){{ $meta_title }}@endsection
+@section('meta_keywords'){{ $meta_keywords }}@endsection
+@section('meta_desc'){{ $meta_desc }}@endsection
+
 @section('content')
 
 <section class="main-content dashboard-wrapper">
@@ -13,15 +17,19 @@
           <div class="profile-block">
             <div class="profile-picture">
               <div class="profile-bg" style="background-image:url({{asset('images/new/mountain-biking.jpg')}})"></div>
-              <div class="profile-img" style="background-image:url('images/mountain-biking.jpg');"></div>
+              @if(!empty($user->profile->profile_pic))
+                <div class="profile-img" style="background-image:url({{asset('images/user/profile/'.$user->profile->profile_pic)}});"></div>
+              @else
+                <div class="profile-img" style="background-image:url()}});"></div>
+              @endif
             </div>
             <div class="profile-desc text-center">
-              <h3>Caroline Belfort</h3>
-              <h5>Kusunti,Jawlakhel</h5>
+              <h3>{{$user->profile->fname}} {{$user->profile->mname}} {{$user->profile->lname}}</h3>
+                    <h5>{{$user->profile->address}} @if($user->profile->city), {{$user->profile->city}} @endif @if($user->profile->state), {{$user->profile->state}} @endif </h5>
             </div>
 
             <div class="profile-footer text-center">
-              <a href="#" class="btn btn-default">view profile</a>
+              <a href="{{url('traveller/profile')}}" class="btn btn-default">view profile</a>
             </div>
           </div>
         </div>
@@ -29,103 +37,72 @@
           @include('includes.partials.messages')
 
           <div class="user-activity">
-            
-            <h3>Package Purchased</h3>            
-            
-            <article class="activity-wrap">
-              <div class="row">
-                <div class="col-md-2">
-                  <figure>
-                    <img src="{{asset('images/new/valentines.png')}}" alt="">
-                    
-                  </figure>
-                </div>
-                <div class="col-md-10">
-                  <h4>Pokhara Calling</h4>
-                  <div class="meta-activity">
-                    <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Valentine Package</li>
-                      <li>
-                        <i class="fa fa-clock-o"></i> 10 Feb 2017
-                      </li>
-                    </ul>
-                  </div>
-                  <p>
-                    Surprise your Valentine with a get away to romantic Pokhara, where our Valentine’s Day package has been designed to inspire romance, without damaging your wallet too deep.
-                  </p>
-                  
-                </div>
-              </div>
-            </article>
-            <article class="activity-wrap">
-              <div class="row">
-                <div class="col-md-2">
-                  <figure>
-                    <img src="{{asset('images/new/inside_everest_trekking_small_1.jpg')}}" alt="">
-                    
-                  </figure>
-                </div>
-                <div class="col-md-10">
-                  <h4>Trekking in the Everest region</h4>
-                  <div class="meta-activity">
-                    <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Trekking Package</li>
-                      <li>
-                        <i class="fa fa-clock-o"></i> 28 Jan 2017
-                      </li>
-                    </ul>
-                  </div>
-                  <p>
-                    When Everest comes calling they say there is no stopping oneself. There are numerous mountaineering options in Nepal. Eight of the 14 mountains over 8,000 meters high are located in 
-                  </p>
-                  
-                </div>
-              </div>
-            </article>
+          
+          @if(count($user->userPackageBookingsLimit) != 0)
+            <h3>Package Purchased</h3>         
 
+            @foreach($user->userPackageBookingsLimit as $booking)
+              <?php $pack = $booking->packageBooking->package; ?>
             <article class="activity-wrap">
               <div class="row">
                 <div class="col-md-2">
                   <figure>
-                    <img src="{{asset('images/new/paragliding.jpg')}}" alt="">
+                    <img src="{{asset('images/packages-new/'.$pack->feat_img)}}" alt="">
                     
                   </figure>
                 </div>
                 <div class="col-md-10">
-                  <h4>Paragliding</h4>
+                  <h4>{{$pack->title}}</h4>
                   <div class="meta-activity">
                     <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Trekking Package</li>
+                      <li> <i class="fa fa-tag"></i>
+                      <?php $i = 1; ?>
+                        @foreach($pack->packageCategory as $cat)
+                          @if($i == 1)
+                            {{$cat->title}}
+                          @else
+                            , {{$cat->title}}
+                          @endif
+                          <?php $i++; ?>
+                        @endforeach
+                      </li>
                       <li>
-                        <i class="fa fa-clock-o"></i> 28 Jan 2017
+                        <i class="fa fa-clock-o"></i> {{Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')}} 
                       </li>
                     </ul>
                   </div>
                   <p>
-                    When Everest comes calling they say there is no stopping oneself. There are numerous mountaineering options in Nepal. Eight of the 14 mountains over 8,000 meters high are located in 
+                    {!! $pack->description!!}
                   </p>
                   
                 </div>
               </div>
             </article>
+            @endforeach
+          @endif
+
+          @if(count($user->userFlightBookingsLimit) != 0)
 
             <h3>Flight Booking</h3>           
-            
+            @foreach($user->userFlightBookingsLimit as $booking)
+            <?php 
+              $flight = $booking->flightReservation;
+            ?>
             <article class="activity-wrap">
               <div class="row">
                 <div class="col-md-2">
                   <figure>
-                    <img src="{{asset('images/new/buddha-air-logo.png')}}" alt="">
+                    <img src="{{asset('images/upeverest-logo.png')}}" alt="">
                     
                   </figure>
                 </div>
                 <div class="col-md-10">
-                  <h4>Indianapolis to Paris</h4>
+                  <h4>{{title_case($flight->departure)}} to {{title_case($flight->arrival)}}</h4>
                   <div class="meta-activity">
                     <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Oneway Flight</li>
+                      <li> <i class="fa fa-tag"></i>@if($flight->return_type == 'R') Round Trip Flight @else One Way Flight @endif </li>
                       <li>
-                        <i class="fa fa-clock-o"></i> 10 Feb 2017
+                        <i class="fa fa-clock-o"></i> {{Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')}}
                       </li>
                     </ul>
                   </div>
@@ -136,57 +113,10 @@
                 </div>
               </div>
             </article>
-            <article class="activity-wrap">
-              <div class="row">
-                <div class="col-md-2">
-                  <figure>
-                    <img src="{{asset('images/new/buddha-air-logo.png')}}" alt="">
-                    
-                  </figure>
-                </div>
-                <div class="col-md-10">
-                  <h4>Indianapolis to Paris</h4>
-                  <div class="meta-activity">
-                    <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Round Trips</li>
-                      <li>
-                        <i class="fa fa-clock-o"></i> 28 Jan 2017
-                      </li>
-                    </ul>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, nisi perferendis dolorem saepe laboriosam. Itaque quo, esse earum ducimus repellendus iusto aperiam quam minus quos dicta 
-                  </p>
-                  
-                </div>
-              </div>
-            </article>
+            @endforeach
+          @endif
 
-            <article class="activity-wrap">
-              <div class="row">
-                <div class="col-md-2">
-                  <figure>
-                    <img src="{{asset('images/new/buddha-air-logo.png')}}" alt="">
-                    
-                  </figure>
-                </div>
-                <div class="col-md-10">
-                  <h4>Indianapolis to Paris</h4>
-                  <div class="meta-activity">
-                    <ul class="list-unstyled list-inline">
-                      <li> <i class="fa fa-tag"></i>Twoway Flight</li>
-                      <li>
-                        <i class="fa fa-clock-o"></i> 28 Jan 2017
-                      </li>
-                    </ul>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, nisi perferendis dolorem saepe laboriosam. Itaque quo, esse earum ducimus repellendus iusto aperiam quam minus quos dicta 
-                  </p>
-                  
-                </div>
-              </div>
-            </article>
+
           </div>
         </div>
       </div>

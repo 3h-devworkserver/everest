@@ -261,17 +261,17 @@
 
                                                 {{-- <form action="https://esewa.com.np/epay/main" method="POST" id="esewaForm">  --}}
                                                 <form action="http://dev.esewa.com.np/epay/main" method="POST" id="esewaForm"> 
-                                                    <input value="0.01" name="tAmt" type="hidden"> 
-                                                    <input value="0.01" name="amt" type="hidden"> 
-                                                   {{--  <input value="{{$tAmt}}" name="tAmt" type="hidden"> 
-                                                    <input value="{{$amt}}" name="amt" type="hidden">  --}}
+                                                    {{-- <input value="0.01" name="tAmt" type="hidden"> 
+                                                    <input value="0.01" name="amt" type="hidden">  --}}
+                                                    <input value="{{$tAmt}}" name="tAmt" type="hidden"> 
+                                                    <input value="{{$amt}}" name="amt" type="hidden"> 
                                                     <input value="{{$txAmt}}" name="txAmt" type="hidden">
                                                     <input value="{{$psc}}" name="psc" type="hidden"> 
                                                     <input value="{{$pdc}}" name="pdc" type="hidden"> 
                                                     <input value="upeverest" name="scd" type="hidden">  
                                                     {{-- <input value="Upeverest_esewa" name="scd" type="hidden">   --}}
                                                     <input value="{{$booking->flightReservation->order_id}}" name="pid" type="hidden"> 
-                                                    <input value="{{url('flight/booking-success/esewa')}}?q=su" type="hidden" name="su">
+                                                    <input value="{{url('flight/booking-success/esewa/'.$booking->flightReservation->token)}}?q=su" type="hidden" name="su">
                                                     <input value="{{url()}}" type="hidden" name="fu"> 
 
                                                     <div class="form-group">

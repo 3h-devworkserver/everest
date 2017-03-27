@@ -37,7 +37,7 @@ class CustomerController extends Controller
       ->addColumn(trans('Id'), trans('Name'), trans('Email'), trans('Created At'))
       ->addColumn(trans('Actions'))
       ->setUrl($route)
-      ->setOrder([4=>'desc'])
+      ->setOrder([3=>'desc'])
       ->render();
 
 }

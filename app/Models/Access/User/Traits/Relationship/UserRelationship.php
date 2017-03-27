@@ -6,6 +6,7 @@ use App\Models\Guide;
 use App\Models\Gallery;
 use App\Models\Review;
 use App\Models\Availability;
+use App\Models\Booking;
 /**
  * Class UserRelationship
  * @package App\Models\Access\User\Traits\Relationship
@@ -35,6 +36,21 @@ trait UserRelationship {
 
     public function profile(){
         return $this->hasOne(Profile::class,'user_id','id');
+    }
+
+    public function userBookings(){
+        return $this->hasMany(Booking::class,'user_id', 'id')->where('status', 'paid');
+    }
+
+    public function userPackageBookings(){
+        return $this->hasMany(Booking::class,'user_id','id')->where('type', 'package')->where('status', 'paid');
+    }
+    public function userPackageBookingsLimit(){
+        return $this->hasMany(Booking::class,'user_id','id')->where('type', 'package')->where('status', 'paid')->limit(3);
+    }
+
+    public function userFlightBookingsLimit(){
+        return $this->hasMany(Booking::class,'user_id','id')->where('type', 'flight')->where('status', 'paid')->limit(3);
     }
 
 

@@ -509,9 +509,8 @@ if($request->trip_type == 'R'){
         'returnflight_id' => 'required',
         'flightDetail' => 'required',
         'returnFlightDetail' => 'required',
-        // 'main_traveller' => 'required',
-        // 'main_traveller_email' => 'required',
-        // 'main_traveller_country' => 'required',
+        'departure' => 'required',
+        'arrival' => 'required',
         'totalAmount' => 'required',
         ]);
 }else{
@@ -519,9 +518,8 @@ if($request->trip_type == 'R'){
         'trip_type' => 'required',
         'flight_id' => 'required',
         'flightDetail' => 'required',
-        // 'main_traveller' => 'required',
-        // 'main_traveller_email' => 'required',
-        // 'main_traveller_country' => 'required',
+        'departure' => 'required',
+        'arrival' => 'required',
         'totalAmount' => 'required',
         ]);
 }
@@ -636,10 +634,15 @@ if($childCount != 0){
 //storing flight reservation detail in db
     // $flightReservation = FlightReservation::create([
     $flightReservation = $booking->flightReservation()->create([
+        'token'=> $this->generateRandomString(),
         'order_id'=> $this->generateRandomString(),
         'return_type'=> $request->trip_type,
+        'departure'=> $request->departure,
+        'arrival'=> $request->arrival,
         'flight_id'=> $request->flight_id,
         'returnflight_id'=> $request->returnflight_id,
+        'departure_total'=> $request->departure_total,
+        'return_total'=> $request->return_total,
         'total_amount'=> $request->totalAmount,
         'flight_detail'=> $request->flightDetail,
         'returnflight_detail'=> $request->returnFlightDetail,

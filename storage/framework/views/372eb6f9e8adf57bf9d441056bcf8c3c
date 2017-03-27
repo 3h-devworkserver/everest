@@ -41,8 +41,8 @@
 					                <i class="fa fa-angle-down"></i>
 					              </a>
 					            <ul class="dropdown-menu navmenu-nav">
-					                <li><a href="#"><i aria-hidden="true" class="fa fa-tachometer"></i>Dashboard</a></li>
-					                <li><a href="#"><i class="fa fa-sign-out"></i>log out</a></li>
+					                <li><a href="<?php if(Auth::user()->hasRole(1)): ?> <?php echo e(url('admin/dashboard')); ?> <?php else: ?> <?php echo e(url('traveller/dashboard')); ?> <?php endif; ?>"><i aria-hidden="true" class="fa fa-tachometer"></i>Dashboard</a></li>
+					                <li><a href="<?php if(Auth::user()->hasRole(1)): ?> <?php echo e(url('auth/logout')); ?> <?php else: ?> <?php echo e(url('traveller/logout')); ?> <?php endif; ?>"><i class="fa fa-sign-out"></i>log out</a></li>
 					            </ul>
 					        </li>
 					    </ul>

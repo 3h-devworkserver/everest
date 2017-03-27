@@ -593,7 +593,7 @@
 																If you do not have a Privilege Club account you can complete the booking as a guest. 
 															</p>
 															@if($trip_type == 'R')
-																{!! Form::open(['url' =>'/flight/passengers']) !!}
+																{!! Form::open(['url' =>'/flight/passengers', 'class'=>'loaderDisplay']) !!}
 																<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
 																<input type="hidden" name="returnFlightDetail" value='<?php echo json_encode($returnFlightDetail); ?>'>
 																<input type="hidden" name="tripType" class="trip-type" value="{{$trip_type}}">
@@ -605,7 +605,7 @@
 																</button>
 																{!! Form::close() !!}
 															@else
-																{!! Form::open(['url' =>'/flight/passengers']) !!}
+																{!! Form::open(['url' =>'/flight/passengers', 'class'=>'loaderDisplay']) !!}
 																<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
 																<input type="hidden" name="tripType" class="trip-type" value="{{$trip_type}}">
 															 	<input type="hidden" name="country" value="{{$country}}">

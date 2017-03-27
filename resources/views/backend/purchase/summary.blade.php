@@ -343,7 +343,7 @@
 							</tr>
 							<tr>
 								<td>Total Amount</td>
-								<td>{{$packageBooking->total_amount}}</td>
+								<td>USD {{$packageBooking->total_amount}}</td>
 							</tr>
 						</table>
 					@endif

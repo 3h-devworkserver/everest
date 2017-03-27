@@ -569,7 +569,6 @@ $('#traveller-info').validate({
 
 $('#btn-submit').click(function(e){
   // email = $('.emailcheck').val();
-  // alert(email);
   // return;
 
 	if (!($('#traveller-info').valid())) {
@@ -1325,6 +1324,12 @@ $('.customerRegisterForm').validate({
   }
 });
 
+$('.customerRegisterForm .statelist').SumoSelect({
+  search: true, 
+  searchText: 'Enter State'
+});
+
+
 //generalized method for sumbitting form by <a> tag
 $(document).on('click', 'a.submitForm', function(){
   $(this).closest('form').submit();
@@ -1371,7 +1376,7 @@ $(document).on('click', '#optionsRadios3', function(){
 });
 
 
-//traveller js
+/* -----------    traveller panel js      ---- */
 $('.profileSelect').SumoSelect();
 
 //validate traveller profile form in frontend traveller panel
@@ -1393,6 +1398,11 @@ $('.travellerPaswordForm').validate({
     },
   }
 });
+
+$('.travellerPassportForm').validate();
+
+/* -----------    end of traveller panel js      ---- */
+
 
 });
 
@@ -1419,11 +1429,11 @@ function travellerReadURL(input) {
 
 // preview of traveller profile image in frontend traveller admin
 function documentReadURL(input) {
-  $('.msg').hide();
+  $('.msgPassport').hide();
   if (input.files && input.files[0]) {
     // alert(input.files[0].size);
     if(input.files[0].size > 500000){
-      $('.msg').show();
+      $('.msgPassport').show();
     }else{
       var reader = new FileReader();
 

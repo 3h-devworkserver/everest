@@ -106,17 +106,17 @@
 
                                     <?php /* <form action="https://esewa.com.np/epay/main" method="POST" id="esewaForm">  */ ?>
                                     <form action="http://dev.esewa.com.np/epay/main" method="POST" id="esewaForm" class="payForm"> 
-                                        <input value="0.01" name="tAmt" type="hidden"> 
-                                        <input value="0.01" name="amt" type="hidden"> 
-                                       <?php /*  <input value="<?php echo e($tAmt); ?>" name="tAmt" type="hidden"> 
-                                        <input value="<?php echo e($amt); ?>" name="amt" type="hidden">  */ ?>
+                                        <?php /* <input value="0.01" name="tAmt" type="hidden">  */ ?>
+                                        <?php /* <input value="0.01" name="amt" type="hidden">  */ ?>
+                                        <input value="<?php echo e($tAmt); ?>" name="tAmt" type="hidden"> 
+                                        <input value="<?php echo e($amt); ?>" name="amt" type="hidden"> 
                                         <input value="<?php echo e($txAmt); ?>" name="txAmt" type="hidden">
                                         <input value="<?php echo e($psc); ?>" name="psc" type="hidden"> 
                                         <input value="<?php echo e($pdc); ?>" name="pdc" type="hidden"> 
                                         <input value="upeverest" name="scd" type="hidden">  
                                         <?php /* <input value="Upeverest_esewa" name="scd" type="hidden">   */ ?>
                                         <input value="<?php echo e($packageBooking->order_id); ?>" name="pid" type="hidden"> 
-                                        <input value="<?php echo e(url('package/booking-success/esewa')); ?>?q=su" type="hidden" name="su">
+                                        <input value="<?php echo e(url('package/booking-success/esewa'.$packageBooking->token)); ?>?q=su" type="hidden" name="su">
                                         <input value="<?php echo e(url()); ?>" type="hidden" name="fu"> 
 
 											<div class="row">

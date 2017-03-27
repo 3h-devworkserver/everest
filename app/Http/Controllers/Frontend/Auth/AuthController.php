@@ -376,6 +376,12 @@ public function postTravellerRegister(Request $request){
         return redirect()->route('auth.admin');
     }
 
+    public function travellerLogout()
+    {
+        $this->auth->logout();
+        return redirect()->route('auth.traveller');
+    }
+
     /**
      * @param $token
      * @return mixed

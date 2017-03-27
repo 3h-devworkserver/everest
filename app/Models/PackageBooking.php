@@ -31,6 +31,11 @@ class PackageBooking extends Model
         return $this->hasOne('App\Models\MainTraveller','package_booking_id');
     }
 
+    public function package()
+    {
+        return $this->belongsTo('App\Models\Packages','package_selected');
+    }
+
     
 
 }
