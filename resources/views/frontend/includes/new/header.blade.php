@@ -33,7 +33,7 @@
 					      <span class="auth-img">
 					        <i class="fa fa-user-o"></i>
 					      </span>
-					      <span class="auth-name">{{Auth::user()->fname}} {{Auth::user()->mname}} {{Auth::user()->lname}}</span>
+					      <span class="auth-name">{{Auth::user()->fname}} </span>
 					    </div>
 					    <ul class="list-unstyled">
 					        <li class="dropdown">
