@@ -61,23 +61,24 @@
 							</div>
 							<div class="col-md-5 col-sm-4">
 								<div class="schedule">
-									<div class="departure">
-										<p class="departure-caption">Departing</p>
-										<span class="departure-timings">
-												<!-- <span class="date">
-													<i class="fa fa-calendar-o"></i>
-													27
-												</span> -->
-												<span class="month">
-													<?php if(!empty($date_depart)){
-														echo (new DateTime($date_depart))->format('j M Y D') ;
-													}?>
-													<?php /* 27 oct 2016
-													thu */ ?>
-												</span>
+										<div class="departure">
+											<p class="departure-caption">Departing</p>
+											<span class="departure-timings">
+													<!-- <span class="date">
+														<i class="fa fa-calendar-o"></i>
+														27
+													</span> -->
+													<span class="month">
+														<?php if(!empty($date_depart)){
+															echo (new DateTime($date_depart))->format('j M Y D') ;
+														}?>
+														<?php /* 27 oct 2016
+														thu */ ?>
+													</span>
 											</span>
-											
+												
 										</div>
+										<?php if(!empty($inAvailability)): ?>
 										<div class="arrival">
 											<p class="departure-caption">Returning</p>
 											<span class="departure-timings">
@@ -93,8 +94,8 @@
 													thu */ ?>
 												</span>
 											</span>
-											
 										</div>
+										<?php endif; ?>
 									</div>
 
 								</div>
@@ -159,7 +160,7 @@
 				</div>
 		</div>
 
-		<?php if( (!empty($outAvailability)) && (!empty($outAvailability)) ): ?>
+		<?php if( (!empty($outAvailability)) || (!empty($inAvailability)) ): ?>
 			<div class="container">
 				<!-- <h2><?php echo e($departureFull); ?> to <?php echo e($arrivalFull); ?></h3> -->
 
@@ -232,8 +233,8 @@
 						</div>
 										<div class="sort-block">
 											<div class="row">
-												<div class="col-md-2 col-sm-2"> <h5>Sort Result By</h5> </div>
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-12"> <h5>Sort Result By</h5> </div>
+												<div class="col-md-2 col-sm-2 col-xs-3">
 
 													<h4 class="filters dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 														<a class="highprice"><span>Price <i class="fa fa-long-arrow-down"></i></span></a>
@@ -252,7 +253,7 @@
 													</div>
 												-->
 											</div>
-											<div class="col-md-2 col-sm-2">
+											<div class="col-md-2 col-sm-2 col-xs-3">
 
 												<div class="dropdown">
 													<h4 class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -262,14 +263,14 @@
 												</div>
 											</div>
 
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-3">
 													<h4 class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 														<a class="ascClass"><span>Class <i class="fa fa-long-arrow-down"></i></span></a>
 														<a class="descClass display-none"><span>Class <i class="fa fa-long-arrow-up"></i></span></a>
 													</h4>
 												</div>
 
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-3">
 						                            <div class="dropdown">
 						                                <h4 class="dropdown-toggle" data-toggle="dropdown"><span>Fare <i class="fa fa-angle-down"></i></span> </h4>
 						                                <ul class="dropdown-menu">
@@ -336,7 +337,7 @@
 					                            			<div class="col-md-8 col-sm-8 col-xs-12">
 					                            				<img src="<?php echo e($avail->AirlineLogo); ?>" alt="">
 					                            				<h4 class="box-title"><?php echo airlinesName($avail->Airline); ?> (<?php echo e($avail->FlightNo); ?>)</h4>
-					                            				<!-- <a class="badge">1 STOP</a> --><a class="badge">Class <?php echo e($avail->FlightClassCode); ?></a>
+					                            				<!-- <a class="badge">1 STOP</a> --><span class="badge">Class <?php echo e($avail->FlightClassCode); ?></span>
 					                            				
 
 					                            			</div>
@@ -518,8 +519,8 @@
 										</div>
 										<div class="sort-block">
 											<div class="row">
-												<div class="col-md-2 col-sm-2"> <h5>Sort Result By</h5> </div>
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-12"> <h5>Sort Result By</h5> </div>
+												<div class="col-md-2 col-sm-2 col-xs-3">
 
 													<h4 class="filters dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 														<a class="returnHighprice"><span>Price <i class="fa fa-long-arrow-down"></i></span></a>
@@ -538,7 +539,7 @@
 													</div>
 												-->
 											</div>
-											<div class="col-md-2 col-sm-2">
+											<div class="col-md-2 col-sm-2 col-xs-3">
 
 												<div class="dropdown">
 													<h4 class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -558,14 +559,14 @@
 													<?php */ ?>
 												</div>
 
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-3">
 													<h4 class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 														<a class="returnAscClass"><span>Class <i class="fa fa-long-arrow-down"></i></span></a>
 														<a class="returnDescClass display-none"><span>Class <i class="fa fa-long-arrow-up"></i></span></a>
 													</h4>
 												</div>
 
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-3">
 						                            <div class="dropdown">
 						                                <h4 class="dropdown-toggle" data-toggle="dropdown"><span>Fare <i class="fa fa-angle-down"></i></span> </h4>
 						                                <ul class="dropdown-menu">
@@ -623,7 +624,7 @@
 					                            			<div class="col-md-8 col-sm-8 col-xs-12">
 					                            				<img src="<?php echo e($avail->AirlineLogo); ?>" alt="">
 					                            				<h4 class="box-title"><?php echo airlinesName($avail->Airline); ?> (<?php echo e($avail->FlightNo); ?>)</h4>
-					                            				<!-- <a class="badge">1 STOP</a> --><a class="badge">Class <?php echo e($avail->FlightClassCode); ?></a>
+					                            				<!-- <a class="badge">1 STOP</a> --><span class="badge">Class <?php echo e($avail->FlightClassCode); ?></span>
 					                            			</div>
 					                            			<div class="col-md-2 col-sm-2">
 					                            				<span class="fare-type">
@@ -751,7 +752,7 @@
 					 </div>
 
 					 <?php if($trip_type == "R"): ?>
-					 <form action="<?php echo e(url('/flight/review')); ?>" method="post" class="flightSelectFormR">
+					 <form action="<?php echo e(url('/flight/review')); ?>" method="post" class="flightSelectFormR loaderDisplay">
 					 	<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" class="token">
 					 	<input type="hidden" name="flightId" class="flight-id">
 					 	<input type="hidden" name="flightDetail" class="flight-detail">
@@ -764,7 +765,7 @@
 					 	<button class="btn btn-next flightSelectForm-btn" disabled>Continue</button>
 					 </form>
 					 <?php else: ?>
-					 <form action="<?php echo e(url('/flight/review')); ?>" method="post" class="flightSelectFormO">
+					 <form action="<?php echo e(url('/flight/review')); ?>" method="post" class="flightSelectFormO loaderDisplay">
 					 	<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" class="token">
 					 	<input type="hidden" name="flightId" class="flight-id">
 					 	<input type="hidden" name="flightDetail" class="flight-detail">
@@ -784,7 +785,7 @@
 		<?php else: ?>
 		<div class="noResult">
 			<div class="container">
-			<p>No result found.. Please modify your search</p>
+			<p class="alert alert-danger">No result found.. Please modify your search</p>
 			</div>
 		</div>
 		<script type="text/javascript">

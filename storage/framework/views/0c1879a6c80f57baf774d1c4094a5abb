@@ -64,7 +64,7 @@
 									</div>
 									<div class="col-md-8 col-sm-7 mobile-mode">
 										<h4 class="box-title"><?php echo airlinesName($flightDetail->Airline); ?> (<?php echo e($flightDetail->FlightNo); ?>)<small>Departure flight</small></h4>
-										<a class="badge">Class <?php echo e($flightDetail->FlightClassCode); ?></a>
+										<span class="badge">Class <?php echo e($flightDetail->FlightClassCode); ?></span>
 									</div>
 									<!-- <div class="col-md-3 col-sm-3 text-right">
 										<a href="flight.html" class="btn btn-back"><i class="fa fa-angle-left"></i>Back To Flight List</a>
@@ -195,7 +195,7 @@
 									</div>
 									<div class="col-md-8 col-sm-7 mobile-mode">
 										<h4 class="box-title"><?php echo airlinesName($returnFlightDetail->Airline); ?> (<?php echo e($returnFlightDetail->FlightNo); ?>)<small>Return flight</small></h4>
-										<a class="badge">Class <?php echo e($returnFlightDetail->FlightClassCode); ?></a>
+										<span class="badge">Class <?php echo e($returnFlightDetail->FlightClassCode); ?></span>
 									</div>
 									<!-- <div class="col-md-3 col-sm-3 text-right">
 										<a href="flight.html" class="btn btn-back"><i class="fa fa-angle-left"></i>Back To Flight List</a>
@@ -490,7 +490,7 @@
 				<div class="button-groups">
 							<div class="row">
 								<div class="col-md-12">
-								<?php echo Form::open(['url'=>'/flight/search', 'class' => 'modifyFlightSearchForm']); ?>
+								<?php echo Form::open(['url'=>'/flight/search', 'class' => 'modifyFlightSearchForm loaderDisplay']); ?>
 
 													<?php echo Form::hidden('departure', $departure); ?>
 
@@ -521,7 +521,7 @@
 
 									<?php if(Auth::check()): ?>
 
-									<?php echo Form::open(['url'=>'/flight/passengers']); ?>
+									<?php echo Form::open(['url'=>'/flight/passengers', 'class'=>'loaderDisplay']); ?>
 
 										<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
 										<?php if($trip_type == 'R'): ?>
@@ -541,7 +541,7 @@
 
 
 									<?php else: ?>
-									<button class="btn btn-continue pull-right" data-toggle="modal" data-target="#login">
+									<button class="btn btn-continue pull-right loaderDisplay" data-toggle="modal" data-target="#login">
 										continue <i class="fa fa-angle-right"></i>
 
 									</button>
@@ -558,20 +558,20 @@
 												<div class="row">
 													<div class="col-md-6">
 														<div class="login-wrap">
-
-
 															<h3>Login to upeverst</h3>
 															<p>
 																Already a member? Log-in to speed up the booking process We will fill in most of the details for you. 
 															</p>
-															<?php echo Form::open(['url' =>'/flight/passengers', 'class'=>'registeredUserForm']); ?>
+															<?php echo Form::open(['url' =>'/flight/passengers', 'class'=>'registeredUserForm loaderDisplay']); ?>
 
 															<input type="hidden" name="_token" value='<?php echo e(csrf_token()); ?>' class="token">
-																<div class="form-group">
+																<!-- used col-md for error -->
+																<div class="col-md form-group">
 																	<label for="exampleInputEmail1">Email address</label>
 																	<input type="email" name="email" class="form-control email" id="exampleInputEmail1" placeholder="Email">
 																</div>
-																<div class="form-group">
+																<!-- used col-md for error -->
+																<div class="col-md form-group">
 																	<label for="exampleInputPassword1">Password</label>
 																	<input type="password" name="password" class="form-control password" id="exampleInputPassword1" placeholder="Password">
 																</div>
@@ -590,7 +590,12 @@
 																		<input type="checkbox"> Remember me
 																	</label>
 																</div> -->
-																<button type="button" class="btn btn-continue btnTravellerLogin">Login</button>
+																<span class="display-none error-msg"></span>
+																<div class="btn-grp">
+																	<button type="button" class="btn btn-continue btnTravellerLogin">Login</button>
+																	<a href="<?php echo e(url('/register')); ?>" class="btn btn-back register-btn" target="_blank">Register</a>
+																</div>
+																
 															<?php echo Form::close(); ?>
 
 														</div>
@@ -602,7 +607,7 @@
 																If you do not have a Privilege Club account you can complete the booking as a guest. 
 															</p>
 															<?php if($trip_type == 'R'): ?>
-																<?php echo Form::open(['url' =>'/flight/passengers']); ?>
+																<?php echo Form::open(['url' =>'/flight/passengers', 'class'=>'loaderDisplay']); ?>
 
 																<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
 																<input type="hidden" name="returnFlightDetail" value='<?php echo json_encode($returnFlightDetail); ?>'>
@@ -616,7 +621,7 @@
 																<?php echo Form::close(); ?>
 
 															<?php else: ?>
-																<?php echo Form::open(['url' =>'/flight/passengers']); ?>
+																<?php echo Form::open(['url' =>'/flight/passengers', 'class'=>'loaderDisplay']); ?>
 
 																<input type="hidden" name="flightDetail" value='<?php echo json_encode($flightDetail); ?>'>
 																<input type="hidden" name="tripType" class="trip-type" value="<?php echo e($trip_type); ?>">
