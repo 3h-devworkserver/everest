@@ -67,7 +67,7 @@
                         @endforeach
                       </li>
                       <li>
-                        <i class="fa fa-clock-o"></i> {{Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')}} 
+                        <i class="fa fa-clock-o"></i> Purchased On: {{Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')}} 
                       </li>
                     </ul>
                   </div>
@@ -102,12 +102,11 @@
                     <ul class="list-unstyled list-inline">
                       <li> <i class="fa fa-tag"></i>@if($flight->return_type == 'R') Round Trip Flight @else One Way Flight @endif </li>
                       <li>
-                        <i class="fa fa-clock-o"></i> {{Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')}}
+                        <i class="fa fa-clock-o"></i> Purchased On: {{Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')}}
                       </li>
                     </ul>
                   </div>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, nisi perferendis dolorem saepe laboriosam. Itaque quo, esse earum ducimus repellendus iusto aperiam quam minus quos dicta 
                   </p>
                   
                 </div>

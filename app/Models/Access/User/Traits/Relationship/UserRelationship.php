@@ -39,18 +39,18 @@ trait UserRelationship {
     }
 
     public function userBookings(){
-        return $this->hasMany(Booking::class,'user_id', 'id')->where('status', 'paid');
+        return $this->hasMany(Booking::class,'user_id', 'id')->where('status', 'paid')->orderBy('purchased_at', 'desc');
     }
 
     public function userPackageBookings(){
-        return $this->hasMany(Booking::class,'user_id','id')->where('type', 'package')->where('status', 'paid');
+        return $this->hasMany(Booking::class,'user_id','id')->where('type', 'package')->where('status', 'paid')->orderBy('purchased_at', 'desc');
     }
     public function userPackageBookingsLimit(){
-        return $this->hasMany(Booking::class,'user_id','id')->where('type', 'package')->where('status', 'paid')->limit(3);
+        return $this->hasMany(Booking::class,'user_id','id')->where('type', 'package')->where('status', 'paid')->orderBy('purchased_at', 'desc')->limit(3);
     }
 
     public function userFlightBookingsLimit(){
-        return $this->hasMany(Booking::class,'user_id','id')->where('type', 'flight')->where('status', 'paid')->limit(3);
+        return $this->hasMany(Booking::class,'user_id','id')->where('type', 'flight')->where('status', 'paid')->orderBy('purchased_at', 'desc')->limit(3);
     }
 
 

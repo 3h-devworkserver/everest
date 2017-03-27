@@ -43,7 +43,7 @@
 					              </a>
 					            <ul class="dropdown-menu navmenu-nav">
 					                <li><a href="@if(Auth::user()->hasRole(1)) {{url('admin/dashboard')}} @else {{url('traveller/dashboard')}} @endif"><i aria-hidden="true" class="fa fa-tachometer"></i>Dashboard</a></li>
-					                <li><a href="@if(Auth::user()->hasRole(1)) {{url('auth/logout')}} @else {{url('traveller/logout')}} @endif"><i class="fa fa-sign-out"></i>log out</a></li>
+					                <li><a href="@if(Auth::user()->hasRole(1)) {{url('auth/logout')}} @else {{url('traveller/logout')}} @endif"><i class="fa fa-sign-out"></i>Log out</a></li>
 					            </ul>
 					        </li>
 					    </ul>

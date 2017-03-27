@@ -14,86 +14,94 @@
 			<div class="row">
 				<div class="col-md-3 col-sm-3">
 					<div class="profile-block">
-			            <div class="profile-picture">
-			              <div class="profile-bg" style="background-image:url(<?php echo e(asset('images/new/mountain-biking.jpg')); ?>)"></div>
-			              <?php if(!empty($user->profile->profile_pic)): ?>
-			                <div class="profile-img" style="background-image:url(<?php echo e(asset('images/user/profile/'.$user->profile->profile_pic)); ?>);"></div>
-			              <?php else: ?>
-			                <div class="profile-img" style="background-image:url()}});"></div>
-			              <?php endif; ?>
-			            </div>
-			            <div class="profile-desc text-center">
-			              <h3><?php echo e($user->profile->fname); ?> <?php echo e($user->profile->mname); ?> <?php echo e($user->profile->lname); ?></h3>
-			              <h5><?php echo e($user->profile->address); ?> <?php if($user->profile->city): ?>, <?php echo e($user->profile->city); ?> <?php endif; ?> <?php if($user->profile->state): ?>, <?php echo e($user->profile->state); ?> <?php endif; ?> </h5>
-			            </div>
+						<div class="profile-picture">
+							<div class="profile-bg" style="background-image:url(<?php echo e(asset('images/new/mountain-biking.jpg')); ?>)"></div>
+							<?php if(!empty($user->profile->profile_pic)): ?>
+							<div class="profile-img" style="background-image:url(<?php echo e(asset('images/user/profile/'.$user->profile->profile_pic)); ?>);"></div>
+							<?php else: ?>
+							<div class="profile-img" style="background-image:url()}});"></div>
+							<?php endif; ?>
+						</div>
+						<div class="profile-desc text-center">
+							<h3><?php echo e($user->profile->fname); ?> <?php echo e($user->profile->mname); ?> <?php echo e($user->profile->lname); ?></h3>
+							<h5><?php echo e($user->profile->address); ?> <?php if($user->profile->city): ?>, <?php echo e($user->profile->city); ?> <?php endif; ?> <?php if($user->profile->state): ?>, <?php echo e($user->profile->state); ?> <?php endif; ?> </h5>
+						</div>
 
-			            <div class="profile-footer text-center">
-			              <a href="<?php echo e(url('traveller/profile')); ?>" class="btn btn-default">view profile</a>
-			            </div>
-			        </div>
+						<div class="profile-footer text-center">
+							<a href="<?php echo e(url('traveller/profile')); ?>" class="btn btn-default">view profile</a>
+						</div>
+					</div>
 				</div>
 				<div class="col-md-9 col-sm-9">
-              		<?php echo $__env->make('includes.partials.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+					<?php echo $__env->make('includes.partials.messages', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 					<div class="user-activity">
 						
-						<h3>Purchased List</h3>						
-						
-						<?php foreach($user->userBookings as $booking): ?>
-							<?php 
-	              				if($booking->type == 'package') {
-	              					$booked = $booking->packageBooking->package;
-	              				}else{
-	              					$booked = $booking->flightReservation; 
-	              				}
-	              			?>
-							<article class="activity-wrap">
-								<div class="row">
-									<div class="col-md-1">
-										<figure>
-											<?php if($booking->type == 'package'): ?>
+						<h3>Purchased History</h3>						
+							<?php if(!empty($user)): ?>
+								<?php foreach($user->userBookings as $booking): ?>
+								<?php 
+								if($booking->type == 'package') {
+									$booked = $booking->packageBooking->package;
+								}else{
+									$booked = $booking->flightReservation; 
+								}
+								?>
+								<article class="activity-wrap">
+									<div class="row">
+										<div class="col-md-2">
+											<figure>
+												<?php if($booking->type == 'package'): ?>
 												<img src="<?php echo e(asset('images/packages-new/'.$booked->feat_img)); ?>" alt="">
-											<?php else: ?>
+												<?php else: ?>
 												<img src="<?php echo e(asset('images/upeverest-logo.png')); ?>" alt="">
-											<?php endif; ?>
-										</figure>
-									</div>
-									<div class="col-md-4">
-										<?php if($booking->type == 'package'): ?>
-											<h4><?php echo e(title_case($booked->title)); ?></h4>
-										<?php else: ?>
-											<h4><?php echo e(title_case($booked->departure)); ?> to <?php echo e(title_case($booked->arrival)); ?></h4>
-										<?php endif; ?>
-									</div>
-									<div class="col-md-5">
-										<div class="meta-activity">
-											<ul class="list-unstyled list-inline">
-												<li> <i class="fa fa-tag"></i>
-													<?php if($booking->type == 'package'): ?>
-														<?php $i = 1; ?>
-								                        <?php foreach($booked->packageCategory as $cat): ?>
-								                          <?php if($i == 1): ?>
-								                            <?php echo e($cat->title); ?>
+												<?php endif; ?>
 
-								                          <?php else: ?>
-								                            , <?php echo e($cat->title); ?>
-
-								                          <?php endif; ?>
-								                          <?php $i++; ?>
-								                        <?php endforeach; ?>
-								                    <?php else: ?>
-								                    	<?php if($booked->return_type == 'R'): ?> Round Trip Flight <?php else: ?> One Way Flight <?php endif; ?>
-								                    <?php endif; ?>
-												</li>
-												<li>
-													<i class="fa fa-clock-o"></i> <?php echo e(Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')); ?>
-
-												</li>
-											</ul>
+											</figure>
 										</div>
-									</div>
-									<!--
-									<div class="col-md-2 text-right">
+										<div class="col-md-8">
+											<?php if($booking->type == 'package'): ?>
+												<h4><?php echo e(title_case($booked->title)); ?></h4>
+											<?php else: ?>
+												<h4><?php echo e(title_case($booked->departure)); ?> to <?php echo e(title_case($booked->arrival)); ?></h4>
+											<?php endif; ?>
+											<div class="meta-activity">
+												<ul class="list-unstyled list-inline">
+													<li> <i class="fa fa-tag"></i>
+														<?php if($booking->type == 'package'): ?>
+														<?php $i = 1; ?>
+														<?php foreach($booked->packageCategory as $cat): ?>
+														<?php if($i == 1): ?>
+														<?php echo e($cat->title); ?>
+
+														<?php else: ?>
+														, <?php echo e($cat->title); ?>
+
+														<?php endif; ?>
+														<?php $i++; ?>
+														<?php endforeach; ?>
+														<?php else: ?>
+														<?php if($booked->return_type == 'R'): ?> Round Trip Flight <?php else: ?> One Way Flight <?php endif; ?>
+														<?php endif; ?>
+													</li>
+													<li>
+														<i class="fa fa-clock-o"></i> Purchased On: <?php echo e(Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')); ?> 
+													</li>
+												</ul>
+											</div>
+											<?php if($booking->type == 'package'): ?>
+											<p>
+												<?php echo $booked->description; ?>
+
+											</p>
+											<?php else: ?>
+											<p>
+												
+											</p>
+											<?php endif; ?>
+
+										</div>
+										<div class="col-md-2 text-right">
 										<div class="action">
 											<a href="#">
 												<i class="fa fa-pencil"></i>
@@ -104,10 +112,12 @@
 											
 										</div>
 									</div>
-									-->
-								</div>
-							</article>
-						<?php endforeach; ?>
+									</div>
+								</article>
+								<?php endforeach; ?>
+							<?php else: ?>
+								
+							<?php endif; ?>
 
 						<nav aria-label="...">
 							<ul class="pager">
