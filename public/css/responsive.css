@@ -136,16 +136,52 @@
     }
     /* flight schedule */
     .flight-schedule .item {
-        padding: 18px 20px;
+      /*  padding: 18px 20px;*/
     }
     .item.active {
         padding: 14px 20px;
+    }
+    .flight-schedule-slider .item.active a {
+      padding: 18px 20px;
     }
     .item.active .thumb-price {
         font-size: 17px;
     }
     .full-width-search .form-inline {
         padding: 0;
+    }
+    .flight-review-header figure {
+      text-align: center;
+    }
+    .flight-review .box-flight span,
+    .flight-review .box-flight span.city{
+        font-size: 14px;
+    }
+    .package-price strong {
+      font-size: 16px;
+    }
+    .box-flight .details-wrapper .second-row .time [class*="col-"]:first-child, 
+    .box-flight .details-wrapper .second-row .time [class^="col-"]:first-child {
+      border-left: medium none;
+      margin-bottom: 40px;
+      padding-left: 0;
+    }
+    .box-flight .details-wrapper .second-row .time [class*="col-"]:last-child, 
+    .box-flight .details-wrapper .second-row .time [class^="col-"]:last-child {
+      padding-left: 0;
+    }
+    .flight-payment .box-flight .action {
+      min-height: 282px;
+    }
+    .flight-payment .wizard.vertical > .steps {
+      width: 20%;
+    }
+    .flight-payment .wizard.vertical > .content {
+      width: 80%;
+    }
+    .flight-search-form .search-form-content .passanger-wrap > div, .passanger-wrap > div {
+      margin: 10px 0;
+      width: 100%;
     }
     /* payment page */
     .tabs-left {
@@ -306,8 +342,15 @@
         padding-right: 80px;
     }
     /* modify search */
+
     .flight-schedule .item {
-        padding: 20px;
+        /*padding: 20px;*/
+    }
+    .flight-schedule .item a {
+      padding: 35px 34px;
+    }
+    .flight-schedule-slider .item.active a {
+      padding: 30px 20px;
     }
     .full-width-search .form-inline {
         padding: 0 60px;
@@ -356,6 +399,32 @@
     .flight-wrapper .payment-tab .SumoSelect > .CaptionCont > label > i {
         height: 8px;
         width: 8px;
+    }
+    /* flight passenger */
+    .flight-payment .box-flight .second-row .ailrline-wrap .baggage-info {
+      float: left;
+      padding-top: 10px;
+      text-align: left;
+      width: 100%;
+    }
+    .flight-payment .box-flight .second-row .ailrline-wrap .baggage-info span {
+      text-align: left;
+    }
+    .box-flight .details-wrapper .second-row .time [class*="col-"]:first-child, 
+    .box-flight .details-wrapper .second-row .time [class^="col-"]:first-child {
+      margin-bottom: 0;
+    }
+    .box-flight .details-wrapper .second-row .time [class*="col-"]:last-child, 
+    .box-flight .details-wrapper .second-row .time [class^="col-"]:last-child {
+      padding-left: 10px;
+    }
+    .flight-payment .box-flight .action {
+      min-height: 172px;
+    }
+
+    .flight-search-form .search-form-content .passanger-wrap > div, .passanger-wrap > div {
+     /* margin: 10px 0;*/
+      width: 30%;
     }
     /* package pages */
     .package .btn.btn-default {
@@ -622,9 +691,9 @@
     .short-desc {
         margin-top: 10px;
     }
-    .box-flight .details-wrapper .second-row .time [class*="col-"]:first-child,
-    .box-flight .details-wrapper .second-row .time [class^="col-"]:first-child {
-        /*margin-bottom: 15px;*/
+    .flight-payment .box-flight .details-wrapper .second-row .time [class*="col-"]:first-child,
+    .flight-payment .box-flight .details-wrapper .second-row .time [class^="col-"]:first-child {
+        margin-bottom: 40px;
     }
     .box-flight .details-wrapper .second-row .time [class*="col-"],
     .box-flight .details-wrapper .second-row .time [class^="col-"] {
@@ -666,16 +735,16 @@
         margin-bottom: 20px;
     }
     .flight-review-header .box-title {
-        font-size: 22px;
+        font-size:17px;
     }
     .mobile-mode:after {
-        border-bottom: 1px solid #ccc;
+      /*  border-bottom: 1px solid #ccc;
         clear: both;
         content: "";
         display: block;
         height: auto;
         margin-bottom: 15px;
-        padding-bottom: 15px;
+        padding-bottom: 15px;*/
     }
     .tab-content.visible-tabs {
         display: none;
@@ -858,7 +927,7 @@
         width: 100%;
     }
     .guest-wrap {
-        padding: 20% 0;
+        padding: 20% 1%;
     }
     /*-Classic Everest*/
     .package {
@@ -1041,7 +1110,13 @@
           float: left;
           font-size: 12px;
           margin-left: 0;
+    }
+    .box-flight .first-row .badge{
           padding: 10px 0 0;
+
+    }
+    .flight-review-header .badge{
+        padding: 0;
     }
     .oneway-flight.box-flight .details-wrapper .second-row .time h5 i:last-of-type {
       margin: 0 15px;
@@ -1051,6 +1126,59 @@
     }
     .box-flight .action{
         min-height: auto;
+    }
+
+    /*passanger detail*/
+    .flight-payment .box-flight .second-row .ailrline-wrap .baggage-info {
+      border-top: 1px solid #ececec;
+      float: left;
+      margin-top: 10px;
+      padding-top: 10px;
+      width: 100%;
+    }
+    .flight-payment .box-flight .second-row .ailrline-wrap .baggage-info span {
+      text-align: left;
+    }
+    .flight-payment .box-flight .second-row .short-desc {
+      margin-top: 25px;
+    }
+    .flight-payment .box-flight .details-wrapper .second-row .time h5 i.fa-long-arrow-right, 
+    .flight-payment .box-flight .details-wrapper .second-row .time h5 i.fa-long-arrow-left {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    .flight-payment .wizard.vertical > .steps {
+     display: none;
+    }
+    .flight-payment .wizard.vertical > .content{
+        width: 100%;
+    }
+    .flight-payment .wizard > .content > .body {
+      float: none;
+      padding: 20px 15px;
+      width: 100%;
+    }
+    .flight-payment .personal-info {
+      /*padding-top: 15px;*/
+    }
+    .flight-payment .personal-info .form-group {
+      margin-bottom: 0;
+    }
+    .flight-payment  .wizard .content [class*="col-"] .row-fluid [class*="col-"], 
+    .flight-payment .wizard .content [class^="col-"] .row-fluid [class^="col-"]{
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .flight-payment .tab-pane .form-control,
+    .flight-payment .SumoSelect{
+        margin-bottom: 15px;
+    }
+    .row-margin-adj {
+      margin-right: 0;
+    }
+    .payment-btn {
+      font-size: 16px;
+      width: 100%;
     }
 }
 

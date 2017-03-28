@@ -60,7 +60,7 @@
 
 
 							</div>
-							<div class="col-md-5 col-sm-4">
+							<div class="col-md-5 col-sm-5">
 								<div class="schedule">
 										<div class="departure">
 											<p class="departure-caption">Departing</p>
@@ -100,7 +100,7 @@
 									</div>
 
 								</div>
-								<div class="col-md-3 col-sm-4">
+								<div class="col-md-3 col-sm-3">
 									<div class="passanger-wrap">
 										<div>
 											<p>Adult</p>
@@ -223,7 +223,7 @@
 						</div>
 										<div class="sort-block">
 											<div class="row">
-												<div class="col-md-2 col-sm-2 col-xs-12"> <h5>Sort Result By</h5> </div>
+												<div class="col-md-2 col-sm-4 col-xs-12"> <h5>Sort Result By</h5> </div>
 												<div class="col-md-2 col-sm-2 col-xs-3">
 
 													<h4 class="filters dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
