@@ -62,7 +62,7 @@
                                                                                         <span class="glyphicon glyphicon-minus"></span>
                                                     </button>
                                                     </span>
-                                                    <input type="text" name="adult" class="form-control input-number" value="{{$adult or 0}}" min="0" max="100">
+                                                    <input type="text" name="adult" class="form-control input-number" value="{{$adult or 1}}" min="0" max="100">
                                                     <span class="input-group-btn">
                                                                                     <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="adult">
                                                                                         <span class="glyphicon glyphicon-plus"></span>
@@ -210,7 +210,7 @@
                                                                 <span class="glyphicon glyphicon-minus"></span>
                                                     </button>
                                                     </span>
-                                                    <input type="text" name="adult" class="form-control input-number" value="{{$adult or 0}}" min="0" max="100">
+                                                    <input type="text" name="adult" class="form-control input-number" value="{{$adult or 1}}" min="0" max="100">
                                                     <span class="input-group-btn">
                                                                                         <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="adult">
                                                                                             <span class="glyphicon glyphicon-plus"></span>
