@@ -801,13 +801,7 @@
                                     
                                 </div> -->
                             
-                                <div class="button-groups text-right btm-block">
-
-                                    <a class="btn btn-danger payment-btn btn-block" href="payment.html">
-                                       <i class="fa fa-money"></i> Make Payment
-                                        
-                                    </a>
-                                </div>
+                                
 
                                 
                             {{-- </div> --}}

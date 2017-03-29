@@ -1,5 +1,157 @@
-<div class="booking-form">			
+<div class="booking-form">
+    <div class="tab-wrapper">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#roundtrip" aria-controls="roundtrip" role="tab" data-toggle="tab">Round Trip</a></li>
+            <li role="presentation"><a href="#oneway" aria-controls="oneway" role="tab" data-toggle="tab">One Way</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="roundtrip">
+                <div class="row">
+                    <form action="<?php echo e(url('/flight/search')); ?>" class="flightSearchForm loaderDisplay" method="post">
+                        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" class="token">
+                        <div class="col-md-7 col-sm-7">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>From <em>*</em></label>
+                                        <select name="departure" placeholder="Your place of departure" class="form-control locations">
+                                            <option value=""></option>
+                                            <?php if (empty($departure)) {
+                                                    $departure = '';
+                                                } ?> <?php foreach($sector as $sect): ?> <?php if($sect->SectorCode == $departure): ?>
+                                            <option value="<?php echo e($sect->SectorCode); ?>" selected="selected"><?php echo e($sect->SectorName); ?> <?php else: ?>
+                                                <option value="<?php echo e($sect->SectorCode); ?>"><?php echo e($sect->SectorName); ?>
 
+                                                </option>
+                                                <?php endif; ?> <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <?php /* ?>
+                                    <input type="text" name="departure" class="form-control locations" placeholder="Your place of departure">
+                                    <input type="hidden" name="depart" class="loc">
+                                    <?php */ ?>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>To <em>*</em></label>
+                                        <select name="arrival" placeholder="Your Destination" class="form-control locations">
+                                            <option value=""></option>
+                                            <?php if (empty($arrival)) {
+                                                        $arrival = '';
+                                                    } ?> <?php foreach($sector as $sect): ?> <?php if($sect->SectorCode == $arrival): ?>
+                                            <option value="<?php echo e($sect->SectorCode); ?>" selected="selected"><?php echo e($sect->SectorName); ?> <?php else: ?>
+                                                <option value="<?php echo e($sect->SectorCode); ?>"><?php echo e($sect->SectorName); ?>
+
+                                                </option>
+                                                <?php endif; ?> <?php endforeach; ?>
+                                        </select>
+                                        <?php /*
+                                        <input type="text" class="form-control" placeholder="Your Destination"> */ ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Adult: 12+yrs</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                                                    <button type="button" class="btn btn-default btn-number" <?php if(!empty($adult)): ?> <?php if($adult == 0): ?> disabled="disabled" <?php endif; ?> <?php else: ?> disabled="disabled" <?php endif; ?> data-type="minus" data-field="adult">
+                                                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                    </button>
+                                                    </span>
+                                                    <input type="text" name="adult" class="form-control input-number" value="<?php echo e(isset($adult) ? $adult : 0); ?>" min="0" max="100">
+                                                    <span class="input-group-btn">
+                                                                                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="adult">
+                                                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Child:2-12yrs</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                                                <button type="button" class="btn btn-default btn-number" <?php if(!empty($child)): ?> <?php if($child == 0): ?> disabled="disabled" <?php endif; ?> <?php else: ?> disabled="disabled" <?php endif; ?> data-type="minus" data-field="child">
+                                                                                    <span class="glyphicon glyphicon-minus"></span>
+                                                    </button>
+                                                    </span>
+                                                    <input type="text" name="child" class="form-control input-number" value="<?php echo e(isset($child) ? $child : 0); ?>" min="0" max="100">
+                                                    <span class="input-group-btn">
+                                                                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="child">
+                                                                                    <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <!--    <label>Infant:0-2 yrs</label
+                                                                        >
+                                                                    <div class="input-group">
+                                                                      <span class="input-group-btn">
+                                                                          <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="infant">
+                                                                              <span class="glyphicon glyphicon-minus"></span>
+                                                                          </button>
+                                                                      </span>
+                                                                      <input type="text" name="infant" class="form-control input-number" value="<?php echo e(isset($infant) ? $infant : 0); ?>" min="0" max="100">
+                                                                      <span class="input-group-btn">
+                                                                          <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="infant">
+                                                                              <span class="glyphicon glyphicon-plus"></span>
+                                                                          </button>
+                                                                      </span>
+                                                                  </div> -->
+                                            <div class="form-group">
+                                                <label>Nationality<em>*</em></label>
+                                                <?php if(empty($country)): ?> <?php echo Form::select('country', $countries, 'NP', ['class' => 'form-control country']); ?> <?php else: ?> <?php echo Form::select('country', $countries, $country, ['class' => 'form-control country']); ?> <?php endif; ?>
+                                            </div>
+                                            <!-- <input type="text" class="form-control" placeholder="Enter Promotional Code"> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-12">
+                                                            <div class="btn-group" data-toggle="buttons">
+                                                              <label class="btn btn-info active">
+                                                                <input type="radio" name="options" id="option1" autocomplete="off" checked> Economy
+                                                              </label>
+                                                              <label class="btn btn-info">
+                                                                <input type="radio" name="options" id="option2" autocomplete="off"> Premium Economy
+                                                              </label>
+                                                              <label class="btn btn-info">
+                                                                <input type="radio" name="options" id="option3" autocomplete="off">Business
+                                                              </label>
+                                                            </div>
+                                                        </div> -->
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Departing <em>*</em></label>
+                                        <input type="text" name="date_depart" class="form-control datepicker datedepart" placeholder="Your Departure Date" value="<?php echo e(isset($date_depart) ? $date_depart : ''); ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Returning <em>*</em></label>
+                                        <input type="text" name="date_return" class="form-control datepicker datereturn" placeholder="Your Returning Date" value="<?php echo e(isset($date_return) ? $date_return : ''); ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!--
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <label>Promotion Code <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Promotion Code"></i></label>
+                                                        <input type="text" class="form-control" placeholder="Enter Promotional Code">
+
+<<<<<<< HEAD
 	<div class="tab-wrapper">
 
 		<!-- Nav tabs -->
@@ -369,3 +521,172 @@
 					
 
 				</div>
+=======
+                                                        </div> -->
+                                <input type="hidden" name="trip_type" value="R">
+                                <div class="col-md-6 col-sm-6">
+                                    <button class="btn btn-danger btn-block btnSearch">
+                                        Search Flight
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="oneway">
+                <div class="row">
+                    <form action="<?php echo e(url('/flight/search')); ?>" class="flightSearchForm2 loaderDisplay" method="post">
+                        <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" class="token">
+                        <div class="col-md-7 col-sm-7">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>From <em>*</em></label>
+                                        <select name="departure" placeholder="Your place of departure" class="form-control locations">
+                                            <option value=""></option>
+                                            <?php if (empty($departure)) {
+                                                                    $departure = '';
+                                                                } ?> <?php foreach($sector as $sect): ?> <?php if($sect->SectorCode == $departure): ?>
+                                            <option value="<?php echo e($sect->SectorCode); ?>" selected="selected"><?php echo e($sect->SectorName); ?> <?php else: ?>
+                                                <option value="<?php echo e($sect->SectorCode); ?>"><?php echo e($sect->SectorName); ?>
+
+                                                </option>
+                                                <?php endif; ?> <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>To <em>*</em></label>
+                                        <select name="arrival" placeholder="Your Destination" class="form-control locations">
+                                            <option value=""></option>
+                                            <?php if (empty($arrival)) {
+                                                                        $arrival = '';
+                                                                    } ?> <?php foreach($sector as $sect): ?> <?php if($sect->SectorCode == $arrival): ?>
+                                            <option value="<?php echo e($sect->SectorCode); ?>" selected="selected"><?php echo e($sect->SectorName); ?> <?php else: ?>
+                                                <option value="<?php echo e($sect->SectorCode); ?>"><?php echo e($sect->SectorName); ?>
+
+                                                </option>
+                                                <?php endif; ?> <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Adult: 12+yrs</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default btn-number" <?php if(!empty($adult)): ?> <?php if($adult == 0): ?> disabled="disabled" <?php endif; ?> <?php else: ?> disabled="disabled" <?php endif; ?> data-type="minus" data-field="adult">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                    </button>
+                                                    </span>
+                                                    <input type="text" name="adult" class="form-control input-number" value="<?php echo e(isset($adult) ? $adult : 0); ?>" min="0" max="100">
+                                                    <span class="input-group-btn">
+                                                                                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="adult">
+                                                                                            <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Child:2-12yrs</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default btn-number" <?php if(!empty($child)): ?> <?php if($child == 0): ?> disabled="disabled" <?php endif; ?> <?php else: ?> disabled="disabled" <?php endif; ?> data-type="minus" data-field="child">
+                                                                <span class="glyphicon glyphicon-minus"></span>
+                                                    </button>
+                                                    </span>
+                                                    <input type="text" name="child" class="form-control input-number" value="<?php echo e(isset($child) ? $child : 0); ?>" min="0" max="100">
+                                                    <span class="input-group-btn">
+                                                                                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="child">
+                                                                                            <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <!--    <label>Infant:0-2 yrs</label
+                                                                                >
+                                                                                <div class="input-group">
+                                                                                    <span class="input-group-btn">
+                                                                                        <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="infant">
+                                                                                            <span class="glyphicon glyphicon-minus"></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                    <input type="text" name="infant" class="form-control input-number" value="<?php echo e(isset($infant) ? $infant : 0); ?>" min="0" max="100">
+                                                                                    <span class="input-group-btn">
+                                                                                        <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="infant">
+                                                                                            <span class="glyphicon glyphicon-plus"></span>
+                                                                                        </button>
+                                                                                    </span>
+                                                                                </div>
+                                                                                -->
+                                            <div class="form-group">
+                                                <label>Nationality<em>*</em></label>
+                                                <?php if(empty($country)): ?> <?php echo Form::select('country', $countries, 'NP', ['class' => 'form-control country']); ?> <?php else: ?> <?php echo Form::select('country', $countries, $country, ['class' => 'form-control country']); ?> <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-12">
+                                                            <div class="btn-group" data-toggle="buttons">
+                                                              <label class="btn btn-info active">
+                                                                <input type="radio" name="options" id="option1" autocomplete="off" checked> Economy
+                                                              </label>
+                                                              <label class="btn btn-info">
+                                                                <input type="radio" name="options" id="option2" autocomplete="off"> Premium Economy
+                                                              </label>
+                                                              <label class="btn btn-info">
+                                                                <input type="radio" name="options" id="option3" autocomplete="off">Business
+                                                              </label>
+                                                            </div>
+                                                        </div> -->
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-5">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Departing <em>*</em></label>
+                                        <input type="text" name="date_depart" class="form-control datepicker datedepart" placeholder="Your Departure Date" value="<?php echo e(isset($date_depart) ? $date_depart : ''); ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Returning <em>*</em></label>
+                                        <input type="text" name="date_return" class="form-control datepicker datereturn" placeholder="Your Returning Date" value="<?php echo e(isset($date_return) ? $date_return : ''); ?>" disabled>
+                                        <!-- <label>Returning <em>*</em></label>
+                                                            <input type="text" class="form-control" placeholder="Your Returning Date"> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!--
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <label>Promotion Code <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Promotion Code"></i></label>
+                                                        <input type="text" class="form-control" placeholder="Enter Promotional Code">
+                                                    </div>
+                                                    -->
+                                <input type="hidden" name="trip_type" value="O">
+                                <div class="col-md-6 col-sm-6">
+                                    <button class="btn btn-danger btn-block btnSearch">
+                                        Search Flight
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+>>>>>>> 9b631194c77e636748b209237befa9c3b5e34b7e

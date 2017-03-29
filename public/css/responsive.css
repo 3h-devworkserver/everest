@@ -1,13 +1,19 @@
 /* #Media Queries
 ================================================== */
+
+
 /* Smaller than standard 960 (devices and browsers) */
+
 @media only screen and (min-width:1500px) {
     .valentines-package-page section.banner {
-      -webkit-background-size: cover;
-      background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
     }
 }
+
+
 /* Tablet Portrait size to standard 960 (devices and browsers) */
+
 @media only screen and (min-width:768px) and (max-width:960px) {
     .header-right button.booked {
         padding-left: 18px;
@@ -49,20 +55,21 @@
         border-left: none;
     }
     /* package > booking step*/
-    .addextraPackageDiv{
-        text-align:center;
+    .addextraPackageDiv {
+        text-align: center;
     }
-    .addextraPackageDiv .select-number{
+    .addextraPackageDiv .select-number {
         width: 100%;
     }
-    .addextraPackageDiv > a.btn{
+    .addextraPackageDiv > a.btn {
         margin-top: 10px;
         float: none;
         width: 100%;
     }
 }
+
 @media only screen and (min-width:768px) and (max-width:1024px) {
-    .logo{
+    .logo {
         width: 12%;
     }
     .site-text {
@@ -72,10 +79,10 @@
     .site-text p {
         font-size: 13px;
     }
-    .header-right{
+    .header-right {
         width: auto;
     }
-    .header-right .menu{
+    .header-right .menu {
         margin-right: 10px;
     }
     .header-right .menu ul {
@@ -140,37 +147,35 @@
     .full-width-search .form-inline {
         padding: 0;
     }
-
     /* payment page */
     .tabs-left {
-	  width: 20%;
-	}
-    .payment-tab .tab-content{
-    	width: 80%;
+        width: 20%;
     }
-    .payment-tab [class*="col-"], 
-	.payment-tab [class^="col-"]{
-		margin-bottom: 10px;
-	}
-	.row-margin-adj {
-	  margin-right: 0;
-	}
-	.row-margin-10{
-		margin: 0;
-	}
-	.payment-tab .tab-content [class*="col-"], 
-	.payment-tab .tab-content [class^="col-"] {
-	  padding-left:0px;
-	  padding-right:0px;
-	}
-	.flight-wrapper .payment-tab .doe .SumoSelect, 
-	.flight-wrapper .payment-tab .doe .form-control.SumoSelect, 
-	.passanger-detail-from .dob .form-control, 
-	.passanger-detail-from .doe .form-control{
-		width: 32%;
-	}
-
-	/* about page */
+    .payment-tab .tab-content {
+        width: 80%;
+    }
+    .payment-tab [class*="col-"],
+    .payment-tab [class^="col-"] {
+        margin-bottom: 10px;
+    }
+    .row-margin-adj {
+        margin-right: 0;
+    }
+    .row-margin-10 {
+        margin: 0;
+    }
+    .payment-tab .tab-content [class*="col-"],
+    .payment-tab .tab-content [class^="col-"] {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .flight-wrapper .payment-tab .doe .SumoSelect,
+    .flight-wrapper .payment-tab .doe .form-control.SumoSelect,
+    .passanger-detail-from .dob .form-control,
+    .passanger-detail-from .doe .form-control {
+        width: 32%;
+    }
+    /* about page */
     .about .about-text {
         padding: 15px;
     }
@@ -205,7 +210,7 @@
         margin-bottom: 10px;
     }
     /*Inner page
-	---------------------*/
+    ---------------------*/
     .social-icon li {
         margin-left: 0;
     }
@@ -216,74 +221,72 @@
         height: 400px;
     }
     /* package pages */
-    .sub-title h2{
-    	font-size: 24px;
+    .sub-title h2 {
+        font-size: 24px;
     }
     .package-full-desc .panel-default > .panel-heading h2 {
-	  font-size: 24px;
-	}
-
-    .package .btn.btn-default{
-    	margin-top: 7px;
+        font-size: 24px;
     }
-
-    .package-detail .box{
-    	min-height: 160px;
+    .package .btn.btn-default {
+        margin-top: 7px;
+    }
+    .package-detail .box {
+        min-height: 160px;
     }
     .package-detail p,
     .package-detail ul li {
-	  font-size: 14px;
-	}
+        font-size: 14px;
+    }
     .package-detail p span {
-	  font-size: 16px;
-	}
-	.block-info-title{
-		font-size: 17px;
-	}
-	.package-detail ul li {
-	  font-size: 14px;
-	}
+        font-size: 16px;
+    }
+    .block-info-title {
+        font-size: 17px;
+    }
+    .package-detail ul li {
+        font-size: 14px;
+    }
     .thumb-slider {
-	  min-height: 80px;
-	}
-	.package-full-desc .itinerary .panel-default > .panel-heading a {
-	  font-size: 16px;
-	  
-	}
-	.further-detail h5 {
-	  font-size: 20px;
-	  text-transform: uppercase;
-	}
-	.package-short-info .walk-profile .progress-wrap > .progress-content{
-		width: 47%;
-	}
-	.package-short-info .walk-profile .progress-wrap > .progress-content:last-of-type {
-	  width: 53%;
-	}
-	/* booking page */
-	.add-extra-package .thumbnail .checkbox label, .travel-booking .payment-options .radio label {
-	  font-size: 17px;
-	  min-height: 55px;
-	  line-height: 28px;
-	}
-	.traveller-select .select-menu label {
-	  line-height: 35px;
-	}
-	.travel-form [class*="col-"],
-	.travel-form [class^="col-"]{
-		margin-bottom: 10px;
-	}
-    #valentine-promo .modal-dialog{
+        min-height: 80px;
+    }
+    .package-full-desc .itinerary .panel-default > .panel-heading a {
+        font-size: 16px;
+    }
+    .further-detail h5 {
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+    .package-short-info .walk-profile .progress-wrap > .progress-content {
+        width: 47%;
+    }
+    .package-short-info .walk-profile .progress-wrap > .progress-content:last-of-type {
+        width: 53%;
+    }
+    /* booking page */
+    .add-extra-package .thumbnail .checkbox label,
+    .travel-booking .payment-options .radio label {
+        font-size: 17px;
+        min-height: 55px;
+        line-height: 28px;
+    }
+    .traveller-select .select-menu label {
+        line-height: 35px;
+    }
+    .travel-form [class*="col-"],
+    .travel-form [class^="col-"] {
+        margin-bottom: 10px;
+    }
+    #valentine-promo .modal-dialog {
         width: 95%;
     }
-    .valentines-package-page section.banner{
+    .valentines-package-page section.banner {
         height: 320px;
     }
     .pop-img {
         background-position: -42px 0;
     }
-    
 }
+
 @media only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape) {
     /* .header-right .menu ul {
         margin-left: 295px;
@@ -328,58 +331,56 @@
     #flightdetails3 .nav-tabs > li > a {
         font-size: 12px;
     }
-
     /* payment page */
-    .payment-tab [class*="col-"], 
+    .payment-tab [class*="col-"],
     .payment-tab [class^="col-"] {
-	  margin-bottom: 0;
-	}
-    .payment-tab .tab-content .tab-pane{
-    	padding: 15px;
+        margin-bottom: 0;
     }
-
-    .payment-tab .tab-content [class*="col-"], 
+    .payment-tab .tab-content .tab-pane {
+        padding: 15px;
+    }
+    .payment-tab .tab-content [class*="col-"],
     .payment-tab .tab-content [class^="col-"] {
-	  padding-left: 5px;
-	  padding-right: 5px;
-	}
-	.flight-wrapper .payment-tab .doe .SumoSelect, 
-	.flight-wrapper .payment-tab .doe .form-control.SumoSelect, 
-	.passanger-detail-from .dob .form-control, 
-	.passanger-detail-from .doe .form-control {
-	  width: 30%;
-	}
-	.flight-wrapper .payment-tab .SumoSelect > .CaptionCont > label {
-	  
-	  width: 13px;
-	}
-	.flight-wrapper .payment-tab .SumoSelect > .CaptionCont > label > i {
-	  height: 8px;
-	  width: 8px;
-	}
-	 /* package pages */
-    .package .btn.btn-default{
-    	margin-top: 30px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .flight-wrapper .payment-tab .doe .SumoSelect,
+    .flight-wrapper .payment-tab .doe .form-control.SumoSelect,
+    .passanger-detail-from .dob .form-control,
+    .passanger-detail-from .doe .form-control {
+        width: 30%;
+    }
+    .flight-wrapper .payment-tab .SumoSelect > .CaptionCont > label {
+        width: 13px;
+    }
+    .flight-wrapper .payment-tab .SumoSelect > .CaptionCont > label > i {
+        height: 8px;
+        width: 8px;
+    }
+    /* package pages */
+    .package .btn.btn-default {
+        margin-top: 30px;
     }
     .pop-img {
         background-position: 0 0;
     }
-        /* package > booking step*/
-    .addextraPackageDiv a.btn{
-        padding:9px;
+    /* package > booking step*/
+    .addextraPackageDiv a.btn {
+        padding: 9px;
     }
-
-
 }
+
+
 /* All Mobile Sizes (devices and browser) */
+
 @media only screen and (max-width:767px) {
     h2 {
         font-size: 26px;
     }
     /*header
-	----------------------*/
+    ----------------------*/
     header {
-        padding: 20px 0 0;
+        padding: 10px 0 0;
     }
     .logo {
         padding-top: 0;
@@ -397,57 +398,85 @@
         font-weight: normal;
         padding-left: 0;
     }
-   /* .header-right {
+    /* .header-right {
         width: auto;
         float: none;
         clear: both;
     }*/
     .header-right {
-      background: #f5f5f5;
-      clear: both;
-      float: none;
-      height: auto;
-      margin-left: -15px;
-      margin-right: -15px;
-      padding: 15px;
-      width: auto;
+        background: #f5f5f5;
+        clear: both;
+        float: none;
+        height: auto;
+        margin-left: -15px;
+        margin-right: -15px;
+        padding: 15px 0 5px;
+        width: auto;
     }
-
     .header-right .menu {
         border-right: medium none;
         float: none;
         width: 100%;
         margin: 0;
     }
-    .valentines-package-page .header-right{
+    .valentines-package-page .header-right {
         padding: 0;
     }
-    .valentines-package-page .header-right .menu{
+    .valentines-package-page .header-right .menu {
         display: none;
     }
-    .header-right .menu ul {
-        margin-bottom: 0;
-        margin-left: 0;
-        margin-top: 0;
-        padding-right: 0;
-    }
-    .header-right .menu .list-inline li {
+    .header-right .menu .mobile-btn-block {
+        float: left;
+        margin: 0;
         padding: 0;
-        /* width: 49%; */
-        width: 100%;
-        margin-bottom: 5px;
+        border-right: medium none;
     }
-    .header-right .menu .list-inline li:last-of-type,
-     .header-right .menu .list-inline li:last-of-type .btn{
-        margin-bottom: 0;
-        width: 100%;
-        display: block;
+    .header-right .auth {
+        float: left;
+        margin-right: 0;
+        padding: 8px 10px;
     }
-    .header-right .menu li a {
+    .header-right .auth ul {
+        margin: 0;
+    }
+    .header-right .menu > ul li {
+        padding-left: 0;
+        padding-right: 0;
+        float: left;
+    }
+    .header-right .menu > ul li a {
         width: auto;
+        background-color: transparent;
+        color: #000;
+        text-align: left;
+        padding: 10px 8px;
     }
-    .header-right .menu li.btn-login{
-        margin:10px 0 0;
+    .header-right .menu > ul li a i {
+        text-align: center;
+    }
+    .header-right .menu > ul li a:hover {
+        color: #e42e2a;
+        background-color: transparent;
+    }
+    .header-right .auth .auth-thumb .auth-img i {
+        background: #123394 none repeat scroll 0 0;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 10px;
+        height: 20px;
+        line-height: 19px;
+        text-align: center;
+        width: 20px;
+    }
+    .auth .open .dropdown-menu {
+        margin-top: 5px;
+        top: 37px;
+    }
+    .header-right .menu > ul li.btn-login {
+        margin: 0 0 0 10px;
+    }
+    .header-right .menu > ul li.btn-login a {
+        padding: 12px 0;
     }
     header .header-right .menu-icon {
         margin: 13px 0 0 0;
@@ -464,7 +493,7 @@
     }
     .mega-menu {
         /* top: 140px; */
-        top:100px;
+        top: 100px;
     }
     .mega-menu .divider {
         display: none;
@@ -514,13 +543,12 @@
         padding-right: 0;
     }
     /* flight pages tab into accordin styles */
-    #myTab-accordion .panel-default > .panel-heading{
-    	background: #fff;
+    #myTab-accordion .panel-default > .panel-heading {
+        background: #fff;
     }
-    #myTab-accordion .panel-default > .panel-heading > .panel-title{
-    	text-transform: capitalize;
+    #myTab-accordion .panel-default > .panel-heading > .panel-title {
+        text-transform: capitalize;
     }
-  
     /* flight-booking-progress-step */
     .progress-step > li {
         float: none;
@@ -596,7 +624,7 @@
     }
     .box-flight .details-wrapper .second-row .time [class*="col-"]:first-child,
     .box-flight .details-wrapper .second-row .time [class^="col-"]:first-child {
-        margin-bottom: 15px;
+        /*margin-bottom: 15px;*/
     }
     .box-flight .details-wrapper .second-row .time [class*="col-"],
     .box-flight .details-wrapper .second-row .time [class^="col-"] {
@@ -632,72 +660,71 @@
     .full-width-search .form-inline .form-group:last-child {
         margin-bottom: 0;
     }
-	/* flight-review-header */
-	.flight-review-header .airlines-thumb{
-		min-height: 200px;
-		margin-bottom: 20px;
-	}
-	.flight-review-header .box-title {
-	  font-size: 22px;
-	}
-	.mobile-mode:after{
-		border-bottom: 1px solid #ccc;
-		clear: both;
-		content: "";
-		display: block;
-		height: auto;
-		margin-bottom: 15px;
-		padding-bottom: 15px;
-	}
-	.tab-content.visible-tabs {
-	  display: none;
-	}
-	/* payment page */
-	.payment-tab label{
-   	 display: block;
-	}
-	.payment-tab [class*="col-"], 
-	.payment-tab [class^="col-"]{
-		margin-bottom: 10px;
-	}
-	.box-flight .details-wrapper .second-row .time [class*="col-"], 
-	.box-flight .details-wrapper .second-row .time [class^="col-"]{
-		padding-right: 0;
-	}
-	.flight-payment .box-flight figure span.airlines-thumb {
-	  margin-bottom: 15px;
-	  min-height: 163px;
-	}
-	.flight-payment .box-flight .action .passanger-wrap {
-	  border-bottom: 1px solid #ccc;
-	  border-top: 1px solid #ccc;
-	  margin-bottom: 15px;
-	  padding: 15px 0;
-	}
-	.row-margin-10{
-		margin-left: 0;
-		margin-right: 0;
-	}
-	.payment-methods .payment-tab h4 {
-	  margin-bottom: 0;
-	}
-	/* booking page */
-	.traveller-select .select-menu {
-	  clear: both;
-	  float: none;
-	  width: 100%;
-	}
-	.traveller-select .select-menu .SumoSelect {
-	  width: 100%;
-	}
-	.total-block {
-	  margin-top: 40px;
-	}
-	.travel-form [class*="col-"],
-	.travel-form [class^="col-"]{
-		margin-bottom: 10px;
-
-	}
+    /* flight-review-header */
+    .flight-review-header .airlines-thumb {
+        min-height: 200px;
+        margin-bottom: 20px;
+    }
+    .flight-review-header .box-title {
+        font-size: 22px;
+    }
+    .mobile-mode:after {
+        border-bottom: 1px solid #ccc;
+        clear: both;
+        content: "";
+        display: block;
+        height: auto;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+    }
+    .tab-content.visible-tabs {
+        display: none;
+    }
+    /* payment page */
+    .payment-tab label {
+        display: block;
+    }
+    .payment-tab [class*="col-"],
+    .payment-tab [class^="col-"] {
+        margin-bottom: 10px;
+    }
+    .box-flight .details-wrapper .second-row .time [class*="col-"],
+    .box-flight .details-wrapper .second-row .time [class^="col-"] {
+        padding-right: 0;
+    }
+    .flight-payment .box-flight figure span.airlines-thumb {
+        margin-bottom: 15px;
+        min-height: 163px;
+    }
+    .flight-payment .box-flight .action .passanger-wrap {
+        border-bottom: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        margin-bottom: 15px;
+        padding: 15px 0;
+    }
+    .row-margin-10 {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .payment-methods .payment-tab h4 {
+        margin-bottom: 0;
+    }
+    /* booking page */
+    .traveller-select .select-menu {
+        clear: both;
+        float: none;
+        width: 100%;
+    }
+    .traveller-select .select-menu .SumoSelect {
+        width: 100%;
+    }
+    .total-block {
+        margin-top: 40px;
+    }
+    .travel-form [class*="col-"],
+    .travel-form [class^="col-"] {
+        margin-bottom: 10px;
+    }
     /* about page */
     .about {
         height: auto;
@@ -752,11 +779,11 @@
         text-align: center;
     }
     /*Inner Page
-	---------------------------*/
+    ---------------------------*/
     .share_and_adds {
         text-align: center;
         margin-bottom: 0px;
-        margin-top:30px;
+        margin-top: 30px;
     }
     .list-search .form-group {
         margin-bottom: 15px;
@@ -805,8 +832,8 @@
         white-space: nowrap;
     }
     /*
-	Label the data
-	*/
+    Label the data
+    */
     .summitteers-list td:nth-of-type(1):before {
         content: "Name :";
     }
@@ -827,29 +854,29 @@
     }
     /* login page */
     #login .modal-dialog {
-	  margin: 0 auto;
-	  width: 100%;
-	}
-	.guest-wrap{
-		padding: 20% 0;
-	}
+        margin: 0 auto;
+        width: 100%;
+    }
+    .guest-wrap {
+        padding: 20% 0;
+    }
     /*-Classic Everest*/
     .package {
         text-align: center;
     }
-    .customer-review h3{
-    	font-size: 18px;
-    	line-height: 25px;
+    .customer-review h3 {
+        font-size: 18px;
+        line-height: 25px;
     }
-    .customer-review span img{
-    	width: 20px;
+    .customer-review span img {
+        width: 20px;
     }
     .package .btn-box {
-	    text-align: center;
-	}
-	.package .btn.btn-default{
-		margin-top: 15px;
-	}
+        text-align: center;
+    }
+    .package .btn.btn-default {
+        margin-top: 15px;
+    }
     .package .btn-box > .btn-default:last-child {
         margin-left: auto;
     }
@@ -860,57 +887,55 @@
         display: inline-block;
     }
     .thumb-slider.lg {
-	  min-height: 250px;
-	}
+        min-height: 250px;
+    }
     .thumb-slider {
-	  min-height: 60px;
-	}
-	.dot-list {
-	  text-align: left;
-	}
-	.block-info-title{
-		font-size: 18px;
-	}
-	.package-detail p,
-	.package-detail ul li{
-		font-size: 14px;
-	}
-	.sub-title h2,
-	.package-full-desc .panel-default > .panel-heading h2{
-		font-size: 22px;
-	}
-	.package-full-desc .itinerary .panel-default > .panel-heading a{
-		font-size: 15px;
-	}
-	.package .btn.btn-default:last-of-type {
-	  margin-left: 0;
-	  margin-top: 15px;
-	}
-	.review-rating-block [class*="col-"]:after,
-	.review-rating-block [class^="col-"]:after{
-		content: '';
-		display: block;
-		clear: both;
-		margin-bottom:10px;
-	}
-	.review-rating-block .rating h5 {
-	  padding-right: 15px;
-	}
-	.review-rating-block [class*="col-"]:last-child.text-right,
-	.review-rating-block [class^="col-"]:last-child.text-right{
-		text-align: left;
-
-	}
-	.review-rating-block span img{
-		width: 20px;
-	}
-	.package-review-list .thumbnail > h2{
-		font-size: 24px;
-	}
-	
-	.video .btn-default{
-		font-size: 60px;
-	}
+        min-height: 60px;
+    }
+    .dot-list {
+        text-align: left;
+    }
+    .block-info-title {
+        font-size: 18px;
+    }
+    .package-detail p,
+    .package-detail ul li {
+        font-size: 14px;
+    }
+    .sub-title h2,
+    .package-full-desc .panel-default > .panel-heading h2 {
+        font-size: 22px;
+    }
+    .package-full-desc .itinerary .panel-default > .panel-heading a {
+        font-size: 15px;
+    }
+    .package .btn.btn-default:last-of-type {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    .review-rating-block [class*="col-"]:after,
+    .review-rating-block [class^="col-"]:after {
+        content: '';
+        display: block;
+        clear: both;
+        margin-bottom: 10px;
+    }
+    .review-rating-block .rating h5 {
+        padding-right: 15px;
+    }
+    .review-rating-block [class*="col-"]:last-child.text-right,
+    .review-rating-block [class^="col-"]:last-child.text-right {
+        text-align: left;
+    }
+    .review-rating-block span img {
+        width: 20px;
+    }
+    .package-review-list .thumbnail > h2 {
+        font-size: 24px;
+    }
+    .video .btn-default {
+        font-size: 60px;
+    }
     .gallery {
         text-align: center;
     }
@@ -924,62 +949,140 @@
     .contact-form .btn-default {
         float: left;
     }
-    #valentine-promo .modal-dialog{
+    #valentine-promo .modal-dialog {
         width: 95%;
     }
     .pop-img {
-      background-position: center 0;
-      min-height: 270px;
+        background-position: center 0;
+        min-height: 270px;
     }
     .valentines .package-short-info .dot-list {
-      margin: 0 0 20px;
-      min-height: 100%;
+        margin: 0 0 20px;
+        min-height: 100%;
     }
-    .valentines-package-page .help-block a{
+    .valentines-package-page .help-block a {
         display: inline-block;
     }
     .valentines-package-page .check {
         width: 100%;
     }
-    .g-recaptcha{
-        transform:scale(0.77);
-        -webkit-transform:scale(0.77);
-        -moz-transform:scale(0.77);
-        transform-origin:0 0;
-        -webkit-transform-origin:0 0;
-        -moz-transform-origin:0 0;
+    .g-recaptcha {
+        transform: scale(0.77);
+        -webkit-transform: scale(0.77);
+        -moz-transform: scale(0.77);
+        transform-origin: 0 0;
+        -webkit-transform-origin: 0 0;
+        -moz-transform-origin: 0 0;
     }
     .feature-content .btn.btn-default.less {
-      margin-top: 15px;
+        margin-top: 15px;
     }
-    .valentines-package-page section.banner{
+    .valentines-package-page section.banner {
         height: 140px;
     }
-    .travel-booking-step a{
+    .travel-booking-step a {
         margin-bottom: 5px;
     }
-}
-/*-----------*/
-/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
-@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: landscape) {
-    /* .mega-menu,.booking-form{
-		top:inherit;
-	}
-	.booking-form .container{
-		top:inherit;
-	} */
-    .pop-img {
-      background-position: center -80px;
-      min-height: 270px;
+    /*login page*/
+    .login-page {
+        padding: 0 0 40px;
+    }
+    .login-page .form-wrapper {
+        width: 100%;
+    }
+    .login-page .login-wrapper .login-form .btn-grp .btn {
+        width: 45%;
+    }
+    .login-footer > p {
+        font-size: 13px;
+        margin: 0;
+    }
+    /*register page*/
+    .register-page {
+        padding: 40px 0;
+    }
+    /*flight search result*/
+    .flight-search-form .search-form-content .schedule .arrival {
+        clear: both;
+        overflow: hidden;
+        display: block;
+        padding: 10px 0;
+        width: 100%;
+    }
+    .flight-search-form .search-form-content .schedule .arrival::before{
+        display: none;
+    }
+    .flight-list-block .flight-bound i{
+        float: left;
+    }
+    .flight-bound span {
+      float: none !important;
+      font-size: 14px;
+      line-height: normal;
+    }
+    .flight-schedule-slider .item.active a {
+      padding: 17px 20px;
+    }
+    .flight-list-block .sort-block .dropdown-toggle span {
+      font-size: 12px;
+    }
+    .flight-list-block .sort-block .dropdown-toggle span i {
+      margin-left: 4px;
+    }
+
+    .box-flight .details-wrapper .box-title {
+      font-size: 17px;
+    }
+    .box-flight .first-row .badge, .flight-review-header .badge {
+          background: transparent none repeat scroll 0 0;
+          clear: both;
+          color: #000;
+          display: block;
+          float: left;
+          font-size: 12px;
+          margin-left: 0;
+          padding: 10px 0 0;
+    }
+    .oneway-flight.box-flight .details-wrapper .second-row .time h5 i:last-of-type {
+      margin: 0 15px;
+    }
+    .box-flight .second-row .short-desc {
+      margin-top: 20px;
+    }
+    .box-flight .action{
+        min-height: auto;
     }
 }
+
+
+/*-----------*/
+
+
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: landscape) {
+    /* .mega-menu,.booking-form{
+        top:inherit;
+    }
+    .booking-form .container{
+        top:inherit;
+    } */
+    .pop-img {
+        background-position: center -80px;
+        min-height: 270px;
+    }
+}
+
 @media only screen and (max-width:640px) {
     .pop-img {
-          background-position: center -80px;
-          min-height: 270px;
-        }
+        background-position: center -80px;
+        min-height: 270px;
+    }
 }
+
+
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+
 @media only screen and (max-width:480px) {
     .full-width-search .form-inline .form-group {
         width: 100%;
@@ -996,27 +1099,27 @@
         width: 22px;
     }
     /*
-	.logo {
-	    float: none;
-	    padding-top: 18px;
-	    text-align: center;
-	    width: 100%;
-	}
-	.header-right {
-	    float: none;
-	    clear: both;
-	    margin-top: 20px;
-	    width: 100%;
-	}
-	.header-right .search {
-	    left: 0;
-	    margin: 0 auto;
-	    padding: 0;
-	    position: absolute;
-	    right: 0;
-	    width: 65%;
-	}
-	*/
+    .logo {
+        float: none;
+        padding-top: 18px;
+        text-align: center;
+        width: 100%;
+    }
+    .header-right {
+        float: none;
+        clear: both;
+        margin-top: 20px;
+        width: 100%;
+    }
+    .header-right .search {
+        left: 0;
+        margin: 0 auto;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        width: 65%;
+    }
+    */
     .header-right .search {
         width: 65%;
         margin: 0 0 10px 0;
@@ -1033,6 +1136,7 @@
         height: 3px !important;
     }
 }
+
 @media only screen and (max-width:320px) {
     .depart-date,
     .arv-date {
@@ -1044,17 +1148,17 @@
         font-size: 9px;
     }
     .pop-img {
-      background-position: center 0;;
+        background-position: center 0;
+        ;
     }
-
     /* package > booking step*/
-    .addextraPackageDiv{
-        text-align:center;
+    .addextraPackageDiv {
+        text-align: center;
     }
-    .addextraPackageDiv .select-number{
+    .addextraPackageDiv .select-number {
         width: 100%;
     }
-    .addextraPackageDiv > a.btn{
+    .addextraPackageDiv > a.btn {
         margin-top: 10px;
         float: none;
         width: 100%;

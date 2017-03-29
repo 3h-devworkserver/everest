@@ -223,8 +223,8 @@
 						</div>
 										<div class="sort-block">
 											<div class="row">
-												<div class="col-md-2 col-sm-2"> <h5>Sort Result By</h5> </div>
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-12"> <h5>Sort Result By</h5> </div>
+												<div class="col-md-2 col-sm-2 col-xs-3">
 
 													<h4 class="filters dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 														<a class="highprice"><span>Price <i class="fa fa-long-arrow-down"></i></span></a>
@@ -243,7 +243,7 @@
 													</div>
 												-->
 											</div>
-											<div class="col-md-2 col-sm-2">
+											<div class="col-md-2 col-sm-2 col-xs-3">
 
 												<div class="dropdown">
 													<h4 class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -253,14 +253,14 @@
 												</div>
 											</div>
 
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-3">
 													<h4 class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 														<a class="ascClass"><span>Class <i class="fa fa-long-arrow-down"></i></span></a>
 														<a class="descClass display-none"><span>Class <i class="fa fa-long-arrow-up"></i></span></a>
 													</h4>
 												</div>
 
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-3">
 						                            <div class="dropdown">
 						                                <h4 class="dropdown-toggle" data-toggle="dropdown"><span>Fare <i class="fa fa-angle-down"></i></span> </h4>
 						                                <ul class="dropdown-menu">
@@ -496,8 +496,8 @@
 										</div>
 										<div class="sort-block">
 											<div class="row">
-												<div class="col-md-2 col-sm-2"> <h5>Sort Result By</h5> </div>
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-12"> <h5>Sort Result By</h5> </div>
+												<div class="col-md-2 col-sm-2 col-xs-3">
 
 													<h4 class="filters dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 														<a class="returnHighprice"><span>Price <i class="fa fa-long-arrow-down"></i></span></a>
@@ -516,7 +516,7 @@
 													</div>
 												-->
 											</div>
-											<div class="col-md-2 col-sm-2">
+											<div class="col-md-2 col-sm-2 col-xs-3">
 
 												<div class="dropdown">
 													<h4 class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -536,14 +536,14 @@
 													<?php */ ?>
 												</div>
 
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-3">
 													<h4 class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 														<a class="returnAscClass"><span>Class <i class="fa fa-long-arrow-down"></i></span></a>
 														<a class="returnDescClass display-none"><span>Class <i class="fa fa-long-arrow-up"></i></span></a>
 													</h4>
 												</div>
 
-												<div class="col-md-2 col-sm-2">
+												<div class="col-md-2 col-sm-2 col-xs-3">
 						                            <div class="dropdown">
 						                                <h4 class="dropdown-toggle" data-toggle="dropdown"><span>Fare <i class="fa fa-angle-down"></i></span> </h4>
 						                                <ul class="dropdown-menu">
