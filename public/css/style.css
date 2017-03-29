@@ -4275,6 +4275,7 @@ body.modal-open {
 }
 .wizard > .content > .body{
     position: static;   
+    width: 100%;
 }
 .wizard, .tabcontrol{
     overflow: visible;
@@ -4495,6 +4496,7 @@ body.modal-open {
     border-bottom-right-radius: 2px;
     border-top-right-radius: 2px;
     padding: 25px;
+    overflow: hidden;
 }
 .payment-tab .tab-content [class*="col-"],
 .payment-tab .tab-content [class^="col-"] {
@@ -4522,6 +4524,9 @@ body.modal-open {
     -ms-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg);
+}
+#creditcard .row-margin-10{
+    margin-right: 0;
 }
 .payment-tab .meal-preference label i {
     margin: 0 10px;
