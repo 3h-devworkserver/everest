@@ -1403,9 +1403,16 @@ $('.travellerPassportForm').validate();
 
 $('.passport-img').click(function(){
   $('.passportImg').click();
-  $('.btn-passport').show();
-  $('.passport-img').hide();
+  
 });
+
+$('.profileImg').click(function(){
+  $('.profileImage').click();
+  
+  
+});
+
+
 
 /* -----------    end of traveller panel js      ---- */
 
@@ -1425,6 +1432,8 @@ function travellerReadURL(input) {
       reader.onload = function (e) {
           // $('#feat-img-preview').hide();
           $('.profile-picture .profile-bg').css('background-image', 'url('+e.target.result+')').show();
+          $('.profileImg').hide();
+          $('.profile-img').show();
       }
       reader.readAsDataURL(input.files[0]);
     }
@@ -1446,6 +1455,8 @@ function documentReadURL(input) {
       reader.onload = function (e) {
           // $('#feat-img-preview').hide();
           $('#documentPreview').css('background-image', 'url('+e.target.result+')').show();
+          $('.btn-passport').show();
+          $('.passport-img').hide();
       }
       reader.readAsDataURL(input.files[0]);
     }

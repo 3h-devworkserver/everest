@@ -34,20 +34,20 @@
                 {!! Form::model($profile, ['url'=>'traveller/profile/info', 'class'=>'travellerProfileForm']) !!}
                   <div class="form-group">
                     <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-sm-6">
                         <label>Title <em>*</em></label>
                         {!! Form::select('title', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms'], null, ['class'=>'profileSelect form-control' ]) !!} 
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-3 col-sm-6">
                         <label>First Name <em>*</em></label> 
                         {!! Form::text('fname',null, ['placeholder'=>'Your First Name', 'class'=>'form-control','required']) !!}                   
                         {{-- <input class="form-control" type="text" placeholder="Your First Name"> --}}
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-3 col-sm-6">
                         <label>Middle Name</label> 
                         {!! Form::text('mname',null, ['placeholder'=>'Your Middle Name', 'class'=>'form-control']) !!}                   
                       </div>
-                      <div class="col-md-3">
+                      <div class="col-md-3 col-sm-6">
                         <label>Last Name <em>*</em></label>
                         {!! Form::text('lname',null, ['placeholder'=>'Your Last Name', 'class'=>'form-control','required']) !!}                   
                         {{-- <input class="form-control" type="text" placeholder="Your Last Name"> --}}
@@ -57,10 +57,10 @@
                   </div>
                   <div class="form-group">
                     <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-6 col-sm-12">
                         <label>Birth Date <em>*</em></label>                    
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-4 col-sm-4">
                             <select name="dob_year" class="form-control profileSelect" required >
                               <option value="">YEAR</option>
                               <?php $j = date('Y'); ?>
@@ -75,11 +75,11 @@
                           </select>
                           </div>
 
-                          <div class="col-md-3">
+                          <div class="col-md-4 col-sm-4">
                             {!! Form::select('dob_month', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'profileSelect form-control','required' ]) !!}
                           </div>
                           
-                          <div class="col-md-3">
+                          <div class="col-md-4 col-sm-4">
                             <select name="dob_day" class="daypicker form-control profileSelect" required >
                               <option value="">DD</option>
                               <?php $j = 1 ; ?>
@@ -96,7 +96,7 @@
                         </div>
                         
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6 col-sm-12">
                         <label>I am <em>*</em></label>  
                         <div class="gender-block">
                           <div class="radio">
@@ -127,13 +127,13 @@
                   
                   <div class="form-group">
                     <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-6 col-sm-6">
                         <label>Where You Live</label> 
                         {!! Form::text('address',null, ['placeholder'=>'Your Address', 'class'=>'form-control']) !!}                   
                         {{-- <input class="form-control" type="text" placeholder="e.g. Paris, France / Brooklyn, NY / Chicago, IL"> --}}
                         
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6 col-sm-6">
                         <label>Email Address <em>*</em></label>  
                         {!! Form::email('email',null, ['placeholder'=>'Your Email Address', 'class'=>'form-control', 'required']) !!}                   
                       </div>
@@ -144,7 +144,7 @@
                   <div class="form-group">
                     <div class="row">
                      
-                      <div class="col-md-6">
+                      <div class="col-md-6 col-sm-6">
                         <label>Contact Number <em>*</em></label> 
                         {!! Form::text('phone',null, ['placeholder'=>'Your Contact Number', 'class'=>'form-control', 'required']) !!}                   
                       </div>
@@ -174,11 +174,12 @@
                             @if(!empty($profile->profile_pic))
                               <div class="profile-bg" style="background-image:url({{asset('images/user/profile/'.$profile->profile_pic)}});"></div>
                             @else
-                              <span class="btn btn-default btn-file">
+                              <div class="profile-bg @if(empty($profile->profile_pic)) display-none @endif" ></div>
+                            @endif
+                              <span class="btn btn-default btn-file profileImg @if(!empty($profile->profile_pic)) display-none @endif">
                                 <i class="fa fa-image"></i>Browse
                                 
                               </span>
-                            @endif
                           </div>
                         </div>
                       </div>
@@ -188,9 +189,9 @@
                           Clear frontal face photos are an important way for hosts and guests to learn about each other. It’s not much fun to host a landscape! Please upload a photo that clearly shows your face. 
                         </p>
                         <div class="btn-grp">
-                          <span class="btn btn-default btn-file profile-img">
+                          <span class="btn btn-default btn-file profile-img @if(empty($profile->profile_pic)) display-none @endif">
                             <i class="fa fa-image"></i>Browse
-                            <input type="file" name="upload" onchange="travellerReadURL(this)" >
+                            <input type="file" name="upload" class="profileImage" onchange="travellerReadURL(this)" >
                           </span>
                           <!--
                           <span class="btn btn-default btn-file">
