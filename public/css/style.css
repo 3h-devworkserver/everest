@@ -5080,15 +5080,32 @@ body.modal-open {
     padding: 40px 0;
 }
 .profile .nav.nav-tabs {
-  float: left;
+    background: #fff;
+    float: left;
+    margin-right: 20px;
+    width: 30%;
+/*  float: left;
   width: 300px;
-  background: #fff;
+  background: #fff;*/
 
 }
+.profile .SumoSelect > .CaptionCont {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin: 0;
+  min-height: 35px;
+}
+.profile .SumoSelect > .CaptionCont > label {
+    margin-bottom: 0;
+}
 .profile .tab-content{
-    background: #fff;
+    /*background: #fff;
     margin-left: 360px;
+    padding: 20px;*/
+    background: #fff none repeat scroll 0 0;
+    float: left;
     padding: 20px;
+    width: 68%;
 }
 .profile .nav-tabs > li{
     display: block;
@@ -5114,6 +5131,13 @@ body.modal-open {
 }
 .profile .form-group{
     /* overflow: hidden; */
+    clear: both;
+}
+.profile .form-group:after{
+    position: absolute;
+    content: '';
+    clear: both;
+    overflow: hidden;
 }
 .profile .form-group label{
     font-weight: normal;

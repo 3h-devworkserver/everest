@@ -330,14 +330,24 @@
         background-position: -42px 0;
     }
     /*dashbaord*/
+    .profile .tab-content{
+        width: 66%;
+    }
     .profile-bg::after {
       border-width: 0 0 55px 40vw;
     }
-    .profile .nav.nav-tabs {
-      width: 200px;
+    /*login page*/
+    .login-page .form-wrapper {
+      width: 50%;
     }
-    .profile .tab-content {
-      margin-left: 220px;
+    /*profile*/
+    .profile .form-group{
+        margin-bottom: 0;
+    }
+    .profile .form-group .form-control,
+    .profile .form-group .SumoSelect,
+    .profile .form-group .gender-block .radio {
+      margin-bottom: 15px;
     }
 }
 
@@ -455,6 +465,17 @@
     .addextraPackageDiv a.btn {
         padding: 9px;
     }
+    /*login page*/
+    .login-page .form-wrapper {
+      width: 40%;
+    }
+    .profile .nav.nav-tabs {
+      width: 25%;
+    }
+    .profile .tab-content {
+      width: 72%;
+    }
+  
 }
 
 
