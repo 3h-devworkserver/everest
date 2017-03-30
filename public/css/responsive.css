@@ -1224,7 +1224,7 @@
     .dashboard-menu{
         display: none;
     }
-    .dashboard .profile-block{
+    .profile-block{
         margin-bottom: 50px;
     }
     .profile-bg::after {
@@ -1238,30 +1238,6 @@
     }
     .activity-wrap p{
         margin-bottom: 0;
-    }
-    /*profile*/
-    .profile .form-group{
-        margin-bottom: 0;
-    }
-    .profile .form-group .form-control,
-    .profile .form-group .SumoSelect,
-    .profile .form-group .gender-block .radio {
-      margin-bottom: 15px;
-    }
-    .profile .btn-grp .btn-file {
-      float: none;
-      margin-bottom: 20px;
-      margin-right: 0;
-      width: 100%;
-    }
-    .profile .profile-block {
-        margin-bottom: 15px;
-    }
-    .profile .btn-grp {
-      margin-top: 0;
-    }
-    .travellerPassportForm .help-block {
-      margin-top: 15px;
     }
 }
 
