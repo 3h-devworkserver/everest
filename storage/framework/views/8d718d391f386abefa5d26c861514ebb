@@ -186,8 +186,8 @@
                         Clear frontal face photos are an important way for hosts and guests to learn about each other. It’s not much fun to host a landscape! Please upload a photo that clearly shows your face. 
                       </p>
                       <div class="btn-grp">
-                        <span class="btn btn-primary btn-file btn-sm">
-                          <i class="fa fa-folder-open"></i>Upload
+                        <span class="btn btn-default btn-file profile-img">
+                          <i class="fa fa-image"></i>Upload
                           <input type="file" name="upload" onchange="travellerReadURL(this)" >
                         </span>
                         <!--
@@ -354,8 +354,8 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-12">
-                      <span class="btn btn-primary btn-file btn-sm">
-                        <i class="fa fa-folder-open"></i>Upload
+                      <span class="btn btn-default btn-file passport-img">
+                        <i class="fa fa-image"></i>Upload
                         <input type="file" class="image" name="passport_img" onchange="documentReadURL(this)" >
                       </span>
                       <!--

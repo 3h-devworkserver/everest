@@ -342,7 +342,7 @@
 							</tr>
 							<tr>
 								<td>Total Amount</td>
-								<td><?php echo e($packageBooking->total_amount); ?></td>
+								<td>USD <?php echo e($packageBooking->total_amount); ?></td>
 							</tr>
 						</table>
 					<?php endif; ?>

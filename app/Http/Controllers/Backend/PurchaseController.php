@@ -17,10 +17,10 @@ class PurchaseController extends Controller
   public function index(){
     $route = route('api.table.purchase');              
     $table = Datatable::table()
-      ->addColumn(trans('Id'), trans('Order Id'), trans('Customer'), trans('Purchase Type'), trans('Purchased At'))
+      ->addColumn(trans('Id'), trans('Order Id'), trans('Customer'), trans('Purchase Type'), trans('Total Amount'), trans('Purchased At'))
       ->addColumn(trans('Actions'))
       ->setUrl($route)
-      ->setOrder([4=>'desc'])
+      ->setOrder([5=>'desc'])
       ->render();
       return view('backend.purchase.index', compact('table'));
   }

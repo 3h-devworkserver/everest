@@ -742,6 +742,13 @@ public function getPackageCategory() {
                                     return 'Package';
                                 }
                         })
+                        ->addColumn('amount', function($model){
+                            if($model->type == 'flight'){
+                                return $model->flightReservation->total_amount;
+                            }else{
+                                return $model->packageBooking->total_amount;
+                            }
+                        })
                         ->addColumn('purchased_at', function($model) {
                             return \Carbon\Carbon::parse($model->purchased_at)->format('Y/m/d');
                         })
