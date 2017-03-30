@@ -38,7 +38,7 @@
 					<div class="user-activity">
 						
 						<h3>Purchased History</h3>						
-							<?php if(!empty($user)): ?>
+							<?php if(count($user->userBookings) != 0): ?>
 								<?php foreach($user->userBookings as $booking): ?>
 								<?php 
 								if($booking->type == 'package') {
@@ -52,7 +52,7 @@
 										<div class="col-md-2">
 											<figure>
 												<?php if($booking->type == 'package'): ?>
-												<img src="<?php echo e(asset('images/packages-new/'.$booked->feat_img)); ?>" alt="">
+												<a href="<?php echo e(url('/package/'.$booked->slug)); ?>"><img src="<?php echo e(asset('images/packages-new/'.$booked->feat_img)); ?>" alt=""></a>
 												<?php else: ?>
 												<img src="<?php echo e(asset('images/upeverest-logo.png')); ?>" alt="">
 												<?php endif; ?>
@@ -61,7 +61,7 @@
 										</div>
 										<div class="col-md-8">
 											<?php if($booking->type == 'package'): ?>
-												<h4><?php echo e(title_case($booked->title)); ?></h4>
+												<h4><a href="<?php echo e(url('/package/'.$booked->slug)); ?>"><?php echo e(title_case($booked->title)); ?></a></h4>
 											<?php else: ?>
 												<h4><?php echo e(title_case($booked->departure)); ?> to <?php echo e(title_case($booked->arrival)); ?></h4>
 											<?php endif; ?>
@@ -103,28 +103,27 @@
 										</div>
 										<div class="col-md-2 text-right">
 										<div class="action">
-											<a href="#">
-												<i class="fa fa-pencil"></i>
+											<a href="<?php echo e(url('/traveller/purchase/'.$booking->id.'/detail')); ?>">
+												<i class="fa fa-eye"></i>
 											</a>
-											<a href="#">
-												<i class="fa fa-trash"></i>
-											</a>
-											
 										</div>
 									</div>
 									</div>
 								</article>
 								<?php endforeach; ?>
+
+								<nav aria-label="...">
+									<ul class="pager">
+										<li><a href="#"><i class="fa fa-angle-left"></i> &nbsp;Previous</a></li>
+										<li><a href="#">Next &nbsp; <i class="fa fa-angle-right"></i></a></li>
+									</ul>
+								</nav>
 							<?php else: ?>
-								
+								<div class="well not-found">
+								<p class="lead text-center">No Purchased History</p>
+								</div>
 							<?php endif; ?>
 
-						<nav aria-label="...">
-							<ul class="pager">
-								<li><a href="#"><i class="fa fa-angle-left"></i> &nbsp;Previous</a></li>
-								<li><a href="#">Next &nbsp; <i class="fa fa-angle-right"></i></a></li>
-							</ul>
-						</nav>
 						
 					</div>
 				</div>
