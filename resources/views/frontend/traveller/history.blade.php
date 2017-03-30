@@ -101,7 +101,7 @@
 										</div>
 										<div class="col-md-2 text-right">
 										<div class="action">
-											<a href="{{url('/traveller/purchase/'.$booking->id.'/detail')}}">
+											<a href="{{url('/traveller/purchase/'.$booking->id.'/detail')}}" target="_blank">
 												<i class="fa fa-eye"></i>
 											</a>
 										</div>

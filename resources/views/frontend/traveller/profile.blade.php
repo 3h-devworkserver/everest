@@ -21,7 +21,7 @@
               <li role="presentation" class="active"><a href="#a" aria-controls="a" role="tab" data-toggle="tab">Edit Profile</a></li>
               <li role="presentation"><a href="#b" aria-controls="b" role="tab" data-toggle="tab">Change Profile Picture</a></li>
               <li role="presentation"><a href="#c" aria-controls="c" role="tab" data-toggle="tab">Change Password</a></li>
-              <li role="presentation"><a href="#d" aria-controls="d" role="tab" data-toggle="tab">Passport Image</a></li>
+              <li role="presentation"><a href="#d" aria-controls="d" role="tab" data-toggle="tab">Document Info</a></li>
               
             </ul>
 
@@ -246,7 +246,7 @@
               </div>
 
               <div role="tabpanel" class="tab-pane" id="d">
-                <h4>Passport Info</h4>
+                <h4>Document Info</h4>
                 <hr>
                 {!! Form::model($profile, ['url'=>'traveller/profile/passport', 'class'=>'travellerPassportForm', 'method'=>'patch', 'files'=>true]) !!}
                   <div class="form-group">

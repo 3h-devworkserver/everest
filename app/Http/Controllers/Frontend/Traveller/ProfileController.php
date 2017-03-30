@@ -200,12 +200,24 @@ class ProfileController extends Controller {
 
 	public function purchaseDetail($id){
 		$booking = Booking::findOrFail($id);
+		if ($booking->user_id != Auth::user()->id) {
+			abort(404);
+		}
 		// return $booking;
 
 		if ($booking->type == 'package') {
 
 
 			// return view()
+		}else{
+			if ($booking->flightReservation->return_type == 'R') {
+				$flightDetail = json_decode($booking->flightReservation->flight_detail);
+				$returnFlightDetail = json_decode($booking->flightReservation->returnflight_detail);
+			}else{
+				$flightDetail = json_decode($booking->flightReservation->flight_detail);
+				$returnFlightDetail = '';
+			}
+			return view('frontend.traveller.flightdetail', compact('flightDetail', 'returnFlightDetail'));
 		}
 	}
 	
