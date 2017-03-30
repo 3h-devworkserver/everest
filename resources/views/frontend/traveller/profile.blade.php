@@ -359,24 +359,26 @@
                           <input type="file" name="passport_img" onchange="documentReadURL(this)">
                         </span> -->
 
-                        <p class="help-block">
-                          Image should be less than 500KB
-                        </p>
                         <div class="msgPassport display-none"><span class="text-danger">Image should be less than 500KB</span></div>
                         @if(!empty($profile->document_img))
                           <div id="documentPreview" class="show-img-bg" style="background-image:url({{url('images/user/document/'.$profile->document_img)}})"  alt="Image Preview"></div>
                           @else
                           <div id="documentPreview" class="show-img-bg display-none" alt="Image Preview"></div>
                         @endif
+                      <p class="help-block">
+                        Image should be less than 500KB
+                      </p>
                       </div>
                       
                     </div>
                   </div>
-                  <span class="btn btn-default btn-file btn-passport @if(empty($profile->document_img)) display-none @endif">
-                    <i class="fa fa-image"></i>Browse
-                    <input type="file" class="passportImg" name="passport_img" onchange="documentReadURL(this)" >
-                  </span>
-                  <input type="submit" class="btn btn-danger" value="Save">
+                  <div class="btn-grp">
+                    <span class="btn btn-default btn-file btn-passport @if(empty($profile->document_img)) display-none @endif">
+                      <i class="fa fa-image"></i>Browse
+                      <input type="file" class="passportImg" name="passport_img" onchange="documentReadURL(this)" >
+                    </span>
+                    <input type="submit" class="btn btn-danger" value="Save">
+                  </div>
                 {!! Form::close() !!}
               </div>
               
