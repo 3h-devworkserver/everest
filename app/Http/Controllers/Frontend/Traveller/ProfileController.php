@@ -145,6 +145,7 @@ class ProfileController extends Controller {
 
 	public function updatePassport(Request $request){
 		$this->validate($request, [
+			'document_type' => 'required',
 			'document_no' => 'required',
 			'issue_year' => 'required',
 			'issue_month' => 'required',
@@ -164,7 +165,7 @@ class ProfileController extends Controller {
 	      	$prevImg = Auth::user()->profile->document_img;
 	      }
 	      Auth::user()->profile->update([
-	      	'document_type' => 'passport',
+	      	'document_type' => $request->document_type,
 	      	'document_no' => $request->document_no,
 	      	'document_img' => $filename,
 	      	'issue_year' => $request->issue_year,
@@ -182,7 +183,7 @@ class ProfileController extends Controller {
 
 	    }else{
 	    	Auth::user()->profile->update([
-	      	'document_type' => 'passport',
+	      	'document_type' => $request->document_type,
 	      	'document_no' => $request->document_no,
 	      	'issue_year' => $request->issue_year,
 	      	'issue_month' => $request->issue_month,

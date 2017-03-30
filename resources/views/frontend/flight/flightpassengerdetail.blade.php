@@ -347,7 +347,7 @@
                                                             <div class="row-fluid">
                                                                 <div class="col-md-4">
                                                                 <label for="">Document Type</label>
-                                                                    {!! Form::select('adult_document_type[]',['passport' => 'Passport', 'id-card'=> 'ID Card', 'birth-certificate'=>'Birth Certificate'], 'NP', ['class'=>'form-control SlectBox', 'required']) !!}
+                                                                    {!! Form::select('adult_document_type[]',['passport' => 'Passport', 'id-card'=> 'ID Card', 'birth-certificate'=>'Birth Certificate'], null , ['class'=>'form-control SlectBox', 'required']) !!}
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                 <label for="">Document Number</label>

@@ -1401,6 +1401,12 @@ $('.travellerPaswordForm').validate({
 
 $('.travellerPassportForm').validate();
 
+$('.passport-img').click(function(){
+  $('.passportImg').click();
+  $('.btn-passport').show();
+  $('.passport-img').hide();
+});
+
 /* -----------    end of traveller panel js      ---- */
 
 

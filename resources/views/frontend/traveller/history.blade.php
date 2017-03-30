@@ -102,12 +102,8 @@
 										<div class="col-md-2 text-right">
 										<div class="action">
 											<a href="#">
-												<i class="fa fa-pencil"></i>
+												<i class="fa fa-eye"></i>
 											</a>
-											<a href="#">
-												<i class="fa fa-trash"></i>
-											</a>
-											
 										</div>
 									</div>
 									</div>

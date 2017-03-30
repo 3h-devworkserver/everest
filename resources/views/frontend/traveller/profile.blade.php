@@ -166,37 +166,43 @@
                 <hr>
                 {!! Form::open(['url'=>'traveller/profile/image', 'method'=>'patch', 'files'=>true]) !!}
                   <div class="form-group">
-                    <div class="col-md-4">
-                      <div class="profile-block">
-                        <div class="profile-picture">
-                          @if(!empty($profile->profile_pic))
-                            <div class="profile-bg" style="background-image:url({{asset('images/user/profile/'.$profile->profile_pic)}});"></div>
-                          @else
-                            <div class="profile-bg" style="background-image:url();"></div> 
-                          @endif
+                    <div class="row">
+                      <div class="col-md-4">
+
+                        <div class="profile-block ">
+                          <div class="profile-picture">
+                            @if(!empty($profile->profile_pic))
+                              <div class="profile-bg" style="background-image:url({{asset('images/user/profile/'.$profile->profile_pic)}});"></div>
+                            @else
+                              <span class="btn btn-default btn-file">
+                                <i class="fa fa-image"></i>Upload
+                                
+                              </span>
+                            @endif
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div class="col-md-8">
-                      <p>
-                        Clear frontal face photos are an important way for hosts and guests to learn about each other. It’s not much fun to host a landscape! Please upload a photo that clearly shows your face. 
-                      </p>
-                      <div class="btn-grp">
-                        <span class="btn btn-default btn-file profile-img">
-                          <i class="fa fa-image"></i>Upload
-                          <input type="file" name="upload" onchange="travellerReadURL(this)" >
-                        </span>
-                        <!--
-                        <span class="btn btn-default btn-file">
-                          <i class="fa fa-image"></i>
-                          Upload Picture
-                          <input type="file" name="upload" onchange="travellerReadURL(this)">
-                        </span>
-                        -->
-                        <div class="msg display-none"><span class="text-danger">File should be less than 500KB</span></div>
-                        <input type="submit" class="btn btn-danger" value="Save">
-                        
+                      <div class="col-md-8">
+                        <p>
+                          Clear frontal face photos are an important way for hosts and guests to learn about each other. It’s not much fun to host a landscape! Please upload a photo that clearly shows your face. 
+                        </p>
+                        <div class="btn-grp">
+                          <span class="btn btn-default btn-file profile-img">
+                            <i class="fa fa-image"></i>Upload
+                            <input type="file" name="upload" onchange="travellerReadURL(this)" >
+                          </span>
+                          <!--
+                          <span class="btn btn-default btn-file">
+                            <i class="fa fa-image"></i>
+                            Upload Picture
+                            <input type="file" name="upload" onchange="travellerReadURL(this)">
+                          </span>
+                          -->
+                          <div class="msg display-none"><span class="text-danger">File should be less than 500KB</span></div>
+                          <input type="submit" class="btn btn-danger" value="Save">
+                          
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -245,12 +251,12 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-6">
-                        <label>Passport Number <em>*</em></label>
-                        {!! Form::text('document_no',null, ['placeholder'=>'Your Passport Number', 'class'=>'form-control', 'required']) !!}                   
+                        <label>Document Type</label>
+                        {!! Form::select('document_type',['passport' => 'Passport', 'id-card'=> 'ID Card', 'birth-certificate'=>'Birth Certificate'], null, ['class'=>'form-control SlectBox', 'required']) !!}
                       </div>
                       <div class="col-md-6">
-                        <label>Passport Type</label>
-                        <input type="text" class="form-control">
+                        <label>Document Number <em>*</em></label>
+                        {!! Form::text('document_no',null, ['placeholder'=>'Your Passport Number', 'class'=>'form-control', 'required']) !!}                   
                       </div>
                     </div>
                   </div>
@@ -342,9 +348,9 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-12">
-                      <span class="btn btn-default btn-file passport-img">
+                      <span class="btn btn-default btn-file passport-img @if(!empty($profile->document_img)) display-none @endif">
                         <i class="fa fa-image"></i>Upload
-                        <input type="file" class="image" name="passport_img" onchange="documentReadURL(this)" >
+                        
                       </span>
                       <!--
                         <span class="btn btn-default btn-file passport-img">
@@ -354,9 +360,9 @@
                         </span> -->
 
                         <p class="help-block">
-                          image size not exceeds more than 500kb
+                          Image should be less than 500KB
                         </p>
-                        <div class="msgPassport display-none"><span class="text-danger">File should be less than 500KB</span></div>
+                        <div class="msgPassport display-none"><span class="text-danger">Image should be less than 500KB</span></div>
                         @if(!empty($profile->document_img))
                           <div id="documentPreview" class="show-img-bg" style="background-image:url({{url('images/user/document/'.$profile->document_img)}})"  alt="Image Preview"></div>
                           @else
@@ -366,7 +372,11 @@
                       
                     </div>
                   </div>
-                  <input type="submit" class="btn btn-danger" value="Upload">
+                  <span class="btn btn-default btn-file btn-passport @if(empty($profile->document_img)) display-none @endif">
+                    <i class="fa fa-image"></i>Browse
+                    <input type="file" class="passportImg" name="passport_img" onchange="documentReadURL(this)" >
+                  </span>
+                  <input type="submit" class="btn btn-danger" value="Save">
                 {!! Form::close() !!}
               </div>
               
