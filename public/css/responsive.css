@@ -89,6 +89,14 @@
         /* margin-left: 135px; */
         margin-left: 0;
         padding-right: 15px;
+        margin-right: 15px;
+    }
+    .header-right .auth {
+      margin-right: 0;
+    }
+    .header-right .menu .auth ul{
+        margin-right: 0;
+        padding-right: 0;
     }
     .header-right .menu li a {
         padding: 10px;
@@ -320,6 +328,16 @@
     }
     .pop-img {
         background-position: -42px 0;
+    }
+    /*dashbaord*/
+    .profile-bg::after {
+      border-width: 0 0 55px 40vw;
+    }
+    .profile .nav.nav-tabs {
+      width: 200px;
+    }
+    .profile .tab-content {
+      margin-left: 220px;
     }
 }
 
@@ -1179,6 +1197,26 @@
     .payment-btn {
       font-size: 16px;
       width: 100%;
+    }
+
+    /*dashboard pages*/
+    .dashboard-menu{
+        display: none;
+    }
+    .profile-block{
+        margin-bottom: 50px;
+    }
+    .profile-bg::after {
+      border-width: 0 0 55px 100vw;
+    }
+    .activity-wrap figure {
+      margin-bottom: 15px;
+    }
+    .meta-activity ul li{
+        font-size: 12px;
+    }
+    .activity-wrap p{
+        margin-bottom: 0;
     }
 }
 

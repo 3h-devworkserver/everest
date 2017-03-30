@@ -5168,6 +5168,9 @@ body.modal-open {
   width: 100%;
   text-align: center;
 }
+.travellerPassportForm .btn-grp{
+    overflow: hidden;
+}
 .profile .btn-default.btn-file{
     background-color:transparent;
     border-color: #ccc;
