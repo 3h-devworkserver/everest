@@ -4881,10 +4881,17 @@ body.modal-open {
 }
 .profile-block {
     background: #fff;
-    border: 1px solid #e7e7e7;
+  /*  border: 1px solid #e7e7e7;*/
 }
 .profile-picture {
     /* padding: 20px 0;*/
+}
+.profile-picture .btn-file {
+  border-style: dashed;
+  box-shadow: none;
+  padding: 50% 0;
+  text-align: center;
+  border-color:#e7e7e7;
 }
 .profile-picture .profile-img {
     background-position: center center;
@@ -5165,6 +5172,9 @@ body.modal-open {
     background-color:transparent;
     border-color: #ccc;
     color: #ccc;
+}
+.profile .btn-grp .btn-file{
+   width: 200px;
 }
 .profile .btn-default.btn-file:hover{
     border-color: #999;
