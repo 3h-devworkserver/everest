@@ -1435,11 +1435,11 @@ function travellerReadURL(input) {
 
 // preview of traveller profile image in frontend traveller admin
 function documentReadURL(input) {
-  $('.msgPassport').hide();
+  $('.msgPassport').removeClass('text-danger');
   if (input.files && input.files[0]) {
     // alert(input.files[0].size);
     if(input.files[0].size > 500000){
-      $('.msgPassport').show();
+      $('.msgPassport').addClass('text-danger');
     }else{
       var reader = new FileReader();
 

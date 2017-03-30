@@ -17,7 +17,7 @@
           <div>
 
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav nav-tabs" role="tablist" id="myTab">
               <li role="presentation" class="active"><a href="#a" aria-controls="a" role="tab" data-toggle="tab">Edit Profile</a></li>
               <li role="presentation"><a href="#b" aria-controls="b" role="tab" data-toggle="tab">Change Profile Picture</a></li>
               <li role="presentation"><a href="#c" aria-controls="c" role="tab" data-toggle="tab">Change Password</a></li>
@@ -175,7 +175,7 @@
                               <div class="profile-bg" style="background-image:url({{asset('images/user/profile/'.$profile->profile_pic)}});"></div>
                             @else
                               <span class="btn btn-default btn-file">
-                                <i class="fa fa-image"></i>Upload
+                                <i class="fa fa-image"></i>Browse
                                 
                               </span>
                             @endif
@@ -189,7 +189,7 @@
                         </p>
                         <div class="btn-grp">
                           <span class="btn btn-default btn-file profile-img">
-                            <i class="fa fa-image"></i>Upload
+                            <i class="fa fa-image"></i>Browse
                             <input type="file" name="upload" onchange="travellerReadURL(this)" >
                           </span>
                           <!--
@@ -349,7 +349,7 @@
                     <div class="row">
                       <div class="col-md-12">
                       <span class="btn btn-default btn-file passport-img @if(!empty($profile->document_img)) display-none @endif">
-                        <i class="fa fa-image"></i>Upload
+                        <i class="fa fa-image"></i>Browse
                         
                       </span>
                       <!--
@@ -359,13 +359,12 @@
                           <input type="file" name="passport_img" onchange="documentReadURL(this)">
                         </span> -->
 
-                        <div class="msgPassport display-none"><span class="text-danger">Image should be less than 500KB</span></div>
                         @if(!empty($profile->document_img))
                           <div id="documentPreview" class="show-img-bg" style="background-image:url({{url('images/user/document/'.$profile->document_img)}})"  alt="Image Preview"></div>
                           @else
                           <div id="documentPreview" class="show-img-bg display-none" alt="Image Preview"></div>
                         @endif
-                      <p class="help-block">
+                      <p class="help-block msgPassport">
                         Image should be less than 500KB
                       </p>
                       </div>

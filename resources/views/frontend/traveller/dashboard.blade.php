@@ -13,7 +13,7 @@
   <div class="dashboard">
     <div class="container">
       <div class="row">
-        <div class="col-md-3 col-sm-3">
+        <div class="col-md-3 col-sm-5">
           <div class="profile-block">
             <div class="profile-picture">
               <div class="profile-bg" style="background-image:url({{asset('images/new/mountain-biking.jpg')}})"></div>
@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-9 col-sm-9">
+        <div class="col-md-9 col-sm-7">
           @include('includes.partials.messages')
 
           <div class="user-activity">
@@ -45,13 +45,13 @@
               <?php $pack = $booking->packageBooking->package; ?>
             <article class="activity-wrap">
               <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-2 col-sm-3">
                   <figure>
                     <img src="{{asset('images/packages-new/'.$pack->feat_img)}}" alt="">
                     
                   </figure>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-10 col-sm-9">
                   <h4>{{$pack->title}}</h4>
                   <div class="meta-activity">
                     <ul class="list-unstyled list-inline">
