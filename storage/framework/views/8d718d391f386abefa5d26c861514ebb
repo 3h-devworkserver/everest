@@ -374,9 +374,9 @@
                         </span> -->
 
                         <?php if(!empty($profile->document_img)): ?>
-                          <div id="documentPreview" class="show-img-bg" style="background-image:url(<?php echo e(url('images/user/document/'.$profile->document_img)); ?>)"  alt="Image Preview"></div>
-                          <?php else: ?>
-                          <div id="documentPreview" class="show-img-bg display-none" alt="Image Preview"></div>
+                          <img id="documentPreview" class="" src="<?php echo e(url('images/user/document/'.$profile->document_img)); ?>" alt="Image Preview">
+                        <?php else: ?>
+                         <img id="documentPreview" class="display-none" src="" alt="Image Preview">
                         <?php endif; ?>
                       <p class="help-block msgPassport">
                         Image should be less than 500KB

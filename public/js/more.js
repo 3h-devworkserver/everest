@@ -1454,7 +1454,7 @@ function documentReadURL(input) {
 
       reader.onload = function (e) {
           // $('#feat-img-preview').hide();
-          $('#documentPreview').css('background-image', 'url('+e.target.result+')').show();
+          $('#documentPreview').attr('src', e.target.result).show();
           $('.btn-passport').show();
           $('.passport-img').hide();
       }

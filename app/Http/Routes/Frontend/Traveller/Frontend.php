@@ -24,6 +24,8 @@ $router->group(['middleware' => 'access.routeNeedsRole:Traveller'], function ()
 	post('traveller/profile/password', 'ProfileController@changepassword');
 	patch('traveller/profile/passport', 'ProfileController@updatePassport');
 
+	get('traveller/purchase/{id}/detail', 'ProfileController@purchaseDetail');
+
 
 });
 

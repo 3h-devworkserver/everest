@@ -6,6 +6,7 @@ use Auth;
 use Hash;
 use File;
 use App\Models\Menu;
+use App\Models\Booking;
 
 /**
  * Class ProfileController
@@ -195,6 +196,17 @@ class ProfileController extends Controller {
 	    }
 		return redirect()->route('frontend.traveller.profile')->withFlashSuccess('Passport Information Updated Successfully');
 
+	}
+
+	public function purchaseDetail($id){
+		$booking = Booking::findOrFail($id);
+		// return $booking;
+
+		if ($booking->type == 'package') {
+
+
+			// return view()
+		}
 	}
 	
 }

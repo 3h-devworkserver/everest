@@ -39,7 +39,7 @@
 					<div class="user-activity">
 						
 						<h3>Purchased History</h3>						
-							@if(!empty($user))
+							@if(count($user->userBookings) != 0)
 								@foreach($user->userBookings as $booking)
 								<?php 
 								if($booking->type == 'package') {
@@ -53,7 +53,7 @@
 										<div class="col-md-2">
 											<figure>
 												@if($booking->type == 'package')
-												<img src="{{asset('images/packages-new/'.$booked->feat_img)}}" alt="">
+												<a href="{{url('/package/'.$booked->slug)}}"><img src="{{asset('images/packages-new/'.$booked->feat_img)}}" alt=""></a>
 												@else
 												<img src="{{asset('images/upeverest-logo.png')}}" alt="">
 												@endif
@@ -62,7 +62,7 @@
 										</div>
 										<div class="col-md-8">
 											@if($booking->type == 'package')
-												<h4>{{title_case($booked->title)}}</h4>
+												<h4><a href="{{url('/package/'.$booked->slug)}}">{{title_case($booked->title)}}</a></h4>
 											@else
 												<h4>{{title_case($booked->departure)}} to {{title_case($booked->arrival)}}</h4>
 											@endif
@@ -101,7 +101,7 @@
 										</div>
 										<div class="col-md-2 text-right">
 										<div class="action">
-											<a href="#">
+											<a href="{{url('/traveller/purchase/'.$booking->id.'/detail')}}">
 												<i class="fa fa-eye"></i>
 											</a>
 										</div>
@@ -109,16 +109,19 @@
 									</div>
 								</article>
 								@endforeach
+
+								<nav aria-label="...">
+									<ul class="pager">
+										<li><a href="#"><i class="fa fa-angle-left"></i> &nbsp;Previous</a></li>
+										<li><a href="#">Next &nbsp; <i class="fa fa-angle-right"></i></a></li>
+									</ul>
+								</nav>
 							@else
-								
+								<div class="well not-found">
+								<p class="lead text-center">No Purchased History</p>
+								</div>
 							@endif
 
-						<nav aria-label="...">
-							<ul class="pager">
-								<li><a href="#"><i class="fa fa-angle-left"></i> &nbsp;Previous</a></li>
-								<li><a href="#">Next &nbsp; <i class="fa fa-angle-right"></i></a></li>
-							</ul>
-						</nav>
 						
 					</div>
 				</div>

@@ -268,7 +268,7 @@
                         <label>Issue Date <em>*</em></label>
 
                         <div class="row">
-                          <div class="col-md-4">
+                          <div class="col-md-4 col-sm-4">
                             <select name="issue_year" class="form-control profileSelect" required >
                               <option value="">YEAR</option>
                               <?php $j = date('Y'); ?>
@@ -283,11 +283,11 @@
                           </select>
                           </div>
 
-                          <div class="col-md-4">
+                          <div class="col-md-4 col-sm-4">
                             {!! Form::select('issue_month', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'profileSelect form-control','required' ]) !!}
                           </div>
                           
-                          <div class="col-md-4">
+                          <div class="col-md-4 col-sm-4">
                             <select name="issue_day" class="daypicker form-control profileSelect" required >
                               <option value="">DD</option>
                               <?php $j = 1 ; ?>
@@ -308,7 +308,7 @@
                         <label>Expiry Date <em>*</em></label>
 
                         <div class="row">
-                          <div class="col-md-4">
+                          <div class="col-md-4 col-sm-4">
                             <select name="exp_year" class="form-control profileSelect" required >
                               <option value="">YEAR</option>
                               <?php $j = date('Y'); ?>
@@ -323,11 +323,11 @@
                           </select>
                           </div>
 
-                          <div class="col-md-4">
+                          <div class="col-md-4 col-sm-4">
                             {!! Form::select('exp_month', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'profileSelect form-control','required' ]) !!}
                           </div>
                           
-                          <div class="col-md-4">
+                          <div class="col-md-4 col-sm-4">
                             <select name="exp_day" class="daypicker form-control profileSelect" required >
                               <option value="">DD</option>
                               <?php $j = 1 ; ?>
@@ -361,9 +361,9 @@
                         </span> -->
 
                         @if(!empty($profile->document_img))
-                          <div id="documentPreview" class="show-img-bg" style="background-image:url({{url('images/user/document/'.$profile->document_img)}})"  alt="Image Preview"></div>
-                          @else
-                          <div id="documentPreview" class="show-img-bg display-none" alt="Image Preview"></div>
+                          <img id="documentPreview" class="" src="{{url('images/user/document/'.$profile->document_img)}}" alt="Image Preview">
+                        @else
+                         <img id="documentPreview" class="display-none" src="" alt="Image Preview">
                         @endif
                       <p class="help-block msgPassport">
                         Image should be less than 500KB
