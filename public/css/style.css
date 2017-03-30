@@ -5153,6 +5153,14 @@ body.modal-open {
     cursor: inherit;
     display: block;
 }
+.travellerPassportForm .passport-img {
+  border: 1px dashed;
+  font-size: 18px;
+  height: 200px;
+  line-height: 200px;
+  width: 100%;
+  text-align: center;
+}
 .profile .btn-default.btn-file{
     background-color:transparent;
     border-color: #ccc;
