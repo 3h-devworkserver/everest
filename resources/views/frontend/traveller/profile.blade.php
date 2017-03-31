@@ -253,7 +253,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <label>Document Type</label>
-                        {!! Form::select('document_type',['passport' => 'Passport', 'id-card'=> 'ID Card', 'birth-certificate'=>'Birth Certificate'], null, ['class'=>'form-control SlectBox', 'required']) !!}
+                        {!! Form::select('document_type',['passport' => 'Passport', 'id-card'=> 'ID Card', 'birth-certificate'=>'Birth Certificate'], null, ['class'=>'form-control SlectBox documentType', 'required']) !!}
                       </div>
                       <div class="col-md-6">
                         <label>Document Number <em>*</em></label>
@@ -261,7 +261,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group passportDates @if($profile->document_type != 'passport') display-none @endif">
                     <div class="row">
                       
                       <div class="col-md-6">
@@ -269,7 +269,7 @@
 
                         <div class="row">
                           <div class="col-md-4 col-sm-4">
-                            <select name="issue_year" class="form-control profileSelect" required >
+                            <select name="issue_year" class="form-control profileSelect" required  >
                               <option value="">YEAR</option>
                               <?php $j = date('Y'); ?>
                               @while($j != 1900 )
@@ -284,11 +284,11 @@
                           </div>
 
                           <div class="col-md-4 col-sm-4">
-                            {!! Form::select('issue_month', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'profileSelect form-control','required' ]) !!}
+                            {!! Form::select('issue_month', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'profileSelect form-control', 'required' ]) !!}
                           </div>
                           
                           <div class="col-md-4 col-sm-4">
-                            <select name="issue_day" class="daypicker form-control profileSelect" required >
+                            <select name="issue_day" class="daypicker form-control profileSelect required"  >
                               <option value="">DD</option>
                               <?php $j = 1 ; ?>
                               @while($j != 32 )

@@ -37,11 +37,6 @@ class ProfileController extends Controller {
 		->with('class', 'home');
 	}
 
-	// public function account(){
-	// 	$menus = Menu::where('parent_id', 0)->orderby('order')->get();
-	// 	return view('frontend.traveller.account')->with('class', 'home');
-	// }
-
 	public function history(){
 		$user = Auth::user();
 		$menus = Menu::where('parent_id', 0)->orderby('order')->get();
@@ -51,11 +46,6 @@ class ProfileController extends Controller {
 	    ->with('meta_desc', 'Traveller Purchase History, Upeverest')
 		->with('class', 'home');
 	}
-
-	// public function image(){
-	// 	// return $user->userBookings[0]->packageBooking->package;
-	// 	return view('frontend.traveller.image')->with('class', 'home');
-	// }
 
 	public function updateProfile(Request $request){
 		$this->validate($request, [
@@ -148,12 +138,12 @@ class ProfileController extends Controller {
 		$this->validate($request, [
 			'document_type' => 'required',
 			'document_no' => 'required',
-			'issue_year' => 'required',
-			'issue_month' => 'required',
-			'issue_day' => 'required',
-			'exp_year' => 'required',
-			'exp_month' => 'required',
-			'exp_day' => 'required',
+			'issue_year' => 'required_if:document_type,passport',
+			'issue_month' => 'required_if:document_type,passport',
+			'issue_day' => 'required_if:document_type,passport',
+			'exp_year' => 'required_if:document_type,passport',
+			'exp_month' => 'required_if:document_type,passport',
+			'exp_day' => 'required_if:document_type,passport',
 	    ]);
 
 	    if ($request->hasFile('passport_img')) {
@@ -165,7 +155,8 @@ class ProfileController extends Controller {
 	      if (!empty(Auth::user()->profile->document_img)) {
 	      	$prevImg = Auth::user()->profile->document_img;
 	      }
-	      Auth::user()->profile->update([
+	      if ($request->document_type == 'passport') {
+	      	Auth::user()->profile->update([
 	      	'document_type' => $request->document_type,
 	      	'document_no' => $request->document_no,
 	      	'document_img' => $filename,
@@ -175,7 +166,21 @@ class ProfileController extends Controller {
 	      	'exp_year' => $request->exp_year,
 	      	'exp_month' => $request->exp_month,
 	      	'exp_day' => $request->exp_day,
-	      ]);
+	      	]);		
+	      }else{
+	      	Auth::user()->profile->update([
+	      	'document_type' => $request->document_type,
+	      	'document_no' => $request->document_no,
+	      	'document_img' => $filename,
+	      	'issue_year' => '',
+	      	'issue_month' => '',
+	      	'issue_day' => '',
+	      	'exp_year' => '',
+	      	'exp_month' => '',
+	      	'exp_day' => '',
+	      	]);	
+	      }
+	      
 	      	if (!empty($prevImg)) {
 			    if (File::exists($destination_path.'/'.$prevImg)) {
 		            unlink($destination_path.'/'.$prevImg);
@@ -183,18 +188,32 @@ class ProfileController extends Controller {
 	      	}
 
 	    }else{
-	    	Auth::user()->profile->update([
-	      	'document_type' => $request->document_type,
-	      	'document_no' => $request->document_no,
-	      	'issue_year' => $request->issue_year,
-	      	'issue_month' => $request->issue_month,
-	      	'issue_day' => $request->issue_day,
-	      	'exp_year' => $request->exp_year,
-	      	'exp_month' => $request->exp_month,
-	      	'exp_day' => $request->exp_day,
-	      ]);
+
+	    	if ($request->document_type == 'passport') {
+		    	Auth::user()->profile->update([
+		      	'document_type' => $request->document_type,
+		      	'document_no' => $request->document_no,
+		      	'issue_year' => $request->issue_year,
+		      	'issue_month' => $request->issue_month,
+		      	'issue_day' => $request->issue_day,
+		      	'exp_year' => $request->exp_year,
+		      	'exp_month' => $request->exp_month,
+		      	'exp_day' => $request->exp_day,
+		      	]);
+		    }else{
+		    	Auth::user()->profile->update([
+		      	'document_type' => $request->document_type,
+		      	'document_no' => $request->document_no,
+		      	'issue_year' => '',
+		      	'issue_month' => '',
+		      	'issue_day' => '',
+		      	'exp_year' => '',
+		      	'exp_month' => '',
+		      	'exp_day' => '',
+		      	]);
+		    }
 	    }
-		return redirect()->route('frontend.traveller.profile')->withFlashSuccess('Passport Information Updated Successfully');
+		return redirect()->route('frontend.traveller.profile')->withFlashSuccess('Document Information Updated Successfully');
 
 	}
 
@@ -203,10 +222,13 @@ class ProfileController extends Controller {
 		if ($booking->user_id != Auth::user()->id) {
 			abort(404);
 		}
-		// return $booking;
 
 		if ($booking->type == 'package') {
-
+			$package = $booking->packageBooking->package;
+			$dPrice = $booking->packageBooking->datePrice;
+			$packageBooking = $booking->packageBooking;
+			$mainTraveller = $packageBooking->mainTraveller;
+			return view('frontend.traveller.packagedetail', compact('package', 'dPrice', 'packageBooking', 'mainTraveller'));
 
 			// return view()
 		}else{

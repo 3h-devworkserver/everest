@@ -8,7 +8,7 @@
 
 <div class="main-content">
 	<div class="container">
-		<div class="travel-booking">
+		<div class="travel-booking booking-views">
 			
 			<div class="row">
 				<div class="col-md-8 col-sm-8" id="traveller-info">
@@ -55,7 +55,7 @@
 									<h3>Trip Cost Breakdown</h3>
 									<dl class="dl-horizontal">
 										<dt>Base Price</dt>
-										<dd>USD {{ count($data->fname) * $dPrice->price}}</dd>
+										<dd>USD {{ $packageBooking->main_package_amount}}</dd>
 
 									</dl>
 									
@@ -63,11 +63,8 @@
 								<div class="trip-block trip-payment-options">
 									<h3>Payment Options</h3>
 									<dl class="dl-horizontal">
-
-										{{-- <dt>Minimun Deposit</dt>
-										<dd >USD {{ (count($data->fname) * $dPrice->price) * (25/100)}}</dd> --}}
 										<dt>Total Amount</dt>
-										<dd>USD {{$data->total_amount}}</dd>									
+										<dd>USD {{$packageBooking->total_amount}}</dd>									
 									</dl>
 
 								</div>
@@ -76,98 +73,48 @@
 									<table class="table">
 										<tr>
 											<th>Travellers Name</th>
-											<th>Passport Number</th>
+											<th>Document Number</th>
 											<th>DOB</th>
-											<!-- <th>Insurance</th>-->
-											<!-- <th>Single Suppliment</th>-->
 										</tr>
-
-										<?php /* ?>
-										@foreach($travellers as $traveller)
-										<tr>
-											<td>{{$traveller->title}}. {{$traveller->fname}} {{$traveller->mname}} {{$traveller->lname}}</td>
-											<td>{{$traveller->passport}}</td>
-											<td>{{$traveller->dob_year}}-{{$traveller->dob_month}}-{{$traveller->dob_day}}</td>
-										</tr>
-										@endforeach
-										<?php */ ?>
 										
 										<?php $y = 0; ?>
-										@while($y < count($data->fname))
-										<tr>
-											<td>{{$data->title[$y]}}. {{$data->fname[$y]}} {{$data->mname[$y]}} {{$data->lname[$y]}}</td>
-											<td>{{$data->passport[$y]}}</td>
-											<td>{{$data->dob_year[$y]}}-{{$data->dob_month[$y]}}-{{$data->dob_day[$y]}}</td>
-										</tr>
+										@while($y < $packageBooking->total_person)
+											@if($y == 0)
+											<tr>
+												<td>{{$mainTraveller->profile->title}}. {{$mainTraveller->profile->fname}} {{$mainTraveller->profile->mname}} {{$mainTraveller->profile->lname}}</td>
+												<td>{{$mainTraveller->profile->document_no}}</td>
+												<td>{{$mainTraveller->profile->dob_year}}-{{$mainTraveller->profile->dob_month}}-{{$mainTraveller->profile->dob_day}}</td>
+											</tr>
+											@else
+											<tr>
+												<td>{{$mainTraveller->otherTravellers[$y-1]->profile->title}}. {{$mainTraveller->otherTravellers[$y-1]->profile->fname}} {{$mainTraveller->otherTravellers[$y-1]->profile->mname}} {{$mainTraveller->otherTravellers[$y-1]->profile->lname}}</td>
+												<td>{{$mainTraveller->otherTravellers[$y-1]->profile->document_no}}</td>
+												<td>{{$mainTraveller->otherTravellers[$y-1]->profile->dob_year}}-{{$mainTraveller->otherTravellers[$y-1]->profile->dob_month}}-{{$mainTraveller->otherTravellers[$y-1]->profile->dob_day}}</td>
+											</tr>
+											@endif
 										<?php $y++; ?>
 										@endwhile
 									</table>
 								</div>
 
-								<?php /* ?>
 								<div class="trip-block emergency-contact">
 									<h3>Emergency Contact Detail</h3>	
 									<dl class="dl-horizontal">
 										<dt>Full Name</dt>
-										<dd>{{$travellers[0]->em_fname}} {{$travellers[0]->em_mname}} {{$travellers[0]->em_lname}}</dd>
+										<dd>{{$mainTraveller->profile->em_fname}} {{$mainTraveller->profile->em_mname}} {{$mainTraveller->profile->em_lname}}</dd>
 										<dt>Phone Number</dt>
-										<dd >{{$travellers[0]->em_phone}}</dd>
+										<dd >{{$mainTraveller->profile->em_phone}}</dd>
 									</dl>									
 								</div>
-								<?php */ ?>
-
-								<div class="trip-block emergency-contact">
-									<h3>Emergency Contact Detail</h3>	
-									<dl class="dl-horizontal">
-										<dt>Full Name</dt>
-										<dd>{{$data->em_fname[0]}} {{$data->em_mname[0]}} {{$data->em_lname[0]}}</dd>
-										<dt>Phone Number</dt>
-										<dd >{{$data->em_phone[0]}}</dd>
-									</dl>									
-								</div>
-								
-								<?php /* ?>
 								<div class="trip-block correspondence-contact">
 									<h3>Correspondence Address</h3>
 									<dl class="dl-horizontal">
 										<dt>Your Detail</dt>
-										<dd>{{$travellers[0]->address}}, {{$travellers[0]->city}} {{$travellers[0]->postal_zip}}, {{$travellers[0]->country}}</dd>
-									</dl>	
-								</div>
-								<?php */  ?>
-								<div class="trip-block correspondence-contact">
-									<h3>Correspondence Address</h3>
-									<dl class="dl-horizontal">
-										<dt>Your Detail</dt>
-										<dd>{{$data->address[0]}}, {{$data->city[0]}} {{$data->postal_zip[0]}}, {{$data->country[0]}}</dd>
+										<dd>{{$mainTraveller->profile->address}}, {{$mainTraveller->profile->city}} {{$mainTraveller->profile->postal_zip}}, {{$mainTraveller->profile->country}}</dd>
 									</dl>	
 								</div>
 								
-								<div class="trip-block terms-conditions">
-									<h3>Terms &amp; Conditions</h3>
-
-									{!! Form::open(['url'=>'package/'.$slug.'/'.$datePrice.'/booking-step3', 'id'=>'booking-2']) !!}		
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="condition">I have read, understood and accepted the booking <a href="#">terms and conditions</a>
-										</label>
-									</div>
-									
-									<?php /* ?>
-									<input type="hidden" name="group_id" value="{{$groupId}}">
-									<?php */ ?>
-
-									{!! Form::close() !!}
-								</div>
-
 							</div>
-
-							<div class="button-div">
-							
-								<a href="{{url('/package/'.$slug.'/'.$datePrice.'/booking-step1/edit')}}" class="btn btn-danger pull-left">Back to Step 1</a>
-								<a id="summary-continue" class="btn btn-danger pull-right">Continue</a>
-							</div>
-							
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-4">
@@ -184,15 +131,14 @@
 									<div class="trip-more-info-list">
 										<div class="info-title sub-heading-title when">Traveller: </div>
 										<div class="info-description" id="traveller">
-											<?php /* ?>
-											@foreach($travellers as $traveller)
-											{{$traveller->title}}. {{$traveller->fname}} {{$traveller->mname}} {{$traveller->lname}}<p>
-											@endforeach
-											<?php */ ?>
 
 											<?php $y = 0; ?>
-											@while($y < count($data->fname))
-											<p>{{$data->title[$y]}}. {{$data->fname[$y]}} {{$data->mname[$y]}} {{$data->lname[$y]}}</p>
+											@while($y < $packageBooking->total_person)
+												@if($y == 0)
+												<p>{{$mainTraveller->profile->title}}. {{$mainTraveller->profile->fname}} {{$mainTraveller->profile->mname}} {{$mainTraveller->profile->lname}}</p>
+												@else
+												<p>{{$mainTraveller->otherTravellers[$y-1]->profile->title}}. {{$mainTraveller->otherTravellers[$y-1]->profile->fname}} {{$mainTraveller->otherTravellers[$y-1]->profile->mname}} {{$mainTraveller->otherTravellers[$y-1]->profile->lname}}</p>
+												@endif
 											<?php $y++; ?>
 											@endwhile
 										</div>
@@ -201,21 +147,38 @@
 											<div class="total-price-details-box">
 												<div class="clearfix sub-heading-title">
 													<div class="label-text total-passenger-price pull-left">Total Tour Cost</div>
-													<div class="content-text total-passenger-price pull-right">USD {{count($data->fname) * $dPrice->price}}</div>
+													<div class="content-text total-passenger-price pull-right">USD {{$packageBooking->main_package_amount}}</div>
 												</div>
 											</div>
-
-											<div class="total-price-details-box  exten-text @if(empty($extensionText)) hide @endif ">
+											@if(!empty($packageBooking->addon_selected))
+											<?php 
+												$selectedAddon = explode(',', $packageBooking->addon_packages_detail);
+		                                        
+											?>
+											<div class="total-price-details-box  exten-text">
 												<div class="clearfix sub-heading-title">
 													<div class="label-text total-passenger-price ">Extension Packages</div>
 													<div class="content-text total-passenger-price pull-right ext hide" extprice="0" ></div>
 													<div class="extension">
-													@if(!empty($extensionText)) 
-														{!! $extensionText !!} 
-													@endif
+														@foreach($selectedAddon as $string)
+														<?php $selectedAddonDetail = explode('-', $string); ?>
+														<div class="clearfix">
+															<div class="ext-text pull-left">
+																<?php 
+																	$title = DB::table('packages')->where('id', $selectedAddonDetail[0])->value('title');
+																?>
+																<p>{{$title}}<br><small>(@if($selectedAddonDetail[1] == 1){{$selectedAddonDetail[1]}} Person @else {{$selectedAddonDetail[1]}} Persons @endif)</small>
+																</p>
+															</div>
+															<div class="content-text total-passenger-price ext pull-right">
+															USD {{$selectedAddonDetail[2]}}
+															</div>
+														</div>
+														@endforeach
 													</div>
 												</div>
 											</div>
+											@endif
 
 											<div class="total-footer">
 												<div class="clearfix sub-heading-title">
@@ -226,7 +189,7 @@
 														<?php /* ?>
 														<div class="content-text total-passenger-price pull-right"><span id = "total">USD {{ count($travellers) * $dPrice->price}}</span></div>
 														<?php */ ?>
-														<div class="content-text total-passenger-price pull-right"><span id = "total">USD {{$totalAmount}}</span></div>
+														<div class="content-text total-passenger-price pull-right"><span id = "total">USD {{$packageBooking->total_amount}}</span></div>
 													</div>
 
 

@@ -1412,6 +1412,21 @@ $('.profileImg').click(function(){
   
 });
 
+$(document).on('change','.documentType', function(){
+  var documentType = $(this).val();
+  if(documentType == 'passport'){
+    $('.passportDates').show();
+  }else{
+    $('.passportDates').hide();
+  }
+});
+
+$(document).on('click','.btn-viewall', function(){
+  $('.user-activity .activity-wrap').show();
+  $('.btn-viewall').hide();
+});
+
+
 
 
 /* -----------    end of traveller panel js      ---- */

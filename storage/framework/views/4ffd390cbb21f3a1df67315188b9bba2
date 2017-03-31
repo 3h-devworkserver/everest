@@ -116,7 +116,7 @@
                                         <input value="upeverest" name="scd" type="hidden">  
                                         <?php /* <input value="Upeverest_esewa" name="scd" type="hidden">   */ ?>
                                         <input value="<?php echo e($packageBooking->order_id); ?>" name="pid" type="hidden"> 
-                                        <input value="<?php echo e(url('package/booking-success/esewa'.$packageBooking->token)); ?>?q=su" type="hidden" name="su">
+                                        <input value="<?php echo e(url('package/booking-success/esewa/'.$packageBooking->token)); ?>?q=su" type="hidden" name="su">
                                         <input value="<?php echo e(url()); ?>" type="hidden" name="fu"> 
 
 											<div class="row">

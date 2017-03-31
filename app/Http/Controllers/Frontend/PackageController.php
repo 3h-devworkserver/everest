@@ -417,8 +417,6 @@ public function username($fname,$lname,$rand=null){
     }
 
     public function bookingStep2($slug, $datePrice, Request $request){
-    // return $request->all();
-
         $datePriceRow = PackageDatePrice::findOrFail($datePrice);
         $packageId = $datePriceRow->package->id;
         if(Auth::guest()){

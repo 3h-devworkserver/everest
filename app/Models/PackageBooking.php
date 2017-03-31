@@ -36,6 +36,11 @@ class PackageBooking extends Model
         return $this->belongsTo('App\Models\Packages','package_selected');
     }
 
+    public function datePrice()
+    {
+        return $this->belongsTo('App\Models\PackageDatePrice','dateprice_selected');
+    }
+
     
 
 }

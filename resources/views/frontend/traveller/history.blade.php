@@ -40,6 +40,7 @@
 						
 						<h3>Purchased History</h3>						
 							@if(count($user->userBookings) != 0)
+								<?php $i = 1; ?>
 								@foreach($user->userBookings as $booking)
 								<?php 
 								if($booking->type == 'package') {
@@ -48,7 +49,7 @@
 									$booked = $booking->flightReservation; 
 								}
 								?>
-								<article class="activity-wrap">
+								<article class="activity-wrap @if($i > 11) display-none @endif">
 									<div class="row">
 										<div class="col-md-2">
 											<figure>
@@ -86,6 +87,14 @@
 													<li>
 														<i class="fa fa-clock-o"></i> Purchased On: {{Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')}} 
 													</li>
+													<li>
+														<i class="fa fa-money"></i>
+														@if($booking->type == 'package')
+															{{$booking->packageBooking->total_amount}} 
+														@else
+															{{$booked->total_amount}} 
+														@endif
+													</li>
 												</ul>
 											</div>
 											@if($booking->type == 'package')
@@ -108,14 +117,10 @@
 									</div>
 									</div>
 								</article>
+								<?php $i++; ?>
 								@endforeach
 
-								<nav aria-label="...">
-									<ul class="pager">
-										<li><a href="#"><i class="fa fa-angle-left"></i> &nbsp;Previous</a></li>
-										<li><a href="#">Next &nbsp; <i class="fa fa-angle-right"></i></a></li>
-									</ul>
-								</nav>
+								<a href="javascript:void(0)" class="btn btn-danger btn-viewall">View All</a>
 							@else
 								<div class="well not-found">
 								<p class="lead text-center">No Purchased History</p>
