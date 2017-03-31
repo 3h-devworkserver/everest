@@ -318,7 +318,29 @@
     }
     .travel-form [class*="col-"],
     .travel-form [class^="col-"] {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    #traveller-info .travel-form .form-group .row {
+      margin-bottom: 0;
+    }
+    .travel-form .date-birth .row-fluid [class*="col-"], 
+    .travel-form .date-birth .row-fluid [class^="col-"], 
+    .travel-form .issue-date .row-fluid [class*="col-"],
+    .travel-form .issue-date .row-fluid [class^="col-"],
+    .travel-form .date-birth .pad-adj, 
+    .travel-form .issue-date .pad-adj{
+        margin-bottom: 0;
+    }
+    .travel-form label,
+    .travel-form .form-control, 
+    .travel-form .SumoSelect > .CaptionCont > span, 
+    .travel-form .btn.btn-file {
+      font-size: 12px;
+    }
+    .add-extra-package .thumb-img {
+      min-height: 170px;
     }
     #valentine-promo .modal-dialog {
         width: 95%;
@@ -349,6 +371,11 @@
     .profile .form-group .gender-block .radio {
       margin-bottom: 15px;
     }
+    .clearleft{
+        clear: left;
+    }
+
+
 }
 
 @media only screen and (min-width:768px) and (max-width:1024px) and (orientation:landscape) {
@@ -474,6 +501,14 @@
     }
     .profile .tab-content {
       width: 72%;
+    }
+    .clearleft{
+        clear: none;
+    }
+    /*booking page*/
+    .travel-form .date-birth .pad-adj:first-child, 
+    .travel-form .issue-date .pad-adj:first-child {
+      padding-left: 15px;
     }
   
 }
@@ -829,9 +864,25 @@
     .total-block {
         margin-top: 40px;
     }
+    .travel-form .form-group{
+        margin-bottom: 0;
+    }
     .travel-form [class*="col-"],
     .travel-form [class^="col-"] {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+    }
+    #traveller-info .travel-form .form-group .row {
+      margin-bottom:0px;
+    }
+    .travel-form .date-birth .pad-adj, 
+    .travel-form .issue-date .pad-adj{
+        margin-bottom: 0;
+    }
+   .travel-form .date-birth .row-fluid [class*="col-"], 
+   .travel-form .date-birth .row-fluid [class^="col-"], 
+   .travel-form .issue-date .row-fluid [class*="col-"], 
+   .travel-form .issue-date .row-fluid [class^="col-"] {
+      margin: 0;
     }
     /* about page */
     .about {

@@ -1,15 +1,13 @@
-@extends('frontend.layouts.master-new')
-
-@section('title'){{ $meta_title }}@endsection
-<!--@section('meta_title'){{ $meta_title }}@endsection-->
-@section('meta_keywords'){{ $meta_keywords }}@endsection
-@section('meta_desc'){{ $meta_desc }}@endsection
-@section('content')
-{{-- <section class="banner bg-wrap {!! $page->image !!}" style="background-image: url({!! url().'/images/'.$page->image !!});">
+<?php $__env->startSection('title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>
+<!--<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>-->
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php /* <section class="banner bg-wrap <?php echo $page->image; ?>" style="background-image: url(<?php echo url().'/images/'.$page->image; ?>);">
     <div class="container"></div>
-</section> --}}
-{{-- @include('frontend.includes.region') --}}
-{{-- @include('frontend.includes.new.search') --}}
+</section> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.region', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.new.search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
 
 <div class="main-content">
 	<div class="container">
@@ -17,8 +15,8 @@
 			<div class="travel-booking-step">
 				<div class="row">
 					<div class="col-md-12">
-						{{-- <a href="{{url('package/'.$slug.'/'.$datePrice.'/'.$travellers[0]->group_id.'/booking-step1')}}" >Step 1 - Travellers </a> --}}
-						<a href="{{url('/package/'.$slug.'/'.$datePrice.'/booking-step1/edit')}}" >Step 1 - Travellers </a>
+						<?php /* <a href="<?php echo e(url('package/'.$slug.'/'.$datePrice.'/'.$travellers[0]->group_id.'/booking-step1')); ?>" >Step 1 - Travellers </a> */ ?>
+						<a href="<?php echo e(url('/package/'.$slug.'/'.$datePrice.'/booking-step1/edit')); ?>" >Step 1 - Travellers </a>
 						<a href="#" class="active">Step 2 - Summary  </a>
 						<a href="#">Step 3 -  Confirm </a>
 					</div>
@@ -27,7 +25,7 @@
 			<div class="row">
 				<div class="col-md-8 col-sm-7" id="traveller-info">
 					<div class="page-header bold_page-header">
-						<h2>{{$package->title}} BOOKING</h2>
+						<h2><?php echo e($package->title); ?> BOOKING</h2>
 					</div>
 					
 					<div class="booking-summary">
@@ -43,42 +41,43 @@
 								?>
 									<dl class="dl-horizontal">
 										<dt>Package Name</dt>
-										<dd>{{$package->title}}</dd>
+										<dd><?php echo e($package->title); ?></dd>
 										<dt>Departure Date</dt>
-										<dd>{{$pieces[0]}}</dd>
+										<dd><?php echo e($pieces[0]); ?></dd>
 										<dt>Return Date</dt>
-										<dd>{{$pieces[1]}}</dd>
-											  {{-- <dt>Duration</dt>
-											  <dd>15days</dd> --}}
-											  {{-- <dt>Flights</dt>
-											  <dd>Trips includes flights which are subject to availability</dd> --}}
+										<dd><?php echo e($pieces[1]); ?></dd>
+											  <?php /* <dt>Duration</dt>
+											  <dd>15days</dd> */ ?>
+											  <?php /* <dt>Flights</dt>
+											  <dd>Trips includes flights which are subject to availability</dd> */ ?>
 									</dl>
 							</div>
-							@if(count($package->optionsAccomodation) != 0)
+							<?php if(count($package->optionsAccomodation) != 0): ?>
 							<div class="trip-block trip-accomodation">
 								<h3>Accommodation</h3>
-								<h4>{{$package->optionsAccomodation[0]->name}}</h4>
-								{!! $package->optionsAccomodation[0]->content !!}
-								{{-- <p> This tour spends 3 nights in standard hotels and 12 nights in mountain lodges (teahouses).</p>
+								<h4><?php echo e($package->optionsAccomodation[0]->name); ?></h4>
+								<?php echo $package->optionsAccomodation[0]->content; ?>
 
-								<p>Most lodges now have twin-bedded rooms but you should still be prepared to sleep in multi-bedded rooms on the occasional night. In the last decade the quality of the lodges and the food has improved significantly, but you should expect fairly basic accommodation at the highest points of the trek. Some lodges now have showers (charged at £2-£4 per shower) and all have basic toilets. </p> --}}
+								<?php /* <p> This tour spends 3 nights in standard hotels and 12 nights in mountain lodges (teahouses).</p>
+
+								<p>Most lodges now have twin-bedded rooms but you should still be prepared to sleep in multi-bedded rooms on the occasional night. In the last decade the quality of the lodges and the food has improved significantly, but you should expect fairly basic accommodation at the highest points of the trek. Some lodges now have showers (charged at £2-£4 per shower) and all have basic toilets. </p> */ ?>
 							</div>
-							@endif
+							<?php endif; ?>
 							<div class="trip-block trip-cost">
 								<h3>Trip Cost Breakdown</h3>
 								<dl class="dl-horizontal">
 									<dt>Base Price</dt>
-									<dd>USD {{ count($data->fname) * $dPrice->price}}</dd>
+									<dd>USD <?php echo e(count($data->fname) * $dPrice->price); ?></dd>
 								</dl>
 							</div>
 							<div class="trip-block trip-payment-options">
 								<h3>Payment Options</h3>
 								<dl class="dl-horizontal">
 
-									{{-- <dt>Minimun Deposit</dt>
-									<dd >USD {{ (count($data->fname) * $dPrice->price) * (25/100)}}</dd> --}}
+									<?php /* <dt>Minimun Deposit</dt>
+									<dd >USD <?php echo e((count($data->fname) * $dPrice->price) * (25/100)); ?></dd> */ ?>
 									<dt>Total Amount</dt>
-									<dd>USD {{$data->total_amount}}</dd>									
+									<dd>USD <?php echo e($data->total_amount); ?></dd>									
 								</dl>
 
 							</div>
@@ -104,14 +103,14 @@
 									<?php */ ?>
 									
 									<?php $y = 0; ?>
-									@while($y < count($data->fname))
+									<?php while($y < count($data->fname)): ?>
 									<tr>
-										<td>{{$data->title[$y]}}. {{$data->fname[$y]}} {{$data->mname[$y]}} {{$data->lname[$y]}}</td>
-										<td>{{$data->passport[$y]}}</td>
-										<td>{{$data->dob_year[$y]}}-{{$data->dob_month[$y]}}-{{$data->dob_day[$y]}}</td>
+										<td><?php echo e($data->title[$y]); ?>. <?php echo e($data->fname[$y]); ?> <?php echo e($data->mname[$y]); ?> <?php echo e($data->lname[$y]); ?></td>
+										<td><?php echo e($data->passport[$y]); ?></td>
+										<td><?php echo e($data->dob_year[$y]); ?>-<?php echo e($data->dob_month[$y]); ?>-<?php echo e($data->dob_day[$y]); ?></td>
 									</tr>
 									<?php $y++; ?>
-									@endwhile
+									<?php endwhile; ?>
 								</table>
 							</div>
 
@@ -131,9 +130,9 @@
 								<h3>Emergency Contact Detail</h3>	
 								<dl class="dl-horizontal">
 									<dt>Full Name</dt>
-									<dd>{{$data->em_fname[0]}} {{$data->em_mname[0]}} {{$data->em_lname[0]}}</dd>
+									<dd><?php echo e($data->em_fname[0]); ?> <?php echo e($data->em_mname[0]); ?> <?php echo e($data->em_lname[0]); ?></dd>
 									<dt>Phone Number</dt>
-									<dd >{{$data->em_phone[0]}}</dd>
+									<dd ><?php echo e($data->em_phone[0]); ?></dd>
 								</dl>									
 							</div>
 								
@@ -151,14 +150,14 @@
 								<h3>Correspondence Address</h3>
 								<dl class="dl-horizontal">
 									<dt>Your Detail</dt>
-									<dd>{{$data->address[0]}}, {{$data->city[0]}} {{$data->postal_zip[0]}}, {{$data->country[0]}}</dd>
+									<dd><?php echo e($data->address[0]); ?>, <?php echo e($data->city[0]); ?> <?php echo e($data->postal_zip[0]); ?>, <?php echo e($data->country[0]); ?></dd>
 								</dl>	
 							</div>
 								
 							<div class="trip-block terms-conditions">
 								<h3>Terms &amp; Conditions</h3>
 
-								{!! Form::open(['url'=>'package/'.$slug.'/'.$datePrice.'/booking-step3', 'id'=>'booking-2']) !!}		
+								<?php echo Form::open(['url'=>'package/'.$slug.'/'.$datePrice.'/booking-step3', 'id'=>'booking-2']); ?>		
 								<div class="checkbox">
 									<label>
 										<input type="checkbox" name="condition">I have read, understood and accepted the booking <a href="#">terms and conditions</a>
@@ -169,13 +168,14 @@
 								<input type="hidden" name="group_id" value="{{$groupId}}">
 								<?php */ ?>
 
-								{!! Form::close() !!}
+								<?php echo Form::close(); ?>
+
 							</div>
 
 						</div>
 
 						<div class="button-div">
-							<a href="{{url('/package/'.$slug.'/'.$datePrice.'/booking-step1/edit')}}" class="btn btn-danger pull-left">Back to Step 1</a>
+							<a href="<?php echo e(url('/package/'.$slug.'/'.$datePrice.'/booking-step1/edit')); ?>" class="btn btn-danger pull-left">Back to Step 1</a>
 							<a id="summary-continue" class="btn btn-danger pull-right">Continue</a>
 						</div>
 							
@@ -190,7 +190,7 @@
 
 								<div class="trip-more-info-list">
 									<div class="info-title sub-heading-title when">When: </div>
-									<div class="info-description">{{$dPrice->daterange}}</div>
+									<div class="info-description"><?php echo e($dPrice->daterange); ?></div>
 								</div>
 								<div class="trip-more-info-list">
 									<div class="info-title sub-heading-title when">Traveller: </div>
@@ -202,28 +202,28 @@
 										<?php */ ?>
 
 										<?php $y = 0; ?>
-										@while($y < count($data->fname))
-										<p>{{$data->title[$y]}}. {{$data->fname[$y]}} {{$data->mname[$y]}} {{$data->lname[$y]}}</p>
+										<?php while($y < count($data->fname)): ?>
+										<p><?php echo e($data->title[$y]); ?>. <?php echo e($data->fname[$y]); ?> <?php echo e($data->mname[$y]); ?> <?php echo e($data->lname[$y]); ?></p>
 										<?php $y++; ?>
-										@endwhile
+										<?php endwhile; ?>
 									</div>
 								</div>
 
 								<div class="total-price-details-box">
 									<div class="clearfix sub-heading-title">
 										<div class="label-text total-passenger-price pull-left">Total Tour Cost</div>
-										<div class="content-text total-passenger-price pull-right">USD {{count($data->fname) * $dPrice->price}}</div>
+										<div class="content-text total-passenger-price pull-right">USD <?php echo e(count($data->fname) * $dPrice->price); ?></div>
 									</div>
 								</div>
 
-								<div class="total-price-details-box  exten-text @if(empty($extensionText)) hide @endif ">
+								<div class="total-price-details-box  exten-text <?php if(empty($extensionText)): ?> hide <?php endif; ?> ">
 									<div class="clearfix sub-heading-title">
 										<div class="label-text total-passenger-price ">Extension Packages</div>
 										<div class="content-text total-passenger-price pull-right ext hide" extprice="0" ></div>
 										<div class="extension">
-										@if(!empty($extensionText)) 
-											{!! $extensionText !!} 
-										@endif
+										<?php if(!empty($extensionText)): ?> 
+											<?php echo $extensionText; ?> 
+										<?php endif; ?>
 										</div>
 									</div>
 								</div>
@@ -238,7 +238,7 @@
 											<div class="content-text total-passenger-price pull-right"><span id = "total">USD {{ count($travellers) * $dPrice->price}}</span></div>
 											<?php */ ?>
 											<div class="content-text total-passenger-price pull-right">
-												<span id = "total">USD {{$totalAmount}}</span>
+												<span id = "total">USD <?php echo e($totalAmount); ?></span>
 											</div>
 										</div>
 								</div>
@@ -249,6 +249,7 @@
 			</div>
 		</div>
 	</div><!--Container -->
-	@include('frontend.includes.new.members')
+	<?php echo $__env->make('frontend.includes.new.members', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

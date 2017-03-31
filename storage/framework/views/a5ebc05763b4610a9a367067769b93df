@@ -1,12 +1,10 @@
-@extends('frontend.layouts.master-new')
-
-@section('title'){{ $meta_title }}@endsection
-<!--@section('meta_title'){{ $meta_title }}@endsection-->
-@section('meta_keywords'){{ $meta_keywords }}@endsection
-@section('meta_desc'){{ $meta_desc }}@endsection
+<?php $__env->startSection('title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>
+<!--<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>-->
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
 
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="extra-traveller display-none">
     <div class="form-info">
@@ -15,26 +13,31 @@
     		<div class="row">
     			<div class="col-md-3 col-sm-6">
     				<label>Title <em>*</em></label>
-    				{!! Form::select('title[]', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms'], null, ['class'=>'box form-control' ]) !!}
+    				<?php echo Form::select('title[]', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms'], null, ['class'=>'box form-control' ]); ?>
+
                     </div>
                 <div class="col-md-3 col-sm-6">
                 	<label>First Name <em>*</em></label>
-                	{!!Form::text('fname[]',null, ['class'=>'form-control', ]) !!}
+                	<?php echo Form::text('fname[]',null, ['class'=>'form-control', ]); ?>
+
                 </div>
                 <div class="col-md-3 col-sm-6 clearleft">
                 	<label>Middle Name</label>
-                	{!!Form::text('mname[]',null, ['class'=>'form-control']) !!}
+                	<?php echo Form::text('mname[]',null, ['class'=>'form-control']); ?>
+
                 </div>
                 <div class="col-md-3 col-sm-6">
                 	<label>Last Name <em>*</em></label>
-                	{!!Form::text('lname[]',null, ['class'=>'form-control', ]) !!}
+                	<?php echo Form::text('lname[]',null, ['class'=>'form-control', ]); ?>
+
                 </div>
             </div>
             <div class="row">
 
             	<div class="col-md-6 col-sm-12">
             		<label>Phone Number</label>
-            		{!!Form::text('phone[]',null, ['class'=>'form-control']) !!}
+            		<?php echo Form::text('phone[]',null, ['class'=>'form-control']); ?>
+
             	</div>
             	<div class="col-md-6 col-sm-12 date-birth">
             		<label>Date Of Birth <em>*</em></label>
@@ -47,7 +50,8 @@
             			<div class="col-md-7 col-sm-6 col-xs-6 pad-adj">
             				<div class="row-fluid">
             					<div class="col-md-6 col-sm-6 col-xs-6">
-            						{!! Form::select('dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]) !!}
+            						<?php echo Form::select('dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
             					</div>
             					<div class="col-md-6 col-sm-6 col-xs-6">
             						<select name="dob_day[]" class="daypicker form-control box" >
@@ -63,15 +67,18 @@
             <div class="row">
             	<div class="col-md-4 col-sm-6">
             		<label>Email <em>*</em></label>
-            		{!!Form::email('email[]',null, ['class'=>'form-control', ]) !!}
+            		<?php echo Form::email('email[]',null, ['class'=>'form-control', ]); ?>
+
             	</div>
             	<div class="col-md-4 col-sm-6">
             		<label>Password <em>*</em></label>
-            		{!!Form::input('password', 'password' ,null, ['class'=>'form-control passfield', 'id'=>'password' ]) !!}
+            		<?php echo Form::input('password', 'password' ,null, ['class'=>'form-control passfield', 'id'=>'password' ]); ?>
+
             	</div>
             	<div class="col-md-4 col-sm-6">
             		<label>Confirm Password <em>*</em></label>
-            		{!!Form::input('password', 'password_confirmation' ,null, ['class'=>'form-control passfield', ]) !!}
+            		<?php echo Form::input('password', 'password_confirmation' ,null, ['class'=>'form-control passfield', ]); ?>
+
             	</div>
             </div>
 
@@ -82,12 +89,14 @@
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
         			<label>Passport Number <em>*</em></label>
-        			{!!Form::text('passport[]',null, ['class'=>'form-control', ]) !!}
+        			<?php echo Form::text('passport[]',null, ['class'=>'form-control', ]); ?>
+
         		</div>
         		<div class="col-md-3 col-sm-6">
         			<label>Nationality</label>
-        			{{-- {!!Form::text('nationality[]',null, ['class'=>'form-control']) !!} --}}
-                    {!!Form::select('nationality[]', [], null, ['class'=>'form-control countrylist' ]) !!}
+        			<?php /* <?php echo Form::text('nationality[]',null, ['class'=>'form-control']); ?> */ ?>
+                    <?php echo Form::select('nationality[]', [], null, ['class'=>'form-control countrylist' ]); ?>
+
         		</div>
         		<div class="col-md-5 col-sm-12 issue-date">
         			<label>Issue Date <em>*</em></label>
@@ -100,7 +109,8 @@
         				<div class="col-md-7 col-sm-6  col-xs-6 pad-adj">
         					<div class="row-fluid">
         						<div class="col-md-6 col-sm-6 col-xs-6 ">
-        							{!! Form::select('issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]) !!}
+        							<?php echo Form::select('issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
         						</div>
         						<div class="col-md-6 col-sm-6 col-xs-6 ">
         							<select name="issue_day[]" class="daypicker form-control box" >
@@ -115,7 +125,8 @@
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
         			<label>Passport Issue Place</label>
-        			{!!Form::text('issue_place[]',null, ['class'=>'form-control']) !!}
+        			<?php echo Form::text('issue_place[]',null, ['class'=>'form-control']); ?>
+
         		</div>
         		<div class="col-md-3 col-sm-6">
         			<label>Passport Image</label>
@@ -138,7 +149,8 @@
         				<div class="col-md-7 col-sm-6  col-xs-6 pad-adj">
         					<div class="row-fluid">
         						<div class="col-md-6 col-sm-6 col-xs-6 ">
-        							{!! Form::select('exp_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]) !!}
+        							<?php echo Form::select('exp_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
         						</div>
         						<div class="col-md-6 col-sm-6 col-xs-6 ">
         							<select name="exp_day[]" class="daypicker form-control box" >
@@ -157,27 +169,32 @@
         	<div class="row">
         		<div class="col-md-6 col-sm-5">
         			<label>Mailing Address <em>*</em></label>
-        			{!!Form::text('address[]',null, ['class'=>'form-control', ]) !!}
+        			<?php echo Form::text('address[]',null, ['class'=>'form-control', ]); ?>
+
         		</div>
         		<div class="col-md-3 col-sm-3">
         			<label>City<em>*</em></label>
-        			{!!Form::text('city[]',null, ['class'=>'form-control', ]) !!}
+        			<?php echo Form::text('city[]',null, ['class'=>'form-control', ]); ?>
+
         		</div>
         		<div class="col-md-3 col-sm-4 issue-date">
         			<label>Postal/Zip Code <em>*</em></label>
-        			{!!Form::text('postal_zip[]',null, ['class'=>'form-control', ]) !!}
+        			<?php echo Form::text('postal_zip[]',null, ['class'=>'form-control', ]); ?>
+
         		</div>
         	</div>
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
         			<label>Country<em>*</em></label>
-        			{{-- {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist' ]) !!} --}}
-                    {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]) !!}
+        			<?php /* <?php echo Form::select('country[]', [], null, ['class'=>'form-control countrylist' ]); ?> */ ?>
+                    <?php echo Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]); ?>
+
 
         		</div>
                 <div class="col-md-4 col-sm-6">
                     <label>Province / State</label>
-                    {!!Form::select('state[]', [], null, ['class'=>'form-control statelist']) !!}
+                    <?php echo Form::select('state[]', [], null, ['class'=>'form-control statelist']); ?>
+
                 </div>
         	</div>
 
@@ -188,26 +205,31 @@
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
         			<label>Emergency First Name <em>*</em></label>
-        			{!!Form::text('em_fname[]',null, ['class'=>'form-control', ]) !!}
+        			<?php echo Form::text('em_fname[]',null, ['class'=>'form-control', ]); ?>
+
         		</div>
         		<div class="col-md-4 col-sm-6">
         			<label>Emergency Last Name <em>*</em></label>
-        			{!!Form::text('em_lname[]',null, ['class'=>'form-control', ]) !!}
+        			<?php echo Form::text('em_lname[]',null, ['class'=>'form-control', ]); ?>
+
         		</div>
         		<div class="col-md-4 col-sm-6 issue-date">
         			<label>Emergency Phone Number<em>*</em></label>
-        			{!!Form::text('em_phone[]',null, ['class'=>'form-control', ]) !!}
+        			<?php echo Form::text('em_phone[]',null, ['class'=>'form-control', ]); ?>
+
         		</div>
         	</div>
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
         			<label>Country<em>*</em></label>
-        			{{-- {!!Form::select('em_country[]', [], null, ['class'=>'form-control countrylist' ]) !!} --}}
-                    {!!Form::select('em_country[]', [], null, ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]) !!}
+        			<?php /* <?php echo Form::select('em_country[]', [], null, ['class'=>'form-control countrylist' ]); ?> */ ?>
+                    <?php echo Form::select('em_country[]', [], null, ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]); ?>
+
         		</div>
                 <div class="col-md-4 col-sm-6">
                     <label>Province / State</label>
-                    {!!Form::select('em_state[]', [], null, ['class'=>'form-control statelist']) !!}
+                    <?php echo Form::select('em_state[]', [], null, ['class'=>'form-control statelist']); ?>
+
                 </div>
         	</div>
 
@@ -222,29 +244,35 @@
     		<div class="row">
     			<div class="col-md-3 col-sm-6">
     				<label>Title <em>*</em></label>
-    				{!! Form::select('title[]', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms'], null, ['class'=>'box form-control' ]) !!}
+    				<?php echo Form::select('title[]', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms'], null, ['class'=>'box form-control' ]); ?>
+
                 </div>
                 <div class="col-md-3 col-sm-6">
                 	<label>First Name <em>*</em></label>
-                	{!!Form::text('fname[]',null, ['class'=>'form-control', ]) !!}
+                	<?php echo Form::text('fname[]',null, ['class'=>'form-control', ]); ?>
+
                 </div>
                 <div class="col-md-3 col-sm-6 clearleft">
                 	<label>Middle Name</label>
-                	{!!Form::text('mname[]',null, ['class'=>'form-control']) !!}
+                	<?php echo Form::text('mname[]',null, ['class'=>'form-control']); ?>
+
                 </div>
                 <div class="col-md-3 col-sm-6">
                 	<label>Last Name <em>*</em></label>
-                	{!!Form::text('lname[]',null, ['class'=>'form-control', ]) !!}
+                	<?php echo Form::text('lname[]',null, ['class'=>'form-control', ]); ?>
+
                 </div>
             </div>
             <div class="row">
             	<div class="col-md-4 col-sm-6">
             		<label>Email <em>*</em></label>
-            		{!!Form::email('email[]',null, ['class'=>'form-control', ]) !!}
+            		<?php echo Form::email('email[]',null, ['class'=>'form-control', ]); ?>
+
             	</div>
             	<div class="col-md-3 col-sm-6">
             		<label>Phone Number</label>
-            		{!!Form::text('phone[]',null, ['class'=>'form-control']) !!}
+            		<?php echo Form::text('phone[]',null, ['class'=>'form-control']); ?>
+
             	</div>
             	<div class="col-md-5 col-sm-12 date-birth">
             		<label>Date Of Birth <em>*</em></label>
@@ -257,7 +285,8 @@
             			<div class="col-md-7 col-sm-6 col-xs-6 pad-adj">
             				<div class="row-fluid">
             					<div class="col-md-6 col-sm-6 col-xs-6">
-            						{!! Form::select('dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]) !!}
+            						<?php echo Form::select('dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
             					</div>
             					<div class="col-md-6 col-sm-6 col-xs-6">
             						<select name="dob_day[]" class="daypicker form-control box" >
@@ -277,12 +306,14 @@
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
         			<label>Passport Number <em>*</em></label>
-        			{!!Form::text('passport[]',null, ['class'=>'form-control', ]) !!}
+        			<?php echo Form::text('passport[]',null, ['class'=>'form-control', ]); ?>
+
         		</div>
         		<div class="col-md-3 col-sm-6">
         			<label>Nationality</label>
-        			{{-- {!!Form::text('nationality[]',null, ['class'=>'form-control']) !!} --}}
-                    {!!Form::select('nationality[]', [], null, ['class'=>'form-control countrylist' ]) !!}
+        			<?php /* <?php echo Form::text('nationality[]',null, ['class'=>'form-control']); ?> */ ?>
+                    <?php echo Form::select('nationality[]', [], null, ['class'=>'form-control countrylist' ]); ?>
+
 
         		</div>
         		<div class="col-md-5 col-sm-12 issue-date">
@@ -296,7 +327,8 @@
         				<div class="col-md-7 col-sm-6  col-xs-6 pad-adj">
         					<div class="row-fluid">
         						<div class="col-md-6 col-sm-6 col-xs-6 ">
-        							{!! Form::select('issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]) !!}
+        							<?php echo Form::select('issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
         						</div>
         						<div class="col-md-6 col-sm-6 col-xs-6 ">
         							<select name="issue_day[]" class="daypicker form-control box" >
@@ -311,7 +343,8 @@
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
         			<label>Passport Issue Place</label>
-        			{!!Form::text('issue_place[]',null, ['class'=>'form-control']) !!}
+        			<?php echo Form::text('issue_place[]',null, ['class'=>'form-control']); ?>
+
         		</div>
         		<div class="col-md-3 col-sm-6">
         			<label>Passport Image</label>
@@ -335,7 +368,8 @@
         				<div class="col-md-7 col-sm-6  col-xs-6 pad-adj">
         					<div class="row-fluid">
         						<div class="col-md-6 col-sm-6 col-xs-6 ">
-        							{!! Form::select('exp_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]) !!}
+        							<?php echo Form::select('exp_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
         						</div>
         						<div class="col-md-6 col-sm-6 col-xs-6 ">
         							<select name="exp_day[]" class="daypicker form-control box" >
@@ -354,26 +388,31 @@
         	<div class="row">
         		<div class="col-md-6 col-sm-5">
         			<label>Mailing Address <em>*</em></label>
-        			{!!Form::text('address[]',null, ['class'=>'form-control', ]) !!}
+        			<?php echo Form::text('address[]',null, ['class'=>'form-control', ]); ?>
+
         		</div>
         		<div class="col-md-3 col-sm-3">
         			<label>City<em>*</em></label>
-        			{!!Form::text('city[]',null, ['class'=>'form-control', ]) !!}
+        			<?php echo Form::text('city[]',null, ['class'=>'form-control', ]); ?>
+
         		</div>
         		<div class="col-md-3 col-sm-4 issue-date">
         			<label>Postal/Zip Code <em>*</em></label>
-        			{!!Form::text('postal_zip[]',null, ['class'=>'form-control', ]) !!}
+        			<?php echo Form::text('postal_zip[]',null, ['class'=>'form-control', ]); ?>
+
         		</div>
         	</div>
         	<div class="row">
         		<div class="col-md-4 col-sm-6">
         			<label>Country<em>*</em></label>
-        			{{-- {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist' ]) !!} --}}
-                    {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]) !!}
+        			<?php /* <?php echo Form::select('country[]', [], null, ['class'=>'form-control countrylist' ]); ?> */ ?>
+                    <?php echo Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]); ?>
+
         		</div>
                 <div class="col-md-4 col-sm-6">
                     <label>Province / State</label>
-                    {!!Form::select('state[]', [], null, ['class'=>'form-control statelist']) !!}
+                    <?php echo Form::select('state[]', [], null, ['class'=>'form-control statelist']); ?>
+
                 </div>
         	</div>
         </div>
@@ -381,16 +420,17 @@
     </div>
 </div>
 
-{{-- <section class="banner bg-wrap {!! $page->image !!}" style="background-image: url({!! url().'/images/'.$page->image !!});">
+<?php /* <section class="banner bg-wrap <?php echo $page->image; ?>" style="background-image: url(<?php echo url().'/images/'.$page->image; ?>);">
     <div class="container"></div>
-</section> --}}
-{{-- @include('frontend.includes.region') --}}
-{{-- @include('frontend.includes.new.search') --}}
+</section> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.region', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.new.search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
 
 
 <div class="main-content">
 	<div class="container">
-		{!!Form:: open(['url'=>'package/'.$slug.'/'.$datePrice.'/booking-step2', 'id'=>'traveller-info', 'files'=>'true']) !!}
+		<?php echo Form:: open(['url'=>'package/'.$slug.'/'.$datePrice.'/booking-step2', 'id'=>'traveller-info', 'files'=>'true']); ?>
+
 		<div class="travel-booking">
 			<div class="travel-booking-step">
 				<div class="row">
@@ -404,13 +444,14 @@
 			<div class="row">
 				<div class="col-md-8 col-sm-7">
 					<div class="page-header bold_page-header">
-						<h2>{{$package->title}} BOOKING</h2>
+						<h2><?php echo e($package->title); ?> BOOKING</h2>
 					</div>
-					@if (session()->has('invalid'))
+					<?php if(session()->has('invalid')): ?>
 					<div class="alert alert-danger">
-						{{session('invalid')}}
+						<?php echo e(session('invalid')); ?>
+
 					</div>
-					@endif
+					<?php endif; ?>
 					
 					<div class="travel-form">
 
@@ -422,26 +463,27 @@
 								<h4>How may people are you travelling with?</h4>
 								<div class="select-menu">
 									<label>Adult(18+)</label>
-                                    {!! Form::select('adult',['1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=> '5', '6'=> '6', '7'=> '7', '8'=> '8', '9'=> '9', '10'=> '10'] , $datas['count'] , ['class' => 'SlectBox form-control', 'data-rate'=>$dPrice->price, 'id'=>'adult-edit']) !!}
-									{{-- <select name="adult" id="adult" class="SlectBox form-control" data-rate="{{$dPrice->price}}">
+                                    <?php echo Form::select('adult',['1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=> '5', '6'=> '6', '7'=> '7', '8'=> '8', '9'=> '9', '10'=> '10'] , $datas['count'] , ['class' => 'SlectBox form-control', 'data-rate'=>$dPrice->price, 'id'=>'adult-edit']); ?>
+
+									<?php /* <select name="adult" id="adult" class="SlectBox form-control" data-rate="<?php echo e($dPrice->price); ?>">
 										<option>1</option>
 										<option>2</option>
 										<option>3</option>
 										<option>4</option>
-									</select> --}}
+									</select> */ ?>
 								</div>
 							</div>
-                            <input type="number" id="count" name="count" class="display-none" value="{{$datas['count']}}">
+                            <input type="number" id="count" name="count" class="display-none" value="<?php echo e($datas['count']); ?>">
 						</div>
                         <div class="form-main">
                             <?php $i = 0; ?>
-                            @while($i < $datas['count'])
+                            <?php while($i < $datas['count']): ?>
                             <div class="form-info">
-                                @if($i ==0)
+                                <?php if($i ==0): ?>
                                 <p class="form-title">Lead Traveller:</p>
-                                @else
-                                <p class="form-title">Traveller: {{$i+1}}</p>
-                                @endif
+                                <?php else: ?>
+                                <p class="form-title">Traveller: <?php echo e($i+1); ?></p>
+                                <?php endif; ?>
 
     							<div class="form-group">
     								<span class="form-title">Contact:</span>
@@ -449,96 +491,110 @@
     								<div class="row">
     									<div class="col-md-3 col-sm-6">
     										<label>Title <em>*</em></label>
-                                            @if(Auth::check() && $i==0)
-                                            {!! Form::text('title[]', Auth::user()->profile->title, ['class'=>' form-control', 'readonly' ]) !!}
-                                            @else
-    										{!! Form::select('title[]', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms'], $datas['title'][$i], ['class'=>'box form-control' ]) !!}
-                                            @endif
+                                            <?php if(Auth::check() && $i==0): ?>
+                                            <?php echo Form::text('title[]', Auth::user()->profile->title, ['class'=>' form-control', 'readonly' ]); ?>
+
+                                            <?php else: ?>
+    										<?php echo Form::select('title[]', [''=>'Title', 'MR'=>'Mr', 'MRS'=>'Mrs', 'MS'=>'Ms'], $datas['title'][$i], ['class'=>'box form-control' ]); ?>
+
+                                            <?php endif; ?>
     		                            </div>
     		                            <div class="col-md-3 col-sm-6">
     		                            	<label>First Name <em>*</em></label>
-                                            @if(Auth::check() && $i==0)
-                                            {!!Form::text('fname[]',Auth::user()->fname, ['class'=>'form-control', 'readonly' ]) !!}
-                                            @else
-    		                            	{!!Form::text('fname[]',$datas['fname'][$i], ['class'=>'form-control', ]) !!}
-                                            @endif
+                                            <?php if(Auth::check() && $i==0): ?>
+                                            <?php echo Form::text('fname[]',Auth::user()->fname, ['class'=>'form-control', 'readonly' ]); ?>
+
+                                            <?php else: ?>
+    		                            	<?php echo Form::text('fname[]',$datas['fname'][$i], ['class'=>'form-control', ]); ?>
+
+                                            <?php endif; ?>
     		                            </div>
     		                            <div class="col-md-3 col-sm-6 clearleft">
     		                            	<label>Middle Name</label>
-                                            @if(Auth::check() && $i==0)
-                                            {!!Form::text('mname[]',Auth::user()->mname, ['class'=>'form-control', 'readonly']) !!}
-                                            @else
-    		                            	{!!Form::text('mname[]',$datas['mname'][$i], ['class'=>'form-control']) !!}
-                                            @endif
+                                            <?php if(Auth::check() && $i==0): ?>
+                                            <?php echo Form::text('mname[]',Auth::user()->mname, ['class'=>'form-control', 'readonly']); ?>
+
+                                            <?php else: ?>
+    		                            	<?php echo Form::text('mname[]',$datas['mname'][$i], ['class'=>'form-control']); ?>
+
+                                            <?php endif; ?>
     		                            </div>
     		                            <div class="col-md-3 col-sm-6">
     		                            	<label>Last Name <em>*</em></label>
-                                            @if(Auth::check() && $i==0)
-                                            {!!Form::text('lname[]',Auth::user()->lname, ['class'=>'form-control', 'readonly' ]) !!}
-                                            @else
-    		                            	{!!Form::text('lname[]',$datas['lname'][$i], ['class'=>'form-control', ]) !!}
-                                            @endif
+                                            <?php if(Auth::check() && $i==0): ?>
+                                            <?php echo Form::text('lname[]',Auth::user()->lname, ['class'=>'form-control', 'readonly' ]); ?>
+
+                                            <?php else: ?>
+    		                            	<?php echo Form::text('lname[]',$datas['lname'][$i], ['class'=>'form-control', ]); ?>
+
+                                            <?php endif; ?>
     		                            </div>
     		                        </div>
 
-                                    @if($i == 0)
+                                    <?php if($i == 0): ?>
     		                            <div class="row">
 
         		                        	<div class="col-md-6 col-sm-12">
         		                        		<label>Phone Number</label>
-                                                @if(Auth::check() && $i==0)
-                                                {!!Form::text('phone[]',Auth::user()->profile->phone, ['class'=>'form-control']) !!}
-                                                @else
-        		                        		{!!Form::text('phone[]',$datas['phone'][$i], ['class'=>'form-control']) !!}
-                                                @endif
+                                                <?php if(Auth::check() && $i==0): ?>
+                                                <?php echo Form::text('phone[]',Auth::user()->profile->phone, ['class'=>'form-control']); ?>
+
+                                                <?php else: ?>
+        		                        		<?php echo Form::text('phone[]',$datas['phone'][$i], ['class'=>'form-control']); ?>
+
+                                                <?php endif; ?>
         		                        	</div>
         		                        	<div class="col-md-6 col-sm-12 date-birth">
         		                        		<label>Date Of Birth <em>*</em></label>
         		                        		<div class="row">
         		                        			<div class="col-md-5 col-sm-6 col-xs-6 pad-adj">
-                                                        @if(Auth::check() && $i==0)
-                                                        {!! Form::text('dob_year[]',Auth::user()->profile->dob_year , ['class'=>'yearpicker form-control', 'readonly']) !!}
-                                                        @else
+                                                        <?php if(Auth::check() && $i==0): ?>
+                                                        <?php echo Form::text('dob_year[]',Auth::user()->profile->dob_year , ['class'=>'yearpicker form-control', 'readonly']); ?>
+
+                                                        <?php else: ?>
         		                        				<select name="dob_year[]" class=" form-control box" >
                                                             <option value="">YEAR</option>
                                                             <?php $j = date('Y'); ?>
-                                                            @while($j != 1900 )
-                                                            @if($j == $datas['dob_year'][$i])
-                                                                <option value"{{$j}}" selected>{{$j}}</option>
-                                                            @else
-                                                                <option value"{{$j}}" >{{$j}}</option>
-                                                            @endif
+                                                            <?php while($j != 1900 ): ?>
+                                                            <?php if($j == $datas['dob_year'][$i]): ?>
+                                                                <option value"<?php echo e($j); ?>" selected><?php echo e($j); ?></option>
+                                                            <?php else: ?>
+                                                                <option value"<?php echo e($j); ?>" ><?php echo e($j); ?></option>
+                                                            <?php endif; ?>
                                                                 <?php $j--; ?>
-                                                            @endwhile
+                                                            <?php endwhile; ?>
                                                         </select>
-                                                        @endif
+                                                        <?php endif; ?>
         		                        			</div>
         		                        			<div class="col-md-7 col-sm-6 col-xs-6 pad-adj">
         		                        				<div class="row-fluid">
         		                        					<div class="col-md-6 col-sm-6 col-xs-6">
-                                                                @if(Auth::check() && $i==0)
-                                                                {!! Form::text('dob_month[]', Auth::user()->profile->dob_month, ['class'=>'form-control', 'readonly' ]) !!}
-                                                                @else
-        		                        						{!! Form::select('dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], $datas['dob_month'][$i], ['class'=>'box form-control', ]) !!}
-                                                                @endif
+                                                                <?php if(Auth::check() && $i==0): ?>
+                                                                <?php echo Form::text('dob_month[]', Auth::user()->profile->dob_month, ['class'=>'form-control', 'readonly' ]); ?>
+
+                                                                <?php else: ?>
+        		                        						<?php echo Form::select('dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], $datas['dob_month'][$i], ['class'=>'box form-control', ]); ?>
+
+                                                                <?php endif; ?>
         		                        					</div>
         		                        					<div class="col-md-6 col-sm-6 col-xs-6">
-                                                                @if(Auth::check() && $i==0)
-                                                                {!! Form::text('dob_day[]', Auth::user()->profile->dob_day, ['class'=>'form-control', 'readonly']) !!}
-                                                                @else
+                                                                <?php if(Auth::check() && $i==0): ?>
+                                                                <?php echo Form::text('dob_day[]', Auth::user()->profile->dob_day, ['class'=>'form-control', 'readonly']); ?>
+
+                                                                <?php else: ?>
         		                        						<select name="dob_day[]" class="daypicker form-control box" >
         		                        							<option value="">DD</option>
                                                                     <?php $j = 1 ; ?>
-                                                                    @while($j != 32 )
-                                                                    @if($j == $datas['dob_day'][$i])
-                                                                        <option value"{{$j}}" selected>{{$j}}</option>
-                                                                    @else
-                                                                        <option value"{{$j}}" >{{$j}}</option>
-                                                                    @endif
+                                                                    <?php while($j != 32 ): ?>
+                                                                    <?php if($j == $datas['dob_day'][$i]): ?>
+                                                                        <option value"<?php echo e($j); ?>" selected><?php echo e($j); ?></option>
+                                                                    <?php else: ?>
+                                                                        <option value"<?php echo e($j); ?>" ><?php echo e($j); ?></option>
+                                                                    <?php endif; ?>
                                                                         <?php $j++; ?>
-                                                                    @endwhile
+                                                                    <?php endwhile; ?>
         		                        						</select>
-                                                                @endif
+                                                                <?php endif; ?>
         		                        					</div>
         		                        				</div>
         		                        			</div>
@@ -549,36 +605,43 @@
                                         <div class="row">
                                             <div class="col-md-4 col-sm-6">
                                                 <label>Email <em>*</em></label>
-                                                @if(Auth::check() && $i==0)
-                                                {!!Form::email('email[]',Auth::user()->email, ['class'=>'form-control', 'readonly' ]) !!}
-                                                @else
-                                                    @if($i == 0)
-                                                    {!!Form::email('email[]',$datas['email'][$i], ['class'=>'form-control emailcheck', ]) !!}
-                                                    @else
-                                                    {!!Form::email('email[]',$datas['email'][$i], ['class'=>'form-control', ]) !!}
-                                                    @endif
-                                                @endif
+                                                <?php if(Auth::check() && $i==0): ?>
+                                                <?php echo Form::email('email[]',Auth::user()->email, ['class'=>'form-control', 'readonly' ]); ?>
+
+                                                <?php else: ?>
+                                                    <?php if($i == 0): ?>
+                                                    <?php echo Form::email('email[]',$datas['email'][$i], ['class'=>'form-control emailcheck', ]); ?>
+
+                                                    <?php else: ?>
+                                                    <?php echo Form::email('email[]',$datas['email'][$i], ['class'=>'form-control', ]); ?>
+
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
                                             </div>
-                                            @if(Auth::guest())
+                                            <?php if(Auth::guest()): ?>
                                             <div class="col-md-4 col-sm-6">
                                                 <label>Password <em>*</em></label>
-                                                {!!Form::input('password', 'password' ,null, ['class'=>'form-control passfield', 'id'=>'password']) !!}
+                                                <?php echo Form::input('password', 'password' ,null, ['class'=>'form-control passfield', 'id'=>'password']); ?>
+
                                             </div>
                                             <div class="col-md-4 col-sm-6">
                                                 <label>Confirm Password <em>*</em></label>
-                                                {!!Form::input('password', 'password_confirmation' ,null, ['class'=>'form-control passfield', 'id'=>'password_confirmation' ]) !!}
+                                                <?php echo Form::input('password', 'password_confirmation' ,null, ['class'=>'form-control passfield', 'id'=>'password_confirmation' ]); ?>
+
                                             </div>
-                                            @endif
+                                            <?php endif; ?>
                                         </div>
-                                    @else
+                                    <?php else: ?>
                                          <div class="row">
                                                 <div class="col-md-4 col-sm-6">
                                                     <label>Email <em>*</em></label>
-                                                    {!!Form::email('email[]',$datas['email'][$i], ['class'=>'form-control', ]) !!}
+                                                    <?php echo Form::email('email[]',$datas['email'][$i], ['class'=>'form-control', ]); ?>
+
                                                 </div>
                                                 <div class="col-md-3 col-sm-6">
                                                     <label>Phone Number</label>
-                                                    {!!Form::text('phone[]',$datas['phone'][$i], ['class'=>'form-control']) !!}
+                                                    <?php echo Form::text('phone[]',$datas['phone'][$i], ['class'=>'form-control']); ?>
+
                                                 </div>
                                                 <div class="col-md-5 col-sm-12 date-birth">
                                                     <label>Date Of Birth <em>*</em></label>
@@ -587,33 +650,34 @@
                                                             <select name="dob_year[]" class="yearpicker form-control box" >
                                                                 <option value="">YEAR</option>
                                                                 <?php $j = date('Y'); ?>
-                                                                @while($j != 1900 )
-                                                                @if($j == $datas['dob_year'][$i])
-                                                                    <option value"{{$j}}" selected>{{$j}}</option>
-                                                                @else
-                                                                    <option value"{{$j}}" >{{$j}}</option>
-                                                                @endif
+                                                                <?php while($j != 1900 ): ?>
+                                                                <?php if($j == $datas['dob_year'][$i]): ?>
+                                                                    <option value"<?php echo e($j); ?>" selected><?php echo e($j); ?></option>
+                                                                <?php else: ?>
+                                                                    <option value"<?php echo e($j); ?>" ><?php echo e($j); ?></option>
+                                                                <?php endif; ?>
                                                                     <?php $j--; ?>
-                                                                @endwhile
+                                                                <?php endwhile; ?>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-7 col-sm-6 col-xs-6 pad-adj">
                                                             <div class="row-fluid">
                                                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                                                    {!! Form::select('dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], $datas['dob_month'][$i], ['class'=>'box form-control', ]) !!}
+                                                                    <?php echo Form::select('dob_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], $datas['dob_month'][$i], ['class'=>'box form-control', ]); ?>
+
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                                                     <select name="dob_day[]" class="daypicker form-control box" >
                                                                         <option value="">DD</option>
                                                                         <?php $j = 1 ; ?>
-                                                                        @while($j != 32 )
-                                                                        @if($j == $datas['dob_day'][$i])
-                                                                            <option value"{{$j}}" selected>{{$j}}</option>
-                                                                        @else
-                                                                            <option value"{{$j}}" >{{$j}}</option>
-                                                                        @endif
+                                                                        <?php while($j != 32 ): ?>
+                                                                        <?php if($j == $datas['dob_day'][$i]): ?>
+                                                                            <option value"<?php echo e($j); ?>" selected><?php echo e($j); ?></option>
+                                                                        <?php else: ?>
+                                                                            <option value"<?php echo e($j); ?>" ><?php echo e($j); ?></option>
+                                                                        <?php endif; ?>
                                                                             <?php $j++; ?>
-                                                                        @endwhile
+                                                                        <?php endwhile; ?>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -621,7 +685,7 @@
                                                     </div>
                                                 </div>
                                             </div>  
-                                    @endif
+                                    <?php endif; ?>
     		                    </div>
 
     		                    <div class="form-group">
@@ -629,15 +693,18 @@
     		                    	<div class="row">
     		                    		<div class="col-md-4 col-sm-6">
     		                    			<label>Passport Number <em>*</em></label>
-                                            @if(Auth::check())
-                                            {!!Form::text('passport[]',Auth::user()->profile->document_no, ['class'=>'form-control' ]) !!}
-                                            @else
-    		                    			{!!Form::text('passport[]',$datas['passport'][$i], ['class'=>'form-control', ]) !!}
-                                            @endif
+                                            <?php if(Auth::check()): ?>
+                                            <?php echo Form::text('passport[]',Auth::user()->profile->document_no, ['class'=>'form-control' ]); ?>
+
+                                            <?php else: ?>
+    		                    			<?php echo Form::text('passport[]',$datas['passport'][$i], ['class'=>'form-control', ]); ?>
+
+                                            <?php endif; ?>
     		                    		</div>
     		                    		<div class="col-md-3 col-sm-6">
     		                    			<label>Nationality</label>
-                                            {!!Form::select('nationality[]', [], $datas['nationality'][$i], ['class'=>'form-control countrylist' ]) !!}
+                                            <?php echo Form::select('nationality[]', [], $datas['nationality'][$i], ['class'=>'form-control countrylist' ]); ?>
+
 
     		                    		</div>
     		                    		<div class="col-md-5 col-sm-12 issue-date">
@@ -647,34 +714,35 @@
     		                    					<select name="issue_year[]" class=" form-control box" >
                                                         <option value="">YEAR</option>
                                                         <?php $j = date('Y'); ?>
-                                                        @while($j != 1900 )
-                                                        @if($j == $datas['issue_year'][$i])
-                                                            <option value"{{$j}}" selected>{{$j}}</option>
-                                                        @else
-                                                            <option value"{{$j}}" >{{$j}}</option>
-                                                        @endif
+                                                        <?php while($j != 1900 ): ?>
+                                                        <?php if($j == $datas['issue_year'][$i]): ?>
+                                                            <option value"<?php echo e($j); ?>" selected><?php echo e($j); ?></option>
+                                                        <?php else: ?>
+                                                            <option value"<?php echo e($j); ?>" ><?php echo e($j); ?></option>
+                                                        <?php endif; ?>
                                                             <?php $j--; ?>
-                                                        @endwhile
+                                                        <?php endwhile; ?>
 
                                                     </select>
     		                    				</div>
     		                    				<div class="col-md-7 col-sm-6  col-xs-6 pad-adj">
     		                    					<div class="row-fluid">
     		                    						<div class="col-md-6 col-sm-6 col-xs-6 ">
-    		                    							{!! Form::select('issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], $datas['issue_month'][$i], ['class'=>'box form-control', ]) !!}
+    		                    							<?php echo Form::select('issue_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], $datas['issue_month'][$i], ['class'=>'box form-control', ]); ?>
+
     		                    						</div>
     		                    						<div class="col-md-6 col-sm-6 col-xs-6 ">
     		                    							<select name="issue_day[]" class="daypicker form-control box" >
     		                    								<option value="">DD</option>
                                                                 <?php $j = 1 ; ?>
-                                                                @while($j != 32 )
-                                                                @if($j == $datas['issue_day'][$i])
-                                                                    <option value"{{$j}}" selected>{{$j}}</option>
-                                                                @else
-                                                                    <option value"{{$j}}" >{{$j}}</option>
-                                                                @endif
+                                                                <?php while($j != 32 ): ?>
+                                                                <?php if($j == $datas['issue_day'][$i]): ?>
+                                                                    <option value"<?php echo e($j); ?>" selected><?php echo e($j); ?></option>
+                                                                <?php else: ?>
+                                                                    <option value"<?php echo e($j); ?>" ><?php echo e($j); ?></option>
+                                                                <?php endif; ?>
                                                                     <?php $j++; ?>
-                                                                @endwhile
+                                                                <?php endwhile; ?>
     		                    							</select>
     		                    						</div>
     		                    					</div>
@@ -685,17 +753,18 @@
     		                    	<div class="row">
     		                    		<div class="col-md-4 col-sm-6">
     		                    			<label>Passport Issue Place</label>
-    		                    			{!!Form::text('issue_place[]',$datas['issue_place'][$i], ['class'=>'form-control']) !!}
+    		                    			<?php echo Form::text('issue_place[]',$datas['issue_place'][$i], ['class'=>'form-control']); ?>
+
     		                    		</div>
     		                    		<div class="col-md-3 col-sm-6">
     		                    			<label>Passport Image</label>
     		                    			<span class="btn btn-primary btn-file btn-sm">
     		                    				<i class="fa fa-folder-open"></i>Upload
     		                    				<input type="file" id="image" class="image" name="image[]" >
-                                                <input type="hidden" name="prevImage[]" value="{{$filenames[$i]}}" >
+                                                <input type="hidden" name="prevImage[]" value="<?php echo e($filenames[$i]); ?>" >
 
     		                    			</span>
-    		                    			<span class="image-name"><small>{{$filenames[$i]}}</small></span>
+    		                    			<span class="image-name"><small><?php echo e($filenames[$i]); ?></small></span>
     		                    		</div>
 
     		                    		<div class="col-md-5 col-sm-12 issue-date">
@@ -705,33 +774,34 @@
     		                    					<select name="exp_year[]" class="yearpicker form-control box" >
                                                         <option value="">YEAR</option>
                                                         <?php $j = date('Y'); ?>
-                                                        @while($j != 1900 )
-                                                        @if($j == $datas['exp_year'][$i] )
-                                                            <option value"{{$j}}" selected>{{$j}}</option>
-                                                        @else
-                                                            <option value"{{$j}}" >{{$j}}</option>
-                                                        @endif
+                                                        <?php while($j != 1900 ): ?>
+                                                        <?php if($j == $datas['exp_year'][$i] ): ?>
+                                                            <option value"<?php echo e($j); ?>" selected><?php echo e($j); ?></option>
+                                                        <?php else: ?>
+                                                            <option value"<?php echo e($j); ?>" ><?php echo e($j); ?></option>
+                                                        <?php endif; ?>
                                                             <?php $j--; ?>
-                                                        @endwhile
+                                                        <?php endwhile; ?>
                                                     </select>
     		                    				</div>
     		                    				<div class="col-md-7 col-sm-6  col-xs-6 pad-adj">
     		                    					<div class="row-fluid">
     		                    						<div class="col-md-6 col-sm-6 col-xs-6 ">
-    		                    							{!! Form::select('exp_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], $datas['exp_month'][$i], ['class'=>'box form-control', ]) !!}
+    		                    							<?php echo Form::select('exp_month[]', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], $datas['exp_month'][$i], ['class'=>'box form-control', ]); ?>
+
     		                    						</div>
     		                    						<div class="col-md-6 col-sm-6 col-xs-6 ">
     		                    							<select name="exp_day[]" class="daypicker form-control box" >
     		                    								<option value="">DD</option>
                                                                 <?php $j = 1 ; ?>
-                                                                @while($j != 32 )
-                                                                @if($j == $datas['exp_day'][$i])
-                                                                    <option value"{{$j}}" selected>{{$j}}</option>
-                                                                @else
-                                                                    <option value"{{$j}}" >{{$j}}</option>
-                                                                @endif
+                                                                <?php while($j != 32 ): ?>
+                                                                <?php if($j == $datas['exp_day'][$i]): ?>
+                                                                    <option value"<?php echo e($j); ?>" selected><?php echo e($j); ?></option>
+                                                                <?php else: ?>
+                                                                    <option value"<?php echo e($j); ?>" ><?php echo e($j); ?></option>
+                                                                <?php endif; ?>
                                                                     <?php $j++; ?>
-                                                                @endwhile
+                                                                <?php endwhile; ?>
     		                    							</select>
     		                    						</div>
     		                    					</div>
@@ -746,69 +816,79 @@
     		                    	<div class="row">
     		                    		<div class="col-md-6 col-sm-5">
     		                    			<label>Mailing Address <em>*</em></label>
-    		                    			{!!Form::text('address[]',$datas['address'][$i], ['class'=>'form-control', ]) !!}
+    		                    			<?php echo Form::text('address[]',$datas['address'][$i], ['class'=>'form-control', ]); ?>
+
     		                    		</div>
     		                    		<div class="col-md-3 col-sm-3">
     		                    			<label>City<em>*</em></label>
-    		                    			{!!Form::text('city[]',$datas['city'][$i], ['class'=>'form-control', ]) !!}
+    		                    			<?php echo Form::text('city[]',$datas['city'][$i], ['class'=>'form-control', ]); ?>
+
     		                    		</div>
     		                    		<div class="col-md-3 col-sm-4 issue-date">
     		                    			<label>Postal/Zip Code <em>*</em></label>
-    		                    			{!!Form::text('postal_zip[]',$datas['postal_zip'][$i], ['class'=>'form-control', ]) !!}
+    		                    			<?php echo Form::text('postal_zip[]',$datas['postal_zip'][$i], ['class'=>'form-control', ]); ?>
+
     		                    		</div>
     		                    	</div>
     		                    	<div class="row">
     		                    		<div class="col-md-4 col-sm-6">
     		                    			<label>Country<em>*</em></label>
-                                            {{-- {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'id' => 'country_id' ]) !!} --}}
-                                            {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]) !!}
-    		                    			{{-- {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'id' => 'country_id', 'onchange'=>"print_state_package(this.closest('[class^=col-md]').next(),this.selectedIndex);" ]) !!} --}}
+                                            <?php /* <?php echo Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'id' => 'country_id' ]); ?> */ ?>
+                                            <?php echo Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]); ?>
+
+    		                    			<?php /* <?php echo Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'id' => 'country_id', 'onchange'=>"print_state_package(this.closest('[class^=col-md]').next(),this.selectedIndex);" ]); ?> */ ?>
 
                                         
 
     		                    		</div>
                                         <div class="col-md-4 col-sm-6">
                                             <label>Province / State</label>
-                                            {!!Form::select('state[]', [], null, ['class'=>'form-control statelist']) !!}
+                                            <?php echo Form::select('state[]', [], null, ['class'=>'form-control statelist']); ?>
+
                                         </div>
     		                    	</div>
 
     		                    </div>
-                                @if($i == 0)
+                                <?php if($i == 0): ?>
     		                    <div class="form-group">
     		                    	<span class="form-title">Medical:</span>
     		                    	<div class="row">
     		                    		<div class="col-md-4 col-sm-6">
     		                    			<label>Emergency First Name <em>*</em></label>
-    		                    			{!!Form::text('em_fname[]',$datas['em_fname'][$i], ['class'=>'form-control', ]) !!}
+    		                    			<?php echo Form::text('em_fname[]',$datas['em_fname'][$i], ['class'=>'form-control', ]); ?>
+
     		                    		</div>
     		                    		<div class="col-md-4 col-sm-6">
     		                    			<label>Emergency Last Name <em>*</em></label>
-    		                    			{!!Form::text('em_lname[]',$datas['em_lname'][$i], ['class'=>'form-control', ]) !!}
+    		                    			<?php echo Form::text('em_lname[]',$datas['em_lname'][$i], ['class'=>'form-control', ]); ?>
+
     		                    		</div>
     		                    		<div class="col-md-4 col-sm-6 issue-date">
     		                    			<label>Emergency Phone Number<em>*</em></label>
-    		                    			{!!Form::text('em_phone[]',$datas['em_phone'][$i], ['class'=>'form-control', ]) !!}
+    		                    			<?php echo Form::text('em_phone[]',$datas['em_phone'][$i], ['class'=>'form-control', ]); ?>
+
 
     		                    		</div>
     		                    	</div>
     		                    	<div class="row">
     		                    		<div class="col-md-4 col-sm-6">
     		                    			<label>Country<em>*</em></label>
-                                            {!!Form::select('em_country[]', [], $datas['em_country'][$i], ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]) !!}
+                                            <?php echo Form::select('em_country[]', [], $datas['em_country'][$i], ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]); ?>
+
     		                    		</div>
                                         <div class="col-md-4 col-sm-6">
                                             <label>Province / State</label>
-                                            {!!Form::select('em_state[]', [], null, ['class'=>'form-control statelist']) !!}
+                                            <?php echo Form::select('em_state[]', [], null, ['class'=>'form-control statelist']); ?>
+
                                         </div>
     		                    	</div>
 
     		                    </div>
-                                @endif
+                                <?php endif; ?>
 
     		                </div>
                             <?php $i++; ?>
-                            @endwhile
+                            <?php endwhile; ?>
                         </div>
 
 		                <div class="add-extra-package">
@@ -822,45 +902,45 @@
                                         $selectedAddonDetail = explode(',', $string2);
                                     }
                                 ?> 	
-                                @foreach($addon as $id)
+                                <?php foreach($addon as $id): ?>
                                 <?php 
                                     $pack = DB::table('packages')->where('id', $id)->first();
                                  ?>
                                 <div class="col-md-6 col-sm-6">
-                                    <div class="thumbnail @if(in_array($pack->id, $selectedAddon) ) select-msg @endif">
+                                    <div class="thumbnail <?php if(in_array($pack->id, $selectedAddon) ): ?> select-msg <?php endif; ?>">
 
                                         <div class="checkbox">
-                                            {{-- <input type="checkbox" id="check{{$i}}" name="package[]" class="addxtraPack" value="{{$pack->price}}" data-id="{{$pack->id}}"> --}}
-                                            <label for="check{{$i}}">{{$pack->title}}</label>
+                                            <?php /* <input type="checkbox" id="check<?php echo e($i); ?>" name="package[]" class="addxtraPack" value="<?php echo e($pack->price); ?>" data-id="<?php echo e($pack->id); ?>"> */ ?>
+                                            <label for="check<?php echo e($i); ?>"><?php echo e($pack->title); ?></label>
                                         </div> 
-                                        <div class="thumb-img bg-wrap" style="background-image:url({{asset('images/packages-new/'.$pack->feat_img) }});">
+                                        <div class="thumb-img bg-wrap" style="background-image:url(<?php echo e(asset('images/packages-new/'.$pack->feat_img)); ?>);">
                                             <div class="pack-msg"><p>Extension package selected.</p></div>
                                         </div>
-                                        <div class="price">+USD {{$pack->price}} <small>per Person</small></div>
+                                        <div class="price">+USD <?php echo e($pack->price); ?> <small>per Person</small></div>
                                         <div class="addextraPackageDiv">
                                             <div class="select-number">
                                                 <label>For</label>
 
-                                                <select name="addon_packages_detail[]" data-id="{{$pack->id}}" class="form-control addonPackage SlectBox">
+                                                <select name="addon_packages_detail[]" data-id="<?php echo e($pack->id); ?>" class="form-control addonPackage SlectBox">
                                                     <option value="">-- Select --</option>
-                                                    <option value="{{$pack->id.'-'.'1'.'-'.$pack->price}}" data-no="1" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price}}" @if(in_array($pack->id.'-'.'1'.'-'.$pack->price, $selectedAddonDetail)) selected="selected" @endif>1</option>
-                                                    <option value="{{$pack->id.'-'.'2'.'-'.$pack->price * 2}}" data-no="2" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *2}}" @if(in_array($pack->id.'-'.'2'.'-'.$pack->price * 2, $selectedAddonDetail)) selected="selected" @endif>2</option>
-                                                    <option value="{{$pack->id.'-'.'3'.'-'.$pack->price * 3}}" data-no="3" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *3}}" @if(in_array($pack->id.'-'.'3'.'-'.$pack->price * 3, $selectedAddonDetail)) selected="selected" @endif>3</option>
-                                                    <option value="{{$pack->id.'-'.'4'.'-'.$pack->price * 4}}" data-no="4" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *4}}" @if(in_array($pack->id.'-'.'4'.'-'.$pack->price * 4, $selectedAddonDetail)) selected="selected" @endif>4</option>
-                                                    <option value="{{$pack->id.'-'.'5'.'-'.$pack->price * 5}}" data-no="5" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *5}}" @if(in_array($pack->id.'-'.'5'.'-'.$pack->price * 5, $selectedAddonDetail)) selected="selected" @endif>5</option>
-                                                    <option value="{{$pack->id.'-'.'6'.'-'.$pack->price * 6}}" data-no="6" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *6}}" @if(in_array($pack->id.'-'.'6'.'-'.$pack->price * 6, $selectedAddonDetail)) selected="selected" @endif>6</option>
-                                                    <option value="{{$pack->id.'-'.'7'.'-'.$pack->price * 7}}" data-no="7" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *7}}" @if(in_array($pack->id.'-'.'7'.'-'.$pack->price * 7, $selectedAddonDetail)) selected="selected" @endif>7</option>
-                                                    <option value="{{$pack->id.'-'.'8'.'-'.$pack->price * 8}}" data-no="8" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *8}}" @if(in_array($pack->id.'-'.'8'.'-'.$pack->price * 8, $selectedAddonDetail)) selected="selected" @endif>8</option>
-                                                    <option value="{{$pack->id.'-'.'9'.'-'.$pack->price * 9}}" data-no="9" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *9}}" @if(in_array($pack->id.'-'.'9'.'-'.$pack->price * 9, $selectedAddonDetail)) selected="selected" @endif>9</option>
-                                                    <option value="{{$pack->id.'-'.'10'.'-'.$pack->price * 10}}" data-no="10" data-title="{{$pack->title}}" data-id="{{$pack->id}}" data-price="{{$pack->price *10}}" @if(in_array($pack->id.'-'.'10'.'-'.$pack->price * 10, $selectedAddonDetail)) selected="selected" @endif>10</option>
+                                                    <option value="<?php echo e($pack->id.'-'.'1'.'-'.$pack->price); ?>" data-no="1" data-title="<?php echo e($pack->title); ?>" data-id="<?php echo e($pack->id); ?>" data-price="<?php echo e($pack->price); ?>" <?php if(in_array($pack->id.'-'.'1'.'-'.$pack->price, $selectedAddonDetail)): ?> selected="selected" <?php endif; ?>>1</option>
+                                                    <option value="<?php echo e($pack->id.'-'.'2'.'-'.$pack->price * 2); ?>" data-no="2" data-title="<?php echo e($pack->title); ?>" data-id="<?php echo e($pack->id); ?>" data-price="<?php echo e($pack->price *2); ?>" <?php if(in_array($pack->id.'-'.'2'.'-'.$pack->price * 2, $selectedAddonDetail)): ?> selected="selected" <?php endif; ?>>2</option>
+                                                    <option value="<?php echo e($pack->id.'-'.'3'.'-'.$pack->price * 3); ?>" data-no="3" data-title="<?php echo e($pack->title); ?>" data-id="<?php echo e($pack->id); ?>" data-price="<?php echo e($pack->price *3); ?>" <?php if(in_array($pack->id.'-'.'3'.'-'.$pack->price * 3, $selectedAddonDetail)): ?> selected="selected" <?php endif; ?>>3</option>
+                                                    <option value="<?php echo e($pack->id.'-'.'4'.'-'.$pack->price * 4); ?>" data-no="4" data-title="<?php echo e($pack->title); ?>" data-id="<?php echo e($pack->id); ?>" data-price="<?php echo e($pack->price *4); ?>" <?php if(in_array($pack->id.'-'.'4'.'-'.$pack->price * 4, $selectedAddonDetail)): ?> selected="selected" <?php endif; ?>>4</option>
+                                                    <option value="<?php echo e($pack->id.'-'.'5'.'-'.$pack->price * 5); ?>" data-no="5" data-title="<?php echo e($pack->title); ?>" data-id="<?php echo e($pack->id); ?>" data-price="<?php echo e($pack->price *5); ?>" <?php if(in_array($pack->id.'-'.'5'.'-'.$pack->price * 5, $selectedAddonDetail)): ?> selected="selected" <?php endif; ?>>5</option>
+                                                    <option value="<?php echo e($pack->id.'-'.'6'.'-'.$pack->price * 6); ?>" data-no="6" data-title="<?php echo e($pack->title); ?>" data-id="<?php echo e($pack->id); ?>" data-price="<?php echo e($pack->price *6); ?>" <?php if(in_array($pack->id.'-'.'6'.'-'.$pack->price * 6, $selectedAddonDetail)): ?> selected="selected" <?php endif; ?>>6</option>
+                                                    <option value="<?php echo e($pack->id.'-'.'7'.'-'.$pack->price * 7); ?>" data-no="7" data-title="<?php echo e($pack->title); ?>" data-id="<?php echo e($pack->id); ?>" data-price="<?php echo e($pack->price *7); ?>" <?php if(in_array($pack->id.'-'.'7'.'-'.$pack->price * 7, $selectedAddonDetail)): ?> selected="selected" <?php endif; ?>>7</option>
+                                                    <option value="<?php echo e($pack->id.'-'.'8'.'-'.$pack->price * 8); ?>" data-no="8" data-title="<?php echo e($pack->title); ?>" data-id="<?php echo e($pack->id); ?>" data-price="<?php echo e($pack->price *8); ?>" <?php if(in_array($pack->id.'-'.'8'.'-'.$pack->price * 8, $selectedAddonDetail)): ?> selected="selected" <?php endif; ?>>8</option>
+                                                    <option value="<?php echo e($pack->id.'-'.'9'.'-'.$pack->price * 9); ?>" data-no="9" data-title="<?php echo e($pack->title); ?>" data-id="<?php echo e($pack->id); ?>" data-price="<?php echo e($pack->price *9); ?>" <?php if(in_array($pack->id.'-'.'9'.'-'.$pack->price * 9, $selectedAddonDetail)): ?> selected="selected" <?php endif; ?>>9</option>
+                                                    <option value="<?php echo e($pack->id.'-'.'10'.'-'.$pack->price * 10); ?>" data-no="10" data-title="<?php echo e($pack->title); ?>" data-id="<?php echo e($pack->id); ?>" data-price="<?php echo e($pack->price *10); ?>" <?php if(in_array($pack->id.'-'.'10'.'-'.$pack->price * 10, $selectedAddonDetail)): ?> selected="selected" <?php endif; ?>>10</option>
                                                 </select>
                                             </div>
-                                            <a href="{{url('/package/'.$pack->slug)}}" target="_blank" class="btn btn-gray">view itinerary</a>
+                                            <a href="<?php echo e(url('/package/'.$pack->slug)); ?>" target="_blank" class="btn btn-gray">view itinerary</a>
                                         </div>
                                     </div>
                                 </div>
                                 <?php $i++; ?>
-                                @endforeach
+                                <?php endforeach; ?>
 
                             </div>
                         </div>
@@ -868,8 +948,8 @@
                             // $tmp = implode(',', $datas['addon_pack']);
                             // $tmp2 = explode(',', $tmp);
                          ?>
-                        <input type="hidden" name="total_amount" class="totalAmount" value="{{$datas['total_amount']}}">
-                        <input type="hidden" name="main_package_amount" class="packageTotal" value="{{$datas['count'] * $dPrice->price}}">
+                        <input type="hidden" name="total_amount" class="totalAmount" value="<?php echo e($datas['total_amount']); ?>">
+                        <input type="hidden" name="main_package_amount" class="packageTotal" value="<?php echo e($datas['count'] * $dPrice->price); ?>">
                         <input type="hidden" name="addon_pack[]" class="addonId">
 
                         <script>
@@ -882,19 +962,19 @@
                             }); 
                         </script>
 
-                        <input type="hidden" name="extensionText" class="extensionText" value="{{$datas['extensionText']}}">
-                        <input type="hidden" name="extensionFullText" class="extensionFullText" value="{{$datas['extensionFullText']}}">
-                        <input type="hidden" name="totalText" class="totalText" value="{{$datas['totalText']}}">
+                        <input type="hidden" name="extensionText" class="extensionText" value="<?php echo e($datas['extensionText']); ?>">
+                        <input type="hidden" name="extensionFullText" class="extensionFullText" value="<?php echo e($datas['extensionFullText']); ?>">
+                        <input type="hidden" name="totalText" class="totalText" value="<?php echo e($datas['totalText']); ?>">
     
                         <div class="row">
                               <div class="col-md-12">
                               <button type="button" class="btn btn-danger btn-step"  id="btn-submit">Continue</button> 
-                                 {{-- {!! Form::submit('Continue',['id'=>'submit', 'class'=>'btn btn-danger btn-step']) !!} --}}
-                                 {{-- <a href="{{url('package/'.$slug.'/booking-step3')}}" class="btn btn-danger btn-step">Continue</a> --}}
+                                 <?php /* <?php echo Form::submit('Continue',['id'=>'submit', 'class'=>'btn btn-danger btn-step']); ?> */ ?>
+                                 <?php /* <a href="<?php echo e(url('package/'.$slug.'/booking-step3')); ?>" class="btn btn-danger btn-step">Continue</a> */ ?>
 
                              </div>
                         </div>
-                                 {{-- </form> --}}
+                                 <?php /* </form> */ ?>
                     </div>
                 </div>
 
@@ -907,21 +987,21 @@
 
                                 <div class="trip-more-info-list">
                                   <div class="info-title sub-heading-title when">When: </div>
-                                  <div class="info-description">{{$dPrice->daterange}}</div>
+                                  <div class="info-description"><?php echo e($dPrice->daterange); ?></div>
                                 </div>
                                 <div class="trip-more-info-list">
                                   <div class="info-title sub-heading-title when">Traveller: </div>
-                                  <div class="info-description" id="traveller">{{$datas['count']}}</div>
+                                  <div class="info-description" id="traveller"><?php echo e($datas['count']); ?></div>
                                 </div>
 
                                 <div class="total-price-details-box">
                                     <div class="clearfix sub-heading-title">
                                     <div class="label-text total-passenger-price pull-left">Total Tour Cost</div>
-                                    <div class="content-text total-passenger-price pull-right tour-cost">USD {{$datas['count'] * $dPrice->price}}</div>
+                                    <div class="content-text total-passenger-price pull-right tour-cost">USD <?php echo e($datas['count'] * $dPrice->price); ?></div>
                                     </div>
                                 </div>
-                            <div class="total-price-details-box  exten-text @if(empty($datas['extensionFullText']))hide @endif ">
-                                @if(empty($datas['extensionFullText']))
+                            <div class="total-price-details-box  exten-text <?php if(empty($datas['extensionFullText'])): ?>hide <?php endif; ?> ">
+                                <?php if(empty($datas['extensionFullText'])): ?>
                                 <div class="clearfix sub-heading-title">
                                     <div class="label-text total-passenger-price ">Extension Packages</div>
                                     <div class="content-text total-passenger-price pull-right ext hide" extprice="0" ></div>
@@ -929,9 +1009,10 @@
 
                                     </div>
                                 </div>
-                                @else
-                                {!! $datas['extensionFullText'] !!}
-                                @endif
+                                <?php else: ?>
+                                <?php echo $datas['extensionFullText']; ?>
+
+                                <?php endif; ?>
                             </div>
 
                             <div class="total-footer">
@@ -941,11 +1022,12 @@
                                        <small>Tax Included</small></h3>
                                    </div>
                                    <div class="content-text total-passenger-price pull-right total-text">
-                                       @if(empty($datas['totalText']))
-                                       <span id = "total" initial-total="{{$dPrice->price}}" totalprice = "{{$datas['count'] * $dPrice->price}}">USD {{$datas['count'] * $dPrice->price}}</span>
-                                       @else
-                                        {!! $datas['totalText'] !!}
-                                       @endif
+                                       <?php if(empty($datas['totalText'])): ?>
+                                       <span id = "total" initial-total="<?php echo e($dPrice->price); ?>" totalprice = "<?php echo e($datas['count'] * $dPrice->price); ?>">USD <?php echo e($datas['count'] * $dPrice->price); ?></span>
+                                       <?php else: ?>
+                                        <?php echo $datas['totalText']; ?>
+
+                                       <?php endif; ?>
                                    </div>
                                 </div>
 
@@ -959,12 +1041,13 @@
            </div>
 
        </div>
-       {!!Form::close() !!}
+       <?php echo Form::close(); ?>
+
    </div><!--Container -->
 
    <div class="divider"></div>
 
-   @include('frontend.includes.new.members')
+   <?php echo $__env->make('frontend.includes.new.members', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 </div>
 
@@ -989,4 +1072,5 @@
     </script>
     
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

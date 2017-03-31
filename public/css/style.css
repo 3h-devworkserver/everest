@@ -85,6 +85,7 @@ h1 {
     border-color: #e42e2a;
     color: #fff;
 }
+
 /*--Browser button --*/
 .browse-btn {
     border-radius: 3px;
@@ -3303,6 +3304,13 @@ dl.term-description dd {
   width: 20%;
   margin: 35px 40px 40px 0; 
 }
+.travel-booking .SumoSelect > .CaptionCont {
+    border: 1px solid #d3dad3;
+    border-radius: 3px;
+    height: 35px;
+    line-height: 25px;
+    min-height: auto;
+}
 #traveller-info .travel-form .form-group {
   background: #fefefe none repeat scroll 0 0;
   border: 1px solid #efefef;
@@ -3345,6 +3353,9 @@ dl.term-description dd {
     font-size: 15px;
 }
 .booking-summary{}
+.booking-summary .button-div {
+  overflow: hidden;
+}
 .trip-block{
     padding: 20px 0;
 }
@@ -4612,7 +4623,9 @@ body.modal-open {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-
+.travel-booking .has-error .booking-summary .terms-conditions .checkbox label{
+    color: #3e3e3e;
+}
 /*--------------------------
     Promo popup sytles
 ----------------------------*/
