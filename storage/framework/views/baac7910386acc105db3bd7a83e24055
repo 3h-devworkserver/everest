@@ -1,15 +1,13 @@
-@extends('frontend.layouts.master-new')
-
-@section('title'){{ $meta_title }}@endsection
-<!--@section('meta_title'){{ $meta_title }}@endsection-->
-@section('meta_keywords'){{ $meta_keywords }}@endsection
-@section('meta_desc'){{ $meta_desc }}@endsection
-@section('content')
-{{-- <section class="banner bg-wrap {!! $page->image !!}" style="background-image: url({!! url().'/images/'.$page->image !!});">
+<?php $__env->startSection('title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>
+<!--<?php $__env->startSection('meta_title'); ?><?php echo e($meta_title); ?><?php $__env->stopSection(); ?>-->
+<?php $__env->startSection('meta_keywords'); ?><?php echo e($meta_keywords); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('meta_desc'); ?><?php echo e($meta_desc); ?><?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<?php /* <section class="banner bg-wrap <?php echo $page->image; ?>" style="background-image: url(<?php echo url().'/images/'.$page->image; ?>);">
     <div class="container"></div>
-</section> --}}
-{{-- @include('frontend.includes.region') --}}
-{{-- @include('frontend.includes.new.search') --}}
+</section> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.region', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
+<?php /* <?php echo $__env->make('frontend.includes.new.search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?> */ ?>
 
 
 <div class="main-content">
@@ -19,7 +17,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<a href="javascript:void(0)" >Step 1 - Travellers </a>
-							{{-- <a href="{{url('/package/'.$slug.'/'.$datePrice.'/'.$groupId.'/booking-step2')}}" >Step 2 - Summary  </a> --}}
+							<?php /* <a href="<?php echo e(url('/package/'.$slug.'/'.$datePrice.'/'.$groupId.'/booking-step2')); ?>" >Step 2 - Summary  </a> */ ?>
 							<a href="javascript:void(0)" >Step 2 - Summary  </a>
 							<a href="javascript:void(0)" class="active">Step 3 - Confirm </a>
 						</div>
@@ -28,11 +26,12 @@
 				<div class="row">
 					<div class="col-md-8 col-sm-7" id="traveller-info">
 						<div class="page-header bold_page-header">
-								<h2>{{$package->title}} BOOKING</h2>
+								<h2><?php echo e($package->title); ?> BOOKING</h2>
 						</div>
 					
 						<div class="travel-form">
-								{!! Form::open(['url'=>'#', 'id'=>'booking-3']) !!}
+								<?php echo Form::open(['url'=>'#', 'id'=>'booking-3']); ?>
+
 
 								<div class="form-group pt0">
 									<span class="form-title">Select</span>
@@ -43,13 +42,13 @@
 										<div class="radio">
 										    <input type="radio" name="optionsRadios" id="optionsRadios0" value="option0" checked>
 										  <label for="optionsRadios0">
-										    <img src="{{url('images/esewa.jpeg')}}" alt="">
+										    <img src="<?php echo e(url('images/esewa.jpeg')); ?>" alt="">
 										  </label>
 										</div>
 										<div class="radio">
 										    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
 										  <label for="optionsRadios1">
-										    <img src="{{url('images/new/card-1.png')}}" alt="">
+										    <img src="<?php echo e(url('images/new/card-1.png')); ?>" alt="">
 										  </label>
 										</div>
 										<?php /* ?> 
@@ -63,7 +62,7 @@
 										<div class="radio">
 										    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
 										  <label for="optionsRadios3">
-										    <img src="{{url('images/new/card-3.png')}}" alt="">
+										    <img src="<?php echo e(url('images/new/card-3.png')); ?>" alt="">
 										  </label>
 										</div>
 										<?php /* ?>
@@ -91,7 +90,8 @@
 									</div>
 
 								</div>
-								{!! Form::close() !!}
+								<?php echo Form::close(); ?>
+
 
 
 
@@ -104,20 +104,20 @@
                                     $tAmt = $amt + $txAmt + $psc + $pdc;
                                 ?>
 
-                                    {{-- <form action="https://esewa.com.np/epay/main" method="POST" id="esewaForm">  --}}
+                                    <?php /* <form action="https://esewa.com.np/epay/main" method="POST" id="esewaForm">  */ ?>
                                     <form action="http://dev.esewa.com.np/epay/main" method="POST" id="esewaForm" class="payForm"> 
-                                        {{-- <input value="0.01" name="tAmt" type="hidden">  --}}
-                                        {{-- <input value="0.01" name="amt" type="hidden">  --}}
-                                        <input value="{{$tAmt}}" name="tAmt" type="hidden"> 
-                                        <input value="{{$amt}}" name="amt" type="hidden"> 
-                                        <input value="{{$txAmt}}" name="txAmt" type="hidden">
-                                        <input value="{{$psc}}" name="psc" type="hidden"> 
-                                        <input value="{{$pdc}}" name="pdc" type="hidden"> 
+                                        <?php /* <input value="0.01" name="tAmt" type="hidden">  */ ?>
+                                        <?php /* <input value="0.01" name="amt" type="hidden">  */ ?>
+                                        <input value="<?php echo e($tAmt); ?>" name="tAmt" type="hidden"> 
+                                        <input value="<?php echo e($amt); ?>" name="amt" type="hidden"> 
+                                        <input value="<?php echo e($txAmt); ?>" name="txAmt" type="hidden">
+                                        <input value="<?php echo e($psc); ?>" name="psc" type="hidden"> 
+                                        <input value="<?php echo e($pdc); ?>" name="pdc" type="hidden"> 
                                         <input value="upeverest" name="scd" type="hidden">  
-                                        {{-- <input value="Upeverest_esewa" name="scd" type="hidden">   --}}
-                                        <input value="{{$packageBooking->order_id}}" name="pid" type="hidden"> 
-                                        <input value="{{url('package/booking-success/esewa/'.$packageBooking->token)}}?q=su" type="hidden" name="su">
-                                        <input value="{{url()}}" type="hidden" name="fu"> 
+                                        <?php /* <input value="Upeverest_esewa" name="scd" type="hidden">   */ ?>
+                                        <input value="<?php echo e($packageBooking->order_id); ?>" name="pid" type="hidden"> 
+                                        <input value="<?php echo e(url('package/booking-success/esewa/'.$packageBooking->token)); ?>?q=su" type="hidden" name="su">
+                                        <input value="<?php echo e(url()); ?>" type="hidden" name="fu"> 
 
 											<div class="row">
 												<div class="col-md-12">
@@ -127,7 +127,8 @@
 
                                     </form>
 
-								{!! Form::open(['url'=>'#', 'id'=>'creditCardForm', 'class'=>'display-none payForm']) !!}
+								<?php echo Form::open(['url'=>'#', 'id'=>'creditCardForm', 'class'=>'display-none payForm']); ?>
+
 								<div class="form-group">
 									<div class="row">
 										<div class="col-md-6">
@@ -149,17 +150,18 @@
 												<select name="exp_year" class=" form-control box" >
 													<option value="">YEAR</option>
 													<?php $j = date('Y'); ?>
-													@while($j != 1900 )
-														<option value"{{$j}}" >{{$j}}</option>
+													<?php while($j != 1900 ): ?>
+														<option value"<?php echo e($j); ?>" ><?php echo e($j); ?></option>
 														<?php $j--; ?>
-													@endwhile
+													<?php endwhile; ?>
 												</select>
-													{{-- <input type="text" class="form-control" placeholder="YEAR"> --}}
+													<?php /* <input type="text" class="form-control" placeholder="YEAR"> */ ?>
 													
 												</div>
 												<div class="col-md-4 col-sm-5 col-xs-6">
-												{!! Form::select('exp_month', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]) !!}
-													{{-- <input type="text" class="form-control" placeholder="MONTH"> --}}
+												<?php echo Form::select('exp_month', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
+													<?php /* <input type="text" class="form-control" placeholder="MONTH"> */ ?>
 													
 												</div>
 											</div>
@@ -177,9 +179,11 @@
 										<a id="payment" class="btn btn-danger btn-step">Confirm</a>
 									</div>
 								</div>
-							{!! Form::close() !!}
+							<?php echo Form::close(); ?>
 
-							{!! Form::open(['url'=>'#', 'id'=>'creditCardForm2', 'class'=>'display-none payForm']) !!}
+
+							<?php echo Form::open(['url'=>'#', 'id'=>'creditCardForm2', 'class'=>'display-none payForm']); ?>
+
 								<div class="form-group">
 									<div class="row">
 										<div class="col-md-6">
@@ -201,17 +205,18 @@
 												<select name="exp_year" class=" form-control box" >
 													<option value="">YEAR</option>
 													<?php $j = date('Y'); ?>
-													@while($j != 1900 )
-														<option value"{{$j}}" >{{$j}}</option>
+													<?php while($j != 1900 ): ?>
+														<option value"<?php echo e($j); ?>" ><?php echo e($j); ?></option>
 														<?php $j--; ?>
-													@endwhile
+													<?php endwhile; ?>
 												</select>
-													{{-- <input type="text" class="form-control" placeholder="YEAR"> --}}
+													<?php /* <input type="text" class="form-control" placeholder="YEAR"> */ ?>
 													
 												</div>
 												<div class="col-md-4 col-sm-5 col-xs-6">
-												{!! Form::select('exp_month', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]) !!}
-													{{-- <input type="text" class="form-control" placeholder="MONTH"> --}}
+												<?php echo Form::select('exp_month', [''=>'MM', '1'=>'Jan', '2'=>'Feb', '3'=>'Mar', '4'=>'Apr', '5'=>'May', '6'=>'Jun', '7'=>'Jul', '8'=>'Aug', '9'=>'Sep', '10'=>'Oct', '11'=>'Nov', '12'=>'Dec'], null, ['class'=>'box form-control', ]); ?>
+
+													<?php /* <input type="text" class="form-control" placeholder="MONTH"> */ ?>
 													
 												</div>
 											</div>
@@ -229,7 +234,8 @@
 										<a id="payment" class="btn btn-danger btn-step">Confirm</a>
 									</div>
 								</div>
-							{!! Form::close() !!}
+							<?php echo Form::close(); ?>
+
 						</div>
 					</div>
 
@@ -242,16 +248,16 @@
 							
 									<div class="trip-more-info-list">
 										<div class="info-title sub-heading-title when">When: </div>
-										<div class="info-description">{{$dPrice->daterange}}</div>
+										<div class="info-description"><?php echo e($dPrice->daterange); ?></div>
 									</div>
 									<div class="trip-more-info-list">
 										<div class="info-title sub-heading-title when">Traveller: </div>
 										<div class="info-description" id="traveller">
 											<?php $y = 0; ?>
-											@while($y < count($datas->fname))
-											<p>{{$datas->title[$y]}}. {{$datas->fname[$y]}} {{$datas->mname[$y]}} {{$datas->lname[$y]}}</p>
+											<?php while($y < count($datas->fname)): ?>
+											<p><?php echo e($datas->title[$y]); ?>. <?php echo e($datas->fname[$y]); ?> <?php echo e($datas->mname[$y]); ?> <?php echo e($datas->lname[$y]); ?></p>
 											<?php $y++; ?>
-											@endwhile
+											<?php endwhile; ?>
 										</div>
 									</div>
 						
@@ -259,18 +265,18 @@
 									
 									<div class="clearfix sub-heading-title">
 										<div class="label-text total-passenger-price pull-left">Total Tour Cost</div>
-										<div class="content-text total-passenger-price pull-right">USD {{count($datas->fname) * $dPrice->price}}</div>
+										<div class="content-text total-passenger-price pull-right">USD <?php echo e(count($datas->fname) * $dPrice->price); ?></div>
 									</div>
 
 								</div>
-								<div class="total-price-details-box  exten-text @if(empty($datas->extensionText)) hide @endif ">
+								<div class="total-price-details-box  exten-text <?php if(empty($datas->extensionText)): ?> hide <?php endif; ?> ">
 												<div class="clearfix sub-heading-title">
 													<div class="label-text total-passenger-price ">Extension Packages</div>
 													<div class="content-text total-passenger-price pull-right ext hide" extprice="0" ></div>
 													<div class="extension">
-													@if(!empty($datas->extensionText)) 
-														{!! $datas->extensionText !!} 
-													@endif
+													<?php if(!empty($datas->extensionText)): ?> 
+														<?php echo $datas->extensionText; ?> 
+													<?php endif; ?>
 													</div>
 												</div>
 											</div>
@@ -280,7 +286,7 @@
 										<h3>Total 
 								  		<small>Tax Included</small></h3>
 								  	</div>
-										<div class="content-text total-passenger-price pull-right"><span id = "total">USD {{$datas->total_amount}}</span></div>
+										<div class="content-text total-passenger-price pull-right"><span id = "total">USD <?php echo e($datas->total_amount); ?></span></div>
 									</div>
 
 								
@@ -299,10 +305,11 @@
 
 
 
-@include('frontend.includes.new.members')
+<?php echo $__env->make('frontend.includes.new.members', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 		
 
 		
 	</div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.master-new', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

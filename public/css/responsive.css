@@ -339,6 +339,20 @@
     .travel-form .btn.btn-file {
       font-size: 12px;
     }
+
+    .travel-form #creditCardForm [class*="col-"], 
+    .travel-form #creditCardForm [class^="col-"],
+    .travel-form #creditCardForm2 [class*="col-"], 
+    .travel-form #creditCardForm2 [class^="col-"] {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .travel-form #creditCardForm [class*="col-"] > .row [class*="col-"], 
+    .travel-form #creditCardForm [class^="col-"] > .row [class^="col-"],
+    .travel-form #creditCardForm2 [class*="col-"] > .row [class*="col-"], 
+    .travel-form #creditCardForm2 [class^="col-"] > .row [class^="col-"] {
+      margin-bottom: 0;
+    }
     .add-extra-package .thumb-img {
       min-height: 170px;
     }
@@ -884,6 +898,10 @@
    .travel-form .issue-date .row-fluid [class^="col-"] {
       margin: 0;
     }
+    .travel-booking .payment-options .radio {
+      margin: 10px 40px 10px 0;
+      width: 59%;
+    }
     /* about page */
     .about {
         height: auto;
@@ -1272,6 +1290,9 @@
     }
 
     /*dashboard pages*/
+    .travel-booking.booking-views {
+      margin-top: 30px;
+    }
     .dashboard-menu{
         display: none;
     }

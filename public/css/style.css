@@ -2931,6 +2931,7 @@ dl.term-description dd {
 .travel-booking {
   padding-bottom: 80px;
 }
+
 .travel-booking-step {
     margin: 40px 0;
 }
@@ -2947,6 +2948,10 @@ dl.term-description dd {
     background: #d3dad3;
     border-color: #d3dad3;
 }
+#creditCardForm .form-group{
+    padding: 10px;
+}
+
 .sidebar-travel{
     /*position: relative;*/
     z-index: 1;
@@ -3316,6 +3321,10 @@ dl.term-description dd {
   border: 1px solid #efefef;
   margin:40px 0;
   padding: 0 20px 30px;
+}
+#traveller-info .travel-form #creditCardForm .form-group,
+#traveller-info .travel-form #creditCardForm2 .form-group{
+    padding: 20px;
 }
 
 #traveller-info .travel-form #booking-3 .form-group{
@@ -4871,6 +4880,9 @@ body.modal-open {
 /*-----------------
     Dashboard Page
 -------------------*/
+.travel-booking.booking-views {
+  margin-top: 80px;
+}
 .dashboard-wrapper {
     background: #edefec;
 }

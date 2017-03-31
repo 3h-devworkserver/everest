@@ -11,7 +11,7 @@
 		<div class="travel-booking booking-views">
 			
 			<div class="row">
-				<div class="col-md-8 col-sm-8" id="traveller-info">
+				<div class="col-md-8 col-sm-6" id="traveller-info">
 					<div class="page-header bold_page-header">
 						<h2>{{$package->title}} BOOKING</h2>
 					</div>
@@ -117,7 +117,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 col-sm-4">
+					<div class="col-md-4 col-sm-5">
 						<div class="sidebar-travel">
 							<div class="total-block">
 								<h2 class="block-title">Booking Summary</h2>
