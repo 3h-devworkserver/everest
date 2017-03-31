@@ -228,9 +228,11 @@ class ProfileController extends Controller {
 			$dPrice = $booking->packageBooking->datePrice;
 			$packageBooking = $booking->packageBooking;
 			$mainTraveller = $packageBooking->mainTraveller;
-			return view('frontend.traveller.packagedetail', compact('package', 'dPrice', 'packageBooking', 'mainTraveller'));
-
-			// return view()
+			return view('frontend.traveller.packagedetail', compact('package', 'dPrice', 'packageBooking', 'mainTraveller'))
+			->with('meta_title', 'Booking Detail| Upeverest')
+		    ->with('meta_keywords', 'Booking Detail, Upeverest')
+		    ->with('meta_desc', 'Booking Detail, Upeverest')
+			->with('class', 'home');
 		}else{
 			if ($booking->flightReservation->return_type == 'R') {
 				$flightDetail = json_decode($booking->flightReservation->flight_detail);
@@ -239,7 +241,11 @@ class ProfileController extends Controller {
 				$flightDetail = json_decode($booking->flightReservation->flight_detail);
 				$returnFlightDetail = '';
 			}
-			return view('frontend.traveller.flightdetail', compact('flightDetail', 'returnFlightDetail'));
+			return view('frontend.traveller.flightdetail', compact('flightDetail', 'returnFlightDetail'))
+			->with('meta_title', 'Booking Detail| Upeverest')
+		    ->with('meta_keywords', 'Booking Detail, Upeverest')
+		    ->with('meta_desc', 'Booking Detail, Upeverest')
+			->with('class', 'home');
 		}
 	}
 	

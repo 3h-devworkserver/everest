@@ -16,11 +16,15 @@
 				<div class="col-md-3 col-sm-3">
 					<div class="profile-block">
 						<div class="profile-picture">
-							<div class="profile-bg" style="background-image:url({{asset('images/new/mountain-biking.jpg')}})"></div>
 							@if(!empty($user->profile->profile_pic))
-							<div class="profile-img" style="background-image:url({{asset('images/user/profile/'.$user->profile->profile_pic)}});"></div>
+				                <div class="profile-bg" style="background-image:url({{asset('images/user/profile/'.$user->profile->profile_pic)}})"></div>
+				            @else
+				                <div class="profile-bg" style="background-image:url({{asset('images/new/mountain-biking.jpg')}})"></div>
+				            @endif
+							@if(!empty($user->profile->profile_pic))
+								<div class="profile-img" style="background-image:url({{asset('images/user/profile/'.$user->profile->profile_pic)}});"></div>
 							@else
-							<div class="profile-img" style="background-image:url()}});"></div>
+								<div class="profile-img" style="background-image:url()}});"></div>
 							@endif
 						</div>
 						<div class="profile-desc text-center">
@@ -109,12 +113,12 @@
 
 										</div>
 										<div class="col-md-2 text-right">
-										<div class="action">
-											<a href="{{url('/traveller/purchase/'.$booking->id.'/detail')}}" target="_blank">
-												<i class="fa fa-eye"></i>
-											</a>
+											<div class="action">
+												<a href="{{url('/traveller/purchase/'.$booking->id.'/detail')}}" target="_blank">
+													<i class="fa fa-eye"></i>
+												</a>
+											</div>
 										</div>
-									</div>
 									</div>
 								</article>
 								<?php $i++; ?>

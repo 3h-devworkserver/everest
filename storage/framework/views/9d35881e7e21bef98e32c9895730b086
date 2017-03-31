@@ -6,7 +6,7 @@
 
 <div class="main-content">
 	<div class="container">
-		<div class="travel-booking">
+		<div class="travel-booking booking-views">
 			
 			<div class="row">
 				<div class="col-md-8 col-sm-8" id="traveller-info">

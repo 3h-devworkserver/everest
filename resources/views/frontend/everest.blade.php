@@ -4,7 +4,7 @@
 @section('meta_keywords'){{ $meta_keywords }}@endsection
 @section('meta_desc'){{ $meta_desc }}@endsection
 @section('content')
-<section class="banner bg-wrap {!! $page->image !!}" style="background-image: url({!! url().'/images/'.$page->image !!});">
+<section class="banner bg-wrap" style="background-image: url({!! url().'/images/'.$page->image !!});">
     <div class="container"></div>
 </section>
 @include('frontend.includes.region')

@@ -679,7 +679,7 @@ public function bookingStep3($slug, $datePrice, Request $request){
         $user->username = $this->username($datas->fname[0], $datas->lname[0]);
         $user->email = $datas->email[0];
         $user->password = Hash::make($datas->password);
-        $user->gender = '';
+        // $user->gender = '';
         $user->status =  1;
         // $user->confirmation_code = md5(uniqid(mt_rand(), true));
         // $user->confirmed = isset($input['confirmed']) ? 1 : 0;
