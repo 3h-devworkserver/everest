@@ -124,7 +124,7 @@
 								<?php $i++; ?>
 								@endforeach
 
-								<a href="javascript:void(0)" class="btn btn-danger btn-viewall">View All</a>
+								<a href="javascript:void(0)" class="btn btn-block btn-viewall">View All</a>
 							@else
 								<div class="well not-found">
 								<p class="lead text-center">No Purchased History</p>

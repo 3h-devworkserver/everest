@@ -5009,6 +5009,20 @@ body.modal-open {
     margin-right: 8px;
     color: #e42e2a;
 }
+.user-activity .btn-viewall {
+background: #fff none repeat scroll 0 0;
+border: 1px solid #ddd;
+color: #b4b4b4;
+font-size: 16px;
+padding: 15px 0;
+
+}
+.user-activity .btn-viewall:hover{
+    background: #d7d7d7 none repeat scroll 0 0;
+  border: 1px solid #c7c7c7;
+  color: #848484;
+
+}
 .dashboard .action a {
     text-align: center;
     margin: 5px;

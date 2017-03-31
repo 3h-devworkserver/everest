@@ -15,11 +15,15 @@
 				<div class="col-md-3 col-sm-3">
 					<div class="profile-block">
 						<div class="profile-picture">
-							<div class="profile-bg" style="background-image:url(<?php echo e(asset('images/new/mountain-biking.jpg')); ?>)"></div>
 							<?php if(!empty($user->profile->profile_pic)): ?>
-							<div class="profile-img" style="background-image:url(<?php echo e(asset('images/user/profile/'.$user->profile->profile_pic)); ?>);"></div>
+				                <div class="profile-bg" style="background-image:url(<?php echo e(asset('images/user/profile/'.$user->profile->profile_pic)); ?>)"></div>
+				            <?php else: ?>
+				                <div class="profile-bg" style="background-image:url(<?php echo e(asset('images/new/mountain-biking.jpg')); ?>)"></div>
+				            <?php endif; ?>
+							<?php if(!empty($user->profile->profile_pic)): ?>
+								<div class="profile-img" style="background-image:url(<?php echo e(asset('images/user/profile/'.$user->profile->profile_pic)); ?>);"></div>
 							<?php else: ?>
-							<div class="profile-img" style="background-image:url()}});"></div>
+								<div class="profile-img" style="background-image:url()}});"></div>
 							<?php endif; ?>
 						</div>
 						<div class="profile-desc text-center">
@@ -38,7 +42,8 @@
 					<div class="user-activity">
 						
 						<h3>Purchased History</h3>						
-							<?php if(!empty($user)): ?>
+							<?php if(count($user->userBookings) != 0): ?>
+								<?php $i = 1; ?>
 								<?php foreach($user->userBookings as $booking): ?>
 								<?php 
 								if($booking->type == 'package') {
@@ -47,12 +52,12 @@
 									$booked = $booking->flightReservation; 
 								}
 								?>
-								<article class="activity-wrap">
+								<article class="activity-wrap <?php if($i > 11): ?> display-none <?php endif; ?>">
 									<div class="row">
 										<div class="col-md-2">
 											<figure>
 												<?php if($booking->type == 'package'): ?>
-												<img src="<?php echo e(asset('images/packages-new/'.$booked->feat_img)); ?>" alt="">
+												<a href="<?php echo e(url('/package/'.$booked->slug)); ?>"><img src="<?php echo e(asset('images/packages-new/'.$booked->feat_img)); ?>" alt=""></a>
 												<?php else: ?>
 												<img src="<?php echo e(asset('images/upeverest-logo.png')); ?>" alt="">
 												<?php endif; ?>
@@ -61,7 +66,7 @@
 										</div>
 										<div class="col-md-8">
 											<?php if($booking->type == 'package'): ?>
-												<h4><?php echo e(title_case($booked->title)); ?></h4>
+												<h4><a href="<?php echo e(url('/package/'.$booked->slug)); ?>"><?php echo e(title_case($booked->title)); ?></a></h4>
 											<?php else: ?>
 												<h4><?php echo e(title_case($booked->departure)); ?> to <?php echo e(title_case($booked->arrival)); ?></h4>
 											<?php endif; ?>
@@ -87,6 +92,14 @@
 													<li>
 														<i class="fa fa-clock-o"></i> Purchased On: <?php echo e(Carbon\Carbon::parse($booking->purchased_at)->format('d M Y')); ?> 
 													</li>
+													<li>
+														<i class="fa fa-money"></i>
+														<?php if($booking->type == 'package'): ?>
+															<?php echo e($booking->packageBooking->total_amount); ?> 
+														<?php else: ?>
+															<?php echo e($booked->total_amount); ?> 
+														<?php endif; ?>
+													</li>
 												</ul>
 											</div>
 											<?php if($booking->type == 'package'): ?>
@@ -102,29 +115,24 @@
 
 										</div>
 										<div class="col-md-2 text-right">
-										<div class="action">
-											<a href="#">
-												<i class="fa fa-pencil"></i>
-											</a>
-											<a href="#">
-												<i class="fa fa-trash"></i>
-											</a>
-											
+											<div class="action">
+												<a href="<?php echo e(url('/traveller/purchase/'.$booking->id.'/detail')); ?>" target="_blank">
+													<i class="fa fa-eye"></i>
+												</a>
+											</div>
 										</div>
 									</div>
-									</div>
 								</article>
+								<?php $i++; ?>
 								<?php endforeach; ?>
+
+								<a href="javascript:void(0)" class="btn btn-block btn-viewall">View All</a>
 							<?php else: ?>
-								
+								<div class="well not-found">
+								<p class="lead text-center">No Purchased History</p>
+								</div>
 							<?php endif; ?>
 
-						<nav aria-label="...">
-							<ul class="pager">
-								<li><a href="#"><i class="fa fa-angle-left"></i> &nbsp;Previous</a></li>
-								<li><a href="#">Next &nbsp; <i class="fa fa-angle-right"></i></a></li>
-							</ul>
-						</nav>
 						
 					</div>
 				</div>
