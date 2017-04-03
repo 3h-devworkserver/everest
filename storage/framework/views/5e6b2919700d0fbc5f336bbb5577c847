@@ -52,7 +52,7 @@
 									$booked = $booking->flightReservation; 
 								}
 								?>
-								<article class="activity-wrap <?php if($i > 11): ?> display-none <?php endif; ?>">
+								<article class="activity-wrap <?php if($i > 10): ?> display-none <?php endif; ?>">
 									<div class="row">
 										<div class="col-md-2">
 											<figure>
@@ -74,16 +74,16 @@
 												<ul class="list-unstyled list-inline">
 													<li> <i class="fa fa-tag"></i>
 														<?php if($booking->type == 'package'): ?>
-														<?php $i = 1; ?>
+														<?php $j = 1; ?>
 														<?php foreach($booked->packageCategory as $cat): ?>
-														<?php if($i == 1): ?>
+														<?php if($j == 1): ?>
 														<?php echo e($cat->title); ?>
 
 														<?php else: ?>
 														, <?php echo e($cat->title); ?>
 
 														<?php endif; ?>
-														<?php $i++; ?>
+														<?php $j++; ?>
 														<?php endforeach; ?>
 														<?php else: ?>
 														<?php if($booked->return_type == 'R'): ?> Round Trip Flight <?php else: ?> One Way Flight <?php endif; ?>
@@ -125,8 +125,10 @@
 								</article>
 								<?php $i++; ?>
 								<?php endforeach; ?>
-
-								<a href="javascript:void(0)" class="btn btn-danger btn-viewall">View All</a>
+								
+								<?php if($i > 10): ?> 
+									<a href="javascript:void(0)" class="btn btn-block btn-viewall">View All</a>
+								<?php endif; ?>
 							<?php else: ?>
 								<div class="well not-found">
 								<p class="lead text-center">No Purchased History</p>

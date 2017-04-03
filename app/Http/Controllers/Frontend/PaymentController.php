@@ -38,6 +38,11 @@ public function flightBookingSuccess($token, Request $request){
                 'status' =>'paid',
                 'purchased_at' =>Carbon::now(),
             ]);
+
+            //ticket issue 
+
+
+            //end of ticket issue
             
         //mail need to be send to user as well as admin
 
@@ -87,6 +92,11 @@ public function packageBookingSuccess($token, Request $request){
                 'status' =>'paid',
                 'purchased_at' =>Carbon::now(),
             ]);
+
+        //ticket issue 
+
+
+        //end of ticket issue
 
         //mail need to be send to user as well as admin
 
