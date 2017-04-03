@@ -337,6 +337,9 @@ $date_depart = $request->date_depart;
 $trip_type = $request->trip_type;
 $adult = $request->adult;
 $child = $request->child;
+if($child == 0 && $adult == 0){
+    $adult = 1;
+}
 $infant = $request->infant;
 if ($request->trip_type == 'R') {
     $date_return = $request->date_return;
@@ -368,7 +371,7 @@ $soapHeaders       = array();
 $namespace         = $this->strNamespace;
 $elementName = 'FlightAvailability';
 
-$authenticationHeader = array('strUserId' => $this->strUserId,'strPassword'=>$this->strPassword,'strAgencyId'=>$this->strAgencyId,'strSectorFrom'=>$request->departure,'strSectorTo'=>$request->arrival,'strFlightDate'=>$request->date_depart,'strReturnDate'=>$request->date_return,'strTripType'=>$request->trip_type,'strNationality'=>$request->country,'intAdult'=>$request->adult,'intChild'=>$request->child);
+$authenticationHeader = array('strUserId' => $this->strUserId,'strPassword'=>$this->strPassword,'strAgencyId'=>$this->strAgencyId,'strSectorFrom'=>$request->departure,'strSectorTo'=>$request->arrival,'strFlightDate'=>$request->date_depart,'strReturnDate'=>$request->date_return,'strTripType'=>$request->trip_type,'strNationality'=>$request->country,'intAdult'=>$adult,'intChild'=>$request->child);
 $soapHeader = new \SoapHeader($namespace, $elementName, $authenticationHeader); $soapHeaders[] = $soapHeader; $soapClient->__setSoapHeaders($soapHeaders);
 
 $result = $soapClient->FlightAvailability($authenticationHeader);
