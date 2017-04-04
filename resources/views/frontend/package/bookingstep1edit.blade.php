@@ -637,7 +637,7 @@
     		                    		</div>
     		                    		<div class="col-md-3 col-sm-6">
     		                    			<label>Nationality</label>
-                                            {!!Form::select('nationality[]', [], $datas['nationality'][$i], ['class'=>'form-control countrylist' ]) !!}
+                                            {!!Form::select('nationality[]', [], $datas['nationality'][$i], ['class'=>'form-control countrylist nationalitylist' ]) !!}
 
     		                    		</div>
     		                    		<div class="col-md-5 col-sm-12 issue-date">
@@ -761,7 +761,7 @@
     		                    		<div class="col-md-4 col-sm-6">
     		                    			<label>Country<em>*</em></label>
                                             {{-- {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'id' => 'country_id' ]) !!} --}}
-                                            {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]) !!}
+                                            {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist countryEdit', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]) !!}
     		                    			{{-- {!!Form::select('country[]', [], null, ['class'=>'form-control countrylist', 'id' => 'country_id', 'onchange'=>"print_state_package(this.closest('[class^=col-md]').next(),this.selectedIndex);" ]) !!} --}}
 
                                         
@@ -769,7 +769,7 @@
     		                    		</div>
                                         <div class="col-md-4 col-sm-6">
                                             <label>Province / State</label>
-                                            {!!Form::select('state[]', [], null, ['class'=>'form-control statelist']) !!}
+                                            {!!Form::select('state[]', [], null, ['class'=>'form-control statelist stateEdit']) !!}
                                         </div>
     		                    	</div>
 
@@ -795,11 +795,11 @@
     		                    	<div class="row">
     		                    		<div class="col-md-4 col-sm-6">
     		                    			<label>Country<em>*</em></label>
-                                            {!!Form::select('em_country[]', [], $datas['em_country'][$i], ['class'=>'form-control countrylist', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]) !!}
+                                            {!!Form::select('em_country[]', [], $datas['em_country'][$i], ['class'=>'form-control countrylist emCountryEdit', 'onchange'=>"print_state_package(this,this.selectedIndex);" ]) !!}
     		                    		</div>
                                         <div class="col-md-4 col-sm-6">
                                             <label>Province / State</label>
-                                            {!!Form::select('em_state[]', [], null, ['class'=>'form-control statelist']) !!}
+                                            {!!Form::select('em_state[]', [], null, ['class'=>'form-control statelist emStateEdit']) !!}
                                         </div>
     		                    	</div>
 
@@ -969,7 +969,24 @@
 </div>
 
 <script type="text/javascript">
-    print_country_package('countrylist', '-- Select Country --');
+    var arrayFromPHP = <?php echo json_encode($datas['nationality']); ?>;
+    print_country_package_edit('nationalitylist', arrayFromPHP );
+
+    var arrayFromPHP = <?php echo json_encode($datas['country']); ?>;
+    print_country_package_edit('countryEdit', arrayFromPHP );
+    var state = <?php echo json_encode($datas['state']); ?>;
+    console.log(state);
+    $(".stateEdit").each(function(index){
+        this.append(new Option(state[index], state[index]));
+    });
+
+    var arrayFromPHP = <?php echo json_encode($datas['em_country']); ?>;
+    print_country_package_edit('emCountryEdit', arrayFromPHP );
+    var emState = <?php echo json_encode($datas['em_state']); ?>;
+    $(".emStateEdit").each(function(index){
+        this.append(new Option(emState[index], emState[index]));
+    });
+
     <?php /* ?>
     $(document).ready(function(){
         $('#traveller-info .countrylist').each(function(){
