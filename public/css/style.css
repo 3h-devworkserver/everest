@@ -782,6 +782,8 @@ header {
     background: #fff;
     border: none;
     color: #000;
+     font-family: 'quatro_slabregular';
+    font-size: 14px;
 }
 #ui-id-1 .ui-menu-item-wrapper:hover,
 #ui-id-1 .ui-menu-item-wrapper:active,
@@ -5518,4 +5520,101 @@ padding: 15px 0;
 }
 #package-contactform .loading{
     margin-top: 7px;
+}
+
+/* new video */
+.video-frame {
+  height: 520px;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 100%;
+}
+.video-frame video {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/*new trekking section*/
+.trekking-wrapper{
+    margin-top: 40px;
+}
+.trekking-wrapper .trekking-thumb{
+    background: #f5f5f5;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+.trekking-wrapper .trek-title{
+    padding: 10px 10px 15px;
+    min-height: 65px;
+}
+.trekking-wrapper .trek-day-price{
+    background: #ed1c24;
+    overflow: hidden;
+    color: #fff;
+    padding:15px 20px;
+    font-size: 22px;
+    font-weight: 800;
+}
+.trekking-wrapper .feature-box{
+    margin-bottom: 0;
+}
+.trekking-wrapper .trek-day-price p{
+    margin-bottom: 0;
+}
+.trekking-wrapper .trek-day-price .days{
+    float: left;
+}
+.trekking-wrapper .trek-day-price .days span{
+    position: relative;
+    margin-right: 15px;
+    padding-right: 15px;
+}
+.trekking-wrapper .trek-day-price .days span:last-child{
+    margin-right: 0;
+    padding-right: 0;
+}
+.trekking-wrapper .trek-day-price .days span:after{
+    position: absolute;
+    right: -5px;
+    top: -2px;
+    content: '/';
+}
+.trekking-wrapper .trek-day-price .days span:last-child:after{
+    display: none;
+}
+.trekking-wrapper .trek-day-price .price{
+    float: right;
+}
+.trekking-wrapper .btn-grps{
+    margin-top: 3%;
+    overflow: hidden;
+}
+.trekking-wrapper .btn-grps a{
+    width: 48.5%;
+    padding: 15px;
+    background:#0089cf;
+    color: #fff;
+    float: left;
+    display: block;
+    margin-right: 3%;
+    font-size: 13px;
+    font-family: 'quatro_slabmedium';
+}
+.trekking-wrapper .btn-grps a:last-child{
+    margin-right: 0;
+}
+.trekking-wrapper .btn-grps a img{
+    float: left;
+    margin-right:10px;
+}
+.trekking-wrapper ul{
+    clear: both;
+    margin: 15px 0;
+    list-style:outside none disc;
+    padding-left: 20px;
+
+}
+.trekking-wrapper ul li{
+    margin-bottom: 10px;
 }

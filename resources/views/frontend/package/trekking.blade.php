@@ -109,7 +109,7 @@
                 </div>
             </div>
 
-        
+        <?php  /* ?>
         <div class="feature-wrap trekking-pricing">
                 <div class="row">
                 @if(!empty($packages))
@@ -237,7 +237,62 @@
 
                 </div>
             </div>  
+        <?php */ ?>
 
+        <div class="trekking-wrapper">
+            <div class="row">
+                @if(!empty($packages))
+                @foreach($packages as $package)
+                @if($package->status == 1)
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="trekking-thumb">
+                            <a href="{{url('/package/'.$package->slug)}}" class="">
+                                <h4 class="trek-title">{{$package->title}}</h4>
+                                <div class="trek-img bg-wrap feature-box" style="background-image: url({{asset('images/packages-new/'.$package->feat_img)}});">
+                                    
+                                </div>
+                            </a>
+                            <div class="description">
+                                <div class="trek-day-price">
+                                    
+                                    <p class="days"> <span>10 N</span><span>11 D</span></p>
+                                    <p class="price">${{$package->price}}</p>
+                                </div>
+                                <div class="btn-grps">
+                                    <a href="#"> 
+                                        <img src="{{url('images/goupguided.png')}}" alt="" width="35px">
+                                        Guided Group
+                                    </a>
+                                    <a href="#">
+                                        <img src="{{url('images/private.png')}}" alt="" width="25px">
+                                        Privated
+                                    </a>
+
+                                </div>
+                                <ul class="">
+                                    <li>Walk amidst the world's highest mountain range, with incredible views of </li>
+                                    <li>
+                                        Ascend Kala Pattar for close up views of Mt Everest
+                                    </li>
+                                    <li>
+                                        Explore Namche Bazaar and soak up the Sherpa culture
+                                    </li>
+                                </ul>
+                                <p>
+                                    The iconic Himalayan trek to the foot of the highest mountain on Earth
+                                </p>
+                            </div>
+                            
+                        </div>
+                           
+                    </div>
+                @endif
+                @endforeach
+                @endif
+            </div>
+
+        </div>
 
         @if(!empty($static))
         <div class="feature-wrap">

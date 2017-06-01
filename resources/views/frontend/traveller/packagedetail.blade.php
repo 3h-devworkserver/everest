@@ -167,11 +167,21 @@
 																<?php 
 																	$title = DB::table('packages')->where('id', $selectedAddonDetail[0])->value('title');
 																?>
-																<p>{{$title}}<br><small>(@if($selectedAddonDetail[1] == 1){{$selectedAddonDetail[1]}} Person @else {{$selectedAddonDetail[1]}} Persons @endif)</small>
-																</p>
+																{{-- supress error for now --}}
+																@if(!empty($selectedAddonDetail[1]))
+																	<p>{{$title}}<br><small>(@if($selectedAddonDetail[1] == 1){{$selectedAddonDetail[1]}} Person @else {{$selectedAddonDetail[1]}} Persons @endif)</small>
+																	</p>
+																@endif
+																{{-- supress error for now --}}
+
 															</div>
 															<div class="content-text total-passenger-price ext pull-right">
-															USD {{$selectedAddonDetail[2]}}
+															{{-- supress error for now --}}
+															@if(!empty($selectedAddonDetail[2]))
+																USD {{$selectedAddonDetail[2]}}
+															@endif
+															{{-- supress error for now --}}
+
 															</div>
 														</div>
 														@endforeach

@@ -265,7 +265,8 @@ $( ".country" ).SumoSelect({
         if(win > 767){
                         var element = $('.travel-booking .sidebar-travel'),
                             originalY = element.offset().top;
-                            var footerTopPos = $('footer').height() + 200;
+                            // var footerTopPos = $('footer').height() + 200;
+                            var footerTopPos = $('footer').height() + 250;
                         // Space between element and top of screen (when scrolling)
                         var topMargin = 20;
                         //console.log(footerTopPos)
