@@ -782,6 +782,8 @@ header {
     background: #fff;
     border: none;
     color: #000;
+     font-family: 'quatro_slabregular';
+    font-size: 14px;
 }
 #ui-id-1 .ui-menu-item-wrapper:hover,
 #ui-id-1 .ui-menu-item-wrapper:active,
@@ -5518,4 +5520,17 @@ padding: 15px 0;
 }
 #package-contactform .loading{
     margin-top: 7px;
+}
+
+/* new video */
+.video-frame {
+  height: 520px;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 100%;
+}
+.video-frame video {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }

@@ -109,7 +109,7 @@
                 </div>
             </div>
 
-        
+        <?php  /* ?>
         <div class="feature-wrap trekking-pricing">
                 <div class="row">
                 @if(!empty($packages))
@@ -237,7 +237,7 @@
 
                 </div>
             </div>  
-
+        <?php */ ?>
 
         @if(!empty($static))
         <div class="feature-wrap">

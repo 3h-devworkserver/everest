@@ -108,27 +108,27 @@
                 </div>
             </div>
 
-        
+        <?php  /* ?>
         <div class="feature-wrap trekking-pricing">
                 <div class="row">
-                <?php if(!empty($packages)): ?>
-                <?php foreach($packages as $package): ?>
-                    <?php if($package->status == 1): ?>
+                @if(!empty($packages))
+                @foreach($packages as $package)
+                    @if($package->status == 1)
                     <div class="col-md-4 col-sm-4">
-                        <a href="<?php echo e(url('/package/'.$package->slug)); ?>" class="feature-box bg-wrap" style="background-image: url(<?php echo e(asset('images/packages-new/'.$package->feat_img)); ?>);">
+                        <a href="{{url('/package/'.$package->slug)}}" class="feature-box bg-wrap" style="background-image: url({{asset('images/packages-new/'.$package->feat_img)}});">
                             <div class="description">
                                 <div>
-                                    <h4><?php echo e($package->title); ?></h4>
+                                    <h4>{{$package->title}}</h4>
                                     <p class="days"> <span>10 Nights</span><span>11 Days</span></p>
-                                    <p class="price">$<?php echo e($package->price); ?></p>
+                                    <p class="price">${{$package->price}}</p>
                                 </div>
                             </div>
                             <div class="mask"></div>
                         </a>
                     </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-                <?php endif; ?>
+                    @endif
+                @endforeach
+                @endif
 
                    <!--  <div class="col-md-4 col-sm-4">
                         <a href="#" class="feature-box bg-wrap" style="background-image: url('images/inside_everest_trekking_small_1.jpg');">
@@ -236,7 +236,7 @@
 
                 </div>
             </div>  
-
+        <?php */ ?>
 
         <?php if(!empty($static)): ?>
         <div class="feature-wrap">
