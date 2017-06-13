@@ -242,11 +242,14 @@
         <div class="trekking-wrapper">
             <div class="row">
                 @if(!empty($packages))
+                <?php 
+                    $i = 0;
+                ?>
                 @foreach($packages as $package)
                 @if($package->status == 1)
 
                     <div class="col-md-4 col-sm-4">
-                        <div class="trekking-thumb">
+                        <div class="trekking-thumb @if($i++ %3==1) gray-title @endif">
                             <a href="{{url('/package/'.$package->slug)}}" class="">
                                 <h4 class="trek-title">{{$package->title}}</h4>
                                 <div class="trek-img bg-wrap feature-box" style="background-image: url({{asset('images/packages-new/'.$package->feat_img)}});">

@@ -5540,13 +5540,23 @@ padding: 15px 0;
     margin-top: 40px;
 }
 .trekking-wrapper .trekking-thumb{
-    background: #f5f5f5;
+    background: #6d6e71;
     padding: 10px;
     margin-bottom: 30px;
+    color: #fff;
+}
+.trekking-wrapper .trekking-thumb > a {
+  background: #0066b3;
+  color: #fff;
+  display: block;
+}
+.trekking-wrapper .trekking-thumb.gray-title  > a {
+  background: #a7a9ac;
 }
 .trekking-wrapper .trek-title{
     padding: 10px 10px 15px;
     min-height: 65px;
+    font-size: 24px;
 }
 .trekking-wrapper .trek-day-price{
     background: #ed1c24;
