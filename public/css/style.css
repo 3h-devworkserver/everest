@@ -5552,7 +5552,7 @@ padding: 15px 0;
     background: #ed1c24;
     overflow: hidden;
     color: #fff;
-    padding:15px 20px;
+    padding:10px 15px;
     font-size: 22px;
     font-weight: 800;
 }
@@ -5592,7 +5592,8 @@ padding: 15px 0;
 }
 .trekking-wrapper .btn-grps a{
     width: 48.5%;
-    padding: 15px;
+    padding:10px 15px;
+    line-height: 20px;
     background:#0089cf;
     color: #fff;
     float: left;

@@ -256,21 +256,23 @@
                             <div class="description">
                                 <div class="trek-day-price">
                                     
-                                    <p class="days"> <span>10 N</span><span>11 D</span></p>
+                                    <p class="days"> <span>@if($package->duration != 0 ){{($package->duration)-1}} N @endif</span><span>{{$package->duration}} D</span></p>
                                     <p class="price">${{$package->price}}</p>
                                 </div>
                                 <div class="btn-grps">
-                                    <a href="#"> 
+                                    <a href="{{url('/package/'.$package->slug)}}" data-toggle="tooltip" data-placement="bottom" data-title="The following trip will be on shared basis and on fixed departure basis."> 
                                         <img src="{{url('images/goupguided.png')}}" alt="" width="35px">
                                         Guided Group
                                     </a>
                                     <a href="#">
-                                        <img src="{{url('images/private.png')}}" alt="" width="25px">
-                                        Privated
+                                        <img src="{{url('images/private.png')}}" alt="" width="20px">
+                                        Private
                                     </a>
 
                                 </div>
-                                <ul class="">
+                                {!!$package->description!!}
+
+                                <!-- <ul class="">
                                     <li>Walk amidst the world's highest mountain range, with incredible views of </li>
                                     <li>
                                         Ascend Kala Pattar for close up views of Mt Everest
@@ -281,7 +283,7 @@
                                 </ul>
                                 <p>
                                     The iconic Himalayan trek to the foot of the highest mountain on Earth
-                                </p>
+                                </p> -->
                             </div>
                             
                         </div>

@@ -238,6 +238,64 @@
             </div>  
         <?php */ ?>
 
+        <div class="trekking-wrapper">
+            <div class="row">
+                <?php if(!empty($packages)): ?>
+                <?php foreach($packages as $package): ?>
+                <?php if($package->status == 1): ?>
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="trekking-thumb">
+                            <a href="<?php echo e(url('/package/'.$package->slug)); ?>" class="">
+                                <h4 class="trek-title"><?php echo e($package->title); ?></h4>
+                                <div class="trek-img bg-wrap feature-box" style="background-image: url(<?php echo e(asset('images/packages-new/'.$package->feat_img)); ?>);">
+                                    
+                                </div>
+                            </a>
+                            <div class="description">
+                                <div class="trek-day-price">
+                                    
+                                    <p class="days"> <span><?php if($package->duration != 0 ): ?><?php echo e(($package->duration)-1); ?> N <?php endif; ?></span><span><?php echo e($package->duration); ?> D</span></p>
+                                    <p class="price">$<?php echo e($package->price); ?></p>
+                                </div>
+                                <div class="btn-grps">
+                                    <a href="<?php echo e(url('/package/'.$package->slug)); ?>" data-toggle="tooltip" data-placement="bottom" data-title="The following trip will be on shared basis and on fixed departure basis."> 
+                                        <img src="<?php echo e(url('images/goupguided.png')); ?>" alt="" width="35px">
+                                        Guided Group
+                                    </a>
+                                    <a href="#">
+                                        <img src="<?php echo e(url('images/private.png')); ?>" alt="" width="20px">
+                                        Private
+                                    </a>
+
+                                </div>
+                                <?php echo $package->description; ?>
+
+
+                                <!-- <ul class="">
+                                    <li>Walk amidst the world's highest mountain range, with incredible views of </li>
+                                    <li>
+                                        Ascend Kala Pattar for close up views of Mt Everest
+                                    </li>
+                                    <li>
+                                        Explore Namche Bazaar and soak up the Sherpa culture
+                                    </li>
+                                </ul>
+                                <p>
+                                    The iconic Himalayan trek to the foot of the highest mountain on Earth
+                                </p> -->
+                            </div>
+                            
+                        </div>
+                           
+                    </div>
+                <?php endif; ?>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+
+        </div>
+
         <?php if(!empty($static)): ?>
         <div class="feature-wrap">
             <div class="row">
